@@ -82,8 +82,7 @@
                                                             class="amount">￥165.00</span></td>
                                                     <td
                                                             class="product-quantity">
-                                                        <input value="1"
-                                                               type="number">
+                                                        <span class="amount">1</span>
                                                     </td>
                                                     <td
                                                             class="product-subtotal">￥165.00</td>
@@ -103,8 +102,7 @@
                                                             class="amount">￥150.00</span></td>
                                                     <td
                                                             class="product-quantity">
-                                                        <input value="1"
-                                                               type="number">
+                                                        <span class="amount">1</span>
                                                     </td>
                                                     <td
                                                             class="product-subtotal">￥150.00</td>
