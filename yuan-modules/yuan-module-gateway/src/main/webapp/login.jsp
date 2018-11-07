@@ -47,23 +47,15 @@
                                 <div class="col-md-6 col-md-offset-3">
                                     <div class="login-content">
                                         <div class="login-title">
-                                            <h4>login</h4>
-                                            <p>Please login using account detail bellow.</p>
+                                            <h4>用户登录</h4>
                                         </div>
                                         <div class="login-form">
                                             <form action="#">
-                                                <input name="user-name" placeholder="Username" type="text">
-                                                <input name="user-password" placeholder="Password" type="password">
-                                                <div class="button-remember">
-                                                    <div class="checkbox-remember">
-                                                        <input id="checkbox" type="checkbox">
-                                                        <label>Remember me</label>
-                                                        <a href="#">Forgot your Password?</a>
-                                                    </div>
-                                                    <button class="login-btn" type="submit">Login</button>
-                                                </div>
+                                                <input name="phone" placeholder="请输入手机号" type="text">
+                                                <input name="password" placeholder="请输入密码" type="password">
+                                                <button class="login-btn" type="submit">登录</button>
                                                 <div class="new-account">
-                                                    <p>new here ? <a href="register.jsp">Create an new account .</a></p>
+                                                    <p>还没有账号？ <a href="register.jsp">注册新账号</a></p>
                                                 </div>
                                             </form>
                                         </div>

@@ -2286,6 +2286,7 @@ thead {
 }
 .tax-coupon-details {
     display: inline-block;
+    width: 100%;
     float: left;
 }
 .shipping-dec {
@@ -2294,7 +2295,7 @@ thead {
 .tax-coupon ul li {
     background: #fff none repeat scroll 0 0;
     display: inline-block;
-    width: 50%;
+    width: 100%;
     float: left;
 }
 .tax-coupon ul li:last-child {
@@ -2761,7 +2762,7 @@ button.submit:hover {
 }
 .progress-bar {
     background-color: #555;
-    box-shadow: color: #fff;
+    box-shadow: #fff;
     float: left;
     font-size: 12px;
     height: 100%;

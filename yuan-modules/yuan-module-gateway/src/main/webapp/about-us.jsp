@@ -42,7 +42,7 @@
                         <div class="container">
                             <div class="section-title text-center mb-70">
                                 <h2>
-                                    为什么选择我们？
+                                    关于我们
                                     <i class="fa fa-star"></i>
                                 </h2>
                                 <p>健康产品服务商</p>

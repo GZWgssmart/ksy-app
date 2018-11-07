@@ -169,7 +169,7 @@
                                             <li><a href="about-us.jsp">about us </a></li>
                                             <li><a href="cart.jsp">cart</a></li>
                                             <li><a href="checkout.html">checkout</a></li>
-                                            <li><a href="wishlist.html">wishlist</a></li>
+                                            <li><a href="order.jsp">wishlist</a></li>
                                             <li><a href="login.jsp">login</a></li>
                                             <li><a href="register.jsp">register</a></li>
                                             <li><a href="contact.jsp">contact</a></li>
@@ -290,7 +290,7 @@
                                     <li><a href="about-us.jsp">about us </a></li>
                                     <li><a href="cart.jsp">cart</a></li>
                                     <li><a href="checkout.html">checkout</a></li>
-                                    <li><a href="wishlist.html">wishlist</a></li>
+                                    <li><a href="order.jsp">wishlist</a></li>
                                     <li><a href="login.jsp">login</a></li>
                                     <li><a href="register.jsp">register</a></li>
                                     <li><a href="contact.jsp">contact</a></li>
