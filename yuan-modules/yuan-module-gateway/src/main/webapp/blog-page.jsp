@@ -57,7 +57,6 @@
                                             <ul class="meta">
                                                 <li><a href="#">John Doe</a></li>
                                                 <li>25 june</li>
-                                                <li>3 Comments</li>
                                             </ul>
                                             <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
                                             <a href="blog-details.jsp">read more</a>
@@ -79,7 +78,6 @@
                                             <ul class="meta">
                                                 <li><a href="#">John Doe</a></li>
                                                 <li>25 june</li>
-                                                <li>3 Comments</li>
                                             </ul>
                                             <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
                                             <a href="blog-details.jsp">read more</a>
@@ -101,7 +99,6 @@
                                             <ul class="meta">
                                                 <li><a href="#">John Doe</a></li>
                                                 <li>25 june</li>
-                                                <li>3 Comments</li>
                                             </ul>
                                             <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
                                             <a href="blog-details.jsp">read more</a>
@@ -123,7 +120,6 @@
                                             <ul class="meta">
                                                 <li><a href="#">John Doe</a></li>
                                                 <li>25 june</li>
-                                                <li>3 Comments</li>
                                             </ul>
                                             <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
                                             <a href="blog-details.jsp">read more</a>
@@ -145,7 +141,6 @@
                                             <ul class="meta">
                                                 <li><a href="#">John Doe</a></li>
                                                 <li>25 june</li>
-                                                <li>3 Comments</li>
                                             </ul>
                                             <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
                                             <a href="blog-details.jsp">read more</a>
@@ -167,7 +162,6 @@
                                             <ul class="meta">
                                                 <li><a href="#">John Doe</a></li>
                                                 <li>25 june</li>
-                                                <li>3 Comments</li>
                                             </ul>
                                             <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
                                             <a href="blog-details.jsp">read more</a>

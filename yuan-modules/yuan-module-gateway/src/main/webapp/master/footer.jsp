@@ -30,7 +30,7 @@
                             <p>
                                 <i class="pe-7s-mail"></i>
                                 <span>
-                                    <a href="mailto:contact@company.com">admin@163.com</a>
+                                    <a href="mailto:admin@163.com">admin@163.com</a>
                                 </span>
                             </p>
                             <p>
@@ -47,9 +47,9 @@
                         </div>
                         <div class="widget-text">
                             <ul>
-                                <li><a href="#">登录 </a></li>
-                                <li><a href="#">注册 </a></li>
-                                <li><a href="#">我的购物车</a></li>
+                                <li><a href="login.jsp">登录 </a></li>
+                                <li><a href="register.jsp">注册 </a></li>
+                                <li><a href="cart.jsp">我的购物车</a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                         </div>
                         <div class="widget-text">
                             <ul>
-                                <li><a href="#">关于我们</a></li>
-                                <li><a href="#">联系我们</a></li>
+                                <li><a href="about-us.jsp">关于我们</a></li>
+                                <li><a href="contact.jsp">联系我们</a></li>
                             </ul>
                         </div>
                     </div>

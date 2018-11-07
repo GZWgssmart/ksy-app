@@ -37,38 +37,15 @@
             <div class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
-                    
-                    <!-- about start -->
-                    <div class="about-area ptb-100">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="about-img">
-                                        <img alt=""
-                                            src="assets/img/banner/15.jpg">
-                                        <a class="video-popup"
-                                            href="https://www.youtube.com/watch?v=sYPTflDSY-k">
-                                            <i class="fa fa-play"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- about end -->
                     <!-- service area start  -->
                     <div class="choose-us-skill-area pt-100 pb-70 gray-bg">
                         <div class="container">
                             <div class="section-title text-center mb-70">
                                 <h2>
-                                    Why Choose Us
+                                    为什么选择我们？
                                     <i class="fa fa-star"></i>
                                 </h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Pellentesque vel
-                                    volutpat felis, eu condimentum
-                                    massa. Pellentesque mollis eros vel
-                                    mattis tempor.</p>
+                                <p>健康产品服务商</p>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -134,7 +111,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-30">
                                     <div class="about-all">
-                                        <h2>Our Mission</h2>
+                                        <h2>愿景</h2>
                                         <p>Lorem ipsum dolor sit amet,
                                             consectetuer adipiscing elit.
                                             Aenean commodo ligula eget
@@ -176,7 +153,7 @@
                         <div class="container">
                             <div class="section-title text-center mb-50">
                                 <h2>
-                                    happy client
+                                    客户评价
                                     <i class="fa fa-star"></i>
                                 </h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur

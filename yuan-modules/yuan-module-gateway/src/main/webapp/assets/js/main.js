@@ -195,19 +195,19 @@
         onkeyup: false,
         rules: {
             name: "required",
-            email: {
+            phone: {
                 required: true,
-                email: true
+                phoneNum: true
             }
         },
         errorPlacement: function(error, element) {
             error.insertBefore(element);
         },
         messages: {
-            name: "What's your name?",
-            email: {
-                required: "What's your email?",
-                email: "Please, enter a valid email"
+            name: "请输入称呼",
+            phone: {
+                required: "请输入手机号",
+                phoneNum: "请输入正确的手机号"
             }
         },
 					
@@ -260,3 +260,9 @@
     
     
 })(jQuery);
+
+jQuery.validator.addMethod("phoneNum", function(value, element) {
+    var length = value.length;
+    var mobile = /^1[3|5|8]{1}[0-9]{9}$/;
+    return this.optional(element) || (length == 11 && mobile.test(value));
+}, "请正确填写您的手机号码");
