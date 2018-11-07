@@ -3,6 +3,13 @@ package com.jeff.yuan.cms;
 import java.io.IOException;
 
 import com.jeff.yuan.cms.entity.Article;
+import com.jeff.yuan.cms.entity.ShopBillTrade;
+import com.jeff.yuan.cms.entity.ShopProduct;
+import com.jeff.yuan.cms.entity.ShopRegisterRule;
+import com.jeff.yuan.cms.entity.ShopTrade;
+import com.jeff.yuan.cms.entity.ShopTradeDetail;
+import com.jeff.yuan.cms.entity.ShopUser;
+import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.common.util.GenCodeUtil;
 
 public class GenCodeTest {
@@ -14,7 +21,13 @@ public class GenCodeTest {
 		String writer = "dingjinqing";
 		//Demo为Entity类（放上自己新增的实体类即可）
 //		GenCodeTest.autoGenAllCode(ColumnInfo.class,s,writer);
-		GenCodeTest.autoGenAllCode(Article.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopBillTrade.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopProduct.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopRegisterRule.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopTrade.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopTradeDetail.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopUser.class,s,writer);
+		GenCodeTest.autoGenAllCode(ShopUserExt.class,s,writer);
 	}
 	
 	/**

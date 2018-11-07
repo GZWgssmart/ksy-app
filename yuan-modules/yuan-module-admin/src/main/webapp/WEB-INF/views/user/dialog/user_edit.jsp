@@ -52,7 +52,7 @@ $(function(){
 <body>
 
 	
-	<div id="addForm" class="mgt40">
+	<div id="addForm" class="mgt20">
 		<form action="${ctx }/user/ajax/save" id="editForm" method="post">
 		<input type="hidden" name="id" value="${user.id }"/>
 		<div class="">

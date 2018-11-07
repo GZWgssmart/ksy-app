@@ -40,7 +40,7 @@
 	                </div>
 	                <div class="i_menu">
 	                	<c:forEach items="${resource.children }" var="ch">
-		                	<div class="m_item">
+		                	<div class="m_item mgl20">
 		                		<c:set var="url" value="javascript:;"/>
 			                	<c:if test="${not empty ch.url }">
 			                		<c:set var="url" value="${ctx }${ch.url }"/>
