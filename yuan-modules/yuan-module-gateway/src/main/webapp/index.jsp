@@ -44,9 +44,9 @@
                         <div class="hero-slider-item hero-slider-item-1">
                             <div class="hero-slider-contents">
                                 <div class="container">
-                                    <h1 class="title1">Amazing Collections</h1>
-                                    <p class="title2">New Arrivals 2018</p>
-                                    <a href="#" class="button-hover">SHOP NOW</a>
+                                    <h1 class="title1">活动1</h1>
+                                    <p class="title2">优惠活动</p>
+                                    <a href="#" class="button-hover">查看</a>
                                 </div>
                             </div>
                         </div>
@@ -54,9 +54,9 @@
                         <div class="hero-slider-item hero-slider-item-2">
                             <div class="hero-slider-contents">
                                 <div class="container">
-                                    <h1 class="title1">Awesome Collections</h1>
-                                    <p class="title2">New Arrivals 2018</p>
-                                    <a href="#" class="button-hover">SHOP NOW</a>
+                                    <h1 class="title1">活动2</h1>
+                                    <p class="title2">优惠活动</p>
+                                    <a href="#" class="button-hover">查看</a>
                                 </div>
                             </div>
                         </div>
@@ -108,14 +108,8 @@
                 <div class="portfolio-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <h2>Featured Collections <i class="fa fa-shopping-cart"></i></h2>
+                            <h2>热门推荐<i class="fa fa-shopping-cart"></i></h2>
                         </div>
-                        <div class="shop-menu portfolio-left-menu text-center mb-50">
-                            <button class="active" data-filter=".mix1">All </button>
-                            <button data-filter=".mix2">Tranding</button>
-                            <button data-filter=".mix3">Best sell </button>
-                            <button data-filter=".mix4">Popular </button>
-                        </div>			
                         <div class="row portfolio-style-2">
                             <div class="grid">
                                 <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix2 mix4 mix1 mix3 mb-30">
@@ -128,14 +122,11 @@
                                                 </a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
+                                                    添加到购物车
                                                 </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
+
                                             </div>
                                         </div>
                                         <div class="shop-text-all">
@@ -144,7 +135,7 @@
                                                     <h3><a href="#">PC Headphone</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -166,14 +157,11 @@
                                                 <span class="sale-new">sale</span>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
+                                                    添加到购物车
                                                 </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
+
                                             </div>
                                         </div>
                                         <div class="shop-text-all">
@@ -182,7 +170,7 @@
                                                     <h3><a href="#">Table lamp</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -204,14 +192,11 @@
                                                 <span class="sale-new">-30%</span>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
+                                                    添加到购物车
                                                 </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
+
                                             </div>
                                         </div>
                                         <div class="shop-text-all">
@@ -220,7 +205,7 @@
                                                     <h3><a href="#">Man Watch</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -239,14 +224,11 @@
                                                 </a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
+                                                    添加到购物车
                                                 </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
-                                                </a>
+
                                             </div>
                                         </div>
                                         <div class="shop-text-all">
@@ -255,7 +237,7 @@
                                                     <h3><a href="#">Table Fan</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -264,30 +246,16 @@
                                         </div>									
                                     </div>						
                                 </div>
-                            </div>		
-                        </div>
-                    </div>
-                </div>
-                <!-- shop area end -->
-                <div class="counter-home2">
-                    <div class="container">
-                        <div class="counter2-all text-center">
-                            <img alt="" src="assets/img/banner/9.jpg">
-                            <div class="counter-content">
-                                <h2>Deal Of The Week</h2>
-                                <h4>Special Discount Limited Time Only</h4>
-                                <div class="timer">
-                                    <div data-countdown="2018/12/20"></div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- shop area end -->
                 <!-- shop area start -->
                 <div class="portfolio-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <h2>New Collections <i class="fa fa-shopping-cart"></i></h2>
+                            <h2>新品上市<i class="fa fa-shopping-cart"></i></h2>
                         </div>		
                         <div class="row portfolio-style-2">
                             <div class="grid">
@@ -304,13 +272,9 @@
                                                 <span class="sale-new">sale</span>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -320,7 +284,7 @@
                                                     <h3><a href="#">PC Headphone</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -339,13 +303,9 @@
                                                 </a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -355,7 +315,7 @@
                                                     <h3><a href="#">Table Lamp</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -377,13 +337,9 @@
                                                 <span class="sale-new">-30%</span>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -393,7 +349,7 @@
                                                     <h3><a href="#">Man Watch</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -412,13 +368,9 @@
                                                 </a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -428,7 +380,7 @@
                                                     <h3><a href="#">Lorem ips</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -447,13 +399,9 @@
                                                 </a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -463,7 +411,7 @@
                                                     <h3><a href="#">Table Fan</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -485,13 +433,9 @@
                                                 <span class="sale-new">new</span>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -501,7 +445,7 @@
                                                     <h3><a href="#">Handbag</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -520,13 +464,9 @@
                                                 </a>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -536,7 +476,7 @@
                                                     <h3><a href="#">Micro Woven</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -558,13 +498,9 @@
                                                 <span class="sale-new">-50%</span>
                                             </div>
                                             <div class="button-group">
-                                                <a href="#" title="Add to Cart">
+                                                <a href="#" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
-                                                    add to cart
-                                                </a>
-                                                <a class="wishlist" href="#" title="Wishlist">
-                                                    <i class="pe-7s-like"></i>
-                                                    Wishlist
+                                                    添加到购物车
                                                 </a>
                                             </div>
                                         </div>
@@ -574,7 +510,7 @@
                                                     <h3><a href="#">PC Headphone</a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">$120.00</span>
+                                                    <span class="new">￥120.00</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -592,7 +528,7 @@
                 <div class="blog-area gray-bg pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <h2>latest news <i class="fa fa-pencil"></i></h2>
+                            <h2>最新资讯<i class="fa fa-pencil"></i></h2>
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-sm-6">
@@ -763,7 +699,7 @@
                                                                             </div>
                                                                             <div class="col-sm-12 col-md-12">
                                                                                 <div class="por-dse add-to">
-                                                                                    <a href="#">add to cart</a>
+                                                                                    <a href="#">添加到购物车</a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
