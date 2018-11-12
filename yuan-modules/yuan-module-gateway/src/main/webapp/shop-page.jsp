@@ -50,9 +50,9 @@
                                             <h3 class="sidebar-title">爆款热门</h3>
                                             <div class="single-shop mb-40">
                                                 <div class="shop-img">
-                                                    <a href="#"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
+                                                    <a href="single-product.jsp"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
                                                     <div class="shop-quick-view">
-                                                        <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                        <a href="single-product.jsp">
                                                             <i class="pe-7s-look"></i>
                                                         </a>
                                                     </div>
@@ -66,7 +66,7 @@
                                                 <div class="shop-text-all">
                                                     <div class="title-color fix">
                                                         <div class="shop-title f-left">
-                                                            <h3><a href="#">PC Headphone</a></h3>
+                                                            <h3><a href="single-product.jsp">PC Headphone</a></h3>
                                                         </div>
                                                         <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -99,9 +99,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -115,7 +115,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">PC Headphone</a></h3>
+                                                                                <h3><a href="single-product.jsp">PC Headphone</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -130,9 +130,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -149,7 +149,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Table Lamp</a></h3>
+                                                                                <h3><a href="single-product.jsp">Table Lamp</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -164,9 +164,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -183,7 +183,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Table Fan</a></h3>
+                                                                                <h3><a href="single-product.jsp">Table Fan</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -198,9 +198,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/9.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/9.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -217,7 +217,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Air Conditionar</a></h3>
+                                                                                <h3><a href="single-product.jsp">Air Conditionar</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -232,9 +232,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -248,7 +248,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Soundbox</a></h3>
+                                                                                <h3><a href="single-product.jsp">Soundbox</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -263,9 +263,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -282,7 +282,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Micro Woven</a></h3>
+                                                                                <h3><a href="single-product.jsp">Micro Woven</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -297,9 +297,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -316,7 +316,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Air Cooler</a></h3>
+                                                                                <h3><a href="single-product.jsp">Air Cooler</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -331,9 +331,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/4.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/4.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -350,7 +350,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Washing machine</a></h3>
+                                                                                <h3><a href="single-product.jsp">Washing machine</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -365,9 +365,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/5.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/5.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -381,7 +381,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Wall Watch</a></h3>
+                                                                                <h3><a href="single-product.jsp">Wall Watch</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -396,9 +396,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/6.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/6.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -412,7 +412,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">IPS Box</a></h3>
+                                                                                <h3><a href="single-product.jsp">IPS Box</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -427,9 +427,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/7.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/7.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -443,7 +443,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Charger</a></h3>
+                                                                                <h3><a href="single-product.jsp">Charger</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -458,9 +458,9 @@
                                                             <div class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
-                                                                        <a href="#"><img src="assets/img/shop/electronics/8.jpg" alt="" /></a>
+                                                                        <a href="single-product.jsp"><img src="assets/img/shop/electronics/8.jpg" alt="" /></a>
                                                                         <div class="shop-quick-view">
-                                                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                            <a href="single-product.jsp">
                                                                                 <i class="pe-7s-look"></i>
                                                                             </a>
                                                                         </div>
@@ -474,7 +474,7 @@
                                                                     <div class="shop-text-all">
                                                                         <div class="title-color fix">
                                                                             <div class="shop-title f-left">
-                                                                                <h3><a href="#">Monitor</a></h3>
+                                                                                <h3><a href="single-product.jsp">Monitor</a></h3>
                                                                             </div>
                                                                             <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
