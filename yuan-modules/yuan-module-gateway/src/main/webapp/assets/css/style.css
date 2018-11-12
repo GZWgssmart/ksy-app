@@ -2035,7 +2035,7 @@ h3.sidebar-title::before {
 }
 .tab-sort {
     display: inline-block;
-    float: right;
+    float: left;
 }
 .tab-menu-sort {
     border-bottom: 1px solid #ddd;
