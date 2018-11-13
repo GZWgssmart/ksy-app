@@ -10,6 +10,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +24,7 @@ public class ShopUserExt implements java.io.Serializable {
 
 	private Integer id;
 	private ShopUser shopUser;
+	private Integer userId;
 	private String credits;
 	private String bill;
 	private String activeBill;
@@ -69,8 +71,8 @@ public class ShopUserExt implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = false)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	public ShopUser getShopUser() {
 		return this.shopUser;
 	}
@@ -161,5 +163,6 @@ public class ShopUserExt implements java.io.Serializable {
 	public void setUpdateBy(String updateBy) {
 		this.updateBy = updateBy;
 	}
+
 
 }

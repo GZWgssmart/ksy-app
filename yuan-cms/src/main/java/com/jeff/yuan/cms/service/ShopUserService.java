@@ -6,6 +6,8 @@ import com.jeff.yuan.cms.dto.ShopUserQueryDTO;
 import com.jeff.yuan.common.service.CommonService;
 import com.jeff.yuan.common.entity.PageModel;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -31,6 +33,15 @@ public class ShopUserService extends CommonService< ShopUser,Integer >  {
     public List<ShopUser> queryShopUserList(ShopUserQueryDTO shopUserQueryDTO){
            return this.shopUserDao.queryShopUserList(shopUserQueryDTO);
     }
+
+	public void updateStatus(String id, int status) {
+		// TODO Auto-generated method stub
+		
+		ShopUser user = this.find(Integer.parseInt(id));
+		user.setStatus(status);
+		this.update(user);
+	
+	}
 
 
 }

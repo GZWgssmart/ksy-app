@@ -4,6 +4,8 @@ package com.jeff.yuan.cms.entity;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,7 +36,8 @@ public class ShopUser implements java.io.Serializable {
 	private String createBy;
 	private Date updateDate;
 	private String updateBy;
-	private Set<ShopUserExt> shopUserExts = new HashSet<ShopUserExt>(0);
+	private int status;
+	private ShopUserExt shopUserExts ;
 
 	public ShopUser() {
 	}
@@ -45,7 +49,7 @@ public class ShopUser implements java.io.Serializable {
 	}
 
 	public ShopUser(String account, String phone, String password, String refPhone, String vipLevel, String address,
-			Date createDate, String createBy, Date updateDate, String updateBy, Set<ShopUserExt> shopUserExts) {
+			Date createDate, String createBy, Date updateDate, String updateBy, ShopUserExt shopUserExts,int status) {
 		this.account = account;
 		this.phone = phone;
 		this.password = password;
@@ -57,6 +61,7 @@ public class ShopUser implements java.io.Serializable {
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.shopUserExts = shopUserExts;
+		this.status=status;
 	}
 
 	@Id
@@ -163,13 +168,22 @@ public class ShopUser implements java.io.Serializable {
 		this.updateBy = updateBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopUser")
-	public Set<ShopUserExt> getShopUserExts() {
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "shopUser",cascade = {CascadeType.ALL})
+	public ShopUserExt getShopUserExts() {
 		return this.shopUserExts;
 	}
 
-	public void setShopUserExts(Set<ShopUserExt> shopUserExts) {
+	public void setShopUserExts(ShopUserExt shopUserExts) {
 		this.shopUserExts = shopUserExts;
+	}
+
+	@Column(name = "status", length = 1)
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

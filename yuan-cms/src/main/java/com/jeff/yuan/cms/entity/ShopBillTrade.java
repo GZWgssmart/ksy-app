@@ -20,24 +20,24 @@ public class ShopBillTrade implements java.io.Serializable {
 
 	private Integer id;
 	private int userId;
-	private boolean type;
+	private int type;
 	private String tradePhone;
 	private int count;
-	private Boolean tradeStatus;
+	private int tradeStatus;
 	private Date createDate;
 	private String createBy;
 
 	public ShopBillTrade() {
 	}
 
-	public ShopBillTrade(int userId, boolean type, String tradePhone, int count) {
+	public ShopBillTrade(int userId, int type, String tradePhone, int count) {
 		this.userId = userId;
 		this.type = type;
 		this.tradePhone = tradePhone;
 		this.count = count;
 	}
 
-	public ShopBillTrade(int userId, boolean type, String tradePhone, int count, Boolean tradeStatus, Date createDate,
+	public ShopBillTrade(int userId, int type, String tradePhone, int count, int tradeStatus, Date createDate,
 			String createBy) {
 		this.userId = userId;
 		this.type = type;
@@ -70,11 +70,11 @@ public class ShopBillTrade implements java.io.Serializable {
 	}
 
 	@Column(name = "type", nullable = false)
-	public boolean isType() {
+	public int getType() {
 		return this.type;
 	}
 
-	public void setType(boolean type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
@@ -97,11 +97,11 @@ public class ShopBillTrade implements java.io.Serializable {
 	}
 
 	@Column(name = "trade_status")
-	public Boolean getTradeStatus() {
+	public int getTradeStatus() {
 		return this.tradeStatus;
 	}
 
-	public void setTradeStatus(Boolean tradeStatus) {
+	public void setTradeStatus(int tradeStatus) {
 		this.tradeStatus = tradeStatus;
 	}
 

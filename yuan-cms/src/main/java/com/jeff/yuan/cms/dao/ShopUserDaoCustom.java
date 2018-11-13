@@ -15,6 +15,4 @@ public interface ShopUserDaoCustom {
 
       List<ShopUser> queryShopUserList(ShopUserQueryDTO shopUserQueryDTO);
 
-
-
 }

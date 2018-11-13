@@ -1,11 +1,14 @@
 package com.jeff.yuan.cms.entity;
-// Generated 2018-11-6 15:20:46 by Hibernate Tools 4.3.5.Final
+// Generated 2018-11-9 10:43:37 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,7 +19,7 @@ import javax.persistence.Table;
 public class ShopTradeDetail implements java.io.Serializable {
 
 	private Integer id;
-	private int tradeId;
+	private ShopTrade shopTrade;
 	private int proId;
 	private byte count;
 	private int price;
@@ -26,8 +29,8 @@ public class ShopTradeDetail implements java.io.Serializable {
 	public ShopTradeDetail() {
 	}
 
-	public ShopTradeDetail(int tradeId, int proId, byte count, int price, String proName, String proLogoImg) {
-		this.tradeId = tradeId;
+	public ShopTradeDetail(ShopTrade shopTrade, int proId, byte count, int price, String proName, String proLogoImg) {
+		this.shopTrade = shopTrade;
 		this.proId = proId;
 		this.count = count;
 		this.price = price;
@@ -47,13 +50,14 @@ public class ShopTradeDetail implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "trade_id", nullable = false)
-	public int getTradeId() {
-		return this.tradeId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "trade_id", nullable = false)
+	public ShopTrade getShopTrade() {
+		return this.shopTrade;
 	}
 
-	public void setTradeId(int tradeId) {
-		this.tradeId = tradeId;
+	public void setShopTrade(ShopTrade shopTrade) {
+		this.shopTrade = shopTrade;
 	}
 
 	@Column(name = "pro_id", nullable = false)

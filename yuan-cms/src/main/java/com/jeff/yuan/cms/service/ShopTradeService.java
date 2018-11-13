@@ -1,13 +1,15 @@
 package com.jeff.yuan.cms.service;
 
-import com.jeff.yuan.cms.entity.ShopTrade;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.jeff.yuan.cms.dao.ShopTradeDao;
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
-import com.jeff.yuan.common.service.CommonService;
+import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.common.entity.PageModel;
-import org.springframework.stereotype.Service;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jeff.yuan.common.service.CommonService;
 /**
  * @author dingjinqing
  * @desc ShopTradeService类 
@@ -31,6 +33,13 @@ public class ShopTradeService extends CommonService< ShopTrade,Integer >  {
     public List<ShopTrade> queryShopTradeList(ShopTradeQueryDTO shopTradeQueryDTO){
            return this.shopTradeDao.queryShopTradeList(shopTradeQueryDTO);
     }
+
+	public void updateStatus(String id, int status) {
+		// TODO Auto-generated method stub
+		ShopTrade bean = this.find(Integer.parseInt(id));
+		bean.setStatus(status);
+		this.update(bean);
+	}
 
 
 }

@@ -1,6 +1,7 @@
 package com.jeff.yuan.cms.service;
 
 import com.jeff.yuan.cms.entity.ShopProduct;
+import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.dao.ShopProductDao;
 import com.jeff.yuan.cms.dto.ShopProductQueryDTO;
 import com.jeff.yuan.common.service.CommonService;
@@ -32,5 +33,11 @@ public class ShopProductService extends CommonService< ShopProduct,Integer >  {
            return this.shopProductDao.queryShopProductList(shopProductQueryDTO);
     }
 
+	public void updateStatus(String id, String status) {
+		// TODO Auto-generated method stub
+		ShopProduct bean = this.find(Integer.parseInt(id));
+		bean.setStatus(status);
+		this.update(bean);
+	}
 
 }

@@ -96,6 +96,26 @@ $(function(){
                              </div>
                          </td>
                      </tr>
+                     <tr>
+						<td class="l_title "> 权限</td>
+                         <td>
+                             <div class="J_toolsBar fl">
+                                 <div class="t_label ml10" style="width: 220px;">
+									<select data-placeholder="选择权限" multiple class="chosen-select" name="roleId" data-rule="权限:required;">
+										<c:forEach items="${roles }" var="r">
+											<c:set var="selected"/>
+											<c:forEach items="${user.roles }" var="ur">
+												<c:if test="${ur.id eq r.id }">
+													<c:set var="selected" value="selected=\"selected\""/>
+												</c:if>
+											</c:forEach>
+											<option value="${r.id }" ${selected }>${r.name }</option>
+										</c:forEach>
+									</select>
+								</div>
+                             </div>
+                         </td>
+                     </tr>
 					 <tr>
 						<td class="l_title "> 真实姓名</td>
                          <td>
@@ -120,26 +140,7 @@ $(function(){
                              </div>
                          </td>
                      </tr>
-					 <tr>
-						<td class="l_title "> 权限</td>
-                         <td>
-                             <div class="J_toolsBar fl">
-                                 <div class="t_label ml10" style="width: 220px;">
-									<select data-placeholder="选择权限" multiple class="chosen-select" name="roleId" data-rule="权限:required;">
-										<c:forEach items="${roles }" var="r">
-											<c:set var="selected"/>
-											<c:forEach items="${user.roles }" var="ur">
-												<c:if test="${ur.id eq r.id }">
-													<c:set var="selected" value="selected=\"selected\""/>
-												</c:if>
-											</c:forEach>
-											<option value="${r.id }" ${selected }>${r.name }</option>
-										</c:forEach>
-									</select>
-								</div>
-                             </div>
-                         </td>
-                     </tr>
+					 
                      
 				</table>
 			</div>

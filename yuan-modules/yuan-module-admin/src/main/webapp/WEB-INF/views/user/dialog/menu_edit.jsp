@@ -116,6 +116,24 @@ $(function(){
                              </div>
                          </td>
                      </tr>
+                     <tr id="parentMenuSelect">
+						<td class="l_title "><b class="cRed">*</b> 父菜单</td>
+                         <td>
+                             <div class="J_toolsBar fl">
+                                 <div class="t_label ml10" style="width: 220px;">
+									<select data-placeholder="选择父菜单" class="chosen-select" name="parentId">
+										<c:forEach items="${modelResources }" var="r">
+											<c:set var="selected"/>
+											<c:if test="${resource.parent.id eq r.id }">
+												<c:set var="selected" value="selected=\"selected\""/>
+											</c:if>
+											<option value="${r.id }" ${selected }>${r.name }</option>
+										</c:forEach>
+									</select>
+								</div>
+                             </div>
+                         </td>
+                     </tr>
 					 <tr>
 						<td class="l_title "> 序号</td>
                          <td>
@@ -143,24 +161,7 @@ $(function(){
                              </div>
                          </td>
                      </tr>
-					 <tr id="parentMenuSelect">
-						<td class="l_title "><b class="cRed">*</b> 父菜单</td>
-                         <td>
-                             <div class="J_toolsBar fl">
-                                 <div class="t_label ml10" style="width: 220px;">
-									<select data-placeholder="选择父菜单" class="chosen-select" name="parentId">
-										<c:forEach items="${modelResources }" var="r">
-											<c:set var="selected"/>
-											<c:if test="${resource.parent.id eq r.id }">
-												<c:set var="selected" value="selected=\"selected\""/>
-											</c:if>
-											<option value="${r.id }" ${selected }>${r.name }</option>
-										</c:forEach>
-									</select>
-								</div>
-                             </div>
-                         </td>
-                     </tr>
+					 
                      
 				</table>
 			</div>

@@ -18,14 +18,30 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
     public PageModel<ShopTrade> queryShopTradePage(ShopTradeQueryDTO shopTradeQueryDTO){
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select t from ShopTrade t ");
+         hql.append("select t from ShopTrade t where 1=1  ");
+         if(shopTradeQueryDTO.getStatus()!=0){
+    		 hql.append(" and t.status = :status ");
+    		 map.put("status", shopTradeQueryDTO.getStatus());
+    	 }
+         if(shopTradeQueryDTO.getJtype()!=0){
+        	 hql.append(" and t.status = :status ");
+        	 map.put("status", shopTradeQueryDTO.getJtype());
+         }
          return this.queryForPageWithParams(hql.toString(),map,shopTradeQueryDTO.getCurrentPage(),shopTradeQueryDTO.getPageSize());
     }
 
     public List<ShopTrade> queryShopTradeList(ShopTradeQueryDTO shopTradeQueryDTO){
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select t from ShopTrade t ");
+         hql.append("select t from ShopTrade t where 1=1  ");
+         if(shopTradeQueryDTO.getStatus()!=0){
+    		 hql.append(" and t.status = :status ");
+    		 map.put("status", shopTradeQueryDTO.getStatus());
+    	 }
+         if(shopTradeQueryDTO.getJtype()!=0){
+        	 hql.append(" and t.jtype = :jtype ");
+        	 map.put("jtype", shopTradeQueryDTO.getJtype());
+         }
          return this.queryByMapParams(hql.toString(),map);
     }
 

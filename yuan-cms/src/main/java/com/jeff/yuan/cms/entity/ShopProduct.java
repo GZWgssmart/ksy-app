@@ -1,5 +1,5 @@
 package com.jeff.yuan.cms.entity;
-// Generated 2018-11-6 15:20:46 by Hibernate Tools 4.3.5.Final
+// Generated 2018-11-10 9:52:20 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +26,7 @@ public class ShopProduct implements java.io.Serializable {
 	private String detail;
 	private String proCount;
 	private String incomeCredits;
+	private String status;
 	private String consumeCredits;
 	private String price1;
 	private String price2;
@@ -46,14 +48,16 @@ public class ShopProduct implements java.io.Serializable {
 	}
 
 	public ShopProduct(String proName, String proLogoImg, String introduction, String detail, String proCount,
-			String incomeCredits, String consumeCredits, String price1, String price2, String price3, String picture1,
-			String picture2, String picture3, String picture4, String picture5, Date createDate, String createBy) {
+			String incomeCredits, String status, String consumeCredits, String price1, String price2, String price3,
+			String picture1, String picture2, String picture3, String picture4, String picture5, Date createDate,
+			String createBy) {
 		this.proName = proName;
 		this.proLogoImg = proLogoImg;
 		this.introduction = introduction;
 		this.detail = detail;
 		this.proCount = proCount;
 		this.incomeCredits = incomeCredits;
+		this.status = status;
 		this.consumeCredits = consumeCredits;
 		this.price1 = price1;
 		this.price2 = price2;
@@ -106,7 +110,8 @@ public class ShopProduct implements java.io.Serializable {
 		this.introduction = introduction;
 	}
 
-	@Column(name = "detail", length = 2048)
+	@Lob
+	@Column(name = "detail")
 	public String getDetail() {
 		return this.detail;
 	}
@@ -131,6 +136,15 @@ public class ShopProduct implements java.io.Serializable {
 
 	public void setIncomeCredits(String incomeCredits) {
 		this.incomeCredits = incomeCredits;
+	}
+
+	@Column(name = "status", length = 1)
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Column(name = "consume_credits", length = 8)

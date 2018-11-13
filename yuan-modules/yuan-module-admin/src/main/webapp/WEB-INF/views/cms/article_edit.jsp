@@ -7,7 +7,6 @@
 <title>添加/编辑文章 - ${title }</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/js/uploadify/uploadify.css"> 
 </head>
-<body>
 
 <body <%@ include file="../common/skin.jsp" %>>
 	<%@ include file="../common/head.jsp" %>

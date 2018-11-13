@@ -1,12 +1,16 @@
 package com.jeff.yuan.cms.entity;
-// Generated 2018-11-6 15:20:46 by Hibernate Tools 4.3.5.Final
+// Generated 2018-11-9 10:43:37 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,30 +23,38 @@ import javax.persistence.TemporalType;
 public class ShopTrade implements java.io.Serializable {
 
 	private Integer id;
+	private String tradeNo;
 	private int userId;
-	private boolean type;
+	private int jtype;
 	private int price;
+	private int status;
 	private int credits;
 	private Date createDate;
 	private String createBy;
+	private Set<ShopTradeDetail> shopTradeDetails = new HashSet<ShopTradeDetail>(0);
 
 	public ShopTrade() {
 	}
 
-	public ShopTrade(int userId, boolean type, int price, int credits) {
+	public ShopTrade(String tradeNo, int userId, int jtype, int price, int credits) {
+		this.tradeNo = tradeNo;
 		this.userId = userId;
-		this.type = type;
+		this.jtype = jtype;
 		this.price = price;
 		this.credits = credits;
 	}
 
-	public ShopTrade(int userId, boolean type, int price, int credits, Date createDate, String createBy) {
+	public ShopTrade(String tradeNo, int userId, int jtype, int price, int status, int credits, Date createDate,
+			String createBy, Set<ShopTradeDetail> shopTradeDetails) {
+		this.tradeNo = tradeNo;
 		this.userId = userId;
-		this.type = type;
+		this.jtype = jtype;
 		this.price = price;
+		this.status = status;
 		this.credits = credits;
 		this.createDate = createDate;
 		this.createBy = createBy;
+		this.shopTradeDetails = shopTradeDetails;
 	}
 
 	@Id
@@ -57,6 +69,15 @@ public class ShopTrade implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "trade_no", nullable = false, length = 32)
+	public String getTradeNo() {
+		return this.tradeNo;
+	}
+
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
+	}
+
 	@Column(name = "user_id", nullable = false)
 	public int getUserId() {
 		return this.userId;
@@ -67,12 +88,12 @@ public class ShopTrade implements java.io.Serializable {
 	}
 
 	@Column(name = "type", nullable = false)
-	public boolean isType() {
-		return this.type;
+	public int getJtype() {
+		return this.jtype;
 	}
 
-	public void setType(boolean type) {
-		this.type = type;
+	public void setJtype(int type) {
+		this.jtype = type;
 	}
 
 	@Column(name = "price", nullable = false)
@@ -82,6 +103,15 @@ public class ShopTrade implements java.io.Serializable {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	@Column(name = "status")
+	public int getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	@Column(name = "credits", nullable = false)
@@ -110,6 +140,15 @@ public class ShopTrade implements java.io.Serializable {
 
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopTrade")
+	public Set<ShopTradeDetail> getShopTradeDetails() {
+		return this.shopTradeDetails;
+	}
+
+	public void setShopTradeDetails(Set<ShopTradeDetail> shopTradeDetails) {
+		this.shopTradeDetails = shopTradeDetails;
 	}
 
 }
