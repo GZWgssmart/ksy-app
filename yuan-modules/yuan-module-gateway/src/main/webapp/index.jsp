@@ -629,7 +629,7 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/classie.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
     <script>
         var view = new Vue({
             el: '#content',
