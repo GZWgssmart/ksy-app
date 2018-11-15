@@ -20,7 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
 	//var context_ = "https://www.dingguagua99.top/yuan-module-admin";
-	var context_ = "http://127.0.0.1:8080/yuan-module-admin";
+	var context_ = "http://47.106.142.171:8080/yuan-module-admin";
 	
 	window.UEDITOR_HOME_URL = context_ + "/ueditor/";
 	

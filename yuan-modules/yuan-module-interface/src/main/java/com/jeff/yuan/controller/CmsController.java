@@ -160,10 +160,17 @@ public class CmsController {
 			if(article != null){
 				article.setViewCount(article.getViewCount() == null ? 1 : article.getViewCount()+1);
 			    this.articleService.update(article);
+			    ajaxResult.setSuccess(true);
+				ajaxResult.setData(article);
+			}else {
+				ajaxResult.setSuccess(false);
+				ajaxResult.setMsg("文章不存在");
 			}
+		}else {
+			ajaxResult.setSuccess(false);
+			ajaxResult.setMsg("请传入id");
 		}
-		ajaxResult.setSuccess(true);
-		ajaxResult.setData(article);
+		
 		return ajaxResult;
 	}
 	

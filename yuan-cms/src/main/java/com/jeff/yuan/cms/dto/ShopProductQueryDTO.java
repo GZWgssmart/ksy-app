@@ -10,6 +10,7 @@ import com.jeff.yuan.common.dto.CommonQueryDTO;
 public class ShopProductQueryDTO extends CommonQueryDTO{
 	private String proName;
 	private String status;
+	private String type;
 	public String getProName() {
 		return proName;
 	}
@@ -21,5 +22,11 @@ public class ShopProductQueryDTO extends CommonQueryDTO{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 }

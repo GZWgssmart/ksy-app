@@ -27,6 +27,8 @@ public class ShopProduct implements java.io.Serializable {
 	private String proCount;
 	private String incomeCredits;
 	private String status;
+	private String type;
+	private String vipLevel;
 	private String consumeCredits;
 	private String price1;
 	private String price2;
@@ -50,7 +52,7 @@ public class ShopProduct implements java.io.Serializable {
 	public ShopProduct(String proName, String proLogoImg, String introduction, String detail, String proCount,
 			String incomeCredits, String status, String consumeCredits, String price1, String price2, String price3,
 			String picture1, String picture2, String picture3, String picture4, String picture5, Date createDate,
-			String createBy) {
+			String createBy,String type,String vipLevel) {
 		this.proName = proName;
 		this.proLogoImg = proLogoImg;
 		this.introduction = introduction;
@@ -69,6 +71,8 @@ public class ShopProduct implements java.io.Serializable {
 		this.picture5 = picture5;
 		this.createDate = createDate;
 		this.createBy = createBy;
+		this.type=type;
+		this.setVipLevel(vipLevel);
 	}
 
 	@Id
@@ -245,6 +249,23 @@ public class ShopProduct implements java.io.Serializable {
 
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
+	}
+	@Column(name = "type")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Column(name = "vip_level")
+	public String getVipLevel() {
+		return vipLevel;
+	}
+
+	public void setVipLevel(String vipLevel) {
+		this.vipLevel = vipLevel;
 	}
 
 }

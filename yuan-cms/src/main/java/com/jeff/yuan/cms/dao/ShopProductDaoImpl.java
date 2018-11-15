@@ -30,6 +30,10 @@ public class ShopProductDaoImpl extends CustomBaseSqlDaoImpl implements ShopProd
     		 hql.append(" and t.status = :status ");
     		 map.put("status", shopProductQueryDTO.getStatus());
     	 }
+    	 if(StringUtils.isNotBlank(shopProductQueryDTO.getType())){
+    		 hql.append(" and t.type = :type ");
+    		 map.put("type", shopProductQueryDTO.getType());
+    	 }
          return this.queryForPageWithParams(hql.toString(),map,shopProductQueryDTO.getCurrentPage(),shopProductQueryDTO.getPageSize());
     }
 

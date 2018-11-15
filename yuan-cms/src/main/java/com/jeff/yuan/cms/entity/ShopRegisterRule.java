@@ -34,6 +34,7 @@ public class ShopRegisterRule implements java.io.Serializable {
 	private String fugoufd;
 	private String fugouztfd;
 	private String fugoujtfd;
+	private String fenhong;
 
 	public ShopRegisterRule() {
 	}
@@ -46,7 +47,7 @@ public class ShopRegisterRule implements java.io.Serializable {
 
 	public ShopRegisterRule(String vipLevel, int ztjkljhs, int jtjkljhs, String ztj, String jtj, String glj,
 			String gufen, String bill, Date createDate, String createBy, Date updateDate, String updateBy,
-			String fugoufd, String fugouztfd, String fugoujtfd) {
+			String fugoufd, String fugouztfd, String fugoujtfd,String fenhong) {
 		this.vipLevel = vipLevel;
 		this.ztjkljhs = ztjkljhs;
 		this.jtjkljhs = jtjkljhs;
@@ -62,6 +63,7 @@ public class ShopRegisterRule implements java.io.Serializable {
 		this.fugoufd = fugoufd;
 		this.fugouztfd = fugouztfd;
 		this.fugoujtfd = fugoujtfd;
+		this.fenhong = fenhong;
 	}
 
 	@Id
@@ -211,6 +213,14 @@ public class ShopRegisterRule implements java.io.Serializable {
 
 	public void setFugoujtfd(String fugoujtfd) {
 		this.fugoujtfd = fugoujtfd;
+	}
+
+	public String getFenhong() {
+		return fenhong;
+	}
+	@Column(name = "fenhong", length = 8)
+	public void setFenhong(String fenhong) {
+		this.fenhong = fenhong;
 	}
 
 }
