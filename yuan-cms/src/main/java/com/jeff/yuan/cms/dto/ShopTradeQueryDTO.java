@@ -10,6 +10,7 @@ import com.jeff.yuan.common.dto.CommonQueryDTO;
 public class ShopTradeQueryDTO extends CommonQueryDTO{
 	private int jtype;
 	private int status;
+	private int userId;
 	public int getStatus() {
 		return status;
 	}
@@ -21,6 +22,12 @@ public class ShopTradeQueryDTO extends CommonQueryDTO{
 	}
 	public void setJtype(int jtype) {
 		this.jtype = jtype;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 }

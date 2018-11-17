@@ -27,6 +27,10 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
         	 hql.append(" and t.status = :status ");
         	 map.put("status", shopTradeQueryDTO.getJtype());
          }
+         if(shopTradeQueryDTO.getUserId()!=0){
+        	 hql.append(" and t.userId = :userId ");
+        	 map.put("userId", shopTradeQueryDTO.getUserId());
+         }
          return this.queryForPageWithParams(hql.toString(),map,shopTradeQueryDTO.getCurrentPage(),shopTradeQueryDTO.getPageSize());
     }
 
@@ -41,6 +45,10 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
          if(shopTradeQueryDTO.getJtype()!=0){
         	 hql.append(" and t.jtype = :jtype ");
         	 map.put("jtype", shopTradeQueryDTO.getJtype());
+         }
+         if(shopTradeQueryDTO.getUserId()!=0){
+        	 hql.append(" and t.userId = :userId ");
+        	 map.put("userId", shopTradeQueryDTO.getUserId());
          }
          return this.queryByMapParams(hql.toString(),map);
     }

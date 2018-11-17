@@ -36,8 +36,8 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
         		 map.put("status", shopUserQueryDTO.getStatus());
         	 }
         	 if(StringUtils.isNotBlank(shopUserQueryDTO.getAccount())){
-        		 hql.append(" and t.account like  :account ");
-        		 map.put("account", "%"+shopUserQueryDTO.getAccount()+"%");
+        		 hql.append(" and t.account = :account ");
+        		 map.put("account", shopUserQueryDTO.getAccount());
         	 }
     		 
          }
@@ -63,8 +63,12 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
         		 map.put("status", shopUserQueryDTO.getStatus());
         	 }
         	 if(StringUtils.isNotBlank(shopUserQueryDTO.getAccount())){
-        		 hql.append(" and t.account like  :account ");
-        		 map.put("account", "%"+shopUserQueryDTO.getAccount()+"%");
+        		 hql.append(" and t.account = :account ");
+        		 map.put("account", shopUserQueryDTO.getAccount());
+        	 }
+        	 if(StringUtils.isNotBlank(shopUserQueryDTO.getPassword())){
+        		 hql.append(" and t.password = :password ");
+        		 map.put("password", shopUserQueryDTO.getPassword());
         	 }
     		 
          }

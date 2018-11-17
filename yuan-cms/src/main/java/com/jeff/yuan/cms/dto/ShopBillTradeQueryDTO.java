@@ -9,6 +9,7 @@ import com.jeff.yuan.common.dto.CommonQueryDTO;
  */
 public class ShopBillTradeQueryDTO extends CommonQueryDTO{
 	private int type;
+	private int userId;
 	
 	private int tradeStatus;
 	
@@ -23,5 +24,11 @@ public class ShopBillTradeQueryDTO extends CommonQueryDTO{
 	}
 	public void setTradeStatus(int tradeStatus) {
 		this.tradeStatus = tradeStatus;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }

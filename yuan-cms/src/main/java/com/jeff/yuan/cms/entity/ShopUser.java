@@ -36,6 +36,8 @@ public class ShopUser implements java.io.Serializable {
 	private String createBy;
 	private Date updateDate;
 	private String updateBy;
+	private String nickName;
+	private String jiaoyimima;
 	private int status;
 	private ShopUserExt shopUserExts ;
 
@@ -48,8 +50,12 @@ public class ShopUser implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public ShopUser(String account, String phone, String password, String refPhone, String vipLevel, String address,
-			Date createDate, String createBy, Date updateDate, String updateBy, ShopUserExt shopUserExts,int status) {
+
+	public ShopUser(Integer id, String account, String phone, String password, String refPhone, String vipLevel,
+			String address, Date createDate, String createBy, Date updateDate, String updateBy, String nickName,
+			String jiaoyimima, int status, ShopUserExt shopUserExts) {
+		super();
+		this.id = id;
 		this.account = account;
 		this.phone = phone;
 		this.password = password;
@@ -60,8 +66,10 @@ public class ShopUser implements java.io.Serializable {
 		this.createBy = createBy;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
+		this.nickName = nickName;
+		this.jiaoyimima = jiaoyimima;
+		this.status = status;
 		this.shopUserExts = shopUserExts;
-		this.status=status;
 	}
 
 	@Id
@@ -184,6 +192,24 @@ public class ShopUser implements java.io.Serializable {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	@Column(name = "nick_name", length = 1)
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
+	@Column(name = "jiaoyimima", length = 1)
+	public String getJiaoyimima() {
+		return jiaoyimima;
+	}
+
+	public void setJiaoyimima(String jiaoyimima) {
+		this.jiaoyimima = jiaoyimima;
 	}
 
 }
