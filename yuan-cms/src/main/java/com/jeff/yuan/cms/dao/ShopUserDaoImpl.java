@@ -1,5 +1,6 @@
 package com.jeff.yuan.cms.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,5 +78,21 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
     }
 
 
+    public List<Map<String, Object>> queryUser2List(String phone){
+    	StringBuilder sql = new StringBuilder();
+    	sql.append("select account,nick_name as nickNmae,phone,vip_level as viplevel  from  shop_user where ref_phone=? ");
+    	
+    	List<Object> params = new ArrayList<>();
+    	params.add(phone);
+    	return this.querySqlObjects(sql.toString(), params);
+    }
+    
+    public List<Map<String, Object>> queryUser3List(String phone){
+    	StringBuilder sql = new StringBuilder();
+    	sql.append("SELECT account,nick_name as nickName,vip_level as viplevel from shop_user where ref_phone in (select phone from  shop_user where ref_phone=? )");
+    	List<Object> params = new ArrayList<>();
+    	params.add(phone);
+    	return this.querySqlObjects(sql.toString(), params);
+    }
 
 }

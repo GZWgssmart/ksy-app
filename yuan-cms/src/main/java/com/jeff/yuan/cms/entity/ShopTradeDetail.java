@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.math.BigDecimal;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,15 +24,15 @@ public class ShopTradeDetail implements java.io.Serializable {
 	private Integer id;
 	private ShopTrade shopTrade;
 	private int proId;
-	private byte count;
-	private int price;
+	private int count;
+	private BigDecimal price;
 	private String proName;
 	private String proLogoImg;
 
 	public ShopTradeDetail() {
 	}
 
-	public ShopTradeDetail(ShopTrade shopTrade, int proId, byte count, int price, String proName, String proLogoImg) {
+	public ShopTradeDetail(ShopTrade shopTrade, int proId, int count, BigDecimal price, String proName, String proLogoImg) {
 		this.shopTrade = shopTrade;
 		this.proId = proId;
 		this.count = count;
@@ -40,7 +43,6 @@ public class ShopTradeDetail implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -70,20 +72,20 @@ public class ShopTradeDetail implements java.io.Serializable {
 	}
 
 	@Column(name = "count", nullable = false)
-	public byte getCount() {
+	public int getCount() {
 		return this.count;
 	}
 
-	public void setCount(byte count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
 
 	@Column(name = "price", nullable = false)
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

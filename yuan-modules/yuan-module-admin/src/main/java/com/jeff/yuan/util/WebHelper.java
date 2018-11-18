@@ -1,11 +1,16 @@
 package com.jeff.yuan.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.Model;
 
 import com.jeff.yuan.org.entity.User;
+
 
 public class WebHelper {
 	
@@ -72,6 +77,16 @@ public class WebHelper {
 	public static void setGoBackUrl(HttpServletRequest request, Model model) {
 		String fromUrl = request.getHeader("referer");
 		model.addAttribute("goBackUrl", fromUrl);
+	}
+	
+	public static String getDayNo() {
+		StringBuilder stringBuilder =new StringBuilder("NO");
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		stringBuilder.append(simpleDateFormat.format(date));
+		String verifyCode = String.valueOf(new Random().nextInt(999999));
+		stringBuilder.append(verifyCode);
+		return stringBuilder.toString();
 	}
 
 }

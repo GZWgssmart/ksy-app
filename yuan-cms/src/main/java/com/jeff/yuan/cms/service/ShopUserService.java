@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 /**
  * @author dingjinqing
@@ -42,6 +44,13 @@ public class ShopUserService extends CommonService< ShopUser,Integer >  {
 		this.update(user);
 	
 	}
-
+	
+    public List<Map<String, Object>> queryUser2List(String phone){
+    	return shopUserDao.queryUser2List(phone);
+    }
+    
+    public List<Map<String, Object>> queryUser3List(String phone){
+    	return shopUserDao.queryUser3List(phone);
+    }
 
 }

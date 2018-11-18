@@ -1,9 +1,12 @@
 package com.jeff.yuan.cms.entity;
 // Generated 2018-11-9 10:43:37 by Hibernate Tools 4.3.5.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +29,7 @@ public class ShopTrade implements java.io.Serializable {
 	private String tradeNo;
 	private int userId;
 	private int jtype;
-	private int price;
+	private BigDecimal price;
 	private int status;
 	private int credits;
 	private Date createDate;
@@ -36,15 +39,15 @@ public class ShopTrade implements java.io.Serializable {
 	public ShopTrade() {
 	}
 
-	public ShopTrade(String tradeNo, int userId, int jtype, int price, int credits) {
-		this.tradeNo = tradeNo;
-		this.userId = userId;
+	public ShopTrade(/*String tradeNo, int userId, */int jtype, BigDecimal price, int credits) {
+		//this.tradeNo = tradeNo;
+		//this.userId = userId;
 		this.jtype = jtype;
 		this.price = price;
 		this.credits = credits;
 	}
 
-	public ShopTrade(String tradeNo, int userId, int jtype, int price, int status, int credits, Date createDate,
+	public ShopTrade(String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits, Date createDate,
 			String createBy, Set<ShopTradeDetail> shopTradeDetails) {
 		this.tradeNo = tradeNo;
 		this.userId = userId;
@@ -97,11 +100,11 @@ public class ShopTrade implements java.io.Serializable {
 	}
 
 	@Column(name = "price", nullable = false)
-	public int getPrice() {
+	public BigDecimal getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
@@ -142,7 +145,7 @@ public class ShopTrade implements java.io.Serializable {
 		this.createBy = createBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopTrade")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopTrade",cascade = {CascadeType.ALL})
 	public Set<ShopTradeDetail> getShopTradeDetails() {
 		return this.shopTradeDetails;
 	}

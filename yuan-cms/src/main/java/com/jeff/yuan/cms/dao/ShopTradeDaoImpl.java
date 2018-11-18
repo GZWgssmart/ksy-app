@@ -24,8 +24,8 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
     		 map.put("status", shopTradeQueryDTO.getStatus());
     	 }
          if(shopTradeQueryDTO.getJtype()!=0){
-        	 hql.append(" and t.status = :status ");
-        	 map.put("status", shopTradeQueryDTO.getJtype());
+        	 hql.append(" and t.type = :jtype ");
+        	 map.put("jtype", shopTradeQueryDTO.getJtype());
          }
          if(shopTradeQueryDTO.getUserId()!=0){
         	 hql.append(" and t.userId = :userId ");

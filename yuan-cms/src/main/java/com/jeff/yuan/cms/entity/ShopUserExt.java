@@ -1,6 +1,7 @@
 package com.jeff.yuan.cms.entity;
 // Generated 2018-11-6 15:20:46 by Hibernate Tools 4.3.5.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class ShopUserExt implements java.io.Serializable {
 	private String bill;
 	private String activeBill;
 	private String tradeBill;
-	private String balance;
+	private BigDecimal balance;
 	private Date createDate;
 	private String createBy;
 	private Date updateDate;
@@ -46,7 +47,7 @@ public class ShopUserExt implements java.io.Serializable {
 	}
 
 	public ShopUserExt(ShopUser shopUser, String credits, String bill, String activeBill, String tradeBill,
-			String balance, Date createDate, String createBy, Date updateDate, String updateBy) {
+			BigDecimal balance, Date createDate, String createBy, Date updateDate, String updateBy) {
 		this.shopUser = shopUser;
 		this.credits = credits;
 		this.bill = bill;
@@ -118,11 +119,11 @@ public class ShopUserExt implements java.io.Serializable {
 	}
 
 	@Column(name = "balance", length = 12)
-	public String getBalance() {
+	public BigDecimal getBalance() {
 		return this.balance;
 	}
 
-	public void setBalance(String balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 

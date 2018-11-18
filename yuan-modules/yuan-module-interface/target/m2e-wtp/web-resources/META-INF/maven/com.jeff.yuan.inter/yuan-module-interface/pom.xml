@@ -1,19 +1,21 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.jeff.yuan.modules</groupId>
-    <artifactId>yuan-modules</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>com.jeff.yuan.inter</groupId>
-  <artifactId>yuan-module-interface</artifactId>
-  <version>${yuan.version}</version>
-  <packaging>war</packaging>
-  <name>yuan-module-interface</name>
-  <description>yuan-module-interface</description>
-  
-  <dependencies>
-        <dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jeff.yuan.modules</groupId>
+		<artifactId>yuan-modules</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.jeff.yuan.inter</groupId>
+	<artifactId>yuan-module-interface</artifactId>
+	<version>${yuan.version}</version>
+	<packaging>war</packaging>
+	<name>yuan-module-interface</name>
+	<description>yuan-module-interface</description>
+
+	<dependencies>
+		<dependency>
 			<groupId>com.jeff.yuan.common</groupId>
 			<artifactId>yuan-common</artifactId>
 			<version>${yuan.version}</version>
@@ -23,8 +25,23 @@
 			<artifactId>yuan-cms</artifactId>
 			<version>${yuan.version}</version>
 		</dependency>
-  </dependencies>
-  <build>
-    <finalName>yuan-module-interface</finalName>
-  </build>
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-core</artifactId>
+			<version>4.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.51</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>yuan-module-interface</finalName>
+	</build>
 </project>
