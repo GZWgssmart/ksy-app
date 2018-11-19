@@ -53,4 +53,9 @@ public class ShopUserService extends CommonService< ShopUser,Integer >  {
     	return shopUserDao.queryUser3List(phone);
     }
 
+	public List<Map<String, Object>> queryIncomeList(String userId) {
+		// TODO Auto-generated method stub
+		return shopUserDao.queryIncomeList(userId);
+	}
+
 }

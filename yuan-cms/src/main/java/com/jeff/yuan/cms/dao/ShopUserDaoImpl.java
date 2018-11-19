@@ -94,5 +94,14 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
     	params.add(phone);
     	return this.querySqlObjects(sql.toString(), params);
     }
+    
+    
+    public List<Map<String, Object>> queryIncomeList(String userId){
+    	StringBuilder sql = new StringBuilder();
+    	sql.append("SELECT sum(price) as income,type from shop_trade where user_id=? GROUP BY type ");
+    	List<Object> params = new ArrayList<>();
+    	params.add(userId);
+    	return this.querySqlObjects(sql.toString(), params);
+    }
 
 }
