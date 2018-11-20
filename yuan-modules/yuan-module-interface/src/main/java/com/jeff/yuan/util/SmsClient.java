@@ -116,10 +116,10 @@ public class SmsClient {
     	JSONObject json = new JSONObject();
 		json.put("code", 627899);
 		JSONObject json2 = new JSONObject();
-		json.put("password", 123456);
+		json2.put("code", 672356);
         //发短信
 //        SendSmsResponse response = sendSms("13798369750",json.toJSONString(),"SMS_148866416");
-        SendSmsResponse response = sendSms("13798369750",json2.toJSONString(),"SMS_149096873");
+        SendSmsResponse response = sendSms("19979458414",json2.toJSONString(),"SMS_151577249");
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());

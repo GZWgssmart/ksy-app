@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jeff.yuan.cms.entity.ShopUser;
 
 public class LoginInterceptor implements HandlerInterceptor {
@@ -34,9 +35,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 		ShopUser user = (ShopUser) session.getAttribute("userInfo");
 //        ServletContext application = session.getServletContext();
 		if (user==null || "".equals(user)){    //未登录
-			System.out.println("session失效");
-            /*跳转到500页面 然后500在弹登录超时，2秒后自动跳转到登录页*/
-            response.sendRedirect("/login.jsp");
+			System.out.println("session不存在");
+			PrintWriter out = null ;
+			JSONObject res = new JSONObject();
+		    res.put("success","false");
+		    res.put("msg","login first");
+		    out = response.getWriter();
+		    out.append(res.toJSONString());
             return false;
         }else{    //已经登录
             return true;

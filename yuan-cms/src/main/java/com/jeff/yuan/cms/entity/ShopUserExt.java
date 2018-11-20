@@ -25,7 +25,6 @@ public class ShopUserExt implements java.io.Serializable {
 
 	private Integer id;
 	private ShopUser shopUser;
-	private Integer userId;
 	private String credits;
 	private String bill;
 	private String activeBill;

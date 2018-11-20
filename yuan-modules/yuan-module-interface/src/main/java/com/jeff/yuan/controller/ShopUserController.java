@@ -446,10 +446,10 @@ public class ShopUserController {
 				String verifyCode = String.valueOf(new Random().nextInt(899999) + 100000);
 				// 发送短信
 				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("password", verifyCode);
+				jsonObject.put("code", verifyCode);
 				SendSmsResponse response;
 				try {
-					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_149096873");
+					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_151577249");
 					if (response.getCode() != null && response.getCode().equals("OK")) {
 						users.get(0).setPassword(Md5Util.generatePassword(verifyCode));
 						userService.update(users.get(0));

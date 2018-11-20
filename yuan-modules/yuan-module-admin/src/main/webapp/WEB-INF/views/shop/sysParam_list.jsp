@@ -90,7 +90,7 @@
 													<div class="t_link">
 														<a href="javascript:myEdit('${u.id }');"><i
 															class="icon"></i>编辑</a>
-		                                         		<a href="javascript:updStatus('${u.id }');"><i class="icon"></i>审核通过</a>
+		                                         		<a href="javascript:updStatus('${u.id }');"><i class="icon"></i>删除</a>
 													</div>
 												</td>
 											</tr>
