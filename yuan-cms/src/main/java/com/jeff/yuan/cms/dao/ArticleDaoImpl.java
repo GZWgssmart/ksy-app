@@ -25,7 +25,13 @@ public class ArticleDaoImpl extends CustomBaseSqlDaoImpl implements ArticleDaoCu
     	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select t from Article t where 1=1 ");
+         if(articleQueryDTO.getIsFront() != null && articleQueryDTO.getIsFront()){
+        	 hql.append("select new Article(type,title,content,summary,sourceFrom,publisher,href,coverImageUrl,isTop,isAudit,viewCount,orderNo)  from Article t where 1=1 ");
+
+         }else {
+        	 hql.append("select t from Article t where 1=1 ");
+        	 
+         }
          if(articleQueryDTO != null){
         	 if(StringUtils.isNotBlank(articleQueryDTO.getRootColumnId())){
         		 hql.append(" and t.rootColumnInfo.id = :rootColumnId ");
@@ -86,7 +92,13 @@ public class ArticleDaoImpl extends CustomBaseSqlDaoImpl implements ArticleDaoCu
     	 List<Article> articleList = null;
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select t from Article t where 1=1 ");
+         if(articleQueryDTO.getIsFront() != null && articleQueryDTO.getIsFront()){
+        	 hql.append("select new Article(type,title,content,summary,sourceFrom,publisher,href,coverImageUrl,isTop,isAudit,viewCount,orderNo)  from Article t where 1=1 ");
+
+         }else {
+        	 hql.append("select t from Article t where 1=1 ");
+        	 
+         }
          if(articleQueryDTO != null){
         	 if(StringUtils.isNotBlank(articleQueryDTO.getColumnId())){
         		 hql.append(" and t.columnInfo.id = :columnId ");

@@ -16,6 +16,10 @@ import com.jeff.yuan.common.entity.BaseEntity;
 @Table(name = "cms_article")
 public class Article extends BaseEntity{
 
+	public Article() {
+		super();
+	}
+
 	private static final long serialVersionUID = -2268477115365746554L;
 	
 	//普通文章（内容自己发布,可以选择封面图片）
@@ -68,6 +72,45 @@ public class Article extends BaseEntity{
 	
 	//排序
 	private Integer orderNo;
+	
+	
+
+	public Article(ColumnInfo columnInfo, ColumnInfo rootColumnInfo, Integer type, String title, String content,
+			String summary, String sourceFrom, String publisher, String href, String coverImageUrl, Boolean isTop,
+			Boolean isAudit, Integer viewCount, Integer orderNo) {
+		super();
+		this.columnInfo = columnInfo;
+		this.rootColumnInfo = rootColumnInfo;
+		this.type = type;
+		this.title = title;
+		this.content = content;
+		this.summary = summary;
+		this.sourceFrom = sourceFrom;
+		this.publisher = publisher;
+		this.href = href;
+		this.coverImageUrl = coverImageUrl;
+		this.isTop = isTop;
+		this.isAudit = isAudit;
+		this.viewCount = viewCount;
+		this.orderNo = orderNo;
+	}
+
+	public Article(Integer type, String title, String content, String summary, String sourceFrom, String publisher,
+			String href, String coverImageUrl, Boolean isTop, Boolean isAudit, Integer viewCount, Integer orderNo) {
+		super();
+		this.type = type;
+		this.title = title;
+		this.content = content;
+		this.summary = summary;
+		this.sourceFrom = sourceFrom;
+		this.publisher = publisher;
+		this.href = href;
+		this.coverImageUrl = coverImageUrl;
+		this.isTop = isTop;
+		this.isAudit = isAudit;
+		this.viewCount = viewCount;
+		this.orderNo = orderNo;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "column_info_id")

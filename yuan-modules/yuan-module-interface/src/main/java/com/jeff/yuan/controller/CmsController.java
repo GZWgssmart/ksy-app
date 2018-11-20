@@ -161,6 +161,8 @@ public class CmsController {
 				article.setViewCount(article.getViewCount() == null ? 1 : article.getViewCount()+1);
 			    this.articleService.update(article);
 			    ajaxResult.setSuccess(true);
+			    article.setColumnInfo(null);
+			    article.setRootColumnInfo(null);
 				ajaxResult.setData(article);
 			}else {
 				ajaxResult.setSuccess(false);
