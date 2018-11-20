@@ -37,6 +37,7 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
         <mvc:exclude-mapping path="/shopuser/login_out"/>
         <mvc:exclude-mapping path="/shopuser/sendSms"/>
         <mvc:exclude-mapping path="/shopuser/register"/>
+        <mvc:exclude-mapping path="/shopuser/validator/**"/>
         <mvc:exclude-mapping path="/shopuser/reset/**"/>
         <mvc:exclude-mapping path="/shopproduct/**"/>
         <mvc:exclude-mapping path="/cms/api/**"/>
