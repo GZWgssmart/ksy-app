@@ -344,7 +344,9 @@ public class ShopUserController {
 
 			SendSmsResponse response;
 			try {
-				response = SmsClient.sendSms(phone, verifyCode, "SMS_148866416");
+				JSONObject jsons = new JSONObject();
+				jsons.put("code", verifyCode);
+				response = SmsClient.sendSms(phone, jsons.toJSONString(), "SMS_148866416");
 
 				if (response.getCode() != null && response.getCode().equals("OK")) {
 					// 请求成功
@@ -381,6 +383,8 @@ public class ShopUserController {
 		AjaxResult ajaxResult = new AjaxResult();
 		String code = request.getParameter("code");
 		JSONObject json = (JSONObject) request.getSession().getAttribute("verifyCode");
+		System.out.println(json.toString());
+		System.out.println("code:"+code);
 		if (!json.getString("verifyCode").equals(code)) {
 			ajaxResult.setSuccess(false);
 			ajaxResult.setMsg("验证码错误");
@@ -445,7 +449,7 @@ public class ShopUserController {
 				jsonObject.put("password", verifyCode);
 				SendSmsResponse response;
 				try {
-					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_148866416");
+					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_149096873");
 					if (response.getCode() != null && response.getCode().equals("OK")) {
 						users.get(0).setPassword(Md5Util.generatePassword(verifyCode));
 						userService.update(users.get(0));

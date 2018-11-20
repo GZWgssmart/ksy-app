@@ -132,6 +132,9 @@ public class ShopTradeController {
 				user.getShopUserExts().setBalance(balance);
 				userService.update(user);
 				ajaxResult.setSuccess(true);
+			}else {
+				ajaxResult.setSuccess(false);
+				ajaxResult.setMsg("余额不足");
 			}
 
 		} catch (Exception e) {
@@ -151,7 +154,7 @@ public class ShopTradeController {
 		try {
 			String id = request.getParameter("id");
 			String status = request.getParameter("status");
-
+			
 			tradeService.updateStatus(id, Integer.parseInt(status));
 
 			ajaxResult.setSuccess(true);

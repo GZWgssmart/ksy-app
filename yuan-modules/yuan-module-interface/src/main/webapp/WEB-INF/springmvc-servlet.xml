@@ -29,6 +29,20 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <mvc:view-controller path="/404" view-name="404"/>  
     <mvc:view-controller path="/500" view-name="500"/>  
   
+  
+<!--   	<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <mvc:exclude-mapping path="/shopuser/login"/>
+        <mvc:exclude-mapping path="/shopuser/login_out"/>
+        <mvc:exclude-mapping path="*.jsp"/>
+        <mvc:exclude-mapping path="*.html"/>
+        <mvc:exclude-mapping path="*.js"/>
+        <mvc:exclude-mapping path="*.css"/>
+        <bean class="com.jeff.yuan.util.LoginInterceptor"></bean>
+	    </mvc:interceptor>
+	</mvc:interceptors> -->
+
   	<!--   
          配置不用DispatcherServlet拦截的路径(例如：图片、CSS样式、js文件...):   
         路径可以自己设置，这里面我用static(WebRoot中的文件夹);   

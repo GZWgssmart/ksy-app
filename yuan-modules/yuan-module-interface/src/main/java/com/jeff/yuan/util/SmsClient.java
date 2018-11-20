@@ -113,9 +113,13 @@ public class SmsClient {
 
     public static void main(String[] args) throws ClientException, InterruptedException {
 
+    	JSONObject json = new JSONObject();
+		json.put("code", 627899);
+		JSONObject json2 = new JSONObject();
+		json.put("password", 123456);
         //发短信
-        SendSmsResponse response = sendSms("13798369750","627899","SMS_148866416");
-//        SendSmsResponse response = sendSms("13798369750","627899","SMS_151177910");
+//        SendSmsResponse response = sendSms("13798369750",json.toJSONString(),"SMS_148866416");
+        SendSmsResponse response = sendSms("13798369750",json2.toJSONString(),"SMS_149096873");
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());
