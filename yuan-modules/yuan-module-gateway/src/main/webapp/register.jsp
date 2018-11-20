@@ -36,7 +36,7 @@
         <div class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div class="content-wrap">
+            <div id="content" class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -50,11 +50,20 @@
                                             <h4>用户注册</h4>
                                         </div>
                                         <div class="login-form">
-                                            <form action="#">
-                                                <input name="phone" placeholder="请输入手机号" type="text">
-                                                <input name="password" placeholder="请输入密码" type="password">
+                                            <form>
+                                                <input v-model="form.phone" placeholder="请输入手机号" type="text">
+                                                <input v-model="form.password" placeholder="请输入密码" type="password">
+                                                <input v-model="form.code" placeholder="请输入短信验证码" type="text">
+                                                <button v-if="sendCode == false" type="button"
+                                                        @click="smsCode"
+                                                        style="background-color: #333;border: medium none;color: #fff;font-size: 15px;letter-spacing: 1px;margin-bottom: 20px;padding: 10px;text-transform: uppercase;transition: all .3s ease 0s;">
+                                                    获取短信验证码
+                                                </button>
+                                                <div v-if="sendCode == true" v-text="seconds" style="margin-bottom: 20px;"></div>
+                                                <input v-model="form.refPhone" placeholder="请输入推荐人手机号" type="text">
+                                                <div v-html="errMsg" style="color: red; font-size: 12px;"></div>
                                                 <div class="button-remember">
-                                                    <button class="login-btn" type="submit">注册</button>
+                                                    <button class="login-btn" type="button" @click="register">注册</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -86,6 +95,108 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    form: {
+                        phone: '',
+                        code: '',
+                        password: '',
+                        refPhone: ''
+                    },
+                    sendCode: false,
+                    seconds: '',
+                    errMsg: ''
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+
+                },
+                methods: {
+                    smsCode () {
+                        view.errMsg = ''
+                        if (!isPhone(view.form.phone)) {
+                            view.errMsg += '请输入正确的手机号<br/>'
+                        }
+                        if (view.errMsg === '') {
+                            $.post(
+                                SMS_CODE_URL,
+                                {
+                                    phone: view.form.phone
+                                },
+                                function (data) {
+                                    if (data.success === false) {
+                                        view.errMsg = data.msg
+                                    } else {
+                                        view.sendCode = true
+                                        var count = 60
+                                        var timer = setInterval(function () {
+                                            view.seconds = '发送成功，' + (count--) + '秒后重新获取'
+                                            if (count === 0) {
+                                                view.sendCode = false
+                                                clearInterval(timer)
+                                            }
+                                        }, 1000)
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    register () {
+                        view.errMsg = ''
+                        var errMsg = ''
+                        if (!isPhone(view.form.phone)) {
+                            errMsg += '请输入正确的手机号<br/>';
+                        }
+                        if (view.form.password.trim() === '') {
+                            errMsg += '请输入密码<br/>';
+                        }
+                        if (view.form.code.trim() === '') {
+                            errMsg += '请输入短信验证码<br/>';
+                        }
+                        if (view.form.refPhone.trim() !== '' && !isPhone(view.form.refPhone)) {
+                            errMsg += '请输入正确的推荐手机号<br/>';
+                        }
+                        if (errMsg === '') {
+                            $.post(
+                                PHONE_VALIDATE_URL,
+                                {
+                                    phone: view.form.phone
+                                },
+                                function (data) {
+                                    if (data.success === false) {
+                                        view.errMsg = data.msg
+                                    } else {
+                                        $.post(
+                                            REGISTER_URL,
+                                            Qs.stringify(view.form),
+                                            function (data) {
+                                                if (data.success === false) {
+                                                    view.errMsg = data.msg
+                                                } else {
+                                                    view.errMsg = '注册成功，3秒后自动跳转到登录界面'
+                                                    setTimeout(function() {
+                                                        window.location.href = 'login.jsp'
+                                                    }, 3000)
+                                                }
+                                            })
+                                    }
+                                }
+                            )
+
+                        } else {
+                            view.errMsg = errMsg;
+                        }
+                    }
+                }
+            });
+        </script>
 		<script src="assets/js/main3.js"></script>
     </body>
 

@@ -36,7 +36,7 @@
         <div class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div class="content-wrap">
+            <div id="content" class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -51,9 +51,10 @@
                                         </div>
                                         <div class="login-form">
                                             <form action="#">
-                                                <input name="phone" placeholder="请输入手机号" type="text">
-                                                <input name="password" placeholder="请输入密码" type="password">
-                                                <button class="login-btn" type="submit">登录</button>
+                                                <input v-model="form.phone" placeholder="请输入手机号" type="text">
+                                                <input v-model="form.pwd" placeholder="请输入密码" type="password">
+                                                <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                                <button class="login-btn" type="button" @click="login">登录</button>
                                                 <div class="new-account">
                                                     <p>还没有账号？ <a href="register.jsp">注册新账号</a></p>
                                                 </div>
@@ -88,6 +89,52 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    form: {
+                        phone: '',
+                        pwd: ''
+                    },
+                    errMsg: ''
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+
+                },
+                methods: {
+                    login () {
+                        view.errMsg = ''
+                        var errMsg = ''
+                        if (!isPhone(view.form.phone)) {
+                            errMsg += '请输入正确的手机号<br/>';
+                        }
+                        if (view.form.pwd.trim() === '') {
+                            errMsg += '请输入密码<br/>';
+                        }
+                        if (errMsg === '') {
+                            $.post(LOGIN_URL,
+                                Qs.stringify(view.form),
+                                function (data) {
+                                    if (data.success === false) {
+                                        view.errMsg = data.msg
+                                    } else {
+                                        window.location.href = 'user-center.jsp'
+                                    }
+                                })
+                        } else {
+                            view.errMsg = errMsg;
+                        }
+                    }
+                }
+            });
+        </script>
 		<script src="assets/js/main3.js"></script>
     </body>
 
