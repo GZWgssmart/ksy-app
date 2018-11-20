@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-11-04 20:49:09
+Date: 2018-11-20 10:53:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,6 +49,7 @@ CREATE TABLE `cms_article` (
 -- ----------------------------
 -- Records of cms_article
 -- ----------------------------
+INSERT INTO `cms_article` VALUES ('4028abe16716c408016716d008710000', null, '2018-11-15 17:59:51', '0', '2018-11-15 17:59:51', '<p>额恩恩</p>', null, '', null, '', null, null, 'ww', '8a2a08425b7a0b7b015b7a2b0f060006', '', null, '0', '4028821e5b7a0971015b7a0a1cbf0000', '0');
 
 -- ----------------------------
 -- Table structure for `cms_column_info`
@@ -76,33 +77,18 @@ CREATE TABLE `cms_column_info` (
 -- ----------------------------
 -- Records of cms_column_info
 -- ----------------------------
-INSERT INTO `cms_column_info` VALUES ('4028821e5b7a0971015b7a0a1cbf0000', null, '2017-04-17 11:52:14', '0', '2017-04-17 11:52:18', 'shouye', '0', '首页', '1', '4028821e5b7a0971015b7a0a1cbf0000', null, null, '0');
-INSERT INTO `cms_column_info` VALUES ('4028821e5b7a9cbf015b7a9f79e00000', null, '2017-04-17 14:35:23', '0', '2018-08-24 20:16:44', 'jiaoxuejiaoyan', '0', '前端笔记', '3', '4028821e5b7a9cbf015b7a9f79e00000', null, null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a0cf4440000', null, '2017-04-17 11:55:21', '0', '2018-08-24 20:57:31', 'sy_xydt_ad', '1', '个人作品', '11', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a0cf4440000', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a0ddd780001', null, '2017-04-17 11:56:20', '0', '2018-08-24 20:57:41', 'sy_xydt_right', '1', '个人作品（文字）', '12', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a0ddd780001', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a0f32450002', null, '2017-04-17 11:57:47', '0', '2018-08-24 20:58:22', 'sy_xzjy', '1', '最新笔记', '13', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a0f32450002', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a105a640003', null, '2017-04-17 11:59:03', '0', '2017-04-19 14:18:24', 'sy_tzgg', '1', '通知公告', '14', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a105a640003', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a2a82ab0005', null, '2017-04-17 12:27:38', '0', '2018-08-24 20:09:54', 'xuexiaogaikuang', '0', '个人作品', '2', '8a2a08425b7a0b7b015b7a2a82ab0005', null, null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a2b0f060006', null, '2017-04-17 12:28:13', '0', '2017-04-20 21:11:52', 'sy_ad', '1', '广告位', '10', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a2b0f060006', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a9d0b2e000a', null, '2017-04-17 14:32:44', '0', '2018-08-24 20:15:44', 'xxgk_xxjj', '1', '扫码点餐小程序', '1', '8a2a08425b7a0b7b015b7a2a82ab0005/8a2a08425b7a0b7b015b7a9d0b2e000a', '8a2a08425b7a0b7b015b7a2a82ab0005', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a9fdd47000b', null, '2017-04-17 14:35:48', '0', '2018-08-24 20:16:05', 'xxgk_xxld', '1', '动态定制网站', '2', '8a2a08425b7a0b7b015b7a2a82ab0005/8a2a08425b7a0b7b015b7a9fdd47000b', '8a2a08425b7a0b7b015b7a2a82ab0005', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7aa0b065000c', null, '2017-04-17 14:36:42', '0', '2018-08-24 20:16:24', 'xxgk_xzjy', '1', '政府OA系统', '3', '8a2a08425b7a0b7b015b7a2a82ab0005/8a2a08425b7a0b7b015b7aa0b065000c', '8a2a08425b7a0b7b015b7a2a82ab0005', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aa9a1ad0004', null, '2017-04-17 14:46:29', '0', '2018-08-24 20:27:58', 'jxjy_jxyt', '1', 'Html5', '1', '4028821e5b7a9cbf015b7a9f79e00000/8a2a08425b7aa230015b7aa9a1ad0004', '4028821e5b7a9cbf015b7a9f79e00000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aa9f49d0005', null, '2017-04-17 14:46:50', '0', '2018-08-24 20:28:03', 'jxjy_jxzx', '1', 'CSS3', '2', '4028821e5b7a9cbf015b7a9f79e00000/8a2a08425b7aa230015b7aa9f49d0005', '4028821e5b7a9cbf015b7a9f79e00000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aaa576d0006', null, '2017-04-17 14:47:15', '0', '2018-08-24 20:27:44', 'jxjy_szdw', '1', 'JavaScript', '3', '4028821e5b7a9cbf015b7a9f79e00000/8a2a08425b7aa230015b7aaa576d0006', '4028821e5b7a9cbf015b7a9f79e00000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aaa9ca10007', null, '2017-04-17 14:47:33', '0', '2018-08-24 20:28:34', 'jxjy_msfc', '1', 'bootstrap', '4', '4028821e5b7a9cbf015b7a9f79e00000/8a2a08425b7aa230015b7aaa9ca10007', '4028821e5b7a9cbf015b7a9f79e00000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aaaebf50008', null, '2017-04-17 14:47:53', '0', '2018-08-24 20:28:45', 'jxjy_xkjs', '1', 'vue', '5', '4028821e5b7a9cbf015b7a9f79e00000/8a2a08425b7aa230015b7aaaebf50008', '4028821e5b7a9cbf015b7a9f79e00000', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aaf09900009', null, '2017-04-17 14:52:23', '0', '2018-08-24 20:16:56', 'tsjy', '0', '后端笔记', '4', '8a2a08425b7aa230015b7aaf09900009', null, null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aaf5b94000a', null, '2017-04-17 14:52:44', '0', '2018-08-24 20:29:04', 'tsjy_gfb', '1', 'java', '1', '8a2a08425b7aa230015b7aaf09900009/8a2a08425b7aa230015b7aaf5b94000a', '8a2a08425b7aa230015b7aaf09900009', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aaf99fc000b', null, '2017-04-17 14:53:00', '0', '2018-08-24 20:29:53', 'tsjy_dly', '1', 'c语言', '2', '8a2a08425b7aa230015b7aaf09900009/8a2a08425b7aa230015b7aaf99fc000b', '8a2a08425b7aa230015b7aaf09900009', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aafd6f8000c', null, '2017-04-17 14:53:15', '0', '2018-08-24 20:30:21', 'tsjy_xly', '1', 'spring', '3', '8a2a08425b7aa230015b7aaf09900009/8a2a08425b7aa230015b7aafd6f8000c', '8a2a08425b7aa230015b7aaf09900009', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab025c5000d', null, '2017-04-17 14:53:36', '0', '2018-08-24 20:31:43', 'tsjy_xsjx', '1', 'springMVC', '4', '8a2a08425b7aa230015b7aaf09900009/8a2a08425b7aa230015b7ab025c5000d', '8a2a08425b7aa230015b7aaf09900009', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab178b2000e', null, '2017-04-17 14:55:02', '0', '2018-08-24 20:31:56', 'tsjy_tywhj', '1', 'mybatis', '5', '8a2a08425b7aa230015b7aaf09900009/8a2a08425b7aa230015b7ab178b2000e', '8a2a08425b7aa230015b7aaf09900009', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab29b7e000f', null, '2017-04-17 14:56:17', '0', '2018-08-24 20:17:26', 'dyzx', '0', '运维笔记', '5', '8a2a08425b7aa230015b7ab29b7e000f', null, null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab30a3b0010', null, '2017-04-17 14:56:45', '0', '2018-08-24 20:32:07', 'dyzx_dyln', '1', 'linux', '1', '8a2a08425b7aa230015b7ab29b7e000f/8a2a08425b7aa230015b7ab30a3b0010', '8a2a08425b7aa230015b7ab29b7e000f', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab381580011', null, '2017-04-17 14:57:16', '0', '2018-08-24 20:32:30', 'dyzx_dyhd', '1', '分布式集群', '2', '8a2a08425b7aa230015b7ab29b7e000f/8a2a08425b7aa230015b7ab381580011', '8a2a08425b7aa230015b7ab29b7e000f', null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab7f0ae001d', null, '2017-04-17 15:02:06', '0', '2017-04-17 15:02:06', 'lxwm', '0', '联系我们', '8', '8a2a08425b7aa230015b7ab7f0ae001d', null, null, '0');
-INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab849e6001e', null, '2017-04-17 15:02:29', '0', '2017-04-17 15:02:29', 'lxwm_lxwm', '1', '联系我们', '1', '8a2a08425b7aa230015b7ab7f0ae001d/8a2a08425b7aa230015b7ab849e6001e', '8a2a08425b7aa230015b7ab7f0ae001d', null, '0');
+INSERT INTO `cms_column_info` VALUES ('4028821e5b7a0971015b7a0a1cbf0000', null, '2017-04-17 11:52:14', '0', '2018-11-09 14:36:15', 'shouye', '0', '首页', '1', '4028821e5b7a0971015b7a0a1cbf0000', null, null, '0');
+INSERT INTO `cms_column_info` VALUES ('4028821e5b7a9cbf015b7a9f79e00000', null, '2017-04-17 14:35:23', '0', '2018-11-09 14:53:09', 'jiaoxuejiaoyan', '0', '资讯', '3', '4028821e5b7a9cbf015b7a9f79e00000', null, null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a0cf4440000', null, '2017-04-17 11:55:21', '0', '2018-11-09 14:44:02', 'sy_xydt_ad', '1', '产品介绍', '11', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a0cf4440000', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a105a640003', null, '2017-04-17 11:59:03', '0', '2018-11-09 14:36:15', 'sy_tzgg', '1', '通知公告', '14', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a105a640003', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a2a82ab0005', null, '2017-04-17 12:27:38', '0', '2018-11-09 14:47:45', 'xuexiaogaikuang', '0', '健康管理', '2', '8a2a08425b7a0b7b015b7a2a82ab0005', null, null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a2b0f060006', null, '2017-04-17 12:28:13', '0', '2018-11-09 14:43:47', 'sy_ad', '1', '广告位(图片)', '10', '4028821e5b7a0971015b7a0a1cbf0000/8a2a08425b7a0b7b015b7a2b0f060006', '4028821e5b7a0971015b7a0a1cbf0000', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a9d0b2e000a', null, '2017-04-17 14:32:44', '0', '2018-11-09 14:48:35', 'xxgk_xxjj', '1', '健康管理专家', '1', '8a2a08425b7a0b7b015b7a2a82ab0005/8a2a08425b7a0b7b015b7a9d0b2e000a', '8a2a08425b7a0b7b015b7a2a82ab0005', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7a9fdd47000b', null, '2017-04-17 14:35:48', '0', '2018-11-09 14:35:28', 'xxgk_xxld', '1', '动态定制网站', '2', '8a2a08425b7a0b7b015b7a2a82ab0005/8a2a08425b7a0b7b015b7a9fdd47000b', '8a2a08425b7a0b7b015b7a2a82ab0005', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7a0b7b015b7aa0b065000c', null, '2017-04-17 14:36:42', '0', '2018-11-09 14:35:28', 'xxgk_xzjy', '1', '政府OA系统', '3', '8a2a08425b7a0b7b015b7a2a82ab0005/8a2a08425b7a0b7b015b7aa0b065000c', '8a2a08425b7a0b7b015b7a2a82ab0005', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7aa9a1ad0004', null, '2017-04-17 14:46:29', '0', '2018-11-09 14:35:24', 'jxjy_jxyt', '1', 'Html5', '1', '4028821e5b7a9cbf015b7a9f79e00000/8a2a08425b7aa230015b7aa9a1ad0004', '4028821e5b7a9cbf015b7a9f79e00000', null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab7f0ae001d', null, '2017-04-17 15:02:06', '0', '2018-11-09 14:35:15', 'lxwm', '0', '联系我们', '8', '8a2a08425b7aa230015b7ab7f0ae001d', null, null, '0');
+INSERT INTO `cms_column_info` VALUES ('8a2a08425b7aa230015b7ab849e6001e', null, '2017-04-17 15:02:29', '0', '2018-11-09 14:35:15', 'lxwm_lxwm', '1', '联系我们', '1', '8a2a08425b7aa230015b7ab7f0ae001d/8a2a08425b7aa230015b7ab849e6001e', '8a2a08425b7aa230015b7ab7f0ae001d', null, '0');
 
 -- ----------------------------
 -- Table structure for `ins_institution`
@@ -161,10 +147,17 @@ INSERT INTO `org_resource` VALUES ('2c9025ab5adb1eef015adb32ffb90001', null, '20
 INSERT INTO `org_resource` VALUES ('2c9025ab5adb1eef015adb36bac60002', null, '2017-03-17 15:41:21', '0', '2017-03-17 16:17:12', '', '栏目列表', '31', 'page', '/cms/column/list', '2c9025ab5adb1eef015adb32ffb90001');
 INSERT INTO `org_resource` VALUES ('2c9025ab5adb1eef015adb37ccd50003', null, '2017-03-17 15:42:31', '0', '2017-03-17 16:17:21', '', '文章列表', '32', 'page', '/cms/article/list', '2c9025ab5adb1eef015adb32ffb90001');
 INSERT INTO `org_resource` VALUES ('2c9025ab5b140c22015b140fbbd30000', null, '2017-03-28 16:37:07', '0', '2017-03-28 16:37:07', '', '换肤管理', '20', 'module', '/user/skin/list', null);
-INSERT INTO `org_resource` VALUES ('70', null, '2016-08-17 17:06:19', '0', '2016-10-28 17:02:57', '', '权限管理', '10', 'module', '/user/list', null);
-INSERT INTO `org_resource` VALUES ('71', null, '2016-09-07 15:15:58', '0', '2016-10-28 17:03:06', '', '用户列表', '11', 'page', '/user/list', '70');
-INSERT INTO `org_resource` VALUES ('72', null, '2016-09-07 15:17:37', '0', '2016-10-28 17:03:13', '', '角色列表', '12', 'page', '/user/role_list', '70');
-INSERT INTO `org_resource` VALUES ('73', null, '2016-09-18 16:34:14', '0', '2016-10-28 17:03:19', '', '菜单列表', '13', 'page', '/user/menu_list', '70');
+INSERT INTO `org_resource` VALUES ('402887d866f717ea0166f71fd6320000', null, '2018-11-09 14:19:10', '0', '2018-11-09 14:22:01', '', '交易管理', '12', 'page', '/shoptrade/list', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_resource` VALUES ('4028abe166e90efe0166e915b3e60000', null, '2018-11-06 20:53:25', '0', '2018-11-08 10:40:52', '', '商城管理', '10', 'module', '', null);
+INSERT INTO `org_resource` VALUES ('4028abe166e90efe0166e91ded670001', null, '2018-11-06 21:02:24', '0', '2018-11-08 10:41:18', '', '奖励规则', '16', 'page', '/shoprule/list', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_resource` VALUES ('4028abe166edabdd0166edadb7590000', null, '2018-11-07 18:17:56', '0', '2018-11-08 10:41:03', '', '商城用户', '11', 'page', '/shopuser/list', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_resource` VALUES ('4028abe166fb769e0166fb785dcc0000', null, '2018-11-10 10:34:21', '0', '2018-11-10 10:34:21', '', '商品管理', '13', 'page', '/shopproduct/list', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_resource` VALUES ('4028abe16707d853016707dabd7b0000', null, '2018-11-12 20:17:15', '0', '2018-11-12 20:17:15', '', '健康值管理', '14', 'page', '/shopbilltrade/list', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_resource` VALUES ('4028abe1672bd3dd01672bd790e40000', null, '2018-11-19 20:00:06', '0', '2018-11-19 20:00:06', '', '商城参数设置', '15', 'page', '/sysParam/list', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_resource` VALUES ('70', null, '2016-08-17 17:06:19', '0', '2018-11-08 10:40:18', '', '权限管理', '70', 'module', '/user/list', null);
+INSERT INTO `org_resource` VALUES ('71', null, '2016-09-07 15:15:58', '0', '2018-11-08 10:40:26', '', '用户列表', '71', 'page', '/user/list', '70');
+INSERT INTO `org_resource` VALUES ('72', null, '2016-09-07 15:17:37', '0', '2018-11-08 10:40:33', '', '角色列表', '72', 'page', '/user/role_list', '70');
+INSERT INTO `org_resource` VALUES ('73', null, '2016-09-18 16:34:14', '0', '2018-11-08 10:40:41', '', '菜单列表', '73', 'page', '/user/menu_list', '70');
 
 -- ----------------------------
 -- Table structure for `org_role`
@@ -214,6 +207,13 @@ INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', 
 INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '2c9025ab5adb1eef015adb36bac60002');
 INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '2c9025ab5adb1eef015adb37ccd50003');
 INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '2c9025ab5b140c22015b140fbbd30000');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '402887d866f717ea0166f71fd6320000');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '4028abe166e90efe0166e915b3e60000');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '4028abe166e90efe0166e91ded670001');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '4028abe166edabdd0166edadb7590000');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '4028abe166fb769e0166fb785dcc0000');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '4028abe16707d853016707dabd7b0000');
+INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '4028abe1672bd3dd01672bd790e40000');
 INSERT INTO `org_role_resource_rel` VALUES ('2c9025ab5a6f2b85015a6f2cef950000', '70');
 INSERT INTO `org_role_resource_rel` VALUES ('402881e457f075530157f0791e2f0000', '70');
 INSERT INTO `org_role_resource_rel` VALUES ('2c9025ab5a6f2b85015a6f2cef950000', '71');
@@ -274,18 +274,19 @@ DROP TABLE IF EXISTS `shop_bill_trade`;
 CREATE TABLE `shop_bill_trade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '申请提现或转让用户id',
-  `type` tinyint(1) NOT NULL COMMENT '操作类型"1、提现  2、转让',
+  `type` tinyint(1) NOT NULL COMMENT '操作类型"1、提现  2、转让 3.捐赠',
   `trade_phone` varchar(16) NOT NULL COMMENT '受让人手机号',
   `count` int(8) NOT NULL COMMENT '提现或者转让个数',
   `trade_status` tinyint(1) DEFAULT NULL COMMENT '1、待审/2、完成（转让直接完成，提现需要后台审核，通过后减少健康链，增加余额）',
   `create_date` datetime DEFAULT NULL,
   `create_by` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_bill_trade
 -- ----------------------------
+INSERT INTO `shop_bill_trade` VALUES ('1', '1', '2', '', '1', '2', '2018-11-12 20:26:16', null);
 
 -- ----------------------------
 -- Table structure for `shop_product`
@@ -296,10 +297,13 @@ CREATE TABLE `shop_product` (
   `pro_name` varchar(128) NOT NULL COMMENT '商品名称',
   `pro_logo_img` varchar(64) NOT NULL COMMENT '商品logo图片',
   `introduction` varchar(256) DEFAULT NULL COMMENT '商品简介',
-  `detail` varchar(2048) DEFAULT NULL COMMENT '商品详情',
+  `detail` longtext COMMENT '商品详情',
   `pro_count` varchar(8) DEFAULT NULL COMMENT '商品库存数量',
-  `income_credits` varchar(8) DEFAULT NULL COMMENT '购买商品赠送积分',
-  `consume_credits` varchar(8) DEFAULT NULL COMMENT '购买商品最高抵扣积分',
+  `income_credits` varchar(8) DEFAULT '0' COMMENT '购买商品赠送积分',
+  `vip_level` varchar(2) DEFAULT NULL COMMENT 'v1普通会员、v2个人vip、v3初级代理、v4高级代理、v5核心代理、v6运营中心、v7公司股东',
+  `type` varchar(1) DEFAULT '2' COMMENT '商品类型：1.会员大礼包 2.平台产品 3.项目合作',
+  `status` varchar(1) DEFAULT '1' COMMENT '1 上架 2下架',
+  `consume_credits` varchar(8) DEFAULT '0' COMMENT '购买商品最高抵扣积分',
   `price1` varchar(8) DEFAULT NULL COMMENT '商品价格1(个人vip 初级代理的价格，会员大礼包直接使用价格1)',
   `price2` varchar(8) DEFAULT NULL COMMENT '商品价格2(高级代理、核心代理价格)',
   `price3` varchar(8) DEFAULT NULL COMMENT '商品价格3(运营中心、公司股东价格)',
@@ -311,11 +315,18 @@ CREATE TABLE `shop_product` (
   `create_date` datetime DEFAULT NULL,
   `create_by` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_product
 -- ----------------------------
+INSERT INTO `shop_product` VALUES ('1', '会员大礼包', '/uploads/attach/e84be3bf-39b8-446b-9b9c-9f566139fa5c.jpg', '高山之水天上来   ', '<p>qqqq<br/></p>', '1000', '4000', 'v2', '1', '1', '0', '4000', '4000', '4000', '/uploads/attach/f02be418-8477-47ae-ada6-e094c0de7362.png', '/uploads/attach/03af9b2a-77d0-45f7-aa6d-40cb40144289.jpg', '/uploads/attach/128cf5ee-e581-44e6-a579-209e62999776.jpg', '/uploads/attach/1cc41dce-7d70-4cff-9dd4-0c8d9673fd2a.png', '', '2018-11-10 15:02:55', '');
+INSERT INTO `shop_product` VALUES ('2', '返购商品', '', '返购产品', '<p>商品描述详情，可能包含图片和文字等</p>', '100', '0', '2', '1', '1', '10', '188', '166', '155', '', '', '', '', '', '2018-11-15 17:52:39', '');
+INSERT INTO `shop_product` VALUES ('3', '会员大礼包', '/uploads/attach/e84be3bf-39b8-446b-9b9c-9f566139fa5c.jpg', '高山之水天上来   ', '<p>qqqq<br/></p>', '1000', '100', 'v3', '1', '1', '0', '10000', '10000', '10000', '/uploads/attach/f02be418-8477-47ae-ada6-e094c0de7362.png', '/uploads/attach/03af9b2a-77d0-45f7-aa6d-40cb40144289.jpg', '/uploads/attach/128cf5ee-e581-44e6-a579-209e62999776.jpg', '/uploads/attach/1cc41dce-7d70-4cff-9dd4-0c8d9673fd2a.png', '', '2018-11-10 15:02:55', '');
+INSERT INTO `shop_product` VALUES ('4', '会员大礼包', '/uploads/attach/e84be3bf-39b8-446b-9b9c-9f566139fa5c.jpg', '高山之水天上来   ', '<p>qqqq<br/></p>', '1000', '100', 'v4', '1', '1', '0', '30000', '30000', '30000', '/uploads/attach/f02be418-8477-47ae-ada6-e094c0de7362.png', '/uploads/attach/03af9b2a-77d0-45f7-aa6d-40cb40144289.jpg', '/uploads/attach/128cf5ee-e581-44e6-a579-209e62999776.jpg', '/uploads/attach/1cc41dce-7d70-4cff-9dd4-0c8d9673fd2a.png', '', '2018-11-10 15:02:55', '');
+INSERT INTO `shop_product` VALUES ('5', '会员大礼包', '/uploads/attach/e84be3bf-39b8-446b-9b9c-9f566139fa5c.jpg', '高山之水天上来   ', '<p>qqqq<br/></p>', '1000', '100', 'v5', '1', '1', '0', '90000', '90000', '90000', '/uploads/attach/f02be418-8477-47ae-ada6-e094c0de7362.png', '/uploads/attach/03af9b2a-77d0-45f7-aa6d-40cb40144289.jpg', '/uploads/attach/128cf5ee-e581-44e6-a579-209e62999776.jpg', '/uploads/attach/1cc41dce-7d70-4cff-9dd4-0c8d9673fd2a.png', '', '2018-11-10 15:02:55', '');
+INSERT INTO `shop_product` VALUES ('6', '会员大礼包', '/uploads/attach/e84be3bf-39b8-446b-9b9c-9f566139fa5c.jpg', '高山之水天上来   ', '<p>qqqq<br/></p>', '1000', '100', 'v6', '1', '1', '0', '150000', '150000', '150000', '/uploads/attach/f02be418-8477-47ae-ada6-e094c0de7362.png', '/uploads/attach/03af9b2a-77d0-45f7-aa6d-40cb40144289.jpg', '/uploads/attach/128cf5ee-e581-44e6-a579-209e62999776.jpg', '/uploads/attach/1cc41dce-7d70-4cff-9dd4-0c8d9673fd2a.png', '', '2018-11-10 15:02:55', '');
+INSERT INTO `shop_product` VALUES ('7', '会员大礼包', '/uploads/attach/e84be3bf-39b8-446b-9b9c-9f566139fa5c.jpg', '高山之水天上来   ', '<p>qqqq<br/></p>', '1000', '100', 'v7', '1', '1', '0', '300000', '300000', '300000', '/uploads/attach/f02be418-8477-47ae-ada6-e094c0de7362.png', '/uploads/attach/03af9b2a-77d0-45f7-aa6d-40cb40144289.jpg', '/uploads/attach/128cf5ee-e581-44e6-a579-209e62999776.jpg', '/uploads/attach/1cc41dce-7d70-4cff-9dd4-0c8d9673fd2a.png', '', '2018-11-10 15:02:55', '');
 
 -- ----------------------------
 -- Table structure for `shop_register_rule`
@@ -338,18 +349,40 @@ CREATE TABLE `shop_register_rule` (
   `fugoufd` varchar(8) DEFAULT NULL COMMENT '会员购买产品返点',
   `fugouztfd` varchar(8) DEFAULT NULL COMMENT '邀请用户复购的直推返点',
   `fugoujtfd` varchar(8) DEFAULT NULL COMMENT '邀请复购用户的间推返点',
+  `fenhong` varchar(8) DEFAULT NULL COMMENT '分红积分，用于每日平台分红',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_register_rule
 -- ----------------------------
-INSERT INTO `shop_register_rule` VALUES ('1', 'v1', '1', '1', '2%', '1%', '0', '0', '30', '2018-11-04 20:24:44', 'system', '2018-11-04 20:25:32', '', '5%', '2%', '1%');
-INSERT INTO `shop_register_rule` VALUES ('2', 'v2', '3', '1', '3%', '2%', '0', '0', '100', '2018-11-04 20:27:00', null, null, null, '6%', '3%', '2%');
-INSERT INTO `shop_register_rule` VALUES ('3', 'v3', '10', '3', '3%', '2%', '0', '0', '300', '2018-11-04 20:27:00', null, null, null, '8%', '4%', '3%');
-INSERT INTO `shop_register_rule` VALUES ('4', 'v4', '30', '10', '6%', '4%', '2%', '0', '900', '2018-11-04 20:27:00', null, null, null, '10%', '6%', '4%');
-INSERT INTO `shop_register_rule` VALUES ('5', 'v5', '50', '15', '8%', '5%', '4%', '0', '1500', '2018-11-04 20:27:00', null, null, null, '12%', '8%', '5%');
-INSERT INTO `shop_register_rule` VALUES ('6', 'v6', '100', '20', '10%', '8%', '%6', '%5', '3000', '2018-11-04 20:27:00', null, null, null, '15%', '10%', '6%');
+INSERT INTO `shop_register_rule` VALUES ('1', 'v2', '1', '1', '2%', '1%', '0', '0', '30', '2018-11-04 20:24:44', null, '2018-11-08 14:56:03', null, '5%', '2%', '1%', '4000');
+INSERT INTO `shop_register_rule` VALUES ('2', 'v3', '3', '1', '3%', '2%', '0', '0', '100', '2018-11-04 20:27:00', '1', null, '1', '6%', '3%', '2%', '10000');
+INSERT INTO `shop_register_rule` VALUES ('3', 'v4', '10', '3', '3%', '2%', '0', '0', '300', '2018-11-04 20:27:00', '1', null, '1', '8%', '4%', '3%', '30000');
+INSERT INTO `shop_register_rule` VALUES ('4', 'v5', '30', '10', '6%', '4%', '2%', '0', '900', '2018-11-04 20:27:00', '1', null, '1', '10%', '6%', '4%', '90000');
+INSERT INTO `shop_register_rule` VALUES ('5', 'v6', '50', '15', '8%', '5%', '4%', '0', '1500', '2018-11-04 20:27:00', null, '2018-11-08 14:03:21', null, '12%', '8%', '5%', '150000');
+INSERT INTO `shop_register_rule` VALUES ('6', 'v7', '100', '20', '10%', '8%', '6%', '%5', '3000', '2018-11-07 16:18:20', null, '2018-11-07 15:58:54', null, '15%', '10%', '6%', '300000');
+INSERT INTO `shop_register_rule` VALUES ('7', 'v1', '0', '0', '2%', '1%', '0', '0', '0', '2018-11-19 21:43:18', null, null, null, '0', '0', '0', '');
+
+-- ----------------------------
+-- Table structure for `shop_sys_param`
+-- ----------------------------
+DROP TABLE IF EXISTS `shop_sys_param`;
+CREATE TABLE `shop_sys_param` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(12) NOT NULL COMMENT '系统参数编码',
+  `sys_type` varchar(4) NOT NULL COMMENT '系统参数类型',
+  `sys_value` varchar(24) NOT NULL COMMENT '参数值',
+  `update_date` datetime DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of shop_sys_param
+-- ----------------------------
+INSERT INTO `shop_sys_param` VALUES ('1', 'SY_CHENGBEN', '1', '10000', null, '2018-11-19 20:07:04');
+INSERT INTO `shop_sys_param` VALUES ('2', 'SY_VIP', 'v1', '1', null, '2018-11-19 20:07:55');
 
 -- ----------------------------
 -- Table structure for `shop_trade`
@@ -357,18 +390,22 @@ INSERT INTO `shop_register_rule` VALUES ('6', 'v6', '100', '20', '10%', '8%', '%
 DROP TABLE IF EXISTS `shop_trade`;
 CREATE TABLE `shop_trade` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `trade_no` varchar(32) NOT NULL COMMENT '订单编号',
   `user_id` int(11) NOT NULL COMMENT '交易用户id',
-  `type` tinyint(1) NOT NULL COMMENT '1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红',
-  `price` int(8) NOT NULL COMMENT '从用户角度考虑，付款是-，收益是+',
+  `type` tinyint(2) NOT NULL COMMENT '1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠',
+  `price` decimal(8,2) NOT NULL COMMENT '从用户角度考虑，付款是-，收益是+',
+  `status` tinyint(2) DEFAULT '3' COMMENT '1.订单提交（待发货） 2.后台发货（已发货） 3.确认收货  购买商品流程',
   `credits` int(8) NOT NULL COMMENT '使用积分总数',
   `create_date` datetime DEFAULT NULL,
   `create_by` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_trade
 -- ----------------------------
+INSERT INTO `shop_trade` VALUES ('1', '191292191298198', '1', '2', '3998.00', '3', '3998', '2018-11-09 15:54:12', null);
+INSERT INTO `shop_trade` VALUES ('2', '111111111111111', '1', '1', '9999.00', '1', '9999', '2018-11-12 16:18:16', null);
 
 -- ----------------------------
 -- Table structure for `shop_trade_detail`
@@ -379,15 +416,19 @@ CREATE TABLE `shop_trade_detail` (
   `trade_id` int(11) NOT NULL COMMENT '订单表shop_trade主键id',
   `pro_id` int(11) NOT NULL COMMENT '订单表shop_trade主键id',
   `count` tinyint(4) NOT NULL COMMENT '商品个数',
-  `price` int(8) NOT NULL COMMENT '实际付款价格',
+  `price` decimal(8,2) NOT NULL COMMENT '实际付款价格',
   `pro_name` varchar(64) NOT NULL COMMENT '商品名称',
   `pro_logo_img` varchar(64) NOT NULL COMMENT '商品logo图片',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `pk_trade_id` (`trade_id`),
+  CONSTRAINT `pk_trade_id` FOREIGN KEY (`trade_id`) REFERENCES `shop_trade` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_trade_detail
 -- ----------------------------
+INSERT INTO `shop_trade_detail` VALUES ('2', '1', '1', '5', '30.00', '会员大礼包', '/static/images/null.png');
+INSERT INTO `shop_trade_detail` VALUES ('3', '1', '1', '1', '50.00', '会员大礼包', '/static/images/null.png');
 
 -- ----------------------------
 -- Table structure for `shop_user`
@@ -397,22 +438,30 @@ CREATE TABLE `shop_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `account` varchar(20) NOT NULL COMMENT '账户名',
   `phone` varchar(12) NOT NULL COMMENT '手机号',
-  `password` varchar(20) NOT NULL COMMENT '密码',
+  `password` varchar(32) NOT NULL COMMENT '密码',
   `ref_phone` varchar(20) DEFAULT NULL COMMENT '推荐人手机号',
+  `fenghongjifen` int(8) DEFAULT NULL COMMENT '分红积分，不同等级获取平台分红使用',
   `vip_level` varchar(2) DEFAULT NULL COMMENT 'v1普通会员、v2个人vip、v3初级代理、v4高级代理、v5核心代理、v6运营中心、v7公司股东',
   `address` varchar(100) DEFAULT NULL COMMENT '收货地址',
   `create_date` datetime DEFAULT NULL,
   `create_by` varchar(20) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `update_by` varchar(20) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '1有效 2无效',
+  `nick_name` varchar(48) DEFAULT NULL COMMENT '昵称',
+  `jiaoyimima` varchar(32) DEFAULT NULL COMMENT '交易密码',
   PRIMARY KEY (`id`),
   KEY `idx_phone` (`phone`) USING BTREE,
   KEY `idx_ref_phone` (`ref_phone`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_user
 -- ----------------------------
+INSERT INTO `shop_user` VALUES ('1', '丁金清', '13798369750', '123456', '19979458414', null, 'v1', '江西省赣州市于都县', '2018-11-07 17:58:45', null, '2018-11-08 16:19:56', null, '1', null, null);
+INSERT INTO `shop_user` VALUES ('2', '丁清', '19979458414', '123456', '13360525570', null, 'v6', '江西省赣州市于都县', '2018-11-07 17:59:41', null, '2018-11-07 17:59:45', null, '1', null, null);
+INSERT INTO `shop_user` VALUES ('3', '丁丁', '13360525570', '123456', '13798369750', null, 'v1', '江西', '2018-11-07 18:20:19', null, null, null, '1', null, null);
+INSERT INTO `shop_user` VALUES ('7', '1111111111', '13798369751', '', '13798369750', null, 'v2', '11', '2018-11-08 16:42:02', null, '2018-11-08 16:46:44', null, '1', null, null);
 
 -- ----------------------------
 -- Table structure for `shop_user_ext`
@@ -420,12 +469,12 @@ CREATE TABLE `shop_user` (
 DROP TABLE IF EXISTS `shop_user_ext`;
 CREATE TABLE `shop_user_ext` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL COMMENT '用户表主键',
-  `credits` varchar(20) NOT NULL COMMENT '账户积分',
-  `bill` varchar(8) NOT NULL COMMENT '总健康链',
-  `active_bill` varchar(8) NOT NULL COMMENT '激活的健康链',
-  `trade_bill` varchar(8) DEFAULT NULL COMMENT '转让获得的健康链',
-  `balance` varchar(12) DEFAULT NULL COMMENT '账户余额',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户表主键',
+  `credits` varchar(20) NOT NULL DEFAULT '0' COMMENT '账户积分',
+  `bill` varchar(8) NOT NULL DEFAULT '0' COMMENT '总健康链',
+  `active_bill` varchar(8) NOT NULL DEFAULT '0' COMMENT '激活的健康链',
+  `trade_bill` varchar(8) NOT NULL DEFAULT '0' COMMENT '转让获得的健康链',
+  `balance` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '账户余额',
   `create_date` datetime DEFAULT NULL,
   `create_by` varchar(20) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
@@ -433,8 +482,12 @@ CREATE TABLE `shop_user_ext` (
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `shop_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shop_user_ext
 -- ----------------------------
+INSERT INTO `shop_user_ext` VALUES ('1', '1', '30000', '30', '1', '0', '50000.00', '2018-11-07 18:03:48', null, '2018-11-08 16:19:56', null);
+INSERT INTO `shop_user_ext` VALUES ('2', '2', '300000', '3000', '30', '50', '500000.00', '2018-11-07 18:04:50', null, null, null);
+INSERT INTO `shop_user_ext` VALUES ('3', '3', '0', '30', '0', '0', '0.00', '2018-11-08 16:23:10', null, null, null);
+INSERT INTO `shop_user_ext` VALUES ('4', '7', '0', '100', '0', '0', '5000.00', '2018-11-08 16:42:02', null, '2018-11-08 16:46:44', null);
