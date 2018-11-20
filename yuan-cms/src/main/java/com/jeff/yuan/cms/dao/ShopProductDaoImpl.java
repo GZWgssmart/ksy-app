@@ -34,6 +34,7 @@ public class ShopProductDaoImpl extends CustomBaseSqlDaoImpl implements ShopProd
     		 hql.append(" and t.type = :type ");
     		 map.put("type", shopProductQueryDTO.getType());
     	 }
+    	 hql.append(" order by t.id desc");
          return this.queryForPageWithParams(hql.toString(),map,shopProductQueryDTO.getCurrentPage(),shopProductQueryDTO.getPageSize());
     }
 
@@ -49,6 +50,7 @@ public class ShopProductDaoImpl extends CustomBaseSqlDaoImpl implements ShopProd
     		 hql.append(" and t.status = :status ");
     		 map.put("status", shopProductQueryDTO.getStatus());
     	 }
+    	 hql.append(" order by t.id desc");
          return this.queryByMapParams(hql.toString(),map);
     }
 

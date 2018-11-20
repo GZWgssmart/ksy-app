@@ -31,6 +31,7 @@ public class ShopBillTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopBi
         	 hql.append(" and t.tradeStatus = :tradeStatus ");
         	 map.put("tradeStatus", shopBillTradeQueryDTO.getTradeStatus());
          }
+         hql.append(" order by t.id desc");
          return this.queryForPageWithParams(hql.toString(),map,shopBillTradeQueryDTO.getCurrentPage(),shopBillTradeQueryDTO.getPageSize());
     }
 
@@ -50,6 +51,7 @@ public class ShopBillTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopBi
         	 hql.append(" and t.tradeStatus = :tradeStatus ");
         	 map.put("tradeStatus", shopBillTradeQueryDTO.getTradeStatus());
          }
+         hql.append(" order by t.id desc");
          return this.queryByMapParams(hql.toString(),map);
     }
 

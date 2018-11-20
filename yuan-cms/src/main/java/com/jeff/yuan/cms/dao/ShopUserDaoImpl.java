@@ -42,7 +42,7 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
         	 }
     		 
          }
-         hql.append(" order by t.createDate desc ");
+         hql.append(" order by t.id desc");
          return this.queryForPageWithParams(hql.toString(),map,shopUserQueryDTO.getCurrentPage(),shopUserQueryDTO.getPageSize());
     }
 
@@ -73,7 +73,7 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
         	 }
     		 
          }
-         hql.append(" order by t.createDate desc ");
+         hql.append(" order by t.id desc");
          return this.queryByMapParams(hql.toString(),map);
     }
 
