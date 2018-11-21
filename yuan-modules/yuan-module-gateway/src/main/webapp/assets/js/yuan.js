@@ -1,10 +1,12 @@
 var BASE_URL = 'http://47.106.142.171:8080';
 
+var MODULE_ADMIN = '/yuan-module-admin'
+
 var PRODUCT_URL = BASE_URL + '/yuan-module-interface/shopproduct/list';
 
 var PRODUCT_DETAIL_URL = BASE_URL + '/yuan-module-interface/shopproduct/getDetail';
 
-var ARTICLE_URL = BASE_URL + '/yuan-module-interface/cms/api/column/list';
+var ARTICLE_URL = BASE_URL + '/yuan-module-interface/cms/api/article/list';
 
 var ARTICLE_DETAIL_URL = BASE_URL + '/yuan-module-interface/cms/api/article/detail';
 
