@@ -104,7 +104,8 @@
                                 <div class="col-md-7">
                                     <div class="single-product-content">
                                         <div class="single-product-dec pb-30  for-pro-border">
-                                            <h2>Pc headphone</h2>
+                                            <h2 v-text="product.proName"></h2>
+                                            <!--
                                             <span class="ratting">
                                                 <i class="fa fa-star active"></i>
                                                 <i class="fa fa-star active"></i>
@@ -112,16 +113,17 @@
                                                 <i class="fa fa-star active"></i>
                                                 <i class="fa fa-star active"></i>
                                             </span>
-                                            <h3>$200</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes Cum sociis natoque penatibus et magnis dis parturient montes consectetuer adipiscing.</p>
+                                            -->
+                                            <h3>￥{{product.price1}}</h3>
+                                            <p v-text="product.introduction"></p>
                                         </div>
                                         <div class="single-cart-color for-pro-border">
-                                            <p>availability : <span>in stock</span></p>
+                                            <p>库存 : <span v-text="product.proCount"></span></p>
                                             <div class="model">
-                                                <p>model : <span>nms005</span></p>
+                                                <p>其他 : <span>nms005</span></p>
                                             </div>
                                             <div class="pro-quality">
-                                                <p>Quantity:</p>
+                                                <p>购买数量:</p>
                                                 <input value="1" type="number">
                                             </div>
                                             <div class="single-pro-cart">
@@ -152,9 +154,7 @@
                             </div>
                             <div class="single-product-dec pb-100">
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="description">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes Cum sociis natoque penatibus et magnis dis parturient montes.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                                    <div v-html="product.detail" class="tab-pane active" id="description">
                                     </div>
                                 </div>
                             </div>
