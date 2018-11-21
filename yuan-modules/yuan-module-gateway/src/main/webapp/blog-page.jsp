@@ -34,7 +34,7 @@
         <div class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div class="content-wrap">
+            <div id="content" class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -42,129 +42,26 @@
                     <div class="blog-fullwidth-area ptb-100">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-4 col-sm-6">
+                                <div v-if="articles.length === 0" class="col-md-4 col-sm-6">暂无资讯</div>
+                                <div v-for="item in articles" class="col-md-4 col-sm-6">
                                     <div class="blog-details mb-30">
                                         <div class="blog-img">
-                                            <a href="blog-details.jsp"><img src="assets/img/blog/1.jpg" alt=""></a>
+                                            <a :href="'blog-details.jsp?id=' + item.id"><img :src="item.coverImageUrl" alt=""></a>
                                             <div class="blog-quick-view">
-                                                <a href="blog-details.jsp">
+                                                <a :href="'blog-details.jsp?id=' + item.id">
                                                     <i class="pe-7s-link"></i>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="blog-meta">
-                                            <h4><a href="blog-details.jsp">Women’s Fashion Award</a></h4>
+                                            <h4><a :href="'blog-details.jsp?id=' + item.id" v-text="item.title"></a></h4>
                                             <ul class="meta">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li>25 june</li>
+                                                <li v-text="item.publisher"></li>
+                                                <li v-text="item.createDate"></li>
+                                                <li>{{item.viewCount}}次查看</li>
                                             </ul>
-                                            <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                            <a href="blog-details.jsp">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="blog-details mb-30">
-                                        <div class="blog-img">
-                                            <a href="blog-details.jsp"><img src="assets/img/blog/2.jpg" alt=""></a>
-                                            <div class="blog-quick-view">
-                                                <a href="blog-details.jsp">
-                                                    <i class="pe-7s-link"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-meta">
-                                            <h4><a href="blog-details.jsp">Grand opening ceremony</a></h4>
-                                            <ul class="meta">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li>25 june</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                            <a href="blog-details.jsp">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="blog-details mb-30">
-                                        <div class="blog-img">
-                                            <a href="blog-details.jsp"><img src="assets/img/blog/3.jpg" alt=""></a>
-                                            <div class="blog-quick-view">
-                                                <a href="blog-details.jsp">
-                                                    <i class="pe-7s-link"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-meta">
-                                            <h4><a href="blog-details.jsp">World wide celebration</a></h4>
-                                            <ul class="meta">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li>25 june</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                            <a href="blog-details.jsp">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="blog-details mb-30">
-                                        <div class="blog-img">
-                                            <a href="blog-details.jsp"><img src="assets/img/blog/4.jpg" alt=""></a>
-                                            <div class="blog-quick-view">
-                                                <a href="blog-details.jsp">
-                                                    <i class="pe-7s-link"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-meta">
-                                            <h4><a href="blog-details.jsp">Lorem ipsum dolor ipsum.</a></h4>
-                                            <ul class="meta">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li>25 june</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                            <a href="blog-details.jsp">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="blog-details mb-30">
-                                        <div class="blog-img">
-                                            <a href="blog-details.jsp"><img src="assets/img/blog/5.jpg" alt=""></a>
-                                            <div class="blog-quick-view">
-                                                <a href="blog-details.jsp">
-                                                    <i class="pe-7s-link"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-meta">
-                                            <h4><a href="blog-details.jsp">How to start online shop</a></h4>
-                                            <ul class="meta">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li>25 june</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                            <a href="blog-details.jsp">read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="blog-details mb-30">
-                                        <div class="blog-img">
-                                            <a href="blog-details.jsp"><img src="assets/img/blog/6.jpg" alt=""></a>
-                                            <div class="blog-quick-view">
-                                                <a href="blog-details.jsp">
-                                                    <i class="pe-7s-link"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-meta">
-                                            <h4><a href="blog-details.jsp">Awsome online service</a></h4>
-                                            <ul class="meta">
-                                                <li><a href="#">John Doe</a></li>
-                                                <li>25 june</li>
-                                            </ul>
-                                            <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                            <a href="blog-details.jsp">read more</a>
+                                            <p v-text="item.summary"></p>
+                                            <a :href="'blog-details.jsp?id=' + item.id">查看</a>
                                         </div>
                                     </div>
                                 </div>
@@ -173,11 +70,11 @@
                                 <div class="col-md-12">
                                     <div class="page-pagination text-center">
                                         <ul>
-                                            <li><a class="active" href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                                            <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
+                                            <li v-for="page in pageNumbers">
+                                                <a href="javascript:;" :class="currentPage == page ? 'active' : ''" @click="goPage(page)" v-text="page"></a>
+                                            </li>
+                                            <li><a href="javascript:;" @click="nextPage"><i class="fa fa-angle-double-right"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -208,6 +105,94 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    articles: [],
+                    totalPage: 0,
+                    currentPage: 1,
+                    pageNumbers: []
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.showArticles(true, 1)
+                },
+                methods: {
+                    showArticles (init, pageNo) {
+                        var self = this
+                        $.post(
+                            ARTICLE_URL,
+                            {
+                                pageSize: 9,
+                                currentPage: pageNo,
+                                columnId: '8a2a08425b7aa230015b7aa9a1ad0004'
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.articles = data.data.list
+                                    view.totalPage = data.data.totalPage
+                                    if (view.articles.length > 0) {
+                                        view.articles.forEach(function(item, index) {
+                                            item.coverImageUrl = BASE_URL + MODULE_ADMIN + item.coverImageUrl
+                                            item.createDate = timestampToDatetime(item.createDate)
+                                        })
+                                    }
+                                    if (init) {
+                                        self.initPageNumbers()
+                                    }
+                                }
+                            }
+                        )
+                    },
+                    initPageNumbers () {
+                        if (view.totalPage <= 5) {
+                            for (var i = 1; i <= view.totalPage; i++) {
+                                view.pageNumbers.push(i)
+                            }
+                        } else {
+                            view.pageNumbers = [1, 2, 3, 4, 5]
+                        }
+                    },
+                    getPageNumbers () {
+                        if (view.totalPage <= 5) {
+
+                        } else {
+                            if (view.currentPage >= 3 && (view.currentPage + 2) <= view.totalPage) {
+                                view.pageNumbers = [view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1, view.currentPage + 2]
+                            } else if (view.currentPage + 1 === view.totalPage) {
+                                view.pageNumbers = [view.currentPage - 3, view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1]
+                            }
+                        }
+                    },
+                    previousPage () {
+                        if (view.currentPage === 1) {
+                            return
+                        }
+                        view.currentPage -= 1
+                        this.getPageNumbers()
+                        this.showProducts(false, view.currentPage)
+                    },
+                    nextPage () {
+                        if (view.currentPage === view.totalPage) {
+                            return
+                        }
+                        view.currentPage += 1
+                        this.getPageNumbers()
+                        this.showProducts(false, view.currentPage)
+                    },
+                    goPage (pageNo) {
+                        view.currentPage = pageNo
+                        this.getPageNumbers()
+                        this.showProducts(false, view.currentPage)
+                    }
+                }
+            });
+        </script>
 		<script src="assets/js/main3.js"></script>
     </body>
 </html>

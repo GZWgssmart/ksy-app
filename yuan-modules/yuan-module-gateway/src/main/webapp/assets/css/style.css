@@ -1073,7 +1073,11 @@ a.button-hover::before {
 /* blog area */
 
 .blog-img a img {
+    /**
     width: 100%;
+    */
+    width: 370px;
+    height: 246px;
 }
 .blog-meta h4 a {
     display: block;
@@ -3330,7 +3334,9 @@ blockquote p i {
     margin-right: 5px;
 }
 .single-blog img {
+    /**
     width: 100%;
+    */
 }
 h3.leave-comment-text {
     color: #333;

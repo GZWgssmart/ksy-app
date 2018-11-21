@@ -57,12 +57,12 @@
                                     <li>
                                         <a href="shop-page.jsp">商城 </a>
                                     </li>
+                                    <li><a href="shop-page-pro.jsp">项目合作</a>
                                     <li><a href="blog-page.jsp">资讯</a></li>
-                                    <li><a href="shop-page.jsp">健康管理 </a>
+                                    <li><a href="health.jsp">健康管理 </a>
                                     </li>
-                                    <li><a href="shop-page.jsp">爱心公益</a>
+                                    <li><a href="heart.jsp">爱心公益</a>
                                     </li>
-                                    <li><a href="contact.jsp">项目合作</a>
                                     </li>
                                     <li><a href="contact.jsp">联系我们</a></li>
                                 </ul>
@@ -87,15 +87,15 @@
                                 <a href="index.jsp">首页</a>
                             </li>
                             <li>
-                                <a href="shop-page.jsp">商城</a>
+                                <a href="shop-page.jsp">商城 </a>
                             </li>
-                            <li><a href="shop-page.jsp">健康管理</a>
-                            </li>
-                            <li><a href="shop-page.jsp">爱心公益</a>
-                            </li>
-                            <li><a href="contact.jsp">项目合作</a>
-                            </li>
+                            <li><a href="shop-page-pro.jsp">项目合作</a>
                             <li><a href="blog-page.jsp">资讯</a></li>
+                            <li><a href="health.jsp">健康管理 </a>
+                            </li>
+                            <li><a href="heart.jsp">爱心公益</a>
+                            </li>
+                            </li>
                             <li><a href="contact.jsp">联系我们</a></li>
                         </ul>
                     </nav>
