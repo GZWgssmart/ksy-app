@@ -36,7 +36,7 @@
         <div class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div class="content-wrap">
+            <div id="content" class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -49,29 +49,21 @@
                                         <div class="single-blog">
 
                                             <div class="blog-details-text mt-30">
-                                                <h3>Lorem ipsum dolor sit amet</h3>
+                                                <h3 v-text="article.title"></h3>
                                                 <div class="post-info">
                                                     <ul>
                                                         <li>
                                                             <i class="fa fa-user"></i>
-                                                            kavin smith
+                                                            <span v-text="article.publisher"></span>
                                                         </li>
                                                         <li>
                                                             <i class="fa fa-calendar"></i>
-                                                            june 26, 2016
+                                                            <span v-text="article.createDate"></span>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <a href="#"><img src="assets/img/blog/blog-details.jpg" alt=""></a>
-                                                <p class="details-pera">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste </p>
-                                                <blockquote>
-                                                    <p>
-                                                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam
-                                                    <i class="fa fa-quote-right" aria-hidden="true"></i>
-                                                    </p>
-                                                </blockquote>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. U enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  </p>
+                                                <a href="#"><img :src="article.coverImageUrl" alt=""></a>
+                                                <div v-html="article.content"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -81,55 +73,20 @@
                                         <div class="single-sidebar">
                                             <h3 class="sidebar-title">最新资讯</h3>
                                             <div class="recent-all">
-                                                <div class="recent-img-text mb-20">
+                                                <div v-if="latestArticles.length === 0">暂无最新资讯</div>
+                                                <div v-else v-for="item in latestArticles" class="recent-img-text mb-20">
                                                     <div class="recent-img">
-                                                        <a href="#"><img src="assets/img/blog/s1.jpg" alt=""></a>
+                                                        <a :href="'blog-details.jsp?id=' + item.id"><img :src="item.coverImageUrl" alt=""></a>
                                                     </div>
                                                     <div class="recent-text">
                                                         <h4>
-                                                            <a href="#">Lorem Ipsum</a>
+                                                            <a :href="'blog-details.jsp?id=' + item.id" v-text="item.title"></a>
                                                         </h4>
                                                         <div class="post-info">
                                                             <ul>
                                                                 <li>
                                                                     <i class="fa fa-calendar"></i>
-                                                                    june 26, 2016
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="recent-img-text mb-20">
-                                                    <div class="recent-img">
-                                                        <a href="#"><img src="assets/img/blog/s2.jpg" alt=""></a>
-                                                    </div>
-                                                    <div class="recent-text">
-                                                        <h4>
-                                                            <a href="#">Lorem Ipsum</a>
-                                                        </h4>
-                                                        <div class="post-info">
-                                                            <ul>
-                                                                <li>
-                                                                    <i class="fa fa-calendar"></i>
-                                                                    june 26, 2016
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="recent-img-text">
-                                                    <div class="recent-img">
-                                                        <a href="#"><img src="assets/img/blog/s3.jpg" alt=""></a>
-                                                    </div>
-                                                    <div class="recent-text">
-                                                        <h4>
-                                                            <a href="#">Lorem Ipsum</a>
-                                                        </h4>
-                                                        <div class="post-info">
-                                                            <ul>
-                                                                <li>
-                                                                    <i class="fa fa-calendar"></i>
-                                                                    june 26, 2016
+                                                                    <span v-text="item.createDate"></span>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -167,6 +124,63 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script>
+            var articleId = '<%=request.getParameter("id")%>'
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    article: {},
+                    latestArticles: []
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.showArticle()
+                    this.showLatestArticles()
+                },
+                methods: {
+                    showArticle () {
+                        $.post(
+                            ARTICLE_DETAIL_URL,
+                            {
+                                articleId: articleId
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.article = data.data
+                                    view.article.coverImageUrl = BASE_URL + MODULE_ADMIN + view.article.coverImageUrl
+                                    view.article.createDate = timestampToDatetime(view.article.createDate)
+                                }
+                            }
+                        )
+                    },
+                    showLatestArticles () {
+                        $.post(
+                            ARTICLE_URL,
+                            {
+                                pageSize: 3,
+                                currentPage: 1,
+                                columnId: '8a2a08425b7aa230015b7aa9a1ad0004'
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.latestArticles = data.data.list
+                                    if (view.latestArticles.length > 0) {
+                                        view.latestArticles.forEach(function(item, index) {
+                                            item.coverImageUrl = BASE_URL + MODULE_ADMIN + item.coverImageUrl
+                                            item.createDate = timestampToDatetime(item.createDate)
+                                        })
+                                    }
+                                }
+                            }
+                        )
+                    }
+                }
+            });
+        </script>
 		<script src="assets/js/main3.js"></script>
     </body>
 </html>
