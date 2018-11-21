@@ -55,205 +55,21 @@
                     <a href="#" class="hero-slider-nav next"><i class="fa fa-angle-right"></i></a>
                 </section>
                 <!-- slider end -->
-                <!-- banner style 2 start -->
-                <div class="banner-style-2 pt-100">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="banner-style-2-img mb-res">
-                                    <img src="assets/img/banner/6.jpg" alt="">
-                                    <div class="banner-style-2-dec">
-                                        <h4>Laser Scann</h4>
-                                        <h3>Sale 30% off</h3>
-                                        <a href="#">shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="banner-style-2-img mb-res">
-                                    <img src="assets/img/banner/7.jpg" alt="">
-                                    <div class="banner-style-2-dec">
-                                        <h4>Table Lamp</h4>
-                                        <h3>Vacation Offer</h3>
-                                        <a href="#">shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="banner-style-2-img">
-                                    <img src="assets/img/banner/8.jpg" alt="">
-                                    <div class="banner-style-2-dec">
-                                        <h4>Artech leo</h4>
-                                        <h3>Unlimited offer</h3>
-                                        <a href="#">shop now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- banner style 2 end -->
+
                 <!-- shop area start -->
                 <div class="portfolio-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <h2>热门推荐<i class="fa fa-shopping-cart"></i></h2>
-                        </div>
-                        <div class="row portfolio-style-2">
-                            <div class="grid">
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix2 mix4 mix1 mix3 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/4.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">PC Headphone</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix1 mix4 mix3 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">sale</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Table lamp</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>	
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix1 mix3 mix2 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">-30%</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Man Watch</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>				
-                                <div class="col-md-3 col-sm-6 col-xs-12 grid-item mix2 mix1 mix4 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Table Fan</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>						
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- shop area end -->
-                <!-- shop area start -->
-                <div class="portfolio-area pt-100 pb-70">
-                    <div class="container">
-                        <div class="section-title text-center mb-50">
-                            <h2>新品上市<i class="fa fa-shopping-cart"></i></h2>
+                            <h2>大礼包<i class="fa fa-shopping-cart"></i></h2>
                         </div>		
                         <div class="row portfolio-style-2">
                             <div class="grid">
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
+                                <div v-for="item in giftProducts" class="col-md-3 col-sm-6 col-xs-12 mb-30">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a>
+                                            <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImg" alt="" /></a>
                                             <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
+                                                <a :href="'single-product.jsp?id=' + item.id">
                                                     <i class="pe-7s-look"></i>
                                                 </a>
                                             </div>
@@ -270,240 +86,14 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">PC Headphone</a></h3>
+                                                    <h3><a :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
+                                                    <span class="new">￥{{item.price1}}</span>
                                                 </span>
                                             </div>
                                             <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>					
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Table Lamp</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>						
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">-30%</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Man Watch</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/4.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Lorem ips</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/5.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Table Fan</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/6.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">new</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Handbag</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/7.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">Micro Woven</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
-                                            </div>
-                                        </div>									
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6 col-xs-12 mb-30">
-                                    <div class="single-shop">
-                                        <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/8.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                            <div class="price-up-down">
-                                                <span class="sale-new">-50%</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">PC Headphone</a></h3>
-                                                </div>
-                                                <span class="price f-right">
-                                                    <span class="new">￥120.00</span>
-                                                </span>
-                                            </div>
-                                            <div class="fix">
-                                                <span class="f-left">Electronics</span>
+                                                <span class="f-left" v-text="item.introduction"></span>
                                             </div>
                                         </div>									
                                     </div>
@@ -520,69 +110,24 @@
                             <h2>最新资讯<i class="fa fa-pencil"></i></h2>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-sm-6">
+                            <div v-for="item in latestArticles" class="col-md-4 col-sm-6">
                                 <div class="blog-details mb-30">
                                     <div class="blog-img">
-                                        <a href="blog-details.jsp"><img src="assets/img/blog/1.jpg" alt=""></a>
+                                        <a :href="'blog-details.jsp?id=' + item.id"><img :src="item.coverImageUrl" alt=""></a>
                                         <div class="blog-quick-view">
-                                            <a href="blog-details.jsp">
+                                            <a :href="'blog-details.jsp?id=' + item.id">
                                                 <i class="pe-7s-link"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="blog-meta">
-                                        <h4><a href="blog-details.jsp">Lorem Ipsum Dolor Ipsum</a></h4>
+                                        <h4><a :href="'blog-details.jsp?id=' + item.id" v-text="item.title"></a></h4>
                                         <ul class="meta">
-                                            <li><a href="#">John Doe</a></li>
-                                            <li>25 june</li>
-                                            <li>3 Comments</li>
+                                            <li><a href="#" v-text="item.publisher"></a></li>
+                                            <li v-text="item.createDate"></li>
                                         </ul>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                        <a href="blog-details.jsp">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <div class="blog-details mb-30">
-                                    <div class="blog-img">
-                                        <a href="blog-details.jsp"><img src="assets/img/blog/2.jpg" alt=""></a>
-                                        <div class="blog-quick-view">
-                                            <a href="blog-details.jsp">
-                                                <i class="pe-7s-link"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <h4><a href="blog-details.jsp">Grand opening ceremony</a></h4>
-                                        <ul class="meta">
-                                            <li><a href="#">Mr Rohit</a></li>
-                                            <li>25 june</li>
-                                            <li>3 Comments</li>
-                                        </ul>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                        <a href="blog-details.jsp">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 hidden-sm">
-                                <div class="blog-details mb-30">
-                                    <div class="blog-img">
-                                        <a href="blog-details.jsp"><img src="assets/img/blog/3.jpg" alt=""></a>
-                                        <div class="blog-quick-view">
-                                            <a href="blog-details.jsp">
-                                                <i class="pe-7s-link"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <h4><a href="blog-details.jsp">World wide celebration</a></h4>
-                                        <ul class="meta">
-                                            <li><a href="#">Mr Rahul</a></li>
-                                            <li>25 june</li>
-                                            <li>3 Comments</li>
-                                        </ul>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal  of letters, as opposed to using 'Content here, distribution content here..</p>
-                                        <a href="blog-details.jsp">read more</a>
+                                        <p v-text="item.summary"></p>
+                                        <a :href="'blog-details.jsp?id=' + item.id">查看</a>
                                     </div>
                                 </div>
                             </div>
@@ -618,13 +163,17 @@
         var view = new Vue({
             el: '#content',
             data: {
-                banners: []
+                banners: [],
+                giftProducts: [],
+                latestArticles: []
             },
             created: function() {
 
             },
             mounted: function() {
                 this.showBanners()
+                this.showGiftProducts()
+                this.showLatestArticles()
             },
             methods: {
                 showBanners () {
@@ -679,10 +228,45 @@
                     })
                 },
                 showGiftProducts () {
-
+                    $.post(
+                        PRODUCT_URL,
+                        {
+                            pageSize: 50,
+                            currentPage: 1,
+                            type: 1
+                        },
+                        function (data) {
+                            if (data.success === true) {
+                                view.giftProducts = data.data.list
+                                if (view.giftProducts.length > 0) {
+                                    view.giftProducts.forEach(function(item, index) {
+                                        item.proLogoImg = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                    })
+                                }
+                            }
+                        }
+                    )
                 },
                 showLatestArticles () {
-
+                    $.post(
+                        ARTICLE_URL,
+                        {
+                            pageSize: 3,
+                            currentPage: 1,
+                            columnId: '8a2a08425b7aa230015b7aa9a1ad0004'
+                        },
+                        function (data) {
+                            if (data.success === true) {
+                                view.latestArticles = data.data.list
+                                if (view.latestArticles.length > 0) {
+                                    view.latestArticles.forEach(function(item, index) {
+                                        item.coverImageUrl = BASE_URL + MODULE_ADMIN + item.coverImageUrl
+                                        item.createDate = timestampToDatetime(item.createDate)
+                                    })
+                                }
+                            }
+                        }
+                    )
                 }
             }
         });
