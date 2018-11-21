@@ -55,7 +55,7 @@ public class ShopTradeController {
 		String pageSizeStr = request.getParameter("pageSize");
 		
 		int currentPage = 1;
-		int pageSize = 30;
+		int pageSize = 10;
 		int sta =0;
 		int jty =0;
 		if(StringUtils.isNotBlank(currentPageStr)){

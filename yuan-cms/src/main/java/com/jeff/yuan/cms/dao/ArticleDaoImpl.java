@@ -26,7 +26,7 @@ public class ArticleDaoImpl extends CustomBaseSqlDaoImpl implements ArticleDaoCu
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
          if(articleQueryDTO.getIsFront() != null && articleQueryDTO.getIsFront()){
-        	 hql.append("select new Article(type,title,content,summary,sourceFrom,publisher,href,coverImageUrl,isTop,isAudit,viewCount,orderNo)  from Article t where 1=1 ");
+        	 hql.append("select new Article(id,type,title,content,summary,sourceFrom,publisher,href,coverImageUrl,isTop,isAudit,viewCount,orderNo,createDate,updateDate)  from Article t where 1=1 ");
 
          }else {
         	 hql.append("select t from Article t where 1=1 ");
