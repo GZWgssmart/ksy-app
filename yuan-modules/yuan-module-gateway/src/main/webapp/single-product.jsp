@@ -35,7 +35,7 @@
         <div class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div class="content-wrap">
+            <div id="content" class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -47,46 +47,58 @@
                                     <div class="product-details-tab">
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <div class="tab-pane active" id="product1">
+                                            <div v-if="product.proLogoImg != ''" class="tab-pane active" id="product0">
                                                 <div class="large-img">
-                                                    <img src="assets/img/shop/electronics/4.jpg" alt="" />
+                                                    <img :src="product.proLogoImg" alt="" />
                                                 </div>
                                             </div>
-                                            <div class="tab-pane" id="product2">
+                                            <div v-if="product.picture1 != ''" class="tab-pane" id="product1">
                                                 <div class="large-img">
-                                                    <img src="assets/img/shop/electronics/1.jpg" alt="" />
+                                                    <img :src="product.picture1" alt="" />
                                                 </div>							
                                             </div>
-                                            <div class="tab-pane" id="product3">
+                                            <div v-if="product.picture2 != ''" class="tab-pane" id="product2">
                                                 <div class="large-img">
-                                                    <img src="assets/img/shop/electronics/2.jpg" alt="" />
+                                                    <img :src="product.picture2" alt="" />
                                                 </div>							
                                             </div>
-                                            <div class="tab-pane" id="product4">
+                                            <div v-if="product.picture3 != ''" class="tab-pane" id="product3">
                                                 <div class="large-img">
-                                                    <img src="assets/img/shop/electronics/3.jpg" alt="" />
-                                                </div>							
+                                                    <img :src="product.picture3" alt="" />
+                                                </div>
                                             </div>
-                                            <div class="tab-pane" id="product5">
+                                            <div v-if="product.picture4 != ''" class="tab-pane" id="product4">
                                                 <div class="large-img">
-                                                    <img src="assets/img/shop/electronics/4.jpg" alt="" />
-                                                </div>							
+                                                    <img :src="product.picture4" alt="" />
+                                                </div>
                                             </div>
-                                            <div class="tab-pane" id="product6">
+                                            <div v-if="product.picture5 != ''" class="tab-pane" id="product5">
                                                 <div class="large-img">
-                                                    <img src="assets/img/shop/electronics/1.jpg" alt="" />
-                                                </div>							
+                                                    <img :src="product.picture5" alt="" />
+                                                </div>
+                                            </div>
+                                            <div v-if="product.proLogoImg != ''" class="tab-pane" id="product6">
+                                                <div class="large-img">
+                                                    <img :src="product.proLogoImg" alt="" />
+                                                </div>
+                                            </div>
+                                            <div v-if="product.picture1 != ''" class="tab-pane" id="product7">
+                                                <div class="large-img">
+                                                    <img :src="product.picture1" alt="" />
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- Nav tabs -->
                                         <div class="details-tab owl-carousel">
-                                            <div class="active"><a href="#product1" data-toggle="tab"><img src="assets/img/shop/electronics/4.jpg" alt="" /></a></div>
-                                            <div><a href="#product2" data-toggle="tab"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a></div>
-                                            <div><a href="#product3" data-toggle="tab"><img src="assets/img/shop/electronics/2.jpg" alt="" /></a></div>
-                                            <div><a href="#product4" data-toggle="tab"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a></div>
-                                            <div><a href="#product5" data-toggle="tab"><img src="assets/img/shop/electronics/4.jpg" alt="" /></a></div>
-                                            <div><a href="#product6" data-toggle="tab"><img src="assets/img/shop/electronics/1.jpg" alt="" /></a></div>
-                                        </div>	
+                                            <div class="active"><a href="#product0" data-toggle="tab"><img :src="product.proLogoImg" alt="" /></a></div>
+                                            <div v-if="product.picture1 != ''"><a href="#product1" data-toggle="tab"><img :src="product.picture1" alt="" /></a></div>
+                                            <div v-if="product.picture2 != ''"><a href="#product2" data-toggle="tab"><img :src="product.picture2" alt="" /></a></div>
+                                            <div v-if="product.picture3 != ''"><a href="#product3" data-toggle="tab"><img :src="product.picture3" alt="" /></a></div>
+                                            <div v-if="product.picture4 != ''"><a href="#product4" data-toggle="tab"><img :src="product.picture4" alt="" /></a></div>
+                                            <div v-if="product.picture5 != ''"><a href="#product5" data-toggle="tab"><img :src="product.picture5" alt="" /></a></div>
+                                            <div><a href="#product6" data-toggle="tab"><img :src="product.proLogoImg" alt="" /></a></div>
+                                            <div v-if="product.picture1 != ''"><a href="#product7" data-toggle="tab"><img :src="product.picture1" alt="" /></a></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -170,8 +182,82 @@
 		<script src="lib/js/jquery.nivo.slider.js"></script>
 		<script src="lib/home.js"></script>
         <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script>
+            var productId = <%=request.getParameter("id")%>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    product: {}
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.showProduct()
+                },
+                methods: {
+                    showProduct () {
+                        var self = this
+                        $.post(
+                            PRODUCT_DETAIL_URL,
+                            {
+                                id: productId
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.product = data.data
+                                    console.log(data.data)
+                                    view.product.proLogoImg = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
+                                    if (view.product.picture1 != '') {
+                                        view.product.picture1 = BASE_URL + MODULE_ADMIN + view.product.picture1
+                                    }
+                                    if (view.product.picture2 != '') {
+                                        view.product.picture2 = BASE_URL + MODULE_ADMIN + view.product.picture2
+                                    }
+                                    if (view.product.picture3 != '') {
+                                        view.product.picture3 = BASE_URL + MODULE_ADMIN + view.product.picture3
+                                    }
+                                    if (view.product.picture4 != '') {
+                                        view.product.picture4 = BASE_URL + MODULE_ADMIN + view.product.picture4
+                                    }
+                                    if (view.product.picture5 != '') {
+                                        view.product.picture5 = BASE_URL + MODULE_ADMIN + view.product.picture5
+                                    }
+                                    self.showProductPics()
+                                }
+                            }
+                        )
+                    },
+                    showProductPics () {
+                        this.$nextTick(function() {
+                            /* details-tab */
+                            $('.details-tab').owlCarousel({
+                                loop: true,
+                                nav: true,
+                                items: 4,
+                                margin: 10,
+                                navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                                responsive: {
+                                    0: {
+                                        items: 3
+                                    },
+                                    768: {
+                                        items: 4
+                                    },
+                                    1000: {
+                                        items: 4
+                                    }
+                                }
+                            })
+                        })
+                    }
+                }
+            });
+        </script>
+        <script src="assets/js/main.js"></script>
 		<script src="assets/js/main3.js"></script>
     </body>
 </html>
