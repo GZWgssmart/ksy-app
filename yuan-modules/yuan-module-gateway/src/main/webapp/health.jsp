@@ -46,22 +46,22 @@
                         <div v-for="item in articles" class="col-md-4 col-sm-6">
                             <div class="blog-details mb-30">
                                 <div class="blog-img">
-                                    <a :href="'blog-details.jsp?id=' + item.id"><img :src="item.coverImageUrl" alt=""></a>
+                                    <a :href="'health-detail.jsp?id=' + item.id"><img :src="item.coverImageUrl" alt=""></a>
                                     <div class="blog-quick-view">
-                                        <a :href="'blog-details.jsp?id=' + item.id">
+                                        <a :href="'health-detail.jsp?id=' + item.id">
                                             <i class="pe-7s-link"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="blog-meta">
-                                    <h4><a :href="'blog-details.jsp?id=' + item.id" v-text="item.title"></a></h4>
+                                    <h4><a :href="'health-detail.jsp?id=' + item.id" v-text="item.title"></a></h4>
                                     <ul class="meta">
                                         <li v-text="item.publisher"></li>
                                         <li v-text="item.createDate"></li>
                                         <li>{{item.viewCount}}次查看</li>
                                     </ul>
                                     <p v-text="item.summary"></p>
-                                    <a :href="'blog-details.jsp?id=' + item.id">查看</a>
+                                    <a :href="'health-detail.jsp?id=' + item.id">查看</a>
                                 </div>
                             </div>
                         </div>
