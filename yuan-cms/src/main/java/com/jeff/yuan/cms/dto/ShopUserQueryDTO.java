@@ -10,6 +10,8 @@ import com.jeff.yuan.common.dto.CommonQueryDTO;
  * @date 2018-11-06
  */
 public class ShopUserQueryDTO extends CommonQueryDTO{
+	//是否前端查询
+	private Boolean isFront;
 	private String account;
 	private String phone;
 	private String vipLevel;
@@ -52,6 +54,12 @@ public class ShopUserQueryDTO extends CommonQueryDTO{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Boolean getIsFront() {
+		return isFront;
+	}
+	public void setIsFront(Boolean isFront) {
+		this.isFront = isFront;
 	}
 
 }

@@ -21,6 +21,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.google.gson.JsonObject;
 import com.jeff.yuan.cms.dto.ShopUserQueryDTO;
 import com.jeff.yuan.cms.entity.ShopUser;
+import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.cms.service.ShopUserExtService;
 import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
@@ -293,11 +294,15 @@ public class ShopUserController {
 		shopUserQueryDTO.setPassword(md5Pwd);
 		shopUserQueryDTO.setPhone(phone);
 		shopUserQueryDTO.setStatus(1);
+		shopUserQueryDTO.setIsFront(true);
 		List<ShopUser> list = userService.queryShopUserList(shopUserQueryDTO);
 		if (list != null && list.size() > 0) {
 			ShopUser user = list.get(0);
 			user.setPassword(null);
 			user.setJiaoyimima(null);
+			/*ShopUserExt userExt =new ShopUserExt();
+			userExt= userExtService.queryShopUserByUserId(user.getId());
+			user.setShopUserExts(userExt);*/
 			request.getSession().setAttribute("userInfo", user);
 			ajaxResult.setData(user);
 			ajaxResult.setSuccess(true);
@@ -383,21 +388,29 @@ public class ShopUserController {
 		AjaxResult ajaxResult = new AjaxResult();
 		String code = request.getParameter("code");
 		JSONObject json = (JSONObject) request.getSession().getAttribute("verifyCode");
-		System.out.println(json.toString());
 		System.out.println("code:"+code);
-		if (!json.getString("verifyCode").equals(code)) {
+		if (json==null || json.isEmpty()) {
 			ajaxResult.setSuccess(false);
-			ajaxResult.setMsg("验证码错误");
-			return ajaxResult;
+			ajaxResult.setMsg("验证码不存在");
+		}else {
+			System.out.println(json.toString());
+			if (!json.getString("verifyCode").equals(code)) {
+				ajaxResult.setSuccess(false);
+				ajaxResult.setMsg("验证码错误");
+				return ajaxResult;
+			}
+			// 时间看客户要求，目前写的五分钟
+			if ((System.currentTimeMillis() - json.getLong("createTime")) > 1000 * 60 * 5) {
+				ajaxResult.setSuccess(false);
+				ajaxResult.setMsg("验证码过期");
+				return ajaxResult;
+			}
+			// 将用户信息存入数据库
+			this.ajaxSave(request);
 		}
-		// 时间看客户要求，目前写的五分钟
-		if ((System.currentTimeMillis() - json.getLong("createTime")) > 1000 * 60 * 5) {
-			ajaxResult.setSuccess(false);
-			ajaxResult.setMsg("验证码过期");
-			return ajaxResult;
-		}
-		// 将用户信息存入数据库
-		this.ajaxSave(request);
+		
+		
+		
 		return ajaxResult;
 	}
 

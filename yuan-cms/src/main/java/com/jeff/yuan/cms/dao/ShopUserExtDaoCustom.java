@@ -15,6 +15,6 @@ public interface ShopUserExtDaoCustom {
 
       List<ShopUserExt> queryShopUserExtList(ShopUserExtQueryDTO shopUserExtQueryDTO);
 
-
+  	  ShopUserExt queryShopUserByUserId(Integer id);
 
 }

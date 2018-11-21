@@ -2,9 +2,15 @@ package com.jeff.yuan.cms.dao;
 
 import com.jeff.yuan.common.dao.CustomBaseSqlDaoImpl;
 import com.jeff.yuan.common.entity.PageModel;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.aspectj.bridge.MessageWriter;
+
 import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.cms.dto.ShopUserExtQueryDTO;
 /**
@@ -28,6 +34,29 @@ public class ShopUserExtDaoImpl extends CustomBaseSqlDaoImpl implements ShopUser
          hql.append("select t from ShopUserExt t ");
          return this.queryByMapParams(hql.toString(),map);
     }
+
+	@Override
+	public ShopUserExt queryShopUserByUserId(Integer id) {
+		// TODO Auto-generated method stub
+		StringBuilder sql = new StringBuilder();
+    	sql.append("SELECT id, credits, bill, active_bill as activeBill,trade_bill as tradeBill,balance from shop_user_ext where user_id =? ");
+
+		List<Object> params = new ArrayList<>();
+    	params.add(id);
+    	ShopUserExt ext = new ShopUserExt();
+    	List<Map<String, Object>> list = this.querySqlObjects(sql.toString(), params);
+    	
+    	if (list!=null && list.size()>0) {
+    		ext.setId(Integer.parseInt(list.get(0).get("id").toString()) );
+    		ext.setCredits(list.get(0).get("credits").toString());
+    		ext.setBill(list.get(0).get("credits").toString());
+    		ext.setActiveBill(list.get(0).get("credits").toString());
+    		ext.setTradeBill(list.get(0).get("credits").toString());
+    		ext.setBalance(new BigDecimal(list.get(0).get("credits").toString()) );
+		}
+		return ext;
+        
+	}
 
 
 }

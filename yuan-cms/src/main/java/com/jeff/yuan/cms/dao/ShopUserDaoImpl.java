@@ -49,7 +49,13 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
     public List<ShopUser> queryShopUserList(ShopUserQueryDTO shopUserQueryDTO){
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select t from ShopUser t where 1=1  ");
+         /*if(shopUserQueryDTO.getIsFront() != null && shopUserQueryDTO.getIsFront()){
+        	 hql.append("select new ShopUser(id,account,phone,password,refPhone,vipLevel,address,createDate,createBy,updateDate,updateBy,nickName,jiaoyimima,status)  from ShopUser t where 1=1 ");
+
+         }else {
+        	 */
+        	 hql.append("select t from ShopUser t where 1=1  ");
+        // }
          if(shopUserQueryDTO != null){
         	 if(StringUtils.isNotBlank(shopUserQueryDTO.getPhone())){
         		 hql.append(" and t.phone = :phone ");

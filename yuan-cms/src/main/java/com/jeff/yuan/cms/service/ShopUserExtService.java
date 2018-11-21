@@ -32,5 +32,10 @@ public class ShopUserExtService extends CommonService< ShopUserExt,Integer >  {
            return this.shopUserExtDao.queryShopUserExtList(shopUserExtQueryDTO);
     }
 
+	public ShopUserExt queryShopUserByUserId(Integer id) {
+		// TODO Auto-generated method stub
+		return shopUserExtDao.queryShopUserByUserId(id);
+	}
+
 
 }

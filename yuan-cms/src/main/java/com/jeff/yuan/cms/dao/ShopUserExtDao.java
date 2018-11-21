@@ -10,4 +10,6 @@ import com.jeff.yuan.common.dao.CommonDao;
  */
 public interface ShopUserExtDao extends ShopUserExtDaoCustom,CommonDao<ShopUserExt,Integer>{
 
+
+
 }
