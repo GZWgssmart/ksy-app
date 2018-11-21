@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="assets/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/menu_elastic.css" />
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
 
@@ -41,22 +40,12 @@
                 <!-- slider start -->
                 <section class="hero-slider-container">
                     <div class="hero-slider owl-carousel">
-                        <div class="hero-slider-item hero-slider-item-1">
+                        <div v-for="item in banners" class="hero-slider-item" :style="{backgroundImage:'url(' + item.coverImageUrl + ')'}">
                             <div class="hero-slider-contents">
                                 <div class="container">
-                                    <h1 class="title1">活动1</h1>
-                                    <p class="title2">优惠活动</p>
-                                    <a href="#" class="button-hover">查看</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hero-slider-item hero-slider-item-2">
-                            <div class="hero-slider-contents">
-                                <div class="container">
-                                    <h1 class="title1">活动2</h1>
-                                    <p class="title2">优惠活动</p>
-                                    <a href="#" class="button-hover">查看</a>
+                                    <h1 class="title1" v-text="item.title"></h1>
+                                    <p class="title2" v-text="item.summary"></p>
+                                    <a :href="item.href" class="button-hover">查看</a>
                                 </div>
                             </div>
                         </div>
@@ -607,14 +596,9 @@
         </div>
         <!-- content-wrap end -->
     </div>
-    
-    
-    
-    
-    
-    
     <!-- all js here -->
     <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="assets/js/snap.svg-min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.meanmenu.js"></script>
@@ -624,26 +608,82 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/jquery.validate.min.js"></script>
     <script src="lib/js/jquery.nivo.slider.js"></script>
-    <script src="lib/home.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/classie.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+    <script src="assets/js/yuan.js"></script>
     <script>
         var view = new Vue({
             el: '#content',
             data: {
-
+                banners: []
             },
             created: function() {
-                
+
             },
             mounted: function() {
-
+                this.showBanners()
             },
             methods: {
+                showBanners () {
+                    var self = this
+                    $.post(
+                        ARTICLE_URL,
+                        {
+                            pageSize: 10,
+                            currentPage: 1,
+                            columnId: '8a2a08425b7a0b7b015b7a2b0f060006'
+                        },
+                        function (data) {
+                            if (data.success === true) {
+                                view.banners = data.data.list
+                                if (view.banners.length > 0) {
+                                    view.banners.forEach(function(item, index) {
+                                        item.coverImageUrl = BASE_URL + MODULE_ADMIN + item.coverImageUrl
+                                    })
+                                    self.showBannersJquery()
+                                }
+                            }
+                        }
+                    )
+                },
+                showBannersJquery () {
+                    this.$nextTick(function() {
+                        var $heroSlider = $('.hero-slider').owlCarousel({
+                            animateIn: 'lightSpeedIn',
+                            animateOut: 'lightSpeedOut',
+                            autoplay: true,
+                            autoplayTimeout: 5000,
+                            dots: false,
+                            loop: true,
+                            mouseDrag: false,
+                            nav: false,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                }
+                            }
+                        });
 
+                        $('.hero-slider-nav').on('click', function (e) {
+                            e.preventDefault();
+
+                            if ($(this).hasClass('prev')) {
+                                $heroSlider.trigger('prev.owl.carousel');
+                            } else {
+                                $heroSlider.trigger('next.owl.carousel');
+                            }
+                        });
+                    })
+                },
+                showGiftProducts () {
+
+                },
+                showLatestArticles () {
+
+                }
             }
         });
     </script>
