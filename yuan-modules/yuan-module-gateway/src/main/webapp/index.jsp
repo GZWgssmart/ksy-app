@@ -123,8 +123,9 @@
                                     <div class="blog-meta">
                                         <h4><a :href="'blog-details.jsp?id=' + item.id" v-text="item.title"></a></h4>
                                         <ul class="meta">
-                                            <li><a href="#" v-text="item.publisher"></a></li>
+                                            <li v-text="item.publisher"></li>
                                             <li v-text="item.createDate"></li>
+                                            <li>{{item.viewCount}}次查看</li>
                                         </ul>
                                         <p v-text="item.summary"></p>
                                         <a :href="'blog-details.jsp?id=' + item.id">查看</a>
