@@ -96,7 +96,8 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="grid"> 
                                                         <div class="row">
-                                                            <div v-for="item in products" class="col-md-6 col-lg-4 col-sm-6">
+                                                            <div v-if="products.length === 0" class="col-md-6 col-lg-4 col-sm-6">暂无商品</div>
+                                                            <div v-else v-for="item in products" class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">
                                                                         <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImg" alt="" /></a>
@@ -225,11 +226,6 @@
                         if (view.totalPage <= 5) {
 
                         } else {
-                            // 8
-                            // 1 2 3 4 5
-                            // 2 3 4 5 6
-                            // 3 4 5 6 7
-                            // 4 5 6 7 8
                             if (view.currentPage >= 3 && (view.currentPage + 2) <= view.totalPage) {
                                 view.pageNumbers = [view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1, view.currentPage + 2]
                             } else if (view.currentPage + 1 === view.totalPage) {
