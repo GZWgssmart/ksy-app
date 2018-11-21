@@ -21,7 +21,7 @@ import com.jeff.yuan.common.entity.PageModel;
  *
  */
 @Controller
-@RequestMapping("/shopproduct")
+@RequestMapping("/api/shopproduct")
 public class ShopProductController {
 
 	@Autowired

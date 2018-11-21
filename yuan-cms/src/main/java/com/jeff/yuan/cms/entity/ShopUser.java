@@ -68,8 +68,7 @@ public class ShopUser implements java.io.Serializable {
 	public ShopUser() {
 	}
 
-	public ShopUser(String account, String phone, String password) {
-		this.account = account;
+	public ShopUser(String phone, String password) {
 		this.phone = phone;
 		this.password = password;
 	}
@@ -108,7 +107,7 @@ public class ShopUser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "account", nullable = false, length = 20)
+	@Column(name = "account", length = 20)
 	public String getAccount() {
 		return this.account;
 	}
@@ -126,7 +125,7 @@ public class ShopUser implements java.io.Serializable {
 		this.phone = phone;
 	}
 
-	@Column(name = "password", nullable = false, length = 20)
+	@Column(name = "password", nullable = false)
 	public String getPassword() {
 		return this.password;
 	}
@@ -200,7 +199,7 @@ public class ShopUser implements java.io.Serializable {
 		this.updateBy = updateBy;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "shopUser",cascade = {CascadeType.ALL})
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "shopUser",cascade = {CascadeType.MERGE})
 	public ShopUserExt getShopUserExts() {
 		return this.shopUserExts;
 	}

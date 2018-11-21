@@ -21,7 +21,7 @@ import com.jeff.yuan.common.entity.PageModel;
  *
  */
 @Controller
-@RequestMapping("/shopbilltrade")
+@RequestMapping("/api/shopbilltrade")
 public class ShopBillTradeController {
 
 	@Autowired

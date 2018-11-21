@@ -109,7 +109,7 @@ public class ShopUserExt implements java.io.Serializable {
 		this.shopUser = shopUser;
 	}
 
-	@Column(name = "credits", nullable = false, length = 20)
+	@Column(name = "credits", length = 20)
 	public String getCredits() {
 		return this.credits;
 	}
@@ -118,7 +118,7 @@ public class ShopUserExt implements java.io.Serializable {
 		this.credits = credits;
 	}
 
-	@Column(name = "bill", nullable = false, length = 8)
+	@Column(name = "bill",  length = 8)
 	public String getBill() {
 		return this.bill;
 	}
@@ -127,7 +127,7 @@ public class ShopUserExt implements java.io.Serializable {
 		this.bill = bill;
 	}
 
-	@Column(name = "active_bill", nullable = false, length = 8)
+	@Column(name = "active_bill", length = 8)
 	public String getActiveBill() {
 		return this.activeBill;
 	}

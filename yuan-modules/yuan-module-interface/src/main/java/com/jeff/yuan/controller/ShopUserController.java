@@ -1,5 +1,6 @@
 package com.jeff.yuan.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,7 @@ import com.jeff.yuan.util.WebHelper;
  *
  */
 @Controller
-@RequestMapping("/shopuser")
+@RequestMapping("/api/shopuser")
 public class ShopUserController {
 
 	@Autowired
@@ -156,7 +157,7 @@ public class ShopUserController {
 			}
 			// 更改值
 			if (StringUtils.isNotBlank(account)) {
-				user.setAccount(account);
+				user.setAccount(account.trim());
 			}
 			if (StringUtils.isNotBlank(phone)) {
 				user.setPhone(phone);
@@ -171,19 +172,27 @@ public class ShopUserController {
 				user.setPassword(Md5Util.generatePassword(password));
 			}
 
-			user.setAccount(account.trim());
-
 			if (user.getId() != null && user.getId() != 0) {
 				user.setUpdateDate(new Date());
 				user.getShopUserExts().setUpdateDate(new Date());
 				user.getShopUserExts().setShopUser(user);
 				userService.update(user);
 			} else {
-
+				user.setStatus(1);
 				user.setCreateDate(new Date());
-				user.getShopUserExts().setCreateDate(new Date());
+				
 				user.setVipLevel("v1");
-				userService.save(user);
+				user = userService.save(user);
+				
+				ShopUserExt shopUserExt  = new ShopUserExt();
+				shopUserExt.setActiveBill("0");
+				shopUserExt.setBalance(new BigDecimal(0));
+				shopUserExt.setBill("0");
+				shopUserExt.setCredits("0");
+				shopUserExt.setTradeBill("0");
+				shopUserExt.setShopUser(user);
+				shopUserExt.setCreateDate(new Date());
+				userExtService.save(shopUserExt);
 			}
 			ajaxResult.setSuccess(true);
 
@@ -389,7 +398,7 @@ public class ShopUserController {
 		String code = request.getParameter("code");
 		JSONObject json = (JSONObject) request.getSession().getAttribute("verifyCode");
 		System.out.println("code:"+code);
-		if (json==null || json.isEmpty()) {
+		/*if (json==null || json.isEmpty()) {
 			ajaxResult.setSuccess(false);
 			ajaxResult.setMsg("验证码不存在");
 		}else {
@@ -404,10 +413,10 @@ public class ShopUserController {
 				ajaxResult.setSuccess(false);
 				ajaxResult.setMsg("验证码过期");
 				return ajaxResult;
-			}
+			}*/
 			// 将用户信息存入数据库
 			this.ajaxSave(request);
-		}
+		//}
 		
 		
 		

@@ -194,6 +194,7 @@ public class ShopUserController {
 				user.getShopUserExts().setCreateDate(new Date() );
 				
 				userService.save(user);
+				userExtService.save(user.getShopUserExts());
 			}
 			ajaxResult.setSuccess(true);
 			

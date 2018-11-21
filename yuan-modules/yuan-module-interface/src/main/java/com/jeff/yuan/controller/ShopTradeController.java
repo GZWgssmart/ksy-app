@@ -41,7 +41,7 @@ import com.jeff.yuan.util.WebHelper;
  *
  */
 @Controller
-@RequestMapping("/shoptrade")
+@RequestMapping("/api/shoptrade")
 public class ShopTradeController {
 
 	@Autowired

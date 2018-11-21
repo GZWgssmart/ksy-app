@@ -57,17 +57,17 @@ $(function(){
 			<div class="J_formTable l_form_table">
 				<table class="not_hightlight">
 					<tr>
-						<td class="l_title w150"><b class="cRed">*</b> 会员账号</td>
+						<td class="l_title w150"> 会员账号</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="account" data-rule="会员账号:required;" value="${bean.account }" readonly="readonly"/>
+                                     			<input type="text" name="account" value="${bean.account }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="account" data-rule="会员账号:required;" value="" />
+                                     			<input type="text" name="account"  value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -265,27 +265,8 @@ $(function(){
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b>登录密码</td>
-                         <td colspan="">
-                             <div class="J_toolsBar fl">
-                                 <div class="t_text w200 ml10">
-                                     <label>
-                                     	<c:choose>
-                                     		<c:when test="${not empty bean }">
-                                     			<input type="text" name="password"  value="${bean.password }" readonly="readonly" />
-                                     		</c:when>
-                                     		<c:otherwise>
-                                     			<input type="text" name="password"  value="" />
-                                     		</c:otherwise>
-                                     	</c:choose>
-                                     </label>
-                                 </div>
-                             </div>
-                         </td>
-                     </tr>
-                     <tr>
-						<td class="l_title w150">昵称</td>
-                         <td colspan="3">
+                         <td class="l_title w150">昵称</td>
+                         <td >
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
