@@ -151,7 +151,7 @@
                     register () {
                         view.errMsg = ''
                         var errMsg = ''
-                        if (!isPhone(view.form.phone)) {
+                        if (!isPhone(view.form.phone.trim())) {
                             errMsg += '请输入正确的手机号<br/>';
                         }
                         if (view.form.password.trim() === '') {

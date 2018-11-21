@@ -48,6 +48,7 @@
                                     <div class="login-content">
                                         <div class="login-title">
                                             <h4>用户登录</h4>
+                                            <p v-if="relogin == 'y'" style="color: red;">您的登录已失效，请重新登录！</p>
                                         </div>
                                         <div class="login-form">
                                             <form action="#">
@@ -93,6 +94,7 @@
         <script src="assets/js/yuan.js"></script>
         <script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
         <script>
+            var relogin = '<%=request.getParameter("relogin")%>'
             var view = new Vue({
                 el: '#content',
                 data: {
@@ -100,19 +102,20 @@
                         phone: '',
                         pwd: ''
                     },
-                    errMsg: ''
+                    errMsg: '',
+                    relogin: 'n'
                 },
                 created: function() {
 
                 },
                 mounted: function() {
-
+                    view.relogin = relogin
                 },
                 methods: {
                     login () {
                         view.errMsg = ''
                         var errMsg = ''
-                        if (!isPhone(view.form.phone)) {
+                        if (!isPhone(view.form.phone.trim())) {
                             errMsg += '请输入正确的手机号<br/>';
                         }
                         if (view.form.pwd.trim() === '') {
@@ -125,6 +128,7 @@
                                     if (data.success === false) {
                                         view.errMsg = data.msg
                                     } else {
+                                        window.localStorage.setItem('yuan_user_info', JSON.stringify(data.data))
                                         window.location.href = 'user-center.jsp'
                                     }
                                 })
