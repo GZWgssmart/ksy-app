@@ -51,7 +51,7 @@ public class ShopProductController {
 		String pageSizeStr = request.getParameter("pageSize");
 		
 		int currentPage = 1;
-		int pageSize = 30;
+		int pageSize = 10;
 		if(StringUtils.isNotBlank(currentPageStr)){
 			currentPage = Integer.parseInt(currentPageStr);
 		}

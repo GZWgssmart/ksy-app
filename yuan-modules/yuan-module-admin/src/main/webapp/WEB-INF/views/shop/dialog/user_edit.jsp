@@ -67,7 +67,7 @@ $(function(){
                                      			<input type="text" name="account" value="${bean.account }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="account"  value="" />
+                                     			<input type="text" name="account"  value="" data-rule="手机号:required;account;remote[${ctx }/shopuser/validator/account]"/>
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -81,10 +81,10 @@ $(function(){
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="phone" data-rule="手机号:required;" value="${bean.phone }" />
+                                     			<input type="text" name="phone" data-rule="手机号:required;" value="${bean.phone }" readonly="readonly" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="phone" data-rule="手机号:required;" value="" />
+                                     			<input type="text" name="phone" data-rule="手机号:required;phone;remote[${ctx }/shopuser/validator/phone]" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>

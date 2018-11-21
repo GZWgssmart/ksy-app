@@ -398,7 +398,7 @@ public class ShopUserController {
 		String code = request.getParameter("code");
 		JSONObject json = (JSONObject) request.getSession().getAttribute("verifyCode");
 		System.out.println("code:"+code);
-		/*if (json==null || json.isEmpty()) {
+		if (json==null || json.isEmpty()) {
 			ajaxResult.setSuccess(false);
 			ajaxResult.setMsg("验证码不存在");
 		}else {
@@ -413,10 +413,11 @@ public class ShopUserController {
 				ajaxResult.setSuccess(false);
 				ajaxResult.setMsg("验证码过期");
 				return ajaxResult;
-			}*/
+			}
 			// 将用户信息存入数据库
 			this.ajaxSave(request);
-		//}
+			ajaxResult.setSuccess(true);
+		}
 		
 		
 		

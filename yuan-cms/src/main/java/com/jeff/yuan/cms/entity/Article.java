@@ -1,5 +1,7 @@
 package com.jeff.yuan.cms.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -94,10 +96,10 @@ public class Article extends BaseEntity{
 		this.viewCount = viewCount;
 		this.orderNo = orderNo;
 	}
-
-	public Article(Integer type, String title, String content, String summary, String sourceFrom, String publisher,
-			String href, String coverImageUrl, Boolean isTop, Boolean isAudit, Integer viewCount, Integer orderNo) {
+	public Article(String id,Integer type, String title, String content, String summary, String sourceFrom, String publisher,
+			String href, String coverImageUrl, Boolean isTop, Boolean isAudit, Integer viewCount, Integer orderNo,Date createDate,Date updateDate) {
 		super();
+		this.id = id;
 		this.type = type;
 		this.title = title;
 		this.content = content;
@@ -110,6 +112,8 @@ public class Article extends BaseEntity{
 		this.isAudit = isAudit;
 		this.viewCount = viewCount;
 		this.orderNo = orderNo;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
 	}
 
 	@ManyToOne
