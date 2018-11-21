@@ -89,7 +89,7 @@
                                                     <h3><a :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new">￥{{item.price1}}</span>
+                                                    <span class="new" v-text="'￥' + item.price1"></span>
                                                 </span>
                                             </div>
                                             <div class="fix">

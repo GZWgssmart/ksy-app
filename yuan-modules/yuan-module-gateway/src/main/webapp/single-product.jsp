@@ -114,7 +114,7 @@
                                                 <i class="fa fa-star active"></i>
                                             </span>
                                             -->
-                                            <h3>￥{{product.price1}}</h3>
+                                            <h3 v-text="'￥' + product.price1"></h3>
                                             <p v-text="product.introduction"></p>
                                         </div>
                                         <div class="single-cart-color for-pro-border">
