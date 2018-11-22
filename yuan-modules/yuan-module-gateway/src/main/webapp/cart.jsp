@@ -93,7 +93,7 @@
                                                                 class="product-subtotal" v-text="'￥' + (item.price * item.count)"></td>
                                                             <td
                                                                 class="product-remove"><a
-                                                                    href="javascript:;"><i
+                                                                    href="javascript:;" @click="removeCart(item.proId)"><i
                                                                         class="fa
                                                                         fa-times"></i></a></td>
                                                         </tr>
@@ -258,6 +258,25 @@
                                     view.carts.forEach(function (item, index) {
                                         view.totalPrice += item.count * item.price
                                     })
+                                }
+                            }
+                        )
+                    },
+                    removeCart(productId) {
+                        console.log(productId)
+                        $.post(
+                            CART_REMOVE_URL,
+                            {
+                                proId: productId
+                            },
+                            function (data) {
+                                if (data.success === false) {
+                                    for (var i = 0; i < view.carts.length; i++) {
+                                        if (view.carts[i].proId === productId) {
+                                            view.carts.splice(i, 1)
+                                            break
+                                        }
+                                    }
                                 }
                             }
                         )
