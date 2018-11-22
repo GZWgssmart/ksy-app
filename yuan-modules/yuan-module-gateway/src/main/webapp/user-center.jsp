@@ -90,15 +90,22 @@
                                                 <td><span v-text="user.refPhone"></span></td>
                                             </tr>
                                         </table>
-                                        <div style="color: red;">
-                                            操作：
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 login-form">
+                                        <div style="color: red; margin-bottom: 20px;">
+                                            个人信息操作：
                                             <a href="javascript:;" @click="chgOperation(1)">修改个人资料</a>&nbsp;
+                                            <a href="javascript:;" @click="chgOperation(5)">修改登录密码</a>&nbsp;
+                                            <a href="javascript:;" @click="chgOperation(5)">重置登录密码</a>&nbsp;
+                                            <a href="javascript:;" @click="chgOperation(5)">修改交易密码</a>&nbsp;
+                                            <a href="javascript:;" @click="chgOperation(5)">重置交易密码</a>&nbsp;
+                                            <br/>
+                                            健康值操作：
                                             <a href="javascript:;" @click="chgOperation(2)">健康值提现</a>&nbsp;
                                             <a href="javascript:;" @click="chgOperation(3)">健康值转让</a>&nbsp;
                                             <a href="javascript:;" @click="chgOperation(4)">健康值捐赠</a>&nbsp;
+                                            <a href="javascript:;">查看健康值变动明细</a>&nbsp;
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12 login-form">
                                         <form v-if="operation == 1">
                                             姓名<input v-model="account" placeholder="请输入姓名" type="text">
                                             地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
