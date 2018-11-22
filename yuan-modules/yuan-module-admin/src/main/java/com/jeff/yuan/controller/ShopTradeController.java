@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
 import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.entity.ShopUser;
+import com.jeff.yuan.cms.service.ShopProductService;
+import com.jeff.yuan.cms.service.ShopRegisterRuleService;
 import com.jeff.yuan.cms.service.ShopTradeService;
 import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
@@ -40,6 +42,7 @@ public class ShopTradeController {
 	private ShopTradeService tradeService;
 	@Autowired
 	private ShopUserService userService;
+
 	
 	/**
 	 * 获取用户列表
@@ -205,7 +208,7 @@ public class ShopTradeController {
 	
 	
 	/**
-	 * 修改用户状态
+	 * 修改订单状态
 	 * @param request
 	 * @return
 	 */
@@ -231,6 +234,10 @@ public class ShopTradeController {
 		return ajaxResult;
 	}
 	
+	
+	public static void main(String[] args) {
+		ShopTrade shopTrade = tradeService.
+	}
 
 	
 }

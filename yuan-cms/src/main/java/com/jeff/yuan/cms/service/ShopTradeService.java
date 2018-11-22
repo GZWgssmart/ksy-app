@@ -34,11 +34,12 @@ public class ShopTradeService extends CommonService< ShopTrade,Integer >  {
            return this.shopTradeDao.queryShopTradeList(shopTradeQueryDTO);
     }
 
-	public void updateStatus(String id, int status) {
+	public ShopTrade updateStatus(String id, int status) {
 		// TODO Auto-generated method stub
 		ShopTrade bean = this.find(Integer.parseInt(id));
 		bean.setStatus(status);
 		this.update(bean);
+		return bean;
 	}
 
 

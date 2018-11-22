@@ -15,6 +15,6 @@ public interface ShopRegisterRuleDaoCustom {
 
       List<ShopRegisterRule> queryShopRegisterRuleList(ShopRegisterRuleQueryDTO shopRegisterRuleQueryDTO);
 
-
+      ShopRegisterRule findByVip(String vipLevel);
 
 }

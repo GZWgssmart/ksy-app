@@ -32,5 +32,10 @@ public class ShopRegisterRuleService extends CommonService< ShopRegisterRule,Int
            return this.shopRegisterRuleDao.queryShopRegisterRuleList(shopRegisterRuleQueryDTO);
     }
 
+	public ShopRegisterRule findByVip(String vipLevel) {
+		// TODO Auto-generated method stub
+		return shopRegisterRuleDao.findByVip(vipLevel);
+	}
+
 
 }

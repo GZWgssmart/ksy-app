@@ -144,9 +144,9 @@ public class ShopUserController {
 
 		String id = request.getParameter("userId");
 		String account = request.getParameter("account");
-		String password = request.getParameter("password").trim();
-		String phone = request.getParameter("phone").trim();
-		String refPhone = request.getParameter("refPhone").trim();
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		String refPhone = request.getParameter("refPhone");
 		String address = request.getParameter("address");
 		ShopUser user = null;
 		try {
@@ -160,16 +160,16 @@ public class ShopUserController {
 				user.setAccount(account.trim());
 			}
 			if (StringUtils.isNotBlank(phone)) {
-				user.setPhone(phone);
+				user.setPhone(phone.trim());
 			}
 			if (StringUtils.isNotBlank(refPhone)) {
-				user.setRefPhone(refPhone);
+				user.setRefPhone(refPhone.trim());
 			}
 			if (StringUtils.isNotBlank(address)) {
 				user.setAddress(address);
 			}
 			if (StringUtils.isNotBlank(password)) {
-				user.setPassword(Md5Util.generatePassword(password));
+				user.setPassword(Md5Util.generatePassword(password.trim()));
 			}
 
 			if (user.getId() != null && user.getId() != 0) {
@@ -307,8 +307,8 @@ public class ShopUserController {
 		List<ShopUser> list = userService.queryShopUserList(shopUserQueryDTO);
 		if (list != null && list.size() > 0) {
 			ShopUser user = list.get(0);
-			user.setPassword(null);
-			user.setJiaoyimima(null);
+//			user.setPassword(null);
+//			user.setJiaoyimima(null);
 			/*ShopUserExt userExt =new ShopUserExt();
 			userExt= userExtService.queryShopUserByUserId(user.getId());
 			user.setShopUserExts(userExt);*/

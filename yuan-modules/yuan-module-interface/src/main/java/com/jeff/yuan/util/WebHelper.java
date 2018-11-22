@@ -77,7 +77,7 @@ public class WebHelper {
 	public static String getDayNo() {
 		StringBuilder stringBuilder =new StringBuilder("NO");
 		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmm");
 		stringBuilder.append(simpleDateFormat.format(date));
 		String verifyCode = String.valueOf(new Random().nextInt(999999));
 		stringBuilder.append(verifyCode);
