@@ -40,6 +40,7 @@ import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
 import com.jeff.yuan.common.util.ExcelUtils;
+import com.jeff.yuan.common.util.VipLevelEnum;
 import com.jeff.yuan.util.WebHelper;
 
 /**
@@ -71,6 +72,7 @@ public class ShopTradeController {
 	 * @return
 	 */
 	@RequestMapping("/list")
+	@ResponseBody
 	public AjaxResult list(HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
@@ -95,17 +97,29 @@ public class ShopTradeController {
 			if (StringUtils.isNotBlank(status)) {
 				sta = Integer.parseInt(status);
 			}
+			ShopTradeQueryDTO userQueryDTO = new ShopTradeQueryDTO();
 			if (StringUtils.isNotBlank(jtype)) {
-				jty = Integer.parseInt(jtype);
+				String[] types = jtype.split(",");
+				if (types.length>1) {
+					List<Integer> list = new ArrayList<>();
+					for (String strtype : types) {
+						list.add(Integer.parseInt(strtype));
+					}
+					userQueryDTO.setTypes(list);
+				}else {
+					jty = Integer.parseInt(jtype);
+					userQueryDTO.setJtype(jty);
+				}
+				
 			}
 
-			ShopTradeQueryDTO userQueryDTO = new ShopTradeQueryDTO();
+			
 			userQueryDTO.setStatus(sta);
 			userQueryDTO.setUserId(u);
-			userQueryDTO.setJtype(jty);
+			
 			userQueryDTO.setCurrentPage(currentPage);
 			userQueryDTO.setPageSize(pageSize);
-
+			
 			PageModel<ShopTrade> page = tradeService.queryShopTradePage(userQueryDTO);
 			ajaxResult.setData(page);
 			ajaxResult.setSuccess(true);
@@ -144,6 +158,11 @@ public class ShopTradeController {
 				tradeService.save(bean);
 				//减去账户余额
 				user.getShopUserExts().setBalance(balance);
+				//减去账户积分
+				BigDecimal credits = new BigDecimal(user.getShopUserExts().getCredits());//.subtract(bean.getCredits());
+				BigDecimal credits2 = new BigDecimal(bean.getCredits());//.subtract(bean.getCredits());
+
+				user.getShopUserExts().setCredits(credits.subtract(credits2).toString());
 				userService.update(user);
 				ajaxResult.setSuccess(true);
 			} else {
@@ -356,7 +375,22 @@ public class ShopTradeController {
 		try {
 			// 获取session
 			HttpSession session = request.getSession();
-
+			ShopUser user = (ShopUser)session.getAttribute("userInfo");
+			
+				
+			ShopProduct product = productService.find(bean.getProId());
+			
+			BigDecimal tprice ;
+			if (user.getVipLevel().equals(VipLevelEnum.v1)||user.getVipLevel().equals(VipLevelEnum.v2)||user.getVipLevel().equals(VipLevelEnum.v3)) {
+				tprice=new BigDecimal(product.getPrice1());
+			}else if (user.getVipLevel().equals(VipLevelEnum.v1)||user.getVipLevel().equals(VipLevelEnum.v2)) {
+				tprice=new BigDecimal(product.getPrice2());
+			}else {
+				tprice=new BigDecimal(product.getPrice3());
+			}
+			bean.setPrice(tprice.multiply(new BigDecimal(bean.getCount())));
+			bean.setProName(product.getProName());
+			bean.setProLogoImg(product.getProLogoImg());
 			// 查询是否添加过购物车（session有没有封装属性）
 			List<ShopTradeDetail> cartlist = (List<ShopTradeDetail>) session.getAttribute("cartlist");
 			if (cartlist == null) {// 表示没有添加过
@@ -373,6 +407,7 @@ public class ShopTradeController {
 					if (bean.getProId() == sc.getProId()) {// 如果要添加的 在原来的购物车已经存在
 						bln = true;
 						sc.setCount(sc.getCount() + bean.getCount());// 得到商品数量加一重新赋给自己
+						sc.setPrice(tprice.multiply(new BigDecimal(sc.getCount())));
 						break;
 					}
 				}
@@ -402,15 +437,31 @@ public class ShopTradeController {
 		try {
 			// 获取session
 			HttpSession session = request.getSession();
-			String proid = request.getParameter("proId");
-			String count = request.getParameter("count");
-			if (StringUtils.isNotEmpty(count) && StringUtils.isNotEmpty(proid)) {
+//			String proid = request.getParameter("proId");
+//			String count = request.getParameter("count");
+			if (bean.getCount()!=0 && bean.getProId()!=0) {
+				ShopUser user = (ShopUser)session.getAttribute("userInfo");
+				
+				
+				ShopProduct product = productService.find(bean.getProId());
+				
+				BigDecimal tprice ;
+				if (user.getVipLevel().equals(VipLevelEnum.v1)||user.getVipLevel().equals(VipLevelEnum.v2)||user.getVipLevel().equals(VipLevelEnum.v3)) {
+					tprice=new BigDecimal(product.getPrice1());
+				}else if (user.getVipLevel().equals(VipLevelEnum.v1)||user.getVipLevel().equals(VipLevelEnum.v2)) {
+					tprice=new BigDecimal(product.getPrice2());
+				}else {
+					tprice=new BigDecimal(product.getPrice3());
+				}
+				bean.setPrice(tprice.multiply(new BigDecimal(bean.getCount())));
+				
 				List<ShopTradeDetail> cartlist = (List<ShopTradeDetail>) session.getAttribute("cartlist");
 				for (int i = 0; i < cartlist.size(); i++) {
 					ShopTradeDetail sc = (ShopTradeDetail) cartlist.get(i);
-					if (Integer.parseInt(proid) == sc.getProId()) {// 如果要添加的 在原来的购物车已经存在
-						sc.setCount(Integer.parseInt(count));
-						cartlist.set(i, bean);
+					if (bean.getProId() == sc.getProId()) {// 如果要添加的 在原来的购物车已经存在
+						sc.setCount(bean.getCount());
+						sc.setPrice(tprice.multiply(new BigDecimal(bean.getCount())));
+						cartlist.set(i, sc);
 						break;
 					}
 				}

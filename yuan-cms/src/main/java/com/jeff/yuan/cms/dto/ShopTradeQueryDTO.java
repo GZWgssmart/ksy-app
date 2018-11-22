@@ -1,5 +1,7 @@
 package com.jeff.yuan.cms.dto;
 
+import java.util.List;
+
 import com.jeff.yuan.common.dto.CommonQueryDTO;
 
 /**
@@ -11,6 +13,10 @@ public class ShopTradeQueryDTO extends CommonQueryDTO{
 	private int jtype;
 	private int status;
 	private int userId;
+	//是否前端查询
+	private Boolean isFront;
+//	private List<Integer> types;
+	private List<Integer> types;
 	public int getStatus() {
 		return status;
 	}
@@ -28,6 +34,18 @@ public class ShopTradeQueryDTO extends CommonQueryDTO{
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public Boolean getIsFront() {
+		return isFront;
+	}
+	public void setIsFront(Boolean isFront) {
+		this.isFront = isFront;
+	}
+	public List<Integer> getTypes() {
+		return types;
+	}
+	public void setTypes(List<Integer> types) {
+		this.types = types;
 	}
 
 }

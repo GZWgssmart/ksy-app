@@ -8,13 +8,13 @@ package com.jeff.yuan.common.util;
  *
  */
 public enum VipLevelEnum {
-	v1("v1","个人vip"),
-	v2("v2","初级代理"),
-	v3("v3","高级代理"),
-	v4("v4","核心代理"),
-	v5("v5","运营中心"),
-	v6("v6","公司股东"),
-	v9("v9","普通会员");
+	v1("v1","普通会员"),
+	v2("v2","个人vip"),
+	v3("v3","初级代理"),
+	v4("v4","高级代理"),
+	v5("v5","核心代理"),
+	v6("v6","运营中心"),
+	v7("v7","公司股东");
 
 	private String level;	 
     private String desc;

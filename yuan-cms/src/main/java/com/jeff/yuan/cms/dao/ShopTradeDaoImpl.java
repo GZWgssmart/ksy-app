@@ -5,6 +5,9 @@ import com.jeff.yuan.common.entity.PageModel;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
 /**
@@ -24,8 +27,12 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
     		 map.put("status", shopTradeQueryDTO.getStatus());
     	 }
          if(shopTradeQueryDTO.getJtype()!=0){
-        	 hql.append(" and t.type = :jtype ");
+        	 hql.append(" and t.jtype = :jtype ");
         	 map.put("jtype", shopTradeQueryDTO.getJtype());
+         }
+         if(!shopTradeQueryDTO.getTypes().isEmpty() &&shopTradeQueryDTO.getTypes().size()>0 ){
+        	 hql.append(" and t.jtype in ( :types ) ");
+        	 map.put("types", shopTradeQueryDTO.getTypes());
          }
          if(shopTradeQueryDTO.getUserId()!=0){
         	 hql.append(" and t.userId = :userId ");
@@ -46,6 +53,10 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
          if(shopTradeQueryDTO.getJtype()!=0){
         	 hql.append(" and t.jtype = :jtype ");
         	 map.put("jtype", shopTradeQueryDTO.getJtype());
+         }
+         if(!shopTradeQueryDTO.getTypes().isEmpty() &&shopTradeQueryDTO.getTypes().size()>0 ){
+        	 hql.append(" and t.jtype in ( :types ) ");
+        	 map.put("types", shopTradeQueryDTO.getTypes());
          }
          if(shopTradeQueryDTO.getUserId()!=0){
         	 hql.append(" and t.userId = :userId ");

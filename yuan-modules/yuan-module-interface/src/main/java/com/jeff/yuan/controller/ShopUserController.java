@@ -2,7 +2,6 @@ package com.jeff.yuan.controller;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
-import com.google.gson.JsonObject;
 import com.jeff.yuan.cms.dto.ShopUserQueryDTO;
 import com.jeff.yuan.cms.entity.ShopUser;
 import com.jeff.yuan.cms.entity.ShopUserExt;
@@ -372,7 +370,7 @@ public class ShopUserController {
 					json.put("verifyCode", verifyCode);
 					json.put("createTime", System.currentTimeMillis());
 					// 将认证码存入SESSION
-					request.getSession().setAttribute("verifyCode", json);
+					session.setAttribute("verifyCode", json);
 				}
 			} catch (ClientException e) {
 				// TODO Auto-generated catch block
