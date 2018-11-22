@@ -233,11 +233,6 @@ public class ShopTradeController {
 		
 		return ajaxResult;
 	}
-	
-	
-	public static void main(String[] args) {
-		ShopTrade shopTrade = tradeService.
-	}
 
 	
 }
