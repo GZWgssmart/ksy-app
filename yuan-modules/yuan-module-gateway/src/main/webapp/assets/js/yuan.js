@@ -56,6 +56,18 @@ var RESET_PAY_PWD_URL = BASE_URL + '/yuan-module-interface/api/shopuser/reset/ji
 
 var LOGOUT_URL = BASE_URL + '/yuan-module-interface/api/shopuser/login_out';
 
+var USER_LEVELS = {
+    "v1": "普通会员",
+    "v2": "个人vip",
+    "v3": "初级代理",
+    "v4": "高级代理",
+    "v5": "核心代理",
+    "v6": "运营中心",
+    "v7": "公司股东"
+}
+
+var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠']
+
 function timestampToDatetime(value) {
     if (value === undefined || value === null || value === '') {
         return '-';

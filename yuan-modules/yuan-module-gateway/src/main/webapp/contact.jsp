@@ -35,7 +35,7 @@
 
 
 
-        <div class="canvas-wrapper">
+        <div id="content" class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
             <div class="content-wrap">
@@ -142,6 +142,42 @@
 
         <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    userInfo: {}
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.isLogin()
+                    this.getUser()
+                },
+                methods: {
+                    isLogin () {
+                        var userInfo = window.localStorage.getItem(USER_INFO)
+                        if (userInfo !== undefined && userInfo !== '') {
+                            this.userInfo = JSON.parse(userInfo)
+                        }
+                    },
+                    logout () {
+                        $.post(
+                            LOGOUT_URL,
+                            function(data) {
+                                if (data.success === true) {
+                                    window.location.href = 'index.jsp'
+                                    window.localStorage.removeItem(USER_INFO)
+                                }
+                            }
+                        )
+                    }
+                }
+            });
+        </script>
 		<script src="assets/js/main3.js"></script>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ScHh49FPt46Vdc2M6bSmVDY9IWaKIS4D"></script>
         <script type="text/javascript">

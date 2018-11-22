@@ -183,7 +183,7 @@
                                             </ul>
                                             <div class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
-                                                    <a href="#">确认订单</a>
+                                                    <a href="#">提交订单</a>
                                                 </div>
                                             </div>
                                         </div>

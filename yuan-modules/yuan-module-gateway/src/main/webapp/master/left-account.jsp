@@ -10,10 +10,10 @@
     <nav class="menu">
         <div class="icon-list">
             <h5 class="mt-2">个人中心</h5>
-            <a href="user-center.jsp"><i class="pe-7s-user"></i><span>我的资料</span></a>
-            <a href="user-center.jsp"><i class="pe-7s-users"></i><span>我的团队</span></a>
-            <a href="user-center.jsp"><i class="pe-7s-pin"></i><span>我的权益</span></a>
-            <a href="user-center.jsp"><i class="pe-7s-gift"></i><span>我的收益</span></a>
+            <a href="user-center.jsp#info"><i class="pe-7s-user"></i><span>我的资料</span></a>
+            <a href="user-center.jsp#rights"><i class="pe-7s-pin"></i><span>我的权益</span></a>
+            <a href="user-center.jsp#profit"><i class="pe-7s-gift"></i><span>我的收益</span></a>
+            <a href="user-center.jsp#team"><i class="pe-7s-users"></i><span>我的团队</span></a>
             <a href="order.jsp"><i class="pe-7s-shopbag"></i><span>我的订单</span></a>
             <a href="cart.jsp"><i class="pe-7s-cart"></i><span>我的购物车</span></a>
             <a v-if="userInfo == null || userInfo.phone == undefined" href="login.jsp"><i class="pe-7s-next-2"></i><span>登录</span></a>
