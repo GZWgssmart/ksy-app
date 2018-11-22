@@ -199,7 +199,7 @@ public class ShopUser implements java.io.Serializable {
 		this.updateBy = updateBy;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "shopUser",cascade = {CascadeType.MERGE})
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "shopUser",cascade = {CascadeType.MERGE,CascadeType.REFRESH})
 	public ShopUserExt getShopUserExts() {
 		return this.shopUserExts;
 	}

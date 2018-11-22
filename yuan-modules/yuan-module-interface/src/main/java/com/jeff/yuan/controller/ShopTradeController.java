@@ -5,10 +5,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +25,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
+import com.jeff.yuan.cms.dto.ShopUserQueryDTO;
+import com.jeff.yuan.cms.entity.ShopProduct;
+import com.jeff.yuan.cms.entity.ShopRegisterRule;
 import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.entity.ShopTradeDetail;
 import com.jeff.yuan.cms.entity.ShopUser;
+import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.cms.service.ShopProductService;
+import com.jeff.yuan.cms.service.ShopRegisterRuleService;
 import com.jeff.yuan.cms.service.ShopTradeService;
+import com.jeff.yuan.cms.service.ShopUserExtService;
 import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
@@ -50,6 +58,10 @@ public class ShopTradeController {
 	private ShopTradeService tradeService;
 	@Autowired
 	private ShopUserService userService;
+	@Autowired
+	private ShopUserExtService userExtService;
+	@Autowired
+	private ShopRegisterRuleService ruleService;
 
 	/**
 	 * 获取订单列表
@@ -116,23 +128,25 @@ public class ShopTradeController {
 
 		try {
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
-			
-			//减去余额(未开启事物   可能存在不一致)
+
+			// 减去余额(未开启事物 可能存在不一致)
 			BigDecimal balance = user.getShopUserExts().getBalance().subtract(bean.getPrice());
-			if (balance.compareTo(BigDecimal.ZERO)>=0) {
+			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
 				bean.setTradeNo(WebHelper.getDayNo());
 				bean.setCreateDate(new Date());
-				//购买商品走审核流程
-				if(bean.getJtype()==1||bean.getJtype()==2) {
+				// 购买商品走审核流程
+				if (bean.getJtype() == 1 || bean.getJtype() == 2) {
 					bean.setStatus(1);
-				}else {
+				} else {
 					bean.setStatus(3);
 				}
+				//下单
 				tradeService.save(bean);
+				//减去账户余额
 				user.getShopUserExts().setBalance(balance);
 				userService.update(user);
 				ajaxResult.setSuccess(true);
-			}else {
+			} else {
 				ajaxResult.setSuccess(false);
 				ajaxResult.setMsg("余额不足");
 			}
@@ -154,8 +168,126 @@ public class ShopTradeController {
 		try {
 			String id = request.getParameter("id");
 			String status = request.getParameter("status");
-			
-			tradeService.updateStatus(id, Integer.parseInt(status));
+
+			ShopTrade shopTrade = tradeService.updateStatus(id, Integer.parseInt(status));
+			//用户升级vip逻辑
+			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			System.out.println("确认收货会员用户信息："+user.getId());
+			// 直推间推返利开始
+			// Jtype 1.购买会员大礼包2.复购产品
+			if (shopTrade.getJtype() == 1) {
+				//获取商品id，拿到商品信息，商品信息中包含商品对于vip等级
+				Set<ShopTradeDetail> shopTradeDetails = shopTrade.getShopTradeDetails();
+				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
+				int proId = 0;
+				while (it.hasNext()) {  
+					ShopTradeDetail detail = it.next();  
+					proId = detail.getProId();  
+				}
+				ShopProduct product = productService.find(proId);
+				ShopRegisterRule rule = ruleService.findByVip(product.getVipLevel());
+				
+				//升级会员信息
+				user.setVipLevel(rule.getVipLevel());
+				user.getShopUserExts().setBill(rule.getBill());//总健康链
+				user.getShopUserExts().setCredits(product.getIncomeCredits());//购买商品赠送积分
+				//更改会员账户信息
+				userService.update(user);
+				//如果介绍人电话不为空，介绍人获得直推收益
+				if (StringUtils.isNotEmpty(user.getRefPhone())) {
+					ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
+					shopUserQueryDTO.setPhone(user.getRefPhone());
+					ShopUser ztUser = userService.queryShopUserList(shopUserQueryDTO).get(0);
+					//如果根据介绍人电话查找的用户不存在，则不赠送
+					if (ztUser!=null) {
+						//直推用户等级对应的奖励规则
+						rule = ruleService.findByVip(ztUser.getVipLevel());
+						BigDecimal b1 = new BigDecimal(ztUser.getShopUserExts().getActiveBill());
+				        BigDecimal b2 = new BigDecimal(rule.getZtjkljhs());
+				        //健康链激活数（直推）   本身有的+邀请人增加的
+						ztUser.getShopUserExts().setActiveBill(b1.add(b2).toString());
+						//直推奖    订单金额绝对值*直接奖励百分比
+				        BigDecimal a1 = new BigDecimal(rule.getZtj()).multiply(shopTrade.getPrice().abs());
+				        this.saveTradeInfo(a1, ztUser, 3);
+				        //管理奖    
+				        BigDecimal a2 = new BigDecimal(rule.getGlj()).multiply(shopTrade.getPrice().abs());
+				        this.saveTradeInfo(a2, ztUser, 5);
+				        //直推用户账户余额+直推奖+管理奖
+//				        ztUser.getShopUserExts().setBalance(a1.add(a2).add(ztUser.getShopUserExts().getBalance()));
+//				        //更新直推用户
+//				        userService.update(ztUser);
+				        System.out.println("直推收益计算完成，直推用户id："+ztUser.getId());
+				        
+				        
+				      //如果直推介绍人电话不为空，间推介绍人获得间推收益
+						if (StringUtils.isNotEmpty(ztUser.getRefPhone())) {
+							ShopUserQueryDTO userQueryDTO = new ShopUserQueryDTO();
+							userQueryDTO.setPhone(ztUser.getRefPhone());
+							ShopUser jtUser = userService.queryShopUserList(userQueryDTO).get(0);
+							if (jtUser!=null) {
+								//获取间推用户等级对应奖励规则
+								rule = ruleService.findByVip(jtUser.getVipLevel()); 
+								
+								BigDecimal c1 = new BigDecimal(jtUser.getShopUserExts().getActiveBill());
+								BigDecimal c2 = new BigDecimal(rule.getJtjkljhs());
+								//健康链激活数（直推）   本身有的+邀请人增加的
+								jtUser.getShopUserExts().setActiveBill(c1.add(c2).toString());
+								//间推奖    订单金额*间推奖励百分比
+						        BigDecimal d1 = new BigDecimal(rule.getJtj()).multiply(shopTrade.getPrice().abs());
+						        this.saveTradeInfo(d1, jtUser, 4);
+						      //管理奖    
+						        BigDecimal d2 = new BigDecimal(rule.getGlj()).multiply(shopTrade.getPrice().abs());
+						        this.saveTradeInfo(d2, jtUser, 5);
+						        System.out.println("间推收益计算完成，间推用户id："+jtUser.getId());
+							}
+							
+					        
+					      
+						}
+					}
+					
+				}
+				
+				//复购返利逻辑
+			} else if (shopTrade.getJtype() == 2) {
+				//复购返点不是看购买用户的那三个配置，是和自己对应等级的规则的对应的返点 
+				//奖励规则，根据购买用户的等级来
+				ShopRegisterRule rule = ruleService.findByVip(user.getVipLevel());
+				//购买返点  给用户本身账户余额增加
+		        BigDecimal a1 = new BigDecimal(rule.getFugoufd()).multiply(shopTrade.getPrice().abs());
+		        this.saveTradeInfo(a1, user, 9);
+		      //如果介绍人电话不为空，介绍人获得直推收益
+				if (StringUtils.isNotEmpty(user.getRefPhone())) {
+					ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
+					shopUserQueryDTO.setPhone(user.getRefPhone());
+					ShopUser ztUser = userService.queryShopUserList(shopUserQueryDTO).get(0);
+
+					//如果根据介绍人电话查找的用户不存在，则不赠送
+					if (ztUser!=null) {
+						rule = ruleService.findByVip(ztUser.getVipLevel());
+						//邀请用户复购的直推返点  给用户本身账户余额增加
+				        BigDecimal a2 = new BigDecimal(rule.getFugouztfd()).multiply(shopTrade.getPrice().abs());
+				        this.saveTradeInfo(a2, ztUser, 10);
+				        
+				        
+				      //如果介绍人电话不为空，介绍人获得间推收益
+						if (StringUtils.isNotEmpty(ztUser.getRefPhone())) {
+							ShopUserQueryDTO shopQueryDTO = new ShopUserQueryDTO();
+							shopQueryDTO.setPhone(ztUser.getRefPhone());
+							ShopUser jtUser = userService.queryShopUserList(shopQueryDTO).get(0);
+							//如果根据介绍人电话查找的用户不存在，则不赠送
+							if (jtUser!=null) {
+								//邀请用户复购的直推返点  给用户本身账户余额增加
+								rule = ruleService.findByVip(jtUser.getVipLevel());
+						        BigDecimal a3 = new BigDecimal(rule.getFugoujtfd()).multiply(shopTrade.getPrice().abs());
+						        this.saveTradeInfo(a3, jtUser, 11);
+							}
+						}
+					}
+				}
+			}
+
+			// 返利结束
 
 			ajaxResult.setSuccess(true);
 
@@ -166,6 +298,25 @@ public class ShopTradeController {
 		}
 
 		return ajaxResult;
+	}
+	
+	public void saveTradeInfo(BigDecimal ba,ShopUser user,int type) {
+		//邀请用户复购的直推返点  给用户本身账户余额增加
+        if (ba.compareTo(BigDecimal.ZERO)>0) {
+        	ShopTrade ztTrade = new ShopTrade();
+        	ztTrade.setPrice(ba);
+        	ztTrade.setUserId(user.getId());
+        	ztTrade.setTradeNo(WebHelper.getDayNo());
+        	ztTrade.setJtype(type);//1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点
+        	ztTrade.setStatus(3);
+        	ztTrade.setCredits(0);
+        	ztTrade.setCreateDate(new Date());
+        	ztTrade.setShopTradeDetails(null);
+        	tradeService.save(ztTrade);
+        	user.getShopUserExts().setBalance(user.getShopUserExts().getBalance().add(ba));
+            userService.update(user);
+		}
+        
 	}
 
 	/**
@@ -308,4 +459,5 @@ public class ShopTradeController {
 
 		return ajaxResult;
 	}
+
 }

@@ -45,14 +45,26 @@ public class ShopUserService extends CommonService< ShopUser,Integer >  {
 	
 	}
 	
+    /**通过phone获取我的团队直推成员
+     * @param phone
+     * @return
+     */
     public List<Map<String, Object>> queryUser2List(String phone){
     	return shopUserDao.queryUser2List(phone);
     }
     
+    /**通过phone获取我的团队间推成员
+     * @param phone
+     * @return
+     */
     public List<Map<String, Object>> queryUser3List(String phone){
     	return shopUserDao.queryUser3List(phone);
     }
 
+	/**获取我的收入汇总
+	 * @param userId
+	 * @return
+	 */
 	public List<Map<String, Object>> queryIncomeList(String userId) {
 		// TODO Auto-generated method stub
 		return shopUserDao.queryIncomeList(userId);
