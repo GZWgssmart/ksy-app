@@ -2,6 +2,8 @@ var BASE_URL = 'http://47.106.142.171:8080';
 
 var MODULE_ADMIN = '/yuan-module-admin'
 
+var USER_INFO = 'yuan_user_info'
+
 var PRODUCT_URL = BASE_URL + '/yuan-module-interface/api/shopproduct/list';
 
 var PRODUCT_DETAIL_URL = BASE_URL + '/yuan-module-interface/api/shopproduct/getDetail';

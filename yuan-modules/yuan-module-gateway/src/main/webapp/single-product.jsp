@@ -32,10 +32,10 @@
 
 
 
-        <div class="canvas-wrapper">
+        <div id="content" class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div id="content" class="content-wrap">
+            <div class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -190,15 +190,34 @@
             var view = new Vue({
                 el: '#content',
                 data: {
+                    userInfo: {},
                     product: {}
                 },
                 created: function() {
 
                 },
                 mounted: function() {
+                    this.isLogin()
                     this.showProduct()
                 },
                 methods: {
+                    isLogin () {
+                        var userInfo = window.localStorage.getItem(USER_INFO)
+                        if (userInfo != undefined && userInfo !== '') {
+                            this.userInfo = JSON.parse(userInfo)
+                        }
+                    },
+                    logout () {
+                        $.post(
+                            LOGOUT_URL,
+                            function(data) {
+                                if (data.success === true) {
+                                    window.location.href = 'index.jsp'
+                                    window.localStorage.removeItem(USER_INFO)
+                                }
+                            }
+                        )
+                    },
                     showProduct () {
                         var self = this
                         $.post(

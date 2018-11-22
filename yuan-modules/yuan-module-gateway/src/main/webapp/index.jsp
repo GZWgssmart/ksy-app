@@ -164,6 +164,7 @@
         var view = new Vue({
             el: '#content',
             data: {
+                userInfo: {},
                 banners: [],
                 giftProducts: [],
                 latestArticles: []
@@ -172,11 +173,29 @@
 
             },
             mounted: function() {
+                this.isLogin()
                 this.showBanners()
                 this.showGiftProducts()
                 this.showLatestArticles()
             },
             methods: {
+                isLogin () {
+                    var userInfo = window.localStorage.getItem(USER_INFO)
+                    if (userInfo != undefined && userInfo !== '') {
+                        this.userInfo = JSON.parse(userInfo)
+                    }
+                },
+                logout () {
+                  $.post(
+                      LOGOUT_URL,
+                      function(data) {
+                          if (data.success === true) {
+                              window.location.href = 'index.jsp'
+                              window.localStorage.removeItem(USER_INFO)
+                          }
+                      }
+                  )
+                },
                 showBanners () {
                     var self = this
                     $.post(

@@ -128,7 +128,7 @@
                                     if (data.success === false) {
                                         view.errMsg = data.msg
                                     } else {
-                                        window.localStorage.setItem('yuan_user_info', JSON.stringify(data.data))
+                                        window.localStorage.setItem(USER_INFO, JSON.stringify(data.data))
                                         window.location.href = 'user-center.jsp'
                                     }
                                 })
