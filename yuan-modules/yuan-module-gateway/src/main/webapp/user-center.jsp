@@ -92,39 +92,44 @@
                                         </table>
                                     </div>
                                     <div class="col-md-6 col-sm-12 login-form">
-                                        <div style="color: red; margin-bottom: 20px;">
+                                        <div style="margin-bottom: 20px;">
                                             个人信息操作：
-                                            <a href="javascript:;" @click="chgOperation(1)">修改个人资料</a>&nbsp;
-                                            <a href="javascript:;" @click="chgOperation(5)">修改登录密码</a>&nbsp;
-                                            <a href="javascript:;" @click="chgOperation(5)">重置登录密码</a>&nbsp;
-                                            <a href="javascript:;" @click="chgOperation(5)">修改交易密码</a>&nbsp;
-                                            <a href="javascript:;" @click="chgOperation(5)">重置交易密码</a>&nbsp;
-                                            <br/>
+                                            <select style="width: 120px;" v-model="operation">
+                                                <option value="0">请选择</option>
+                                                <option value="1">修改个人资料</option>
+                                                <option value="2">修改登录密码</option>
+                                                <option value="3">重置登录密码</option>
+                                                <option value="4">修改交易密码</option>
+                                                <option value="5">重置交易密码</option>
+                                            </select>&nbsp;
                                             健康值操作：
-                                            <a href="javascript:;" @click="chgOperation(2)">健康值提现</a>&nbsp;
-                                            <a href="javascript:;" @click="chgOperation(3)">健康值转让</a>&nbsp;
-                                            <a href="javascript:;" @click="chgOperation(4)">健康值捐赠</a>&nbsp;
-                                            <a href="javascript:;">查看健康值变动明细</a>&nbsp;
+                                            <select style="width: 120px;" v-model="operation1">
+                                                <option value="0">请选择</option>
+                                                <option value="1">健康值提现</option>
+                                                <option value="2">健康值转让</option>
+                                                <option value="3">健康值捐赠</option>
+                                                <option value="4">查看健康值变动明细</option>
+                                            </select>
                                         </div>
-                                        <form v-if="operation == 1">
+                                        <form v-if="operation == '1'">
                                             姓名<input v-model="account" placeholder="请输入姓名" type="text">
                                             地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                             <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
                                         </form>
-                                        <form v-if="operation == 2">
+                                        <form v-if="operation == '2'">
                                             姓名<input v-model="account" placeholder="请输入姓名" type="text">
                                             <input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                             <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
                                         </form>
-                                        <form v-if="operation == 3">
+                                        <form v-if="operation == '3'">
                                             <input v-model="account" placeholder="请输入姓名" type="text">
                                             <input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                             <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
                                         </form>
-                                        <form v-if="operation == 4">
+                                        <form v-if="operation == '4'">
                                             姓名<input v-model="account" placeholder="请输入姓名" type="text">
                                             地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
@@ -252,7 +257,8 @@
                     user: {
                         shopUserExts: {}
                     },
-                    operation: 0,
+                    operation: '0',
+                    operation1: '0',
                     account: '',
                     address: '',
                     errMsg: '',
@@ -304,9 +310,6 @@
                                 }
                             }
                         )
-                    },
-                    chgOperation (opt) {
-                      view.operation = opt
                     },
                     updateInfo () {
                         var errMsg = ''
