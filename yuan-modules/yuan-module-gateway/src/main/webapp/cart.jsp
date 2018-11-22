@@ -31,7 +31,7 @@
 
 
 
-        <div class="canvas-wrapper">
+        <div id="content" class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
                 <div class="content-wrap">
@@ -71,55 +71,29 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        <tr v-for="item in carts">
                                                             <td
                                                                 class="product-thumbnail">
-                                                                <a href="#"><img
-                                                                        src="assets/img/cart/1.jpg"
+                                                                <a href="javascript:;"><img
+                                                                        :src="item.proLogImg"
                                                                         alt=""></a>
                                                             </td>
                                                             <td
                                                                 class="product-name"><a
-                                                                    href="#">Headphone</a></td>
+                                                                    href="javascript:;" v-text="item.proName"></a></td>
                                                             <td
                                                                 class="product-price"><span
-                                                                    class="amount">￥165.00</span></td>
+                                                                    class="amount" v-text="'￥' + item.price"></span></td>
                                                             <td
                                                                 class="product-quantity">
-                                                                <input value="1"
+                                                                <input v-model="item.count"
                                                                     type="number">
                                                             </td>
                                                             <td
-                                                                class="product-subtotal">￥165.00</td>
+                                                                class="product-subtotal" v-text="'￥' + (item.price * item.count)"></td>
                                                             <td
                                                                 class="product-remove"><a
-                                                                    href="#"><i
-                                                                        class="fa
-                                                                        fa-times"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td
-                                                                class="product-thumbnail">
-                                                                <a href="#"><img
-                                                                        src="assets/img/cart/2.jpg"
-                                                                        alt=""></a>
-                                                            </td>
-                                                            <td
-                                                                class="product-name"><a
-                                                                    href="#">Table lamp</a></td>
-                                                            <td
-                                                                class="product-price"><span
-                                                                    class="amount">￥150.00</span></td>
-                                                            <td
-                                                                class="product-quantity">
-                                                                <input value="1"
-                                                                    type="number">
-                                                            </td>
-                                                            <td
-                                                                class="product-subtotal">￥150.00</td>
-                                                            <td
-                                                                class="product-remove"><a
-                                                                    href="#"><i
+                                                                    href="javascript:;"><i
                                                                         class="fa
                                                                         fa-times"></i></a></td>
                                                         </tr>
@@ -205,7 +179,7 @@
                                     <div class="col-md-6 col-sm-12 col-xs-12">
                                         <div class="cart-total">
                                             <ul>
-                                                <li class="cart-black">总价<span>￥315.00</span></li>
+                                                <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
                                             <div class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
@@ -240,6 +214,68 @@
             <script src="assets/js/plugins.js"></script>
             <script src="assets/js/main.js"></script>
             <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    userInfo: {},
+                    carts:[],
+                    totalPrice: 0
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.isLogin()
+                    this.showCarts()
+                },
+                methods: {
+                    isLogin () {
+                        var userInfo = window.localStorage.getItem(USER_INFO)
+                        if (userInfo !== undefined && userInfo !== '') {
+                            this.userInfo = JSON.parse(userInfo)
+                        }
+                    },
+                    logout () {
+                        $.post(
+                            LOGOUT_URL,
+                            function(data) {
+                                if (data.success === true) {
+                                    window.location.href = 'index.jsp'
+                                    window.localStorage.removeItem(USER_INFO)
+                                }
+                            }
+                        )
+                    },
+                    showCarts () {
+                        $.post(
+                            CART_LIST_URL,
+                            function (data) {
+                                if (data.success === true) {
+                                    view.carts = data.data
+                                    view.carts.forEach(function (item, index) {
+                                        view.totalPrice += item.count * item.price
+                                    })
+                                }
+                            }
+                        )
+                    }
+                },
+                watch: {
+                    carts: {
+                        handler(newValue, oldValue) {
+                            view.totalPrice = 0
+                            newValue.forEach(function (item, index) {
+                                view.totalPrice += item.count * item.price
+                            })
+                        },
+                        deep: true
+                    }
+                },
+            });
+        </script>
 		    <script src="assets/js/main3.js"></script>
         </body>
     </html>

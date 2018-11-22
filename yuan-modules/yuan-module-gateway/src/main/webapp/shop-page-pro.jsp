@@ -56,12 +56,6 @@
                                                     <i class="pe-7s-look"></i>
                                                 </a>
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
-                                            </div>
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
@@ -104,12 +98,6 @@
                                                                 <div class="shop-quick-view">
                                                                     <a :href="'single-product.jsp?id=' + item.id">
                                                                         <i class="pe-7s-look"></i>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="button-group">
-                                                                    <a href="#" title="添加到购物车">
-                                                                        <i class="pe-7s-cart"></i>
-                                                                        添加到购物车
                                                                     </a>
                                                                 </div>
                                                             </div>

@@ -124,13 +124,14 @@
                                             </div>
                                             <div class="pro-quality">
                                                 <p>购买数量:</p>
-                                                <input value="1" type="number">
+                                                <input type="number" v-model="quantity">
                                             </div>
                                             <div class="single-pro-cart">
-                                                <a href="#" title="添加到购物车">
+                                                <a href="javascript:;" @click="addCart" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
                                                     添加到购物车
                                                 </a>
+                                                <span v-if="addToCart">已添加到购物车</span>
                                             </div>
                                         </div>
 
@@ -191,7 +192,9 @@
                 el: '#content',
                 data: {
                     userInfo: {},
-                    product: {}
+                    product: {},
+                    quantity: 1,
+                    addToCart: false
                 },
                 created: function() {
 
@@ -228,7 +231,6 @@
                             function (data) {
                                 if (data.success === true) {
                                     view.product = data.data
-                                    console.log(data.data)
                                     view.product.proLogoImg = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
                                     if (view.product.picture1 != '') {
                                         view.product.picture1 = BASE_URL + MODULE_ADMIN + view.product.picture1
@@ -272,6 +274,20 @@
                                 }
                             })
                         })
+                    },
+                    addCart () {
+                        $.post(
+                            CART_ADD_URL,
+                            {
+                                proId: view.product.id,
+                                count: view.quantity
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.addToCart = true
+                                }
+                            }
+                        )
                     }
                 }
             });

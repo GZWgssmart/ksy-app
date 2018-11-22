@@ -16,9 +16,9 @@
             <a href="user-center.jsp"><i class="pe-7s-gift"></i><span>我的收益</span></a>
             <a href="order.jsp"><i class="pe-7s-shopbag"></i><span>我的订单</span></a>
             <a href="cart.jsp"><i class="pe-7s-cart"></i><span>我的购物车</span></a>
-            <a v-if="userInfo.phone == undefined" href="login.jsp"><i class="pe-7s-next-2"></i><span>登录</span></a>
+            <a v-if="userInfo == null || userInfo.phone == undefined" href="login.jsp"><i class="pe-7s-next-2"></i><span>登录</span></a>
             <a v-else href="javascript:;"><span v-text="userInfo.phone"></span></a>
-            <a v-if="userInfo.phone == undefined" href="register.jsp"><i class="pe-7s-add-user"></i><span>注册</span></a>
+            <a v-if="userInfo == null || userInfo.phone == undefined" href="register.jsp"><i class="pe-7s-add-user"></i><span>注册</span></a>
             <a v-else href="javascript:;" @click="logout"><span>安全退出</span></a>
         </div>
     </nav>

@@ -31,7 +31,7 @@
     <body>
 
 
-        <div class="canvas-wrapper">
+        <div id="content" class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
             <div class="content-wrap">
@@ -112,6 +112,42 @@
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="assets/js/yuan.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                    userInfo: {}
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.isLogin()
+                },
+                methods: {
+                    isLogin () {
+                        var userInfo = window.localStorage.getItem(USER_INFO)
+                        if (userInfo !== undefined && userInfo !== '') {
+                            this.userInfo = JSON.parse(userInfo)
+                        }
+                    },
+                    logout () {
+                        $.post(
+                            LOGOUT_URL,
+                            function(data) {
+                                if (data.success === true) {
+                                    window.location.href = 'index.jsp'
+                                    window.localStorage.removeItem(USER_INFO)
+                                }
+                            }
+                        )
+                    },
+
+                }
+            });
+        </script>
 		<script src="assets/js/main3.js"></script>
     </body>
 </html>

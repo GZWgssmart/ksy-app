@@ -33,10 +33,10 @@
 
 
 
-        <div class="canvas-wrapper">
+        <div id="content" class="canvas-wrapper">
             <%@include file="master/left-account.jsp"%>
 
-            <div id="content" class="content-wrap">
+            <div class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
 
@@ -98,6 +98,7 @@
             var view = new Vue({
                 el: '#content',
                 data: {
+                    userInfo: {},
                     form: {
                         phone: '',
                         pwd: ''
@@ -109,9 +110,27 @@
 
                 },
                 mounted: function() {
-                    view.relogin = relogin
+                    this.isLogin()
+                    this.relogin = relogin
                 },
                 methods: {
+                    isLogin () {
+                        var userInfo = window.localStorage.getItem(USER_INFO)
+                        if (userInfo !== undefined && userInfo !== '') {
+                            this.userInfo = JSON.parse(userInfo)
+                        }
+                    },
+                    logout () {
+                        $.post(
+                            LOGOUT_URL,
+                            function(data) {
+                                if (data.success === true) {
+                                    window.location.href = 'index.jsp'
+                                    window.localStorage.removeItem(USER_INFO)
+                                }
+                            }
+                        )
+                    },
                     login () {
                         view.errMsg = ''
                         var errMsg = ''
