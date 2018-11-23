@@ -51,56 +51,70 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="table-content table-responsive">
                                         <table>
+                                            <thead>
+                                            <tr>
+                                                <th>项目</th>
+                                                <th>值</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
                                         <tr>
-                                            <td>姓名：</td>
+                                            <td>姓名</td>
                                             <td><span v-text="user.account"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>手机号：</td>
+                                            <td>手机号</td>
                                             <td><span v-text="user.phone"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>收货地址：</td>
+                                            <td>收货地址</td>
                                             <td><span v-text="user.address"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>等级：</td>
+                                            <td>等级</td>
                                             <td><span v-text="user.userLevel"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>账户余额：</td>
+                                            <td>账户余额</td>
                                             <td><span v-text="user.shopUserExts.balance"></span></td>
+                                            <td><a href="javascript:;" @click="toDonate">捐赠余额</a></td>
                                         </tr>
                                         <tr>
-                                            <td>账户积分：</td>
+                                            <td>账户积分</td>
                                             <td><span v-text="user.shopUserExts.credits"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>总健康链：</td>
+                                            <td>总健康链</td>
                                             <td><span v-text="user.shopUserExts.bill"></span></td>
+                                            <td><a href="user-bill-detail.jsp">查看健康链变动明细</a></td>
                                         </tr>
                                         <tr>
-                                            <td>激活的健康链：</td>
+                                            <td>激活的健康链</td>
                                             <td><span v-text="user.shopUserExts.activeBill"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>转让获得的健康链：</td>
+                                            <td>转让获得的健康链</td>
                                             <td><span v-text="user.shopUserExts.tradeBill"></span></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <td>推荐人手机号：</td>
+                                            <td>推荐人手机号</td>
                                             <td><span v-text="user.refPhone"></span></td>
+                                            <td></td>
                                         </tr>
                                     </table>
-                                    </div>
-                                    <div>
-                                        <a href="user-bill-detail.jsp">查看健康链变动明细</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 login-form">
                                     <div style="margin-bottom: 20px;">
                                         个人信息操作：
-                                        <select style="width: 120px;" v-model="operation" @change="clearErrMsg(1)">
+                                        <select style="width: 120px;" v-model="operation" @change="selectChange(1)">
                                             <option value="0">请选择操作</option>
                                             <option value="1">修改个人资料</option>
                                             <option value="2">修改登录密码</option>
@@ -109,7 +123,7 @@
                                             <option value="5">重置交易密码</option>
                                         </select>&nbsp;
                                         健康链操作：
-                                        <select style="width: 120px;" v-model="operation1" @change="clearErrMsg(2)">
+                                        <select style="width: 120px;" v-model="operation1" @change="selectChange(2)">
                                             <option value="0">请选择操作</option>
                                             <option value="1">健康链提现</option>
                                             <option value="2">健康链转让</option>
@@ -117,6 +131,11 @@
                                             <option value="4">查看健康链变动明细</option>
                                         </select>
                                     </div>
+                                    <form v-if="donateOpt == true">
+                                        余额捐赠数量<input v-model="donateCount" placeholder="请输入余额捐赠数量" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="donate">确认捐赠</button>
+                                    </form>
                                     <form v-if="operation == '1'">
                                         姓名<input v-model="account" placeholder="请输入姓名" type="text">
                                         收货地址<input v-model="address" placeholder="请输入详细收货地址" type="text">
@@ -204,6 +223,7 @@
                     },
                     operation: '0',
                     operation1: '0',
+                    donateOpt: false,
                     account: '',
                     address: '',
                     oldLoginPwd: '',
@@ -217,6 +237,7 @@
                     transLinkPhone: '',
                     transLinkCount: 0,
                     donateLinkCount: 0,
+                    donateCount: 0,
                     errMsg: ''
                 },
                 created: function() {
@@ -411,7 +432,7 @@
                     },
                     getLink () {
                         var errMsg = ''
-                        if (view.getLinkCount <= 0 || view.getLinkCount > view.user.shopUserExts.activeBill) {
+                        if (isNaN(view.getLinkCount) || view.getLinkCount <= 0 || view.getLinkCount > view.user.shopUserExts.activeBill) {
                             errMsg += '请输入不大于激活的健康链的正整数数值<br/>'
                         }
                         if (errMsg != '') {
@@ -441,7 +462,7 @@
                         if (!isPhone(view.transLinkPhone.trim())) {
                             errMsg += '请输入正确的手机号<br/>'
                         }
-                        if (view.transLinkCount <= 0 || view.transLinkCount > view.user.shopUserExts.activeBill) {
+                        if (isNaN(view.transLinkCount) || view.transLinkCount <= 0 || view.transLinkCount > view.user.shopUserExts.activeBill) {
                             errMsg += '请输入不大于激活的健康链的正整数数值<br/>'
                         }
                         if (errMsg != '') {
@@ -469,7 +490,7 @@
                     },
                     donateLink () {
                         var errMsg = ''
-                        if (view.donateLinkCount <= 0 || view.donateLinkCount > view.user.shopUserExts.activeBill) {
+                        if (isNaN(view.donateLinkCount) || view.donateLinkCount <= 0 || view.donateLinkCount > view.user.shopUserExts.activeBill) {
                             errMsg += '请输入不大于激活的健康链的正整数数值<br/>'
                         }
                         if (errMsg != '') {
@@ -494,10 +515,44 @@
                             )
                         }
                     },
-                    clearErrMsg (opt) {
+                    selectChange (opt) {
                         view.errMsg = ''
+                        view.donateOpt = false
                         if (opt === 2 && view.operation1 === '4') {
                             window.location.href = 'user-bill-detail.jsp'
+                        }
+                    },
+                    toDonate () {
+                        view.donateOpt = true
+                        view.operation = 0
+                        view.operation1 = 0
+                    },
+                    donate () {
+                        var errMsg = ''
+                        if (isNaN(view.donateCount) || view.donateCount <= 0 || view.donateCount > view.user.shopUserExts.balance) {
+                            errMsg += '请输入不大于账户余额的正整数数值<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            var self = this
+                            $.post(
+                                ORDER_CREATE_URL,
+                                {
+                                    userId: view.userInfo.id,
+                                    price: -view.donateCount,
+                                    jtype: 8
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '捐赠余额成功'
+                                        self.getUser()
+                                    } else {
+                                        view.errMsg = data.msg
+                                    }
+                                }
+                            )
                         }
                     }
                 }
