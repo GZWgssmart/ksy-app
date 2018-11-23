@@ -64,106 +64,35 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
+                                                <tr v-for="item in order.shopTradeDetails">
                                                     <td
                                                             class="product-thumbnail">
-                                                        <a href="#"><img
-                                                                src="assets/img/cart/1.jpg"
+                                                        <a :href="'single-product.jsp?id=' + item.id"><img
+                                                                :src="item.proLogoImg"
                                                                 alt=""></a>
                                                     </td>
                                                     <td
                                                             class="product-name"><a
-                                                            href="#">Headphone</a></td>
+                                                            :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></td>
                                                     <td
                                                             class="product-price"><span
-                                                            class="amount">￥165.00</span></td>
+                                                            class="amount" v-text="'￥' + item.price"></span></td>
                                                     <td
                                                             class="product-quantity">
-                                                        <span class="amount">1</span>
+                                                        <span class="amount" v-text="item.count"></span>
                                                     </td>
                                                     <td
-                                                            class="product-subtotal">￥165.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                            class="product-thumbnail">
-                                                        <a href="#"><img
-                                                                src="assets/img/cart/2.jpg"
-                                                                alt=""></a>
-                                                    </td>
-                                                    <td
-                                                            class="product-name"><a
-                                                            href="#">Table lamp</a></td>
-                                                    <td
-                                                            class="product-price"><span
-                                                            class="amount">￥150.00</span></td>
-                                                    <td
-                                                            class="product-quantity">
-                                                        <span class="amount">1</span>
-                                                    </td>
-                                                    <td
-                                                            class="product-subtotal">￥150.00</td>
+                                                            class="product-subtotal" v-text="'￥' + (item.price * item.count)"></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
                                 </div>
                             </div>
                             <div class="row tax-coupon-div">
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="tax-coupon-all">
-                                        <div class="tax-coupon">
-                                            <ul role="tablist">
-                                                <li class="active">
-                                                    <a href="#tax" data-toggle="tab">收货信息</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tax-coupon-details tab-content">
-                                            <div id="tax"
-                                                 class="shipping-dec tab-pane
-                                                    active">
-                                                <div class="shipping-form">
-                                                    <div
-                                                            class="single-shipping-form">
-                                                        <label
-                                                                class="required
-                                                                get">
-                                                            收货人姓名：张三
-                                                        </label>
-                                                    </div>
-                                                    <div
-                                                            class="single-shipping-form">
-                                                        <label
-                                                                class="required
-                                                                get">
-                                                            收货人手机号：13888888888
-                                                        </label>
-                                                    </div>
-                                                    <div
-                                                            class="single-shipping-form">
-                                                        <label
-                                                                class="required
-                                                                get">
-                                                            收货人地址：广东省深圳市
-                                                        </label>
-                                                    </div>
-                                                    <div
-                                                            class="single-shipping-form">
-                                                        <label
-                                                                class="required
-                                                                get">
-                                                            邮编：100001
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="cart-total">
                                         <ul>
-                                            <li class="cart-black">总价<span>￥315.00</span></li>
+                                            <li class="cart-black">总价<span v-text="'￥' + order.price"></span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -198,16 +127,21 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="assets/js/yuan.js"></script>
         <script>
+            var orderId = <%=request.getParameter("id")%>
             var view = new Vue({
                 el: '#content',
                 data: {
-                    userInfo: {}
+                    userInfo: {},
+                    order: {
+                        shopTradeDetails: []
+                    }
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.isLogin()
+                    this.getOrder()
                 },
                 methods: {
                     isLogin () {
@@ -227,7 +161,22 @@
                             }
                         )
                     },
-
+                    getOrder () {
+                        $.post(
+                            ORDER_DETAIL_URL,
+                            {
+                                id: orderId
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.order = data.data
+                                    view.order.forEach(function (item, index) {
+                                        item.proLogoImg = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                    })
+                                }
+                            }
+                        )
+                    }
                 }
             });
         </script>
