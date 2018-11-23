@@ -74,15 +74,15 @@
                                                 <td><span v-text="user.shopUserExts.credits"></span></td>
                                             </tr>
                                             <tr>
-                                                <td>总健康值：</td>
+                                                <td>总健康链：</td>
                                                 <td><span v-text="user.shopUserExts.bill"></span></td>
                                             </tr>
                                             <tr>
-                                                <td>激活的健康值：</td>
+                                                <td>激活的健康链：</td>
                                                 <td><span v-text="user.shopUserExts.activeBill"></span></td>
                                             </tr>
                                             <tr>
-                                                <td>转让获得的健康值：</td>
+                                                <td>转让获得的健康链：</td>
                                                 <td><span v-text="user.shopUserExts.tradeBill"></span></td>
                                             </tr>
                                             <tr>
@@ -94,21 +94,21 @@
                                     <div class="col-md-6 col-sm-12 login-form">
                                         <div style="margin-bottom: 20px;">
                                             个人信息操作：
-                                            <select style="width: 120px;" v-model="operation" @change="clearErrMsg">
-                                                <option value="0">请选择</option>
+                                            <select style="width: 120px;" v-model="operation" @change="clearErrMsg(1)">
+                                                <option value="0">请选择操作</option>
                                                 <option value="1">修改个人资料</option>
                                                 <option value="2">修改登录密码</option>
                                                 <option value="3">重置登录密码</option>
                                                 <option value="4">修改交易密码</option>
                                                 <option value="5">重置交易密码</option>
                                             </select>&nbsp;
-                                            健康值操作：
-                                            <select style="width: 120px;" v-model="operation1" @change="clearErrMsg">
-                                                <option value="0">请选择</option>
-                                                <option value="1">健康值提现</option>
-                                                <option value="2">健康值转让</option>
-                                                <option value="3">健康值捐赠</option>
-                                                <option value="4">查看健康值变动明细</option>
+                                            健康链操作：
+                                            <select style="width: 120px;" v-model="operation1" @change="clearErrMsg(2)">
+                                                <option value="0">请选择操作</option>
+                                                <option value="1">健康链提现</option>
+                                                <option value="2">健康链转让</option>
+                                                <option value="3">健康链捐赠</option>
+                                                <option value="4">查看健康链变动明细</option>
                                             </select>
                                         </div>
                                         <form v-if="operation == '1'">
@@ -140,6 +140,22 @@
                                             手机号<input v-model="phone" placeholder="请输入手机号，以重置交易密码" type="text">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                             <button class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
+                                        </form>
+                                        <form v-if="operation1 == '1'">
+                                            健康链数量<input v-model="getLinkCount" placeholder="请输入提现的健康链数量，不能大于激活的健康链" type="text">
+                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                            <button class="login-btn" type="button" @click="getLink">确定提现</button>
+                                        </form>
+                                        <form v-if="operation1 == '2'">
+                                            手机号<input v-model="transLinkPhone" placeholder="请输入对方手机号" type="text">
+                                            健康链数量<input v-model="transLinkCount" placeholder="请输入转让的健康链数量，不能大于激活的健康链" type="text">
+                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                            <button class="login-btn" type="button" @click="transLink">确定转让</button>
+                                        </form>
+                                        <form v-if="operation1 == '3'">
+                                            健康链数量<input v-model="donateLinkCount" placeholder="请输入捐赠的健康链数量，不能大于激活的健康链" type="text">
+                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                            <button class="login-btn" type="button" @click="donateLink">确定捐赠</button>
                                         </form>
                                     </div>
                                 </div>
@@ -274,6 +290,10 @@
                     payPwd: '',
                     conPayPwd: '',
                     phone: '',
+                    getLinkCount: 0,
+                    transLinkPhone: '',
+                    transLinkCount: 0,
+                    donateLinkCount: 0,
                     errMsg: '',
                     income: [],
                     directTeam: [],
@@ -385,7 +405,7 @@
                                     if (data.success === true) {
                                         view.errMsg = '登录密码修改成功'
                                     } else {
-                                        view.errMsg = '登录密码修改失败，稍候再试'
+                                        view.errMsg = data.msg
                                     }
                                 }
                             )
@@ -409,7 +429,7 @@
                                     if (data.success === true) {
                                         view.errMsg = '重置登录密码成功，请关注手机短信'
                                     } else {
-                                        view.errMsg = '重置登录密码失败，稍候再试'
+                                        view.errMsg = data.msg
                                     }
                                 }
                             )
@@ -441,7 +461,7 @@
                                     if (data.success === true) {
                                         view.errMsg = '交易密码修改成功'
                                     } else {
-                                        view.errMsg = '交易密码修改失败，稍候再试'
+                                        view.errMsg = data.msg
                                     }
                                 }
                             )
@@ -465,14 +485,102 @@
                                     if (data.success === true) {
                                         view.errMsg = '重置交易密码成功，请关注手机短信'
                                     } else {
-                                        view.errMsg = '重置交易密码失败，稍候再试'
+                                        view.errMsg = data.msg
                                     }
                                 }
                             )
                         }
                     },
-                    clearErrMsg () {
+                    getLink () {
+                        var errMsg = ''
+                        if (view.getLinkCount <= 0 || view.getLinkCount > view.user.shopUserExts.activeBill) {
+                            errMsg += '请输入不大于激活的健康链的正整数数值<br/>'
+                        }
+                        if (errMsg != '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            var self = this
+                            $.post(
+                                SHOPBILL_TRAN,
+                                {
+                                    count: view.getLinkCount,
+                                    type: 1
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '提现成功'
+                                        self.getUser()
+                                    } else {
+                                        view.errMsg = data.msg
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    transLink () {
+                        var errMsg = ''
+                        if (!isPhone(view.transLinkPhone.trim())) {
+                            errMsg += '请输入正确的手机号<br/>'
+                        }
+                        if (view.transLinkCount <= 0 || view.transLinkCount > view.user.shopUserExts.activeBill) {
+                            errMsg += '请输入不大于激活的健康链的正整数数值<br/>'
+                        }
+                        if (errMsg != '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            var self = this
+                            $.post(
+                                SHOPBILL_TRAN,
+                                {
+                                    count: view.transLinkCount,
+                                    tradePhone: view.transLinkPhone,
+                                    type: 2
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '转让成功'
+                                        self.getUser()
+                                    } else {
+                                        view.errMsg = data.msg
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    donateLink () {
+                        var errMsg = ''
+                        if (view.donateLinkCount <= 0 || view.donateLinkCount > view.user.shopUserExts.activeBill) {
+                            errMsg += '请输入不大于激活的健康链的正整数数值<br/>'
+                        }
+                        if (errMsg != '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            var self = this
+                            $.post(
+                                SHOPBILL_TRAN,
+                                {
+                                    count: view.donateLinkCount,
+                                    type: 3
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '捐赠成功'
+                                        self.getUser()
+                                    } else {
+                                        view.errMsg = data.msg
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    clearErrMsg (opt) {
                         view.errMsg = ''
+                        if (opt === 2 && view.operation1 === '4') {
+                            console.log('show details')
+                        }
                     },
                     getIncome () {
                         $.post(
