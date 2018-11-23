@@ -66,7 +66,7 @@ var USER_LEVELS = {
     "v7": "公司股东"
 }
 
-var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠']
+var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠', '购买返点', '直推购买返点', '间推购买返点']
 
 function timestampToDatetime(value) {
     if (value === undefined || value === null || value === '') {

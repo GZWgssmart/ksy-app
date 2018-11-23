@@ -94,7 +94,7 @@
                                     <div class="col-md-6 col-sm-12 login-form">
                                         <div style="margin-bottom: 20px;">
                                             个人信息操作：
-                                            <select style="width: 120px;" v-model="operation">
+                                            <select style="width: 120px;" v-model="operation" @change="clearErrMsg">
                                                 <option value="0">请选择</option>
                                                 <option value="1">修改个人资料</option>
                                                 <option value="2">修改登录密码</option>
@@ -103,7 +103,7 @@
                                                 <option value="5">重置交易密码</option>
                                             </select>&nbsp;
                                             健康值操作：
-                                            <select style="width: 120px;" v-model="operation1">
+                                            <select style="width: 120px;" v-model="operation1" @change="clearErrMsg">
                                                 <option value="0">请选择</option>
                                                 <option value="1">健康值提现</option>
                                                 <option value="2">健康值转让</option>
@@ -118,22 +118,28 @@
                                             <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
                                         </form>
                                         <form v-if="operation == '2'">
-                                            姓名<input v-model="account" placeholder="请输入姓名" type="text">
-                                            <input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
+                                            原密码<input v-model="oldLoginPwd" placeholder="请输入原密码" type="password">
+                                            新密码<input v-model="loginPwd" placeholder="请输入新密码" type="password">
+                                            确认密码<input v-model="conLoginPwd" placeholder="请输入确认密码" type="password">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
+                                            <button class="login-btn" type="button" @click="updateLoginPwd">修改登录密码</button>
                                         </form>
                                         <form v-if="operation == '3'">
-                                            <input v-model="account" placeholder="请输入姓名" type="text">
-                                            <input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
+                                            手机号<input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
+                                            <button class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
                                         </form>
                                         <form v-if="operation == '4'">
-                                            姓名<input v-model="account" placeholder="请输入姓名" type="text">
-                                            地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
+                                            原密码(首次修改，不需要填写原密码)<input v-model="oldPayPwd" placeholder="请输入原密码" type="password">
+                                            新密码<input v-model="payPwd" placeholder="请输入新密码" type="password">
+                                            确认密码<input v-model="conPayPwd" placeholder="请输入确认密码" type="password">
                                             <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
+                                            <button class="login-btn" type="button" @click="updatePayPwd">修改交易密码</button>
+                                        </form>
+                                        <form v-if="operation == '5'">
+                                            手机号<input v-model="phone" placeholder="请输入手机号，以重置交易密码" type="text">
+                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                            <button class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
                                         </form>
                                     </div>
                                 </div>
@@ -261,6 +267,13 @@
                     operation1: '0',
                     account: '',
                     address: '',
+                    oldLoginPwd: '',
+                    loginPwd: '',
+                    conLoginPwd: '',
+                    oldPayPwd: '',
+                    payPwd: '',
+                    conPayPwd: '',
+                    phone: '',
                     errMsg: '',
                     income: [],
                     directTeam: [],
@@ -305,6 +318,7 @@
                                     view.user.userLevel = view.user.vipLevel + '-' + USER_LEVELS[view.user.vipLevel]
                                     view.account = view.user.account
                                     view.address = view.user.address
+                                    window.localStorage.setItem(USER_INFO, JSON.stringify(view.user))
                                 } else {
                                     window.location.href = "login.jsp?relogin=y"
                                 }
@@ -312,6 +326,7 @@
                         )
                     },
                     updateInfo () {
+                        var self = this
                         var errMsg = ''
                         if (view.account.trim() === '') {
                             errMsg += '请输入姓名<br/>'
@@ -332,7 +347,7 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        this.getUser()
+                                        self.getUser()
                                         view.errMsg = '更新成功'
                                     } else {
                                         view.errMsg = data.msg
@@ -340,6 +355,124 @@
                                 }
                             )
                         }
+                    },
+                    updateLoginPwd () {
+                        var errMsg = ''
+                        if (view.oldLoginPwd.trim() === '') {
+                            errMsg += '请输入旧密码<br/>'
+                        }
+                        if (view.loginPwd.trim() === '') {
+                            errMsg += '请输入新密码<br/>'
+                        }
+                        if (view.conLoginPwd.trim() === '') {
+                            errMsg += '请输入确认密码<br/>'
+                        }
+                        if (view.loginPwd.trim() !== view.conLoginPwd.trim()) {
+                            errMsg += '确认密码与新密码不一致<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            $.post(
+                                UPDATE_LOGIN_PWD_URL,
+                                {
+                                    userId: view.userInfo.id,
+                                    oldPwd: view.oldLoginPwd,
+                                    pwd: view.loginPwd
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '登录密码修改成功'
+                                    } else {
+                                        view.errMsg = '登录密码修改失败，稍候再试'
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    resetLoginPwd () {
+                        var errMsg = ''
+                        if (view.phone.trim() === '') {
+                            errMsg += '请输入手机号， 以重置密码<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            $.post(
+                                RESET_LOGIN_PWD_URL,
+                                {
+                                    phone: view.phone
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '重置登录密码成功，请关注手机短信'
+                                    } else {
+                                        view.errMsg = '重置登录密码失败，稍候再试'
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    updatePayPwd () {
+                        var errMsg = ''
+                        if (view.payPwd.trim() === '') {
+                            errMsg += '请输入新密码<br/>'
+                        }
+                        if (view.conPayPwd.trim() === '') {
+                            errMsg += '请输入确认密码<br/>'
+                        }
+                        if (view.payPwd.trim() !== view.conPayPwd.trim()) {
+                            errMsg += '确认密码与新密码不一致<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            $.post(
+                                UPDATE_PAY_PWD_URL,
+                                {
+                                    userId: view.userInfo.id,
+                                    oldPwd: view.oldPayPwd,
+                                    pwd: view.payPwd
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '交易密码修改成功'
+                                    } else {
+                                        view.errMsg = '交易密码修改失败，稍候再试'
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    resetPayPwd () {
+                        var errMsg = ''
+                        if (view.phone.trim() === '') {
+                            errMsg += '请输入手机号， 以重置密码<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            $.post(
+                                RESET_PAY_PWD_URL,
+                                {
+                                    phone: view.phone
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '重置交易密码成功，请关注手机短信'
+                                    } else {
+                                        view.errMsg = '重置交易密码失败，稍候再试'
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    clearErrMsg () {
+                        view.errMsg = ''
                     },
                     getIncome () {
                         $.post(
