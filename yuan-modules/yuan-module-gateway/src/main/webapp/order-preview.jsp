@@ -43,7 +43,7 @@
                             <div class="container">
                                 <div class="section-title text-center mb-50">
                                     <h2>
-                                        我的购物车
+                                        订单预览
                                         <i class="pe-7s-cart"></i>
                                     </h2>
                                 </div>
@@ -60,29 +60,22 @@
                                                             <th>商品单价</th>
                                                             <th>购买数量</th>
                                                             <th>总价</th>
-                                                            <th>删除</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr v-for="item in carts">
+                                                        <tr>
                                                             <td>
                                                                 <a href="javascript:;"><img
-                                                                        :src="item.proLogImg"
+                                                                        :src="product.proLogoImg"
                                                                         alt=""></a>
                                                             </td>
                                                             <td><a
-                                                                    href="javascript:;" v-text="item.proName"></a></td>
-                                                            <td><span v-text="'￥' + item.price"></span></td>
+                                                                    href="javascript:;" v-text="product.proName"></a></td>
+                                                            <td><span v-text="'￥' + product.price1"></span></td>
                                                             <td>
-                                                                <input v-model="item.count"
-                                                                    type="number">
+                                                                <span v-text="quantity"></span>
                                                             </td>
-                                                            <td v-text="'￥' + (item.price * item.count)"></td>
-                                                            <td
-                                                                class="product-remove"><a
-                                                                    href="javascript:;" @click="removeCart(item.proId)"><i
-                                                                        class="fa
-                                                                        fa-times"></i></a></td>
+                                                            <td v-text="'￥' + (product.price1 * quantity)"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -94,7 +87,7 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="cart-total">
                                             <ul>
-                                                <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
+                                                <li class="cart-black">总价<span v-text="'￥' + (product.price1 * quantity)"></span></li>
                                             </ul>
                                             <div class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
@@ -132,25 +125,21 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="assets/js/yuan.js"></script>
         <script>
+            var productId = <%=request.getParameter("id")%>
+            var quantity = <%=request.getParameter("quantity")%>
             var view = new Vue({
                 el: '#content',
                 data: {
                     userInfo: {},
-                    carts:[
-                        {
-                            proName: 'tea',
-                            price: 100,
-                            count: 10
-                        }
-                    ],
-                    totalPrice: 0
+                    product: {},
+                    quantity: quantity
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.isLogin()
-                    this.showCarts()
+                    this.getProduct()
                 },
                 methods: {
                     isLogin () {
@@ -170,50 +159,22 @@
                             }
                         )
                     },
-                    showCarts () {
+                    getProduct () {
                         $.post(
-                            CART_LIST_URL,
-                            function (data) {
-                                if (data.success === true) {
-                                    // view.carts = data.data
-                                    view.carts.forEach(function (item, index) {
-                                        view.totalPrice += item.count * item.price
-                                    })
-                                }
-                            }
-                        )
-                    },
-                    removeCart(productId) {
-                        console.log(productId)
-                        $.post(
-                            CART_REMOVE_URL,
+                            PRODUCT_DETAIL_URL,
                             {
-                                proId: productId
+                                id: productId
                             },
                             function (data) {
-                                if (data.success === false) {
-                                    for (var i = 0; i < view.carts.length; i++) {
-                                        if (view.carts[i].proId === productId) {
-                                            view.carts.splice(i, 1)
-                                            break
-                                        }
-                                    }
+                                if (data.success === true) {
+                                    view.product = data.data
+                                    view.product.proLogoImg = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
                                 }
                             }
                         )
                     }
-                },
-                watch: {
-                    carts: {
-                        handler(newValue, oldValue) {
-                            view.totalPrice = 0
-                            newValue.forEach(function (item, index) {
-                                view.totalPrice += item.count * item.price
-                            })
-                        },
-                        deep: true
-                    }
-                },
+                }
+
             });
         </script>
 		    <script src="assets/js/main3.js"></script>

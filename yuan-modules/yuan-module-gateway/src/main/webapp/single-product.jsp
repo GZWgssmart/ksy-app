@@ -119,26 +119,26 @@
                                         </div>
                                         <div class="single-cart-color for-pro-border">
                                             <p>库存 : <span v-text="product.proCount"></span></p>
-                                            <div class="model">
-                                                <p>其他 : <span>nms005</span></p>
-                                            </div>
+                                            <p>赠送积分 : <span v-text="product.incomeCredits"></span></p>
+                                            <p>最高抵扣积分 : <span v-text="product.consumeCredits"></span></p>
                                             <div class="pro-quality">
                                                 <p>购买数量:</p>
                                                 <input type="number" v-model="quantity">
                                             </div>
-                                            <div v-if="product.type == '2'" class="single-pro-cart">
+                                            <div class="single-pro-cart"></div>
+                                            <div v-if="product.type == '2'" class="single-pro-cart" style="display: inline;">
                                                 <a href="javascript:;" @click="addCart" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
                                                     添加到购物车
                                                 </a>
-                                                <span v-text="cartMsg"></span>
                                             </div>
-                                            <div v-else class="single-pro-cart">
-                                                <a href="javascript:;" @click="addCart" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
+                                            <div class="single-pro-cart" style="display: inline;">
+                                                <a href="javascript:;" @click="toBuy(product.id)" title="立即购买">
+                                                    <i class="pe-7s-shopbag"></i>
                                                     立即购买
                                                 </a>
                                             </div>
+                                            <div style="margin-top: 18px;"><span v-text="cartMsg" style="color: red;"></span></div>
                                         </div>
 
                                     </div>
@@ -296,6 +296,9 @@
                                 }
                             }
                         )
+                    },
+                    toBuy (id) {
+                        window.location.href = 'order-preview.jsp?id=' + id + '&quantity=' + view.quantity
                     }
                 }
             });

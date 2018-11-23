@@ -49,8 +49,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <table class="table table-striped table-hover">
-                                        <caption>直推团队</caption>
+                                    <h4>直推团队</h4>
+                                    <div class="table-content table-responsive">
+                                        <table>
                                         <thead>
                                         <tr>
                                             <th>姓名</th>
@@ -68,10 +69,12 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
-                                    <table class="table table-striped table-hover">
-                                        <caption>间推团队</caption>
+                                    <h4>间推团队</h4>
+                                    <div class="table-content table-responsive">
+                                        <table>
                                         <thead>
                                         <tr>
                                             <th>姓名</th>
@@ -89,6 +92,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

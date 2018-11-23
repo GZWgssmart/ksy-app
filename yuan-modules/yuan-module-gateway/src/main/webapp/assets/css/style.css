@@ -2212,7 +2212,7 @@ h1.cart-heading {
 .table-content table td {
     border-top: medium none;
     font-size: 13px;
-    padding: 20px;
+    padding: 15px;
     vertical-align: middle;
     text-align: left;
 }
@@ -2230,6 +2230,15 @@ h1.cart-heading {
     color: #000;
     font-size: 15px;
     width: 120px;
+}
+
+.table-content {
+    margin-bottom: 20px;
+}
+
+.table-content img {
+    max-width: 100px;
+    max-height: 100px;
 }
 .table-content table td.product-name a {
     color: #000;

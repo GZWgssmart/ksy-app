@@ -49,30 +49,32 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <table class="table table-hover table-striped">
+                                    <div class="table-content table-responsive">
+                                        <table>
                                                 <thead>
                                                     <tr>
-                                                        <th class="product-price">订单编号</th>
-                                                        <th class="product-price">订单类型</th>
-                                                        <th class="product-name">下单时间</th>
-                                                        <th class="product-price">总价</th>
-                                                        <th class="product-price">积分</th>
-                                                        <th class="product-price">订单状态</th>
-                                                        <th class="product-name">操作</th>
+                                                        <th>订单编号</th>
+                                                        <th>订单类型</th>
+                                                        <th>下单时间</th>
+                                                        <th>总价</th>
+                                                        <th>积分</th>
+                                                        <th>订单状态</th>
+                                                        <th>操作</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr v-for="item in orders">
-                                                        <td class="product-name"><span v-text="item.tradeNo"></span></td>
-                                                        <td class="product-name"><span v-text="item.jtypeName"></span></td>
-                                                        <td class="product-price"><span class="amount" v-text="item.createDate"></span></td>
-                                                        <td class="product-subtotal"><span v-text="'￥' + item.price"></span></td>
-                                                        <td class="product-subtotal"><span v-text="item.credits"></span></td>
-                                                        <td class="product-subtotal"><span v-text="item.statusName"></span></td>
-                                                        <td class="product-name"><a :href="'order-detail.jsp?id=' + item.id">查看详情</a></td>
+                                                        <td><span v-text="item.tradeNo"></span></td>
+                                                        <td><span v-text="item.jtypeName"></span></td>
+                                                        <td><span v-text="item.createDate"></span></td>
+                                                        <td><span v-text="'￥' + item.price"></span></td>
+                                                        <td><span v-text="item.credits"></span></td>
+                                                        <td><span v-text="item.statusName"></span></td>
+                                                        <td><a :href="'order-detail.jsp?id=' + item.id">查看详情</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                    </div>
                                 </div>
                                 <div class="page-pagination text-center">
                                     <ul>

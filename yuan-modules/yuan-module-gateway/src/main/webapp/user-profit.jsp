@@ -49,7 +49,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-striped table-hover">
+                                    <div class="table-content table-responsive">
+                                        <table>
                                         <thead>
                                         <tr>
                                             <th>收益类别</th>
@@ -65,6 +66,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

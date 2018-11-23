@@ -48,44 +48,35 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12
                                         col-xs-12">
-                                            <table class="table table-hover table-striped">
+                                    <div class="table-content table-responsive">
+                                        <table>
                                                 <thead>
                                                 <tr>
-                                                    <th
-                                                            class="product-price">商品图片</th>
-                                                    <th
-                                                            class="product-name">商品名称</th>
-                                                    <th
-                                                            class="product-price">商品单价</th>
-                                                    <th
-                                                            class="product-quantity">购买数量</th>
-                                                    <th
-                                                            class="product-subtotal">总价</th>
+                                                    <th>商品图片</th>
+                                                    <th>商品名称</th>
+                                                    <th>商品单价</th>
+                                                    <th>购买数量</th>
+                                                    <th>总价</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr v-for="item in order.shopTradeDetails">
-                                                    <td
-                                                            class="product-thumbnail">
+                                                    <td>
                                                         <a :href="'single-product.jsp?id=' + item.id"><img
                                                                 :src="item.proLogoImg"
                                                                 alt=""></a>
                                                     </td>
-                                                    <td
-                                                            class="product-name"><a
+                                                    <td><a
                                                             :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></td>
-                                                    <td
-                                                            class="product-price"><span
-                                                            class="amount" v-text="'￥' + item.price"></span></td>
-                                                    <td
-                                                            class="product-quantity">
-                                                        <span class="amount" v-text="item.count"></span>
+                                                    <td><span v-text="'￥' + item.price"></span></td>
+                                                    <td>
+                                                        <span v-text="item.count"></span>
                                                     </td>
-                                                    <td
-                                                            class="product-subtotal" v-text="'￥' + (item.price * item.count)"></td>
+                                                    <td v-text="'￥' + (item.price * item.count)"></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row tax-coupon-div">

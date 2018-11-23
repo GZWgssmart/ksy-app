@@ -49,7 +49,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                    <table class="table table-striped table-hover">
+                                    <div class="table-content table-responsive">
+                                        <table>
                                         <tr>
                                             <td>姓名：</td>
                                             <td><span v-text="user.account"></span></td>
@@ -91,6 +92,7 @@
                                             <td><span v-text="user.refPhone"></span></td>
                                         </tr>
                                     </table>
+                                    </div>
                                     <div>
                                         <a href="user-bill-detail.jsp">查看健康链变动明细</a>
                                     </div>

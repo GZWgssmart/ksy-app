@@ -49,7 +49,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-striped table-hover">
+                                    <div class="table-content table-responsive">
+                                        <table>
                                         <thead>
                                         <tr>
                                             <th>交易类型</th>
@@ -69,6 +70,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    </div>
                                     <div class="page-pagination text-center">
                                         <ul>
                                             <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
