@@ -104,7 +104,7 @@ var ORDER_TYPES = {
 var ORDER_STATUS = {
     '1': '待发货',
     '2': '已发货',
-    '3': '确认收货'
+    '3': '已确认收货'
 }
 
 function timestampToDatetime(value) {
