@@ -4,7 +4,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>康生缘-个人中心</title>
+        <title>康生缘-个人收益明细</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -43,7 +43,7 @@
                         <div class="container">
                             <div id="profit" class="section-title text-center mb-50">
                                 <h2>
-                                    我的收益
+                                    <%=request.getParameter("typeName")%>明细
                                     <i class="pe-7s-gift"></i>
                                 </h2>
                             </div>
@@ -52,19 +52,32 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                         <tr>
-                                            <th>收益类别</th>
-                                            <th>收益金额</th>
-                                            <th>操作</th>
+                                            <th>交易类型</th>
+                                            <th>健康链数量</th>
+                                            <th>对方手机号</th>
+                                            <th>交易状态</th>
+                                            <th>交易时间</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr v-for="item in income">
+                                        <tr v-for="item in profits">
                                             <td v-text="item.typeName"></td>
-                                            <td v-text="item.income"></td>
-                                            <td><a :href="'user-profit-detail.jsp?typeName=' + item.typeName + '&type=' + item.type">查看明细</a></td>
+                                            <td v-text="item.count"></td>
+                                            <td v-text="item.tradePhone"></td>
+                                            <td v-text="item.tradeStatusName"></td>
+                                            <td v-text="item.createDate"></td>
                                         </tr>
                                         </tbody>
                                     </table>
+                                    <div class="page-pagination text-center">
+                                        <ul>
+                                            <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
+                                            <li v-for="page in pageNumbers">
+                                                <a href="javascript:;" :class="currentPage == page ? 'active' : ''" @click="goPage(page)" v-text="page"></a>
+                                            </li>
+                                            <li><a href="javascript:;" @click="nextPage"><i class="fa fa-angle-double-right"></i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -97,18 +110,22 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="assets/js/yuan.js"></script>
         <script>
+            var type = <%=request.getParameter("type")%>
             var view = new Vue({
                 el: '#content',
                 data: {
                     userInfo: {},
-                    income: []
+                    profits: [],
+                    totalPage: 0,
+                    currentPage: 1,
+                    pageNumbers: []
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.isLogin()
-                    this.getIncome()
+                    this.showProfits(true, 1)
                 },
                 methods: {
                     isLogin () {
@@ -128,19 +145,74 @@
                             }
                         )
                     },
-                    getIncome () {
+                    showProfits (init, pageNo) {
+                        var self = this
                         $.post(
-                            USER_INCOME_URL,
+                            ORDER_URL,
                             {
-                                userId: this.userInfo.id
+                                userId: this.userInfo.id,
+                                jtype: type,
+                                pageSize: 15,
+                                currentPage: pageNo
                             },
                             function (data) {
-                                view.income = data.data
-                                view.income.forEach(function (item, index) {
-                                    item.typeName = INCOME[item.type - 1]
-                                })
+                                if (data.success === true) {
+                                    view.profits = data.data.list
+                                    view.totalPage = data.data.totalPage
+                                    if (view.profits.length > 0) {
+                                        view.profits.forEach(function(item, index) {
+                                            item.createDate = timestampToDatetime(item.createDate)
+                                            item.typeName = BILL_TYPES[item.type - 1]
+                                            item.tradeStatusName = BILL_STATUS[item.tradeStatus - 1]
+                                        })
+                                    }
+                                    if (init) {
+                                        self.initPageNumbers()
+                                    }
+                                }
                             }
                         )
+                    },
+                    initPageNumbers () {
+                        if (view.totalPage <= 5) {
+                            for (var i = 1; i <= view.totalPage; i++) {
+                                view.pageNumbers.push(i)
+                            }
+                        } else {
+                            view.pageNumbers = [1, 2, 3, 4, 5]
+                        }
+                    },
+                    getPageNumbers () {
+                        if (view.totalPage <= 5) {
+
+                        } else {
+                            if (view.currentPage >= 3 && (view.currentPage + 2) <= view.totalPage) {
+                                view.pageNumbers = [view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1, view.currentPage + 2]
+                            } else if (view.currentPage + 1 === view.totalPage) {
+                                view.pageNumbers = [view.currentPage - 3, view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1]
+                            }
+                        }
+                    },
+                    previousPage () {
+                        if (view.currentPage === 1) {
+                            return
+                        }
+                        view.currentPage -= 1
+                        this.getPageNumbers()
+                        this.showProfits(false, view.currentPage)
+                    },
+                    nextPage () {
+                        if (view.currentPage === view.totalPage) {
+                            return
+                        }
+                        view.currentPage += 1
+                        this.getPageNumbers()
+                        this.showProfits(false, view.currentPage)
+                    },
+                    goPage (pageNo) {
+                        view.currentPage = pageNo
+                        this.getPageNumbers()
+                        this.showProfits(false, view.currentPage)
                     }
                 }
             });

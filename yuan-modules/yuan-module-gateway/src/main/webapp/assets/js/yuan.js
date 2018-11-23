@@ -58,7 +58,7 @@ var LOGOUT_URL = BASE_URL + '/yuan-module-interface/api/shopuser/login_out';
 
 var USER_LEVELS = {
     "v1": "普通会员",
-    "v2": "个人vip",
+    "v2": "个人VIP",
     "v3": "初级代理",
     "v4": "高级代理",
     "v5": "核心代理",

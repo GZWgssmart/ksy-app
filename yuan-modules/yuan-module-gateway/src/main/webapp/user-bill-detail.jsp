@@ -114,12 +114,7 @@
                 el: '#content',
                 data: {
                     userInfo: {},
-                    bills: [
-                        {
-                            typeName: 'aa',
-                            income: 100
-                        }
-                    ],
+                    bills: [],
                     totalPage: 0,
                     currentPage: 1,
                     pageNumbers: []
