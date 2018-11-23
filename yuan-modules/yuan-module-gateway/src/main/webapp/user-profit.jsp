@@ -41,30 +41,30 @@
                     <!-- shopping-cart-area start -->
                     <div class="cart-area ptb-100">
                         <div class="container">
-                            <div id="profit" class="section-title mb-50">
+                            <div id="profit" class="section-title text-center mb-50">
                                 <h2>
                                     我的收益
                                     <i class="pe-7s-gift"></i>
                                 </h2>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th>收益类别</th>
-                                                <th>收益金额</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in income">
-                                                <td v-text="item.typeName"></td>
-                                                <td v-text="item.income"></td>
-                                                <td><a href="#">查看明细</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>收益类别</th>
+                                            <th>收益金额</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="item in income">
+                                            <td v-text="item.typeName"></td>
+                                            <td v-text="item.income"></td>
+                                            <td><a href="#">查看明细</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

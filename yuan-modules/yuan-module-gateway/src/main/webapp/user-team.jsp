@@ -41,54 +41,54 @@
                     <!-- shopping-cart-area start -->
                     <div class="cart-area ptb-100">
                         <div class="container">
-                            <div id="team" class="section-title mb-50">
+                            <div id="team" class="section-title text-center mb-50">
                                 <h2>
                                     我的团队
                                     <i class="pe-7s-users"></i>
                                 </h2>
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <table class="table table-striped table-hover">
-                                            <caption>直推团队</caption>
-                                            <thead>
-                                            <tr>
-                                                <th>姓名</th>
-                                                <th>手机号</th>
-                                                <th>等级</th>
-                                                <th>昵称</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in directTeam">
-                                                <td v-text="item.account"></td>
-                                                <td v-text="item.phone"></td>
-                                                <td v-text="item.userLevel"></td>
-                                                <td v-text="item.nickname"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <table class="table table-striped table-hover">
-                                            <caption>间推团队</caption>
-                                            <thead>
-                                            <tr>
-                                                <th>姓名</th>
-                                                <th>手机号</th>
-                                                <th>等级</th>
-                                                <th>昵称</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in otherTeam">
-                                                <td v-text="item.account"></td>
-                                                <td v-text="item.phone"></td>
-                                                <td v-text="item.userLevel"></td>
-                                                <td v-text="item.nickname"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <table class="table table-striped table-hover">
+                                        <caption>直推团队</caption>
+                                        <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>手机号</th>
+                                            <th>等级</th>
+                                            <th>昵称</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="item in directTeam">
+                                            <td v-text="item.account"></td>
+                                            <td v-text="item.phone"></td>
+                                            <td v-text="item.userLevel"></td>
+                                            <td v-text="item.nickname"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <table class="table table-striped table-hover">
+                                        <caption>间推团队</caption>
+                                        <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>手机号</th>
+                                            <th>等级</th>
+                                            <th>昵称</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="item in otherTeam">
+                                            <td v-text="item.account"></td>
+                                            <td v-text="item.phone"></td>
+                                            <td v-text="item.userLevel"></td>
+                                            <td v-text="item.nickname"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -41,126 +41,126 @@
                     <!-- shopping-cart-area start -->
                     <div class="cart-area ptb-100">
                         <div class="container">
-                            <div id="info" class="section-title mb-50">
+                            <div id="info" class="section-title text-center mb-50">
                                 <h2>
                                     我的资料
                                     <i class="pe-7s-user"></i>
                                 </h2>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <table class="table table-striped table-hover">
-                                            <tr>
-                                                <td>姓名：</td>
-                                                <td><span v-text="user.account"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>手机号：</td>
-                                                <td><span v-text="user.phone"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>地址：</td>
-                                                <td><span v-text="user.address"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>等级：</td>
-                                                <td><span v-text="user.userLevel"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>账户余额：</td>
-                                                <td><span v-text="user.shopUserExts.balance"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>账户积分：</td>
-                                                <td><span v-text="user.shopUserExts.credits"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>总健康链：</td>
-                                                <td><span v-text="user.shopUserExts.bill"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>激活的健康链：</td>
-                                                <td><span v-text="user.shopUserExts.activeBill"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>转让获得的健康链：</td>
-                                                <td><span v-text="user.shopUserExts.tradeBill"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>推荐人手机号：</td>
-                                                <td><span v-text="user.refPhone"></span></td>
-                                            </tr>
-                                        </table>
-                                        <div>
-                                            <a href="user-bill-detail.jsp">查看健康链变动明细</a>
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <table class="table table-striped table-hover">
+                                        <tr>
+                                            <td>姓名：</td>
+                                            <td><span v-text="user.account"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>手机号：</td>
+                                            <td><span v-text="user.phone"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>地址：</td>
+                                            <td><span v-text="user.address"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>等级：</td>
+                                            <td><span v-text="user.userLevel"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>账户余额：</td>
+                                            <td><span v-text="user.shopUserExts.balance"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>账户积分：</td>
+                                            <td><span v-text="user.shopUserExts.credits"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>总健康链：</td>
+                                            <td><span v-text="user.shopUserExts.bill"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>激活的健康链：</td>
+                                            <td><span v-text="user.shopUserExts.activeBill"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>转让获得的健康链：</td>
+                                            <td><span v-text="user.shopUserExts.tradeBill"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>推荐人手机号：</td>
+                                            <td><span v-text="user.refPhone"></span></td>
+                                        </tr>
+                                    </table>
+                                    <div>
+                                        <a href="user-bill-detail.jsp">查看健康链变动明细</a>
                                     </div>
-                                    <div class="col-md-6 col-sm-12 login-form">
-                                        <div style="margin-bottom: 20px;">
-                                            个人信息操作：
-                                            <select style="width: 120px;" v-model="operation" @change="clearErrMsg(1)">
-                                                <option value="0">请选择操作</option>
-                                                <option value="1">修改个人资料</option>
-                                                <option value="2">修改登录密码</option>
-                                                <option value="3">重置登录密码</option>
-                                                <option value="4">修改交易密码</option>
-                                                <option value="5">重置交易密码</option>
-                                            </select>&nbsp;
-                                            健康链操作：
-                                            <select style="width: 120px;" v-model="operation1" @change="clearErrMsg(2)">
-                                                <option value="0">请选择操作</option>
-                                                <option value="1">健康链提现</option>
-                                                <option value="2">健康链转让</option>
-                                                <option value="3">健康链捐赠</option>
-                                                <option value="4">查看健康链变动明细</option>
-                                            </select>
-                                        </div>
-                                        <form v-if="operation == '1'">
-                                            姓名<input v-model="account" placeholder="请输入姓名" type="text">
-                                            地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
-                                        </form>
-                                        <form v-if="operation == '2'">
-                                            原密码<input v-model="oldLoginPwd" placeholder="请输入原密码" type="password">
-                                            新密码<input v-model="loginPwd" placeholder="请输入新密码" type="password">
-                                            确认密码<input v-model="conLoginPwd" placeholder="请输入确认密码" type="password">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="updateLoginPwd">修改登录密码</button>
-                                        </form>
-                                        <form v-if="operation == '3'">
-                                            手机号<input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
-                                        </form>
-                                        <form v-if="operation == '4'">
-                                            原密码(首次修改，不需要填写原密码)<input v-model="oldPayPwd" placeholder="请输入原密码" type="password">
-                                            新密码<input v-model="payPwd" placeholder="请输入新密码" type="password">
-                                            确认密码<input v-model="conPayPwd" placeholder="请输入确认密码" type="password">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="updatePayPwd">修改交易密码</button>
-                                        </form>
-                                        <form v-if="operation == '5'">
-                                            手机号<input v-model="phone" placeholder="请输入手机号，以重置交易密码" type="text">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
-                                        </form>
-                                        <form v-if="operation1 == '1'">
-                                            健康链数量<input v-model="getLinkCount" placeholder="请输入提现的健康链数量，不能大于激活的健康链" type="text">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="getLink">确定提现</button>
-                                        </form>
-                                        <form v-if="operation1 == '2'">
-                                            手机号<input v-model="transLinkPhone" placeholder="请输入对方手机号" type="text">
-                                            健康链数量<input v-model="transLinkCount" placeholder="请输入转让的健康链数量，不能大于激活的健康链" type="text">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="transLink">确定转让</button>
-                                        </form>
-                                        <form v-if="operation1 == '3'">
-                                            健康链数量<input v-model="donateLinkCount" placeholder="请输入捐赠的健康链数量，不能大于激活的健康链" type="text">
-                                            <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                            <button class="login-btn" type="button" @click="donateLink">确定捐赠</button>
-                                        </form>
+                                </div>
+                                <div class="col-md-6 col-sm-12 login-form">
+                                    <div style="margin-bottom: 20px;">
+                                        个人信息操作：
+                                        <select style="width: 120px;" v-model="operation" @change="clearErrMsg(1)">
+                                            <option value="0">请选择操作</option>
+                                            <option value="1">修改个人资料</option>
+                                            <option value="2">修改登录密码</option>
+                                            <option value="3">重置登录密码</option>
+                                            <option value="4">修改交易密码</option>
+                                            <option value="5">重置交易密码</option>
+                                        </select>&nbsp;
+                                        健康链操作：
+                                        <select style="width: 120px;" v-model="operation1" @change="clearErrMsg(2)">
+                                            <option value="0">请选择操作</option>
+                                            <option value="1">健康链提现</option>
+                                            <option value="2">健康链转让</option>
+                                            <option value="3">健康链捐赠</option>
+                                            <option value="4">查看健康链变动明细</option>
+                                        </select>
                                     </div>
+                                    <form v-if="operation == '1'">
+                                        姓名<input v-model="account" placeholder="请输入姓名" type="text">
+                                        地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
+                                    </form>
+                                    <form v-if="operation == '2'">
+                                        原密码<input v-model="oldLoginPwd" placeholder="请输入原密码" type="password">
+                                        新密码<input v-model="loginPwd" placeholder="请输入新密码" type="password">
+                                        确认密码<input v-model="conLoginPwd" placeholder="请输入确认密码" type="password">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="updateLoginPwd">修改登录密码</button>
+                                    </form>
+                                    <form v-if="operation == '3'">
+                                        手机号<input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
+                                    </form>
+                                    <form v-if="operation == '4'">
+                                        原密码(首次修改，不需要填写原密码)<input v-model="oldPayPwd" placeholder="请输入原密码" type="password">
+                                        新密码<input v-model="payPwd" placeholder="请输入新密码" type="password">
+                                        确认密码<input v-model="conPayPwd" placeholder="请输入确认密码" type="password">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="updatePayPwd">修改交易密码</button>
+                                    </form>
+                                    <form v-if="operation == '5'">
+                                        手机号<input v-model="phone" placeholder="请输入手机号，以重置交易密码" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
+                                    </form>
+                                    <form v-if="operation1 == '1'">
+                                        健康链数量<input v-model="getLinkCount" placeholder="请输入提现的健康链数量，不能大于激活的健康链" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="getLink">确定提现</button>
+                                    </form>
+                                    <form v-if="operation1 == '2'">
+                                        手机号<input v-model="transLinkPhone" placeholder="请输入对方手机号" type="text">
+                                        健康链数量<input v-model="transLinkCount" placeholder="请输入转让的健康链数量，不能大于激活的健康链" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="transLink">确定转让</button>
+                                    </form>
+                                    <form v-if="operation1 == '3'">
+                                        健康链数量<input v-model="donateLinkCount" placeholder="请输入捐赠的健康链数量，不能大于激活的健康链" type="text">
+                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
+                                        <button class="login-btn" type="button" @click="donateLink">确定捐赠</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

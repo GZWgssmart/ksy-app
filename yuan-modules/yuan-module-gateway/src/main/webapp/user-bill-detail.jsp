@@ -41,42 +41,42 @@
                     <!-- shopping-cart-area start -->
                     <div class="cart-area ptb-100">
                         <div class="container">
-                            <div id="profit" class="section-title mb-50">
+                            <div id="profit" class="section-title text-center mb-50">
                                 <h2>
                                     健康链变动明细
                                     <i class="pe-7s-gift"></i>
                                 </h2>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th>交易类型</th>
-                                                <th>健康链数量</th>
-                                                <th>对方手机号</th>
-                                                <th>交易状态</th>
-                                                <th>交易时间</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in bills">
-                                                <td v-text="item.typeName"></td>
-                                                <td v-text="item.count"></td>
-                                                <td v-text="item.tradePhone"></td>
-                                                <td v-text="item.tradeStatusName"></td>
-                                                <td v-text="item.createDate"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="page-pagination text-center">
-                                            <ul>
-                                                <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
-                                                <li v-for="page in pageNumbers">
-                                                    <a href="javascript:;" :class="currentPage == page ? 'active' : ''" @click="goPage(page)" v-text="page"></a>
-                                                </li>
-                                                <li><a href="javascript:;" @click="nextPage"><i class="fa fa-angle-double-right"></i></a></li>
-                                            </ul>
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>交易类型</th>
+                                            <th>健康链数量</th>
+                                            <th>对方手机号</th>
+                                            <th>交易状态</th>
+                                            <th>交易时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="item in bills">
+                                            <td v-text="item.typeName"></td>
+                                            <td v-text="item.count"></td>
+                                            <td v-text="item.tradePhone"></td>
+                                            <td v-text="item.tradeStatusName"></td>
+                                            <td v-text="item.createDate"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="page-pagination text-center">
+                                        <ul>
+                                            <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
+                                            <li v-for="page in pageNumbers">
+                                                <a href="javascript:;" :class="currentPage == page ? 'active' : ''" @click="goPage(page)" v-text="page"></a>
+                                            </li>
+                                            <li><a href="javascript:;" @click="nextPage"><i class="fa fa-angle-double-right"></i></a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
