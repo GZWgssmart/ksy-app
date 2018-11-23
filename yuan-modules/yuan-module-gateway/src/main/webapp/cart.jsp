@@ -51,9 +51,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12
                                         col-xs-12">
                                         <form action="#">
-                                            <div class="table-content
-                                                table-responsive">
-                                                <table>
+                                                <table class="table table-striped table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th
@@ -99,7 +97,6 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>

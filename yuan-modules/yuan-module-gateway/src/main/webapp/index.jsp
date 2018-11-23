@@ -60,7 +60,7 @@
                 <div class="portfolio-area pt-100 pb-70">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <h2>大礼包<i class="fa fa-shopping-cart"></i></h2>
+                            <h2>会员大礼包<i class="fa fa-shopping-cart"></i></h2>
                         </div>		
                         <div class="row portfolio-style-2">
                             <div class="grid">
@@ -75,12 +75,6 @@
                                             </div>
                                             <div class="price-up-down">
                                                 <span class="sale-new">sale</span>
-                                            </div>
-                                            <div class="button-group">
-                                                <a href="#" title="添加到购物车">
-                                                    <i class="pe-7s-cart"></i>
-                                                    添加到购物车
-                                                </a>
                                             </div>
                                         </div>
                                         <div class="shop-text-all">

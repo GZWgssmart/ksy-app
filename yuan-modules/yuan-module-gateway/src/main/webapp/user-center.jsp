@@ -59,7 +59,7 @@
                                             <td><span v-text="user.phone"></span></td>
                                         </tr>
                                         <tr>
-                                            <td>地址：</td>
+                                            <td>收货地址：</td>
                                             <td><span v-text="user.address"></span></td>
                                         </tr>
                                         <tr>
@@ -117,7 +117,7 @@
                                     </div>
                                     <form v-if="operation == '1'">
                                         姓名<input v-model="account" placeholder="请输入姓名" type="text">
-                                        地址<input v-model="address" placeholder="请输入详细地址，用于收货" type="text">
+                                        收货地址<input v-model="address" placeholder="请输入详细收货地址" type="text">
                                         <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                         <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
                                     </form>

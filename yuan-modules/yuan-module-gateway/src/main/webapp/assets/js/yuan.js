@@ -18,6 +18,8 @@ var SHOPBILL_TRAN = BASE_URL + '/yuan-module-interface/api/shopbilltrade/save';
 
 var ORDER_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/list';
 
+var ORDER_DETAIL_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/getDetail';
+
 var ORDER_CREATE_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/save';
 
 var ORDER_CONFIRM_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/upd/status';
@@ -66,11 +68,44 @@ var USER_LEVELS = {
     "v7": "公司股东"
 }
 
-var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠', '购买返点', '直推购买返点', '间推购买返点']
+var INCOME = {
+    '1': '会员大礼包收益',
+    '2': '复购产品收益',
+    '3': '直推收益',
+    '4': '间推收益',
+    '5': '管理奖',
+    '6': '股份收益',
+    '7': '平台分红',
+    '8': '捐赠',
+    '9': '购买返点',
+    '10': '直推购买返点',
+    '11': '间推购买返点',
+    '12': '提现健康值',
+    '13': '项目合作收益'
+}
 
-var BILL_TYPES = ['提现', '转让', '捐赠']
+var BILL_TYPES = {
+    '1': '提现',
+    '2': '转让',
+    '3': '捐赠'
+}
 
-var BILL_STATUS = ['待审', '完成']
+var BILL_STATUS = {
+    '1': '待审',
+    '2': '完成'
+}
+
+var ORDER_TYPES = {
+    '1': '购买会员大礼包',
+    '2': '复购产品',
+    '13': '项目合作'
+}
+
+var ORDER_STATUS = {
+    '1': '待发货',
+    '2': '已发货',
+    '3': '确认收货'
+}
 
 function timestampToDatetime(value) {
     if (value === undefined || value === null || value === '') {

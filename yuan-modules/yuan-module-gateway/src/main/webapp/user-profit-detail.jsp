@@ -110,7 +110,7 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="assets/js/yuan.js"></script>
         <script>
-            var type = <%=request.getParameter("type")%>
+            var type = '<%=request.getParameter("type")%>'
             var view = new Vue({
                 el: '#content',
                 data: {
@@ -162,8 +162,8 @@
                                     if (view.profits.length > 0) {
                                         view.profits.forEach(function(item, index) {
                                             item.createDate = timestampToDatetime(item.createDate)
-                                            item.typeName = BILL_TYPES[item.type - 1]
-                                            item.tradeStatusName = BILL_STATUS[item.tradeStatus - 1]
+                                            item.typeName = BILL_TYPES['' + item.type]
+                                            item.tradeStatusName = BILL_STATUS['' + item.tradeStatus]
                                         })
                                     }
                                     if (init) {

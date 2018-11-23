@@ -48,10 +48,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12
                                         col-xs-12">
-                                    <form action="#">
-                                        <div class="table-content
-                                                table-responsive">
-                                            <table>
+                                            <table class="table table-hover table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th
@@ -109,8 +106,6 @@
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </form>
                                 </div>
                             </div>
                             <div class="row tax-coupon-div">

@@ -49,34 +49,39 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <form action="#">
-                                        <div class="table-content table-responsive">
-                                            <table>
+                                            <table class="table table-hover table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th class="product-price">订单编号</th>
+                                                        <th class="product-price">订单类型</th>
                                                         <th class="product-name">下单时间</th>
                                                         <th class="product-price">总价</th>
-                                                        <th class="product-name">详情</th>
+                                                        <th class="product-price">积分</th>
+                                                        <th class="product-price">订单状态</th>
+                                                        <th class="product-name">操作</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="product-name"><a href="#">201811070002</a></td>
-                                                        <td class="product-price"><span class="amount">2018-11-07 11:35:00</span></td>
-                                                        <td class="product-subtotal">￥165.00</td>
-                                                        <td class="product-name"><a href="order-detail.jsp">查看详情</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="product-name"><a href="#">201811070001</a></td>
-                                                        <td class="product-price"><span class="amount">2018-11-07 11:30:00</span></td>
-                                                        <td class="product-subtotal">￥165.00</td>
-                                                        <td class="product-name"><a href="order-detail.jsp">查看详情</a></td>
+                                                    <tr v-for="item in orders">
+                                                        <td class="product-name"><span v-text="item.tradeNo"></span></td>
+                                                        <td class="product-name"><span v-text="item.jtypeName"></span></td>
+                                                        <td class="product-price"><span class="amount" v-text="item.createDate"></span></td>
+                                                        <td class="product-subtotal"><span v-text="'￥' + item.price"></span></td>
+                                                        <td class="product-subtotal"><span v-text="item.credits"></span></td>
+                                                        <td class="product-subtotal"><span v-text="item.statusName"></span></td>
+                                                        <td class="product-name"><a :href="'order-detail.jsp?id=' + item.id">查看详情</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </form>
+                                </div>
+                                <div class="page-pagination text-center">
+                                    <ul>
+                                        <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
+                                        <li v-for="page in pageNumbers">
+                                            <a href="javascript:;" :class="currentPage == page ? 'active' : ''" @click="goPage(page)" v-text="page"></a>
+                                        </li>
+                                        <li><a href="javascript:;" @click="nextPage"><i class="fa fa-angle-double-right"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -112,13 +117,18 @@
             var view = new Vue({
                 el: '#content',
                 data: {
-                    userInfo: {}
+                    userInfo: {},
+                    orders: [],
+                    totalPage: 0,
+                    currentPage: 1,
+                    pageNumbers: []
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.isLogin()
+                    this.showOrders(true, 1)
                 },
                 methods: {
                     isLogin () {
@@ -138,7 +148,75 @@
                             }
                         )
                     },
+                    showOrders (init, pageNo) {
+                        var self = this
+                        $.post(
+                            ORDER_URL,
+                            {
+                                userId: this.userInfo.id,
+                                jtype: '1,2,3',
+                                pageSize: 15,
+                                currentPage: pageNo
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.orders = data.data.list
+                                    view.totalPage = data.data.totalPage
+                                    if (view.orders.length > 0) {
+                                        view.orders.forEach(function(item, index) {
+                                            item.createDate = timestampToDatetime(item.createDate)
+                                            item.jtypeName = ORDER_TYPES['' + item.jtype]
+                                            item.statusName = ORDER_STATUS['' + item.status]
+                                        })
+                                    }
+                                    if (init) {
+                                        self.initPageNumbers()
+                                    }
+                                }
+                            }
+                        )
+                    },
+                    initPageNumbers () {
+                        if (view.totalPage <= 5) {
+                            for (var i = 1; i <= view.totalPage; i++) {
+                                view.pageNumbers.push(i)
+                            }
+                        } else {
+                            view.pageNumbers = [1, 2, 3, 4, 5]
+                        }
+                    },
+                    getPageNumbers () {
+                        if (view.totalPage <= 5) {
 
+                        } else {
+                            if (view.currentPage >= 3 && (view.currentPage + 2) <= view.totalPage) {
+                                view.pageNumbers = [view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1, view.currentPage + 2]
+                            } else if (view.currentPage + 1 === view.totalPage) {
+                                view.pageNumbers = [view.currentPage - 3, view.currentPage - 2, view.currentPage - 1, view.currentPage, view.currentPage + 1]
+                            }
+                        }
+                    },
+                    previousPage () {
+                        if (view.currentPage === 1) {
+                            return
+                        }
+                        view.currentPage -= 1
+                        this.getPageNumbers()
+                        this.showOrders(false, view.currentPage)
+                    },
+                    nextPage () {
+                        if (view.currentPage === view.totalPage) {
+                            return
+                        }
+                        view.currentPage += 1
+                        this.getPageNumbers()
+                        this.showOrders(false, view.currentPage)
+                    },
+                    goPage (pageNo) {
+                        view.currentPage = pageNo
+                        this.getPageNumbers()
+                        this.showOrders(false, view.currentPage)
+                    }
                 }
             });
         </script>

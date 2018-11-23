@@ -137,7 +137,7 @@
                             function (data) {
                                 view.income = data.data
                                 view.income.forEach(function (item, index) {
-                                    item.typeName = INCOME[item.type - 1]
+                                    item.typeName = INCOME['' + item.type]
                                 })
                             }
                         )

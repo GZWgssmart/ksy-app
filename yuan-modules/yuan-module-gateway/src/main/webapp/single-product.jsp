@@ -126,12 +126,18 @@
                                                 <p>购买数量:</p>
                                                 <input type="number" v-model="quantity">
                                             </div>
-                                            <div class="single-pro-cart">
+                                            <div v-if="product.type == '2'" class="single-pro-cart">
                                                 <a href="javascript:;" @click="addCart" title="添加到购物车">
                                                     <i class="pe-7s-cart"></i>
                                                     添加到购物车
                                                 </a>
-                                                <span v-if="addToCart">已添加到购物车</span>
+                                                <span v-text="cartMsg"></span>
+                                            </div>
+                                            <div v-else class="single-pro-cart">
+                                                <a href="javascript:;" @click="addCart" title="添加到购物车">
+                                                    <i class="pe-7s-cart"></i>
+                                                    立即购买
+                                                </a>
                                             </div>
                                         </div>
 
@@ -194,7 +200,7 @@
                     userInfo: {},
                     product: {},
                     quantity: 1,
-                    addToCart: false
+                    cartMsg: ''
                 },
                 created: function() {
 
@@ -284,7 +290,9 @@
                             },
                             function (data) {
                                 if (data.success === true) {
-                                    view.addToCart = true
+                                    view.cartMsg = '已添加到购物车'
+                                } else {
+                                    view.cartMsg = '添加购物车失败，请稍候再试'
                                 }
                             }
                         )

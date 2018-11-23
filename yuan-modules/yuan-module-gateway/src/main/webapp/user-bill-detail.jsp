@@ -160,8 +160,8 @@
                                     if (view.bills.length > 0) {
                                         view.bills.forEach(function(item, index) {
                                             item.createDate = timestampToDatetime(item.createDate)
-                                            item.typeName = BILL_TYPES[item.type - 1]
-                                            item.tradeStatusName = BILL_STATUS[item.tradeStatus - 1]
+                                            item.typeName = BILL_TYPES['' + item.type]
+                                            item.tradeStatusName = BILL_STATUS['' + item.tradeStatus]
                                         })
                                     }
                                     if (init) {
