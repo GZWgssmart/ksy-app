@@ -58,7 +58,7 @@ var LOGOUT_URL = BASE_URL + '/yuan-module-interface/api/shopuser/login_out';
 
 var USER_LEVELS = {
     "v1": "普通会员",
-    "v2": "个人vip",
+    "v2": "个人VIP",
     "v3": "初级代理",
     "v4": "高级代理",
     "v5": "核心代理",
@@ -66,7 +66,11 @@ var USER_LEVELS = {
     "v7": "公司股东"
 }
 
-var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠']
+var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠', '购买返点', '直推购买返点', '间推购买返点']
+
+var BILL_TYPES = ['提现', '转让', '捐赠']
+
+var BILL_STATUS = ['待审', '完成']
 
 function timestampToDatetime(value) {
     if (value === undefined || value === null || value === '') {

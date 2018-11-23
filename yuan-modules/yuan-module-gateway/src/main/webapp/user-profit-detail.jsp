@@ -4,7 +4,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>康生缘-资讯</title>
+        <title>康生缘-个人收益明细</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -37,37 +37,38 @@
             <div class="content-wrap">
                 <div class="content">
                     <%@include file="master/header.jsp"%>
-
-                    <!-- blog area start -->
-                    <div class="blog-fullwidth-area ptb-100">
+                    
+                    <!-- shopping-cart-area start -->
+                    <div class="cart-area ptb-100">
                         <div class="container">
-                            <div class="row">
-                                <div v-if="articles.length === 0" class="col-md-4 col-sm-6">暂无资讯</div>
-                                <div v-for="item in articles" class="col-md-4 col-sm-6">
-                                    <div class="blog-details mb-30">
-                                        <div class="blog-img">
-                                            <a :href="'blog-details.jsp?id=' + item.id"><img :src="item.coverImageUrl" alt=""></a>
-                                            <div class="blog-quick-view">
-                                                <a :href="'blog-details.jsp?id=' + item.id">
-                                                    <i class="pe-7s-link"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="blog-meta">
-                                            <h4><a :href="'blog-details.jsp?id=' + item.id" v-text="item.title"></a></h4>
-                                            <ul class="meta">
-                                                <li v-text="item.publisher"></li>
-                                                <li v-text="item.createDate"></li>
-                                                <li>{{item.viewCount}}次查看</li>
-                                            </ul>
-                                            <p v-text="item.summary"></p>
-                                            <a :href="'blog-details.jsp?id=' + item.id">查看</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="profit" class="section-title text-center mb-50">
+                                <h2>
+                                    <%=request.getParameter("typeName")%>明细
+                                    <i class="pe-7s-gift"></i>
+                                </h2>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>交易类型</th>
+                                            <th>健康链数量</th>
+                                            <th>对方手机号</th>
+                                            <th>交易状态</th>
+                                            <th>交易时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="item in profits">
+                                            <td v-text="item.typeName"></td>
+                                            <td v-text="item.count"></td>
+                                            <td v-text="item.tradePhone"></td>
+                                            <td v-text="item.tradeStatusName"></td>
+                                            <td v-text="item.createDate"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                     <div class="page-pagination text-center">
                                         <ul>
                                             <li><a href="javascript:;" @click="previousPage"><i class="fa fa-angle-double-left"></i></a></li>
@@ -81,13 +82,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- blog area end -->
+                    <!-- shopping-cart-area end -->
                     <%@include file="master/footer.jsp"%>
                 </div>
                 <!-- content end -->
             </div>
             <!-- content-wrap end -->
         </div>
+		
 		
 
 		<!-- all js here -->
@@ -108,11 +110,12 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="assets/js/yuan.js"></script>
         <script>
+            var type = <%=request.getParameter("type")%>
             var view = new Vue({
                 el: '#content',
                 data: {
                     userInfo: {},
-                    articles: [],
+                    profits: [],
                     totalPage: 0,
                     currentPage: 1,
                     pageNumbers: []
@@ -122,12 +125,12 @@
                 },
                 mounted: function() {
                     this.isLogin()
-                    this.showArticles(true, 1)
+                    this.showProfits(true, 1)
                 },
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo != undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '') {
                             this.userInfo = JSON.parse(userInfo)
                         }
                     },
@@ -142,23 +145,25 @@
                             }
                         )
                     },
-                    showArticles (init, pageNo) {
+                    showProfits (init, pageNo) {
                         var self = this
                         $.post(
-                            ARTICLE_URL,
+                            ORDER_URL,
                             {
-                                pageSize: 9,
-                                currentPage: pageNo,
-                                columnId: '8a2a08425b7aa230015b7aa9a1ad0004'
+                                userId: this.userInfo.id,
+                                jtype: type,
+                                pageSize: 15,
+                                currentPage: pageNo
                             },
                             function (data) {
                                 if (data.success === true) {
-                                    view.articles = data.data.list
+                                    view.profits = data.data.list
                                     view.totalPage = data.data.totalPage
-                                    if (view.articles.length > 0) {
-                                        view.articles.forEach(function(item, index) {
-                                            item.coverImageUrl = BASE_URL + MODULE_ADMIN + item.coverImageUrl
+                                    if (view.profits.length > 0) {
+                                        view.profits.forEach(function(item, index) {
                                             item.createDate = timestampToDatetime(item.createDate)
+                                            item.typeName = BILL_TYPES[item.type - 1]
+                                            item.tradeStatusName = BILL_STATUS[item.tradeStatus - 1]
                                         })
                                     }
                                     if (init) {
@@ -194,7 +199,7 @@
                         }
                         view.currentPage -= 1
                         this.getPageNumbers()
-                        this.showArticles(false, view.currentPage)
+                        this.showProfits(false, view.currentPage)
                     },
                     nextPage () {
                         if (view.currentPage === view.totalPage) {
@@ -202,12 +207,12 @@
                         }
                         view.currentPage += 1
                         this.getPageNumbers()
-                        this.showArticles(false, view.currentPage)
+                        this.showProfits(false, view.currentPage)
                     },
                     goPage (pageNo) {
                         view.currentPage = pageNo
                         this.getPageNumbers()
-                        this.showArticles(false, view.currentPage)
+                        this.showProfits(false, view.currentPage)
                     }
                 }
             });
