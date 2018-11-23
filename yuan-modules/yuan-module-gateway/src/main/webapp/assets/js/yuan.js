@@ -58,6 +58,8 @@ var RESET_PAY_PWD_URL = BASE_URL + '/yuan-module-interface/api/shopuser/reset/ji
 
 var LOGOUT_URL = BASE_URL + '/yuan-module-interface/api/shopuser/login_out';
 
+var LOGIN_ERR_MSG = 'login first'
+
 var USER_LEVELS = {
     "v1": "普通会员",
     "v2": "个人VIP",

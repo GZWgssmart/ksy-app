@@ -250,8 +250,10 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
+                        } else {
+                            window.location.href = "login.jsp?relogin=y"
                         }
                     },
                     logout () {
@@ -278,8 +280,8 @@
                                     view.account = view.user.account
                                     view.address = view.user.address
                                     window.localStorage.setItem(USER_INFO, JSON.stringify(view.user))
-                                } else {
-                                    window.location.href = "login.jsp?relogin=y"
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = 'login.jsp?relogin=y'
                                 }
                             }
                         )
@@ -308,8 +310,10 @@
                                     if (data.success === true) {
                                         self.getUser()
                                         view.errMsg = '更新成功'
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -343,8 +347,10 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '登录密码修改成功'
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -367,8 +373,10 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '重置登录密码成功，请关注手机短信'
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -399,8 +407,10 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '交易密码修改成功'
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -423,8 +433,10 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '重置交易密码成功，请关注手机短信'
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -450,8 +462,10 @@
                                     if (data.success === true) {
                                         view.errMsg = '提现成功'
                                         self.getUser()
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -481,8 +495,10 @@
                                     if (data.success === true) {
                                         view.errMsg = '转让成功'
                                         self.getUser()
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -508,8 +524,10 @@
                                     if (data.success === true) {
                                         view.errMsg = '捐赠成功'
                                         self.getUser()
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -552,8 +570,10 @@
                                         if (data.success === true) {
                                             view.errMsg = '捐赠余额成功'
                                             self.getUser()
-                                        } else {
+                                        } else if (data.success === false) {
                                             view.errMsg = data.msg
+                                        } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                            window.location.href = 'login.jsp?relogin=y'
                                         }
                                     },
                                     error: function (data) {

@@ -96,7 +96,7 @@
                                             <ul>
                                                 <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
-                                            <div v-if="carts.length > 0" class="cart-total-btn">
+                                            <div v-if="carts != null && carts.length > 0" class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
                                                     <a href="order-preview.jsp?from=cart">去结算</a>
                                                 </div>
@@ -136,13 +136,7 @@
                 el: '#content',
                 data: {
                     userInfo: {},
-                    carts:[
-                        {
-                            proName: 'tea',
-                            price: 100,
-                            count: 10
-                        }
-                    ],
+                    carts:[],
                     totalPrice: 0
                 },
                 created: function() {
@@ -155,8 +149,10 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
+                        } else {
+                            window.location.href = "login.jsp?relogin=y"
                         }
                     },
                     logout () {
@@ -175,11 +171,15 @@
                             CART_LIST_URL,
                             function (data) {
                                 if (data.success === true) {
-                                    // view.carts = data.data
-                                    view.carts.forEach(function (item, index) {
-                                        item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
-                                        view.totalPrice += item.count * item.price
-                                    })
+                                    view.carts = data.data
+                                    if (view.carts != null) {
+                                        view.carts.forEach(function (item, index) {
+                                            item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                            view.totalPrice += item.count * item.price
+                                        })
+                                    }
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = 'login.jsp?relogin=y'
                                 }
                             }
                         )
@@ -192,13 +192,15 @@
                                 proId: productId
                             },
                             function (data) {
-                                if (data.success === false) {
+                                if (data.success === true) {
                                     for (var i = 0; i < view.carts.length; i++) {
                                         if (view.carts[i].proId === productId) {
                                             view.carts.splice(i, 1)
                                             break
                                         }
                                     }
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = 'login.jsp?relogin=y'
                                 }
                             }
                         )
@@ -208,9 +210,11 @@
                     carts: {
                         handler(newValue, oldValue) {
                             view.totalPrice = 0
-                            newValue.forEach(function (item, index) {
-                                view.totalPrice += item.count * item.price
-                            })
+                            if (newValue != null) {
+                                newValue.forEach(function (item, index) {
+                                    view.totalPrice += item.count * item.price
+                                })
+                            }
                         },
                         deep: true
                     }

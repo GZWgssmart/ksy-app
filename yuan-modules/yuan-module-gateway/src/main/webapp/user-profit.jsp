@@ -115,8 +115,10 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
+                        } else {
+                            window.location.href = "login.jsp?relogin=y"
                         }
                     },
                     logout () {
@@ -137,10 +139,14 @@
                                 userId: this.userInfo.id
                             },
                             function (data) {
-                                view.income = data.data
-                                view.income.forEach(function (item, index) {
-                                    item.typeName = INCOME['' + item.type]
-                                })
+                                if (data.success === true) {
+                                    view.income = data.data
+                                    view.income.forEach(function (item, index) {
+                                        item.typeName = INCOME['' + item.type]
+                                    })
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = 'login.jsp?relogin=y'
+                                }
                             }
                         )
                     }

@@ -48,7 +48,7 @@
                                     <div class="login-content">
                                         <div class="login-title">
                                             <h4>用户登录</h4>
-                                            <p v-if="relogin == 'y'" style="color: red;">您的登录已失效，请重新登录！</p>
+                                            <p v-if="relogin == 'y'" style="color: red;">您还未登录或登录已失效，请重新登录！</p>
                                         </div>
                                         <div class="login-form">
                                             <form action="#">
@@ -116,7 +116,7 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
                         }
                     },

@@ -135,8 +135,10 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
+                        } else {
+                            window.location.href = "login.jsp?relogin=y"
                         }
                     },
                     logout () {
@@ -174,6 +176,8 @@
                                     if (init) {
                                         self.initPageNumbers()
                                     }
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = 'login.jsp?relogin=y'
                                 }
                             }
                         )

@@ -85,8 +85,8 @@
                                 </div>
                                 <div class="row tax-coupon-div">
                                     <div class="col-md-12 login-form" style="text-align: right;">
-                                        账户余额：<span v-text="userInfo.shopUserExts.balance"></span>&nbsp;&nbsp;
-                                        总积分：<span v-text="userInfo.shopUserExts.credits"></span><br/>
+                                        账户余额：<span v-if="userInfo != null" v-text="userInfo.shopUserExts.balance"></span>&nbsp;&nbsp;
+                                        总积分：<span v-if="userInfo != null" v-text="userInfo.shopUserExts.credits"></span><br/>
                                         订单最高可抵扣积分：<span v-text="totalCredits"></span><br/>
                                         <form>
                                         使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="text" style="width: 100px;">
@@ -162,8 +162,10 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
+                        } else {
+                            window.location.href = "login.jsp?relogin=y"
                         }
                     },
                     logout () {
@@ -183,20 +185,15 @@
                                 CART_LIST_URL,
                                 function (data) {
                                     if (data.success === true) {
-                                        // view.products = data.data
-                                        view.products = [
-                                            {
-                                                proName: 'tea',
-                                                price: 100,
-                                                count: 10
-                                            }
-                                        ]
+                                        view.products = data.data
                                         view.products.forEach(function (item, index) {
                                             view.totalPrice += item.count * item.price
                                             view.totalCredits += item.consumeCredits
                                             item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                         })
                                         view.jtype = 2
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -231,6 +228,8 @@
                                         } else if (data.data.type === 3) {
                                             view.jtype = 13
                                         }
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )
@@ -261,8 +260,10 @@
                                         view.userInfo.shopUserExts.balance -= view.totalPrice
                                         view.userInfo.shopUserExts.credits -= view.useCredits
                                         window.localStorage.setItem(USER_INFO, view.userInfo)
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 },
                                 error: function (data) {

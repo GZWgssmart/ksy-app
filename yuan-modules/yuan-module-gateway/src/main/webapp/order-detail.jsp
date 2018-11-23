@@ -150,8 +150,10 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
+                        } else {
+                            window.location.href = "login.jsp?relogin=y"
                         }
                     },
                     logout () {
@@ -178,6 +180,8 @@
                                     view.order.shopTradeDetails.forEach(function (item, index) {
                                         item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                     })
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = 'login.jsp?relogin=y'
                                 }
                             }
                         )
@@ -196,8 +200,10 @@
                                 function (data) {
                                     if (data.success === true) {
                                         this.getOrder()
-                                    } else {
+                                    } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = 'login.jsp?relogin=y'
                                     }
                                 }
                             )

@@ -155,12 +155,11 @@
                 },
                 mounted: function() {
                     this.isLogin()
-                    this.getUser()
                 },
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo !== undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '' && userInfo != null) {
                             this.userInfo = JSON.parse(userInfo)
                         }
                     },
