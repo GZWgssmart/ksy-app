@@ -112,16 +112,17 @@ public class ShopBillTradeController {
 			}
 			
 			bean.setCreateDate(new Date() );
+			
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			if (user!=null) {
+				user=userService.find(bean.getUserId());
+			}
+			System.out.println("转让用户信息："+bean.getUserId());
+			
 			BigDecimal activeBill = new BigDecimal(user.getShopUserExts().getActiveBill()).subtract(new BigDecimal(bean.getCount()));
 	        if (activeBill.compareTo(BigDecimal.ZERO)<0) {
 				 ajaxResult.setMsg("超出激活的健康值");
 				 return ajaxResult;
-			}
-	        
-			System.out.println("转让用户信息："+bean.getUserId());
-			if (user!=null) {
-				user=userService.find(bean.getUserId());
 			}
 			
 			//操作类型"1、提现  2、转让 3.捐赠     被转让用户转让健康链增加，
@@ -149,7 +150,7 @@ public class ShopBillTradeController {
             	ztTrade.setPrice(jine);
             	ztTrade.setUserId(user.getId());
             	ztTrade.setTradeNo(WebHelper.getDayNo());
-            	ztTrade.setJtype(12);//1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点
+            	ztTrade.setJtype(12);//1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点12提现健康值13项目合作
             	ztTrade.setStatus(3);
             	ztTrade.setCredits(0);
             	ztTrade.setCreateDate(new Date());

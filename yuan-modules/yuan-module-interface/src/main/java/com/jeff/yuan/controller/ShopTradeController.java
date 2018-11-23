@@ -161,8 +161,8 @@ public class ShopTradeController {
 			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
 				bean.setTradeNo(WebHelper.getDayNo());
 				bean.setCreateDate(new Date());
-				// 购买商品走审核流程
-				if (bean.getJtype() == 1 || bean.getJtype() == 2) {
+				// 购买商品走审核流程 1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点12提现健康值13项目合作
+				if (bean.getJtype() == 1 || bean.getJtype() == 2|| bean.getJtype() == 13) {
 					bean.setStatus(1);
 				} else {
 					bean.setStatus(3);
@@ -346,7 +346,6 @@ public class ShopTradeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			ajaxResult.setMsg(e.getMessage());
-			;
 		}
 
 		return ajaxResult;
