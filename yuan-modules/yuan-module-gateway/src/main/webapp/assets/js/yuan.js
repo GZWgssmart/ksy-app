@@ -68,6 +68,10 @@ var USER_LEVELS = {
 
 var INCOME = ['会员大礼包收益', '复购产品收益', '真推收益', '间推收益', '管理奖', '股份收益', '平台分红', '捐赠', '购买返点', '直推购买返点', '间推购买返点']
 
+var BILL_TYPES = ['提现', '转让', '捐赠']
+
+var BILL_STATUS = ['待审', '完成']
+
 function timestampToDatetime(value) {
     if (value === undefined || value === null || value === '') {
         return '-';

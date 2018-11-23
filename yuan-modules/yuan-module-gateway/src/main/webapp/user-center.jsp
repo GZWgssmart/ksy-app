@@ -90,6 +90,9 @@
                                                 <td><span v-text="user.refPhone"></span></td>
                                             </tr>
                                         </table>
+                                        <div>
+                                            <a href="user-bill-detail.jsp">查看健康链变动明细</a>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12 login-form">
                                         <div style="margin-bottom: 20px;">
@@ -160,88 +163,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="rights" class="section-title mb-50">
-                                <h2>
-                                    我的权益
-                                    <i class="pe-7s-pin"></i>
-                                </h2>
-                            </div>
-                            <div id="profit" class="section-title mb-50">
-                                <h2>
-                                    我的收益
-                                    <i class="pe-7s-gift"></i>
-                                </h2>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <table class="table table-striped table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th>收益类别</th>
-                                                <th>收益金额</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in income">
-                                                <td v-text="item.typeName"></td>
-                                                <td v-text="item.income"></td>
-                                                <td><a href="#">查看明细</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="team" class="section-title mb-50">
-                                <h2>
-                                    我的团队
-                                    <i class="pe-7s-users"></i>
-                                </h2>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <table class="table table-striped table-hover">
-                                            <caption>直推团队</caption>
-                                            <thead>
-                                            <tr>
-                                                <th>姓名</th>
-                                                <th>手机号</th>
-                                                <th>等级</th>
-                                                <th>昵称</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in directTeam">
-                                                <td v-text="item.account"></td>
-                                                <td v-text="item.phone"></td>
-                                                <td v-text="item.userLevel"></td>
-                                                <td v-text="item.nickname"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <table class="table table-striped table-hover">
-                                            <caption>间推团队</caption>
-                                            <thead>
-                                            <tr>
-                                                <th>姓名</th>
-                                                <th>手机号</th>
-                                                <th>等级</th>
-                                                <th>昵称</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr v-for="item in otherTeam">
-                                                <td v-text="item.account"></td>
-                                                <td v-text="item.phone"></td>
-                                                <td v-text="item.userLevel"></td>
-                                                <td v-text="item.nickname"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- shopping-cart-area end -->
@@ -294,10 +215,7 @@
                     transLinkPhone: '',
                     transLinkCount: 0,
                     donateLinkCount: 0,
-                    errMsg: '',
-                    income: [],
-                    directTeam: [],
-                    otherTeam: []
+                    errMsg: ''
                 },
                 created: function() {
 
@@ -305,8 +223,6 @@
                 mounted: function() {
                     this.isLogin()
                     this.getUser()
-                    this.getIncome()
-                    this.getTeam()
                 },
                 methods: {
                     isLogin () {
@@ -579,42 +495,8 @@
                     clearErrMsg (opt) {
                         view.errMsg = ''
                         if (opt === 2 && view.operation1 === '4') {
-                            console.log('show details')
+                            window.location.href = 'user-bill-detail.jsp'
                         }
-                    },
-                    getIncome () {
-                        $.post(
-                            USER_INCOME_URL,
-                            {
-                                userId: this.userInfo.id
-                            },
-                            function (data) {
-                                view.income = data.data
-                                view.income.forEach(function (item, index) {
-                                    item.typeName = INCOME[item.type - 1]
-                                })
-                            }
-                        )
-                    },
-                    getTeam () {
-                        $.post(
-                            USER_TEAM_URL,
-                            {
-                                phone: this.userInfo.phone
-                            },
-                            function (data) {
-                                if (data.success === true) {
-                                    view.directTeam = data.data.zhitui
-                                    view.otherTeam = data.data.jiantui
-                                    view.directTeam.forEach(function (item, index) {
-                                        item.userLevel = item.viplevel + '-' + USER_LEVELS[item.viplevel]
-                                    })
-                                    view.otherTeam.forEach(function (item, index) {
-                                        item.userLevel = item.viplevel + '-' + USER_LEVELS[item.viplevel]
-                                    })
-                                }
-                            }
-                        )
                     }
                 }
             });

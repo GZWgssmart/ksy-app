@@ -194,7 +194,7 @@
                 }
                 view.currentPage -= 1
                 this.getPageNumbers()
-                this.showProducts(false, view.currentPage)
+                this.showArticles(false, view.currentPage)
             },
             nextPage () {
                 if (view.currentPage === view.totalPage) {
@@ -202,12 +202,12 @@
                 }
                 view.currentPage += 1
                 this.getPageNumbers()
-                this.showProducts(false, view.currentPage)
+                this.showArticles(false, view.currentPage)
             },
             goPage (pageNo) {
                 view.currentPage = pageNo
                 this.getPageNumbers()
-                this.showProducts(false, view.currentPage)
+                this.showArticles(false, view.currentPage)
             }
         }
     });
