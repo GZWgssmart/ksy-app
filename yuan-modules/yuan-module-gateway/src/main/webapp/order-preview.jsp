@@ -66,16 +66,16 @@
                                                         <tr v-for="product in products">
                                                             <td>
                                                                 <a href="javascript:;"><img
-                                                                        :src="product.proLogoImg"
+                                                                        :src="product.proLogoImgFull"
                                                                         alt=""></a>
                                                             </td>
                                                             <td><a
                                                                     href="javascript:;" v-text="product.proName"></a></td>
-                                                            <td><span v-text="'￥' + product.price1"></span></td>
+                                                            <td><span v-text="'￥' + product.price"></span></td>
                                                             <td>
                                                                 <span v-text="product.count"></span>
                                                             </td>
-                                                            <td v-text="'￥' + (product.price1 * product.count)"></td>
+                                                            <td v-text="'￥' + (product.price * product.count)"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -170,12 +170,13 @@
                                         view.products = [
                                             {
                                                 proName: 'tea',
-                                                price1: 100,
+                                                price: 100,
                                                 count: 10
                                             }
                                         ]
                                         view.products.forEach(function (item, index) {
-                                            view.totalPrice += item.count * item.price1
+                                            view.totalPrice += item.count * item.price
+                                            item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                         })
                                     }
                                 }
@@ -188,10 +189,20 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        data.data.proLogoImg = BASE_URL + MODULE_ADMIN + data.data.proLogoImg
+                                        data.data.proLogoImgFull = BASE_URL + MODULE_ADMIN + data.data.proLogoImg
                                         data.data.count = quantity
+                                        // 如果不是会员大礼包
+                                        if (data.data.type !== '1') {
+                                            if (view.userInfo != null) {
+                                                data.data.price = vdata.data[USER_PRICE[view.userInfo.vipLevel]]
+                                            } else {
+                                                data.data.price = data.data.price1
+                                            }
+                                        } else {
+                                            data.data.price = data.data.price1
+                                        }
                                         view.products.push(data.data)
-                                        view.totalPrice += quantity * data.data.price1
+                                        view.totalPrice += quantity * data.data.price
                                     }
                                 }
                             )

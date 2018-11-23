@@ -67,7 +67,7 @@
                                 <div v-for="item in giftProducts" class="col-md-3 col-sm-6 col-xs-12 mb-30">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImg" alt="" /></a>
+                                            <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImgFull" alt="" /></a>
                                             <div class="shop-quick-view">
                                                 <a :href="'single-product.jsp?id=' + item.id">
                                                     <i class="pe-7s-look"></i>
@@ -83,7 +83,7 @@
                                                     <h3><a :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></h3>
                                                 </div>
                                                 <span class="price f-right">
-                                                    <span class="new" v-text="'￥' + item.price1"></span>
+                                                    <span class="new" v-text="'￥' + item.price"></span>
                                                 </span>
                                             </div>
                                             <div class="fix">
@@ -254,7 +254,8 @@
                                 view.giftProducts = data.data.list
                                 if (view.giftProducts.length > 0) {
                                     view.giftProducts.forEach(function(item, index) {
-                                        item.proLogoImg = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                        item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                        item.price = item.price1
                                     })
                                 }
                             }

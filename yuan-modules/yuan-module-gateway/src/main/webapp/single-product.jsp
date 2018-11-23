@@ -47,9 +47,9 @@
                                     <div class="product-details-tab">
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <div v-if="product.proLogoImg != ''" class="tab-pane active" id="product0">
+                                            <div v-if="product.proLogoImgFull != ''" class="tab-pane active" id="product0">
                                                 <div class="large-img">
-                                                    <img :src="product.proLogoImg" alt="" />
+                                                    <img :src="product.proLogoImgFull" alt="" />
                                                 </div>
                                             </div>
                                             <div v-if="product.picture1 != ''" class="tab-pane" id="product1">
@@ -77,9 +77,9 @@
                                                     <img :src="product.picture5" alt="" />
                                                 </div>
                                             </div>
-                                            <div v-if="product.proLogoImg != ''" class="tab-pane" id="product6">
+                                            <div v-if="product.proLogoImgFull != ''" class="tab-pane" id="product6">
                                                 <div class="large-img">
-                                                    <img :src="product.proLogoImg" alt="" />
+                                                    <img :src="product.proLogoImgFull" alt="" />
                                                 </div>
                                             </div>
                                             <div v-if="product.picture1 != ''" class="tab-pane" id="product7">
@@ -90,13 +90,13 @@
                                         </div>
                                         <!-- Nav tabs -->
                                         <div class="details-tab owl-carousel">
-                                            <div class="active"><a href="#product0" data-toggle="tab"><img :src="product.proLogoImg" alt="" /></a></div>
+                                            <div class="active"><a href="#product0" data-toggle="tab"><img :src="product.proLogoImgFull" alt="" /></a></div>
                                             <div v-if="product.picture1 != ''"><a href="#product1" data-toggle="tab"><img :src="product.picture1" alt="" /></a></div>
                                             <div v-if="product.picture2 != ''"><a href="#product2" data-toggle="tab"><img :src="product.picture2" alt="" /></a></div>
                                             <div v-if="product.picture3 != ''"><a href="#product3" data-toggle="tab"><img :src="product.picture3" alt="" /></a></div>
                                             <div v-if="product.picture4 != ''"><a href="#product4" data-toggle="tab"><img :src="product.picture4" alt="" /></a></div>
                                             <div v-if="product.picture5 != ''"><a href="#product5" data-toggle="tab"><img :src="product.picture5" alt="" /></a></div>
-                                            <div><a href="#product6" data-toggle="tab"><img :src="product.proLogoImg" alt="" /></a></div>
+                                            <div><a href="#product6" data-toggle="tab"><img :src="product.proLogoImgFull" alt="" /></a></div>
                                             <div v-if="product.picture1 != ''"><a href="#product7" data-toggle="tab"><img :src="product.picture1" alt="" /></a></div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                                 <i class="fa fa-star active"></i>
                                             </span>
                                             -->
-                                            <h3 v-text="'￥' + product.price1"></h3>
+                                            <h3 v-text="'￥' + product.price"></h3>
                                             <p v-text="product.introduction"></p>
                                         </div>
                                         <div class="single-cart-color for-pro-border">
@@ -212,7 +212,7 @@
                 methods: {
                     isLogin () {
                         var userInfo = window.localStorage.getItem(USER_INFO)
-                        if (userInfo != undefined && userInfo !== '') {
+                        if (userInfo !== undefined && userInfo !== '') {
                             this.userInfo = JSON.parse(userInfo)
                         }
                     },
@@ -237,7 +237,17 @@
                             function (data) {
                                 if (data.success === true) {
                                     view.product = data.data
-                                    view.product.proLogoImg = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
+                                    view.product.proLogoImgFull = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
+                                    // 如果不是会员大礼包
+                                    if (view.product.type !== '1') {
+                                        if (view.userInfo != null) {
+                                            view.product.price = view.product[USER_PRICE[view.userInfo.vipLevel]]
+                                        } else {
+                                            view.product.price = view.product.price1
+                                        }
+                                    } else {
+                                        view.product.price = view.product.price1
+                                    }
                                     if (view.product.picture1 != '') {
                                         view.product.picture1 = BASE_URL + MODULE_ADMIN + view.product.picture1
                                     }

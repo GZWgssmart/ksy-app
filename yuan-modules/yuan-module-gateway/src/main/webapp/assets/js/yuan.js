@@ -68,6 +68,16 @@ var USER_LEVELS = {
     "v7": "公司股东"
 }
 
+var USER_PRICE = {
+    'v1': 'price1',
+    'v2': 'price1',
+    'v3': 'price1',
+    'v4': 'price2',
+    'v5': 'price2',
+    'v6': 'price3',
+    'v7': 'price3'
+}
+
 var INCOME = {
     '1': '会员大礼包收益',
     '2': '复购产品收益',

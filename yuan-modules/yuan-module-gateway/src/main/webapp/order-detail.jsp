@@ -63,7 +63,7 @@
                                                 <tr v-for="item in order.shopTradeDetails">
                                                     <td>
                                                         <a :href="'single-product.jsp?id=' + item.id"><img
-                                                                :src="item.proLogoImg"
+                                                                :src="item.proLogoImgFull"
                                                                 alt=""></a>
                                                     </td>
                                                     <td><a
@@ -176,7 +176,7 @@
                                     view.order = data.data
                                     view.order.statusName = ORDER_STATUS['' + view.order.status]
                                     view.order.shopTradeDetails.forEach(function (item, index) {
-                                        item.proLogoImg = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                        item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                     })
                                 }
                             }

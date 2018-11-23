@@ -94,7 +94,7 @@
                                                     <div v-else v-for="item in products" class="col-md-6 col-lg-4 col-sm-6">
                                                         <div class="single-shop mb-40">
                                                             <div class="shop-img">
-                                                                <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImg" alt="" /></a>
+                                                                <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImgFull" alt="" /></a>
                                                                 <div class="shop-quick-view">
                                                                     <a :href="'single-product.jsp?id=' + item.id">
                                                                         <i class="pe-7s-look"></i>
@@ -107,7 +107,7 @@
                                                                         <h3><a :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></h3>
                                                                     </div>
                                                                     <span class="price f-right">
-                                                                                <span class="new" v-text="'￥' + item.price1"></span>
+                                                                                <span class="new" v-text="'￥' + item.price"></span>
                                                                             </span>
                                                                 </div>
                                                                 <div class="fix">
@@ -181,7 +181,7 @@
         methods: {
             isLogin () {
                 var userInfo = window.localStorage.getItem(USER_INFO)
-                if (userInfo != undefined && userInfo !== '') {
+                if (userInfo !== undefined && userInfo !== '') {
                     this.userInfo = JSON.parse(userInfo)
                 }
             },
@@ -211,7 +211,12 @@
                             view.totalPage = data.data.totalPage
                             if (view.products.length > 0) {
                                 view.products.forEach(function(item, index) {
-                                    item.proLogoImg = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                    item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                    if (view.userInfo != null) {
+                                        item.price = item[USER_PRICE[view.userInfo.vipLevel]]
+                                    } else {
+                                        item.price = item.price1
+                                    }
                                 })
                             }
                             if (init) {
