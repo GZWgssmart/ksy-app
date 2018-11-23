@@ -537,19 +537,27 @@
                         } else {
                             view.errMsg = ''
                             var self = this
-                            $.post(
-                                ORDER_CREATE_URL,
+                            $.ajax(
                                 {
-                                    userId: view.userInfo.id,
-                                    price: -view.donateCount,
-                                    jtype: 8
-                                },
-                                function (data) {
-                                    if (data.success === true) {
-                                        view.errMsg = '捐赠余额成功'
-                                        self.getUser()
-                                    } else {
-                                        view.errMsg = data.msg
+                                    type: "POST",
+                                    url: ORDER_CREATE_URL,
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({
+                                        userId: view.userInfo.id,
+                                        price: -view.donateCount,
+                                        jtype: 8
+                                    }),
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data.success === true) {
+                                            view.errMsg = '捐赠余额成功'
+                                            self.getUser()
+                                        } else {
+                                            view.errMsg = data.msg
+                                        }
+                                    },
+                                    error: function (data) {
+
                                     }
                                 }
                             )

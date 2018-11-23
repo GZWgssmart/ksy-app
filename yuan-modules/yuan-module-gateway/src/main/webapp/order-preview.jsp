@@ -84,16 +84,25 @@
                                     </div>
                                 </div>
                                 <div class="row tax-coupon-div">
+                                    <div class="col-md-12 login-form" style="text-align: right;">
+                                        账户余额：<span v-text="userInfo.shopUserExts.balance"></span>&nbsp;&nbsp;
+                                        总积分：<span v-text="userInfo.shopUserExts.credits"></span><br/>
+                                        订单最高可抵扣积分：<span v-text="totalCredits"></span><br/>
+                                        <form>
+                                        使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="text" style="width: 100px;">
+                                        </form>
+                                    </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="cart-total">
                                             <ul>
                                                 <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
-                                            <div class="cart-total-btn">
+                                            <div v-if="products.length > 0 && !submitted" class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
-                                                    <a href="#">提交订单</a>
+                                                    <a href="javascript:;" @click="submitOrder">提交订单</a>
                                                 </div>
                                             </div>
+                                            <span v-text="errMsg" style="color: red;"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -131,9 +140,17 @@
             var view = new Vue({
                 el: '#content',
                 data: {
-                    userInfo: {},
+                    userInfo: {
+                        shopUserExts: {}
+                    },
                     products: [],
-                    totalPrice: 0
+                    useCredits: 0,
+                    totalPrice: 0,
+                    totalCredits: 0,
+                    oTotalPrice: 0,
+                    jtype: 0,
+                    submitted: false,
+                    errMsg: ''
                 },
                 created: function() {
 
@@ -176,8 +193,10 @@
                                         ]
                                         view.products.forEach(function (item, index) {
                                             view.totalPrice += item.count * item.price
+                                            view.totalCredits += item.consumeCredits
                                             item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                         })
+                                        view.jtype = 2
                                     }
                                 }
                             )
@@ -194,22 +213,88 @@
                                         // 如果不是会员大礼包
                                         if (data.data.type !== '1') {
                                             if (view.userInfo != null) {
-                                                data.data.price = vdata.data[USER_PRICE[view.userInfo.vipLevel]]
+                                                data.data.price = data.data[USER_PRICE[view.userInfo.vipLevel]]
                                             } else {
                                                 data.data.price = data.data.price1
                                             }
                                         } else {
                                             data.data.price = data.data.price1
                                         }
+                                        if (data.data.type === '2') {
+                                            view.totalCredits += parseInt(data.data.consumeCredits)
+                                        }
                                         view.products.push(data.data)
                                         view.totalPrice += quantity * data.data.price
+                                        view.oTotalPrice = view.totalPrice
+                                        if (data.data.type === 1) {
+                                            view.jtype = 1
+                                        } else if (data.data.type === 3) {
+                                            view.jtype = 13
+                                        }
                                     }
                                 }
                             )
                         }
+                    },
+                    submitOrder () {
+                        view.errMsg = ''
+                        if (view.useCredits === '') {
+                            view.useCredits = 0
+                        }
+                        $.ajax(
+                            {
+                                type: "POST",
+                                url: ORDER_CREATE_URL,
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({
+                                    userId: view.userInfo.id,
+                                    price: -view.totalPrice,
+                                    credits: view.useCredits,
+                                    jtype: view.jtype,
+                                    shopTradeDetails: view.products
+                                }),
+                                dataType: "json",
+                                success: function (data) {
+                                    if (data.success === true) {
+                                        view.submitted = true
+                                        view.errMsg = '提交订单成功'
+                                        view.userInfo.shopUserExts.balance -= view.totalPrice
+                                        view.userInfo.shopUserExts.credits -= view.useCredits
+                                        window.localStorage.setItem(USER_INFO, view.userInfo)
+                                    } else {
+                                        view.errMsg = data.msg
+                                    }
+                                },
+                                error: function (data) {
+
+                                }
+                            }
+                        )
+                    },
+                },
+                watch: {
+                    useCredits: {
+                        handler(newValue, oldValue) {
+                            var userCredits = parseInt(view.userInfo.shopUserExts.credits)
+                            if (view.totalCredits <= userCredits) {
+                                if (newValue > view.totalCredits || newValue > userCredits) {
+                                    view.useCredits = view.totalCredits
+                                }
+                            } else {
+                                if (newValue > view.totalCredits || newValue > userCredits) {
+                                    view.useCredits = userCredits
+                                }
+                            }
+                            if (newValue < 0) {
+                                view.useCredits = 0
+                            }
+                            if (newValue === '-') {
+                                view.useCredits = 0
+                            }
+                            view.totalPrice = view.oTotalPrice - view.useCredits
+                        }
                     }
                 }
-
             });
         </script>
 		    <script src="assets/js/main3.js"></script>
