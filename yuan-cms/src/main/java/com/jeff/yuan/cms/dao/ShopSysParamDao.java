@@ -8,6 +8,6 @@ import com.jeff.yuan.common.dao.CommonDao;
  * @desc ShopSysParamDao接口 
  * @date 2018-11-19
  */
-public interface ShopSysParamDao extends ShopSysParamDaoCustom,CommonDao<ShopSysParam,String>{
+public interface ShopSysParamDao extends ShopSysParamDaoCustom,CommonDao<ShopSysParam,Integer>{
 
 }

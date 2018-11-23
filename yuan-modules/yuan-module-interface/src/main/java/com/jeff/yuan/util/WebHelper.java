@@ -14,7 +14,8 @@ import com.jeff.yuan.cms.entity.ShopUser;
 public class WebHelper {
 	
 	public static final String SESSION_LOGIN_USER = "session_login_user";
-
+	
+	public static final String SYS_PARAM_TIXIAN = "SYS_TIXIAN";
 	/**
 	 * 
 	 * @param request

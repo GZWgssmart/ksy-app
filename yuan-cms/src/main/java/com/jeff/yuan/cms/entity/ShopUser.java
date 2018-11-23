@@ -208,7 +208,7 @@ public class ShopUser implements java.io.Serializable {
 		this.shopUserExts = shopUserExts;
 	}
 
-	@Column(name = "status", length = 1)
+	@Column(name = "status")
 	public int getStatus() {
 		return status;
 	}
@@ -217,7 +217,7 @@ public class ShopUser implements java.io.Serializable {
 		this.status = status;
 	}
 	
-	@Column(name = "nick_name", length = 1)
+	@Column(name = "nick_name")
 	public String getNickName() {
 		return nickName;
 	}
@@ -226,7 +226,7 @@ public class ShopUser implements java.io.Serializable {
 		this.nickName = nickName;
 	}
 	
-	@Column(name = "jiaoyimima", length = 1)
+	@Column(name = "jiaoyimima")
 	public String getJiaoyimima() {
 		return jiaoyimima;
 	}

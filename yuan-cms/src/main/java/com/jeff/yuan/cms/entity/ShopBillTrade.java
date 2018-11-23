@@ -78,7 +78,7 @@ public class ShopBillTrade implements java.io.Serializable {
 		this.type = type;
 	}
 
-	@Column(name = "trade_phone", nullable = false, length = 16)
+	@Column(name = "trade_phone", length = 16)
 	public String getTradePhone() {
 		return this.tradePhone;
 	}

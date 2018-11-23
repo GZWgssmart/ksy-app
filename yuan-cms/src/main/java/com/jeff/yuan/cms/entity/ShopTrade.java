@@ -59,6 +59,21 @@ public class ShopTrade implements java.io.Serializable {
 		this.createBy = createBy;
 		this.shopTradeDetails = shopTradeDetails;
 	}
+	
+	
+
+	public ShopTrade(Integer id, String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits,
+			Date createDate) {
+		super();
+		this.id = id;
+		this.tradeNo = tradeNo;
+		this.userId = userId;
+		this.jtype = jtype;
+		this.price = price;
+		this.status = status;
+		this.credits = credits;
+		this.createDate = createDate;
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

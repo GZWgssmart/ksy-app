@@ -21,7 +21,13 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
     public PageModel<ShopTrade> queryShopTradePage(ShopTradeQueryDTO shopTradeQueryDTO){
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select t from ShopTrade t where 1=1  ");
+         if (shopTradeQueryDTO.getIsFront() != null && shopTradeQueryDTO.getIsFront()) {
+             hql.append("select new ShopTrade(id,tradeNo,userId,jtype,price,status,credits,createDate) from ShopTrade t where 1=1  ");
+         }else {
+             hql.append("select t from ShopTrade t where 1=1  ");
+         }
+         
+         
          if(shopTradeQueryDTO.getStatus()!=0){
     		 hql.append(" and t.status = :status ");
     		 map.put("status", shopTradeQueryDTO.getStatus());
@@ -30,7 +36,7 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
         	 hql.append(" and t.jtype = :jtype ");
         	 map.put("jtype", shopTradeQueryDTO.getJtype());
          }
-         if(!shopTradeQueryDTO.getTypes().isEmpty() &&shopTradeQueryDTO.getTypes().size()>0 ){
+         if(shopTradeQueryDTO.getTypes()!=null && (!shopTradeQueryDTO.getTypes().isEmpty()) &&shopTradeQueryDTO.getTypes().size()>0 ){
         	 hql.append(" and t.jtype in ( :types ) ");
         	 map.put("types", shopTradeQueryDTO.getTypes());
          }

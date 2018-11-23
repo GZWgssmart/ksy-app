@@ -42,5 +42,16 @@ public enum VipLevelEnum {
 	public static String getDescByCode(String level) {
         return fromLevel(level).desc;
     }
+	
+	private static VipLevelEnum[] vals = values();
+	
+	public VipLevelEnum previous() {
+        return vals[(this.ordinal() - 1) % vals.length];
+    }
+
+    public VipLevelEnum next() {
+        return vals[(this.ordinal() + 1) % vals.length];
+    }
+
     
 }

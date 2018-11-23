@@ -60,8 +60,6 @@ public class ShopTradeController {
 	@Autowired
 	private ShopUserService userService;
 	@Autowired
-	private ShopUserExtService userExtService;
-	@Autowired
 	private ShopRegisterRuleService ruleService;
 
 	/**
@@ -119,7 +117,7 @@ public class ShopTradeController {
 			
 			userQueryDTO.setCurrentPage(currentPage);
 			userQueryDTO.setPageSize(pageSize);
-			
+			userQueryDTO.setIsFront(true);
 			PageModel<ShopTrade> page = tradeService.queryShopTradePage(userQueryDTO);
 			ajaxResult.setData(page);
 			ajaxResult.setSuccess(true);
@@ -127,10 +125,25 @@ public class ShopTradeController {
 
 		return ajaxResult;
 	}
+	
+	@RequestMapping("/getDetail")
+	@ResponseBody
+	public AjaxResult getDetail(HttpServletRequest request){
+		AjaxResult ajaxResult = new AjaxResult();
+		ajaxResult.setSuccess(false);
+		
+		String id = request.getParameter("id");
+		if(StringUtils.isNotBlank(id)){
+			ShopTrade bean = tradeService.find(Integer.parseInt(id));
+			ajaxResult.setData(bean);
+			ajaxResult.setSuccess(true);
+		}
+		return ajaxResult;
+	}
 
 	/**
 	 * 保存订单操作
-	 * 
+	 * 扣去余额   并增加积分
 	 * @param request
 	 * @return
 	 */
@@ -158,10 +171,19 @@ public class ShopTradeController {
 				tradeService.save(bean);
 				//减去账户余额
 				user.getShopUserExts().setBalance(balance);
-				//减去账户积分
-				BigDecimal credits = new BigDecimal(user.getShopUserExts().getCredits());//.subtract(bean.getCredits());
-				BigDecimal credits2 = new BigDecimal(bean.getCredits());//.subtract(bean.getCredits());
+				//账户积分-订单积分+购买商品赠送积分
+				BigDecimal credits = new BigDecimal(user.getShopUserExts().getCredits());
+				BigDecimal credits2 = new BigDecimal(bean.getCredits());
 
+				Set<ShopTradeDetail> shopTradeDetails = bean.getShopTradeDetails();
+				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
+				//获取商品列表的赠送积分，并添加到用户
+				while (it.hasNext()) {  
+					ShopTradeDetail detail = it.next();
+					ShopProduct product = productService.find(detail.getProId());
+					credits.add(new BigDecimal(product.getIncomeCredits()));
+				}
+				//账户积分-订单积分+购买商品赠送积分
 				user.getShopUserExts().setCredits(credits.subtract(credits2).toString());
 				userService.update(user);
 				ajaxResult.setSuccess(true);
@@ -186,9 +208,9 @@ public class ShopTradeController {
 
 		try {
 			String id = request.getParameter("id");
-			String status = request.getParameter("status");
+			//String status = request.getParameter("status");
 
-			ShopTrade shopTrade = tradeService.updateStatus(id, Integer.parseInt(status));
+			ShopTrade shopTrade = tradeService.updateStatus(id, 3);
 			//用户升级vip逻辑
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
 			System.out.println("确认收货会员用户信息："+user.getId());
@@ -225,6 +247,13 @@ public class ShopTradeController {
 				        BigDecimal b2 = new BigDecimal(rule.getZtjkljhs());
 				        //健康链激活数（直推）   本身有的+邀请人增加的
 						ztUser.getShopUserExts().setActiveBill(b1.add(b2).toString());
+						
+						//如果激活健康链总数>等级对应数量，则等级提升
+						if (Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule.getBill()) && !ztUser.getVipLevel().equals("v7")) {
+							ztUser.setVipLevel(VipLevelEnum.valueOf(ztUser.getVipLevel()).next().toString());
+						}
+						
+						
 						//直推奖    订单金额绝对值*直接奖励百分比
 				        BigDecimal a1 = new BigDecimal(rule.getZtj()).multiply(shopTrade.getPrice().abs());
 				        this.saveTradeInfo(a1, ztUser, 3);
@@ -251,6 +280,10 @@ public class ShopTradeController {
 								BigDecimal c2 = new BigDecimal(rule.getJtjkljhs());
 								//健康链激活数（直推）   本身有的+邀请人增加的
 								jtUser.getShopUserExts().setActiveBill(c1.add(c2).toString());
+								//如果激活健康链总数>等级对应数量，则等级提升
+								if (Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule.getBill()) && !jtUser.getVipLevel().equals("v7")) {
+									jtUser.setVipLevel(VipLevelEnum.valueOf(jtUser.getVipLevel()).next().toString());
+								}
 								//间推奖    订单金额*间推奖励百分比
 						        BigDecimal d1 = new BigDecimal(rule.getJtj()).multiply(shopTrade.getPrice().abs());
 						        this.saveTradeInfo(d1, jtUser, 4);

@@ -1,5 +1,6 @@
 package com.jeff.yuan.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jeff.yuan.cms.dto.ShopBillTradeQueryDTO;
+import com.jeff.yuan.cms.dto.ShopUserQueryDTO;
 import com.jeff.yuan.cms.entity.ShopBillTrade;
+import com.jeff.yuan.cms.entity.ShopSysParam;
+import com.jeff.yuan.cms.entity.ShopTrade;
+import com.jeff.yuan.cms.entity.ShopUser;
 import com.jeff.yuan.cms.service.ShopBillTradeService;
+import com.jeff.yuan.cms.service.ShopSysParamService;
+import com.jeff.yuan.cms.service.ShopTradeService;
+import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
+import com.jeff.yuan.util.WebHelper;
 /**
  * 健康链Controller
  * @author dingjinqing@163.com
@@ -26,7 +35,12 @@ public class ShopBillTradeController {
 
 	@Autowired
 	private ShopBillTradeService tradeService;
-	
+	@Autowired
+	private ShopUserService userService;
+	@Autowired
+    private ShopSysParamService sysParamService;
+	@Autowired
+	private ShopTradeService stradeService;
 	/**
 	 * 获取用户列表
 	 * @param request
@@ -86,18 +100,72 @@ public class ShopBillTradeController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public AjaxResult ajaxSave(HttpServletRequest request ,ShopBillTrade user){
+	public AjaxResult ajaxSave(HttpServletRequest request ,ShopBillTrade bean){
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
 		
 		try {
-			if(user.getType()==1) {
-				user.setTradeStatus(1);
+			if(bean.getType()==1) {
+				bean.setTradeStatus(1);
 			}else {
-				user.setTradeStatus(2);
+				bean.setTradeStatus(2);
 			}
-			user.setCreateDate(new Date() );
-			tradeService.save(user);
+			
+			bean.setCreateDate(new Date() );
+			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			BigDecimal activeBill = new BigDecimal(user.getShopUserExts().getActiveBill()).subtract(new BigDecimal(bean.getCount()));
+	        if (activeBill.compareTo(BigDecimal.ZERO)<0) {
+				 ajaxResult.setMsg("超出激活的健康值");
+				 return ajaxResult;
+			}
+	        
+			System.out.println("转让用户信息："+bean.getUserId());
+			if (user!=null) {
+				user=userService.find(bean.getUserId());
+			}
+			
+			//操作类型"1、提现  2、转让 3.捐赠     被转让用户转让健康链增加，
+        	if (bean.getType()==2) {
+        		ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
+        		shopUserQueryDTO.setPhone(bean.getTradePhone());
+        		ShopUser tradeUser = userService.queryShopUserList(shopUserQueryDTO).get(0);
+        		if (tradeUser!=null) {
+        			BigDecimal transBill = new BigDecimal(tradeUser.getShopUserExts().getTradeBill()).add(new BigDecimal(bean.getCount()));
+	    	        tradeUser.getShopUserExts().setTradeBill(transBill.toString());
+	    	        userService.update(tradeUser);
+	    	        
+				}else {
+					ajaxResult.setMsg("转让用户不存在");
+					return ajaxResult;
+				}
+        	}else if (bean.getType()==1) {//提现到个人账户余额
+//        		获取提现比例
+        		ShopSysParam param = sysParamService.findByCode(WebHelper.SYS_PARAM_TIXIAN);
+//        		数量乘以兑换比例
+    	        BigDecimal jine = new BigDecimal(param.getSysValue()).multiply(new BigDecimal(bean.getCount()));
+    	        user.getShopUserExts().setBalance(user.getShopUserExts().getBalance().add(jine));
+    	        //插入提现记录到交易表
+    	        ShopTrade ztTrade = new ShopTrade();
+            	ztTrade.setPrice(jine);
+            	ztTrade.setUserId(user.getId());
+            	ztTrade.setTradeNo(WebHelper.getDayNo());
+            	ztTrade.setJtype(12);//1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点
+            	ztTrade.setStatus(3);
+            	ztTrade.setCredits(0);
+            	ztTrade.setCreateDate(new Date());
+            	ztTrade.setShopTradeDetails(null);
+            	stradeService.save(ztTrade);
+        	}
+        	
+        	//发起用户减少健康链
+        	
+	        
+	        //减去激活的健康链
+	        user.getShopUserExts().setActiveBill( activeBill.toString());
+	        userService.update(user);
+	        
+			
+			tradeService.save(bean);
 			ajaxResult.setSuccess(true);
 			
 		} catch (Exception e) {

@@ -63,8 +63,8 @@ public class ShopUserController {
 			String id = request.getParameter("userId");
 			if (StringUtils.isNotBlank(id)) {
 				ShopUser bean = userService.find(Integer.parseInt(id));
-				bean.setPassword(null);
-				bean.setJiaoyimima(null);
+//				bean.setPassword(null);
+//				bean.setJiaoyimima(null);
 				ajaxResult.setData(bean);
 				ajaxResult.setSuccess(true);
 				request.getSession().setAttribute("userInfo", bean);
@@ -220,7 +220,10 @@ public class ShopUserController {
 			String userId = request.getParameter("userId");
 			String pwd = request.getParameter("pwd");
 			if (StringUtils.isNotEmpty(userId)) {
-				user = userService.find(user.getId());
+				
+				if (user==null) {
+					user = userService.find(Integer.parseInt(userId));
+				}
 				if (Md5Util.generatePassword(oldPwd).equals(user.getPassword())) {
 
 					user.setPassword(Md5Util.generatePassword(pwd));
@@ -255,6 +258,7 @@ public class ShopUserController {
 	@ResponseBody
 	public AjaxResult ajaxUpdatePwd(HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
+		ajaxResult.setSuccess(false);
 		try {
 
 			ShopUser user = WebHelper.getUser(request);
@@ -262,22 +266,34 @@ public class ShopUserController {
 			String oldPwd = request.getParameter("oldPwd");
 			String userId = request.getParameter("userId");
 			String pwd = request.getParameter("pwd");
-			if (StringUtils.isNotEmpty(userId)) {
-				user = userService.find(user.getId());
-				if (Md5Util.generatePassword(oldPwd).equals(user.getJiaoyimima())) {
+			if (StringUtils.isNotEmpty(pwd)) {
+				if (StringUtils.isNotEmpty(userId)) {
+					if (user==null) {
+						user = userService.find(Integer.parseInt(userId));
+					}
+//						非第一次修改交易密码
+					if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
+						if (Md5Util.generatePassword(oldPwd).equals(user.getJiaoyimima())) {
 
-					user.setJiaoyimima(Md5Util.generatePassword(pwd));
-					userService.update(user);
+							user.setJiaoyimima(Md5Util.generatePassword(pwd));
+							userService.update(user);
 
-					ajaxResult.setSuccess(true);
+							ajaxResult.setSuccess(true);
+						} else {
+							ajaxResult.setMsg("原始密码输入不正确");
+						}
+					}else {
+						user.setJiaoyimima(Md5Util.generatePassword(pwd));
+						userService.update(user);
+						ajaxResult.setSuccess(true);
+
+					}
+					
 				} else {
-					ajaxResult.setMsg("原始密码输入不正确");
-					ajaxResult.setSuccess(false);
+					ajaxResult.setMsg("id不能为空");
 				}
-			} else {
-				ajaxResult.setMsg("id不能为空");
-				ajaxResult.setSuccess(false);
 			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

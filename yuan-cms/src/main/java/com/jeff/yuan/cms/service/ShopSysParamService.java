@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @date 2018-11-19
  */
 @Service
-public class ShopSysParamService extends CommonService< ShopSysParam,String >  {
+public class ShopSysParamService extends CommonService< ShopSysParam,Integer >  {
 
     @Autowired
     private ShopSysParamDao shopSysParamDao;
@@ -31,6 +31,14 @@ public class ShopSysParamService extends CommonService< ShopSysParam,String >  {
     public List<ShopSysParam> queryShopSysParamList(ShopSysParamQueryDTO shopSysParamQueryDTO){
            return this.shopSysParamDao.queryShopSysParamList(shopSysParamQueryDTO);
     }
+
+	public ShopSysParam findByCode(String sysParamTixian) {
+		// TODO Auto-generated method stub
+		ShopSysParamQueryDTO shopSysParamQueryDTO = new ShopSysParamQueryDTO();
+		shopSysParamQueryDTO.setSysCode(sysParamTixian);
+		List<ShopSysParam> list = shopSysParamDao.queryShopSysParamList(shopSysParamQueryDTO);
+		return list.get(0);
+	}
 
 
 }

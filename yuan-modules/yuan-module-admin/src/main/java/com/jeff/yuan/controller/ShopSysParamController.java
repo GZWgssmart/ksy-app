@@ -58,7 +58,7 @@ public class ShopSysParamController{
         String id = request.getParameter("id");
         ShopSysParam shopSysParam = null;
         if(StringUtils.isNotBlank(id)){
-             shopSysParam = this.shopSysParamService.find(id);
+             shopSysParam = this.shopSysParamService.find(Integer.parseInt(id));
         }
         model.addAttribute("shopSysParam", shopSysParam);
         model.addAttribute("id", id);
@@ -86,9 +86,9 @@ public class ShopSysParamController{
     @RequestMapping("/doDelete")
     public String doDelete(HttpServletRequest request){
         String id = request.getParameter("id");
-        ShopSysParam shopSysParam = this.shopSysParamService.find(id);
+        ShopSysParam shopSysParam = this.shopSysParamService.find(Integer.parseInt(id));
         if(shopSysParam != null){
-           this.shopSysParamService.delete(id);;
+           this.shopSysParamService.delete(Integer.parseInt(id));;
         }
         return "redirect:/sysParam/list";
     }
