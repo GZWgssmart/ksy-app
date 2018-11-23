@@ -96,9 +96,9 @@
                                             <ul>
                                                 <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
-                                            <div class="cart-total-btn">
+                                            <div v-if="carts.length > 0" class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
-                                                    <a href="#">提交订单</a>
+                                                    <a href="order-preview.jsp?from=cart">去结算</a>
                                                 </div>
                                             </div>
                                         </div>

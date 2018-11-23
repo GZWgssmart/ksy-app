@@ -63,7 +63,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        <tr v-for="product in products">
                                                             <td>
                                                                 <a href="javascript:;"><img
                                                                         :src="product.proLogoImg"
@@ -73,9 +73,9 @@
                                                                     href="javascript:;" v-text="product.proName"></a></td>
                                                             <td><span v-text="'￥' + product.price1"></span></td>
                                                             <td>
-                                                                <span v-text="quantity"></span>
+                                                                <span v-text="product.count"></span>
                                                             </td>
-                                                            <td v-text="'￥' + (product.price1 * quantity)"></td>
+                                                            <td v-text="'￥' + (product.price1 * product.count)"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -87,7 +87,7 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="cart-total">
                                             <ul>
-                                                <li class="cart-black">总价<span v-text="'￥' + (product.price1 * quantity)"></span></li>
+                                                <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
                                             <div class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
@@ -127,19 +127,20 @@
         <script>
             var productId = <%=request.getParameter("id")%>
             var quantity = <%=request.getParameter("quantity")%>
+            var from = '<%=request.getParameter("from")%>'
             var view = new Vue({
                 el: '#content',
                 data: {
                     userInfo: {},
-                    product: {},
-                    quantity: quantity
+                    products: [],
+                    totalPrice: 0
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.isLogin()
-                    this.getProduct()
+                    this.getProducts()
                 },
                 methods: {
                     isLogin () {
@@ -159,19 +160,42 @@
                             }
                         )
                     },
-                    getProduct () {
-                        $.post(
-                            PRODUCT_DETAIL_URL,
-                            {
-                                id: productId
-                            },
-                            function (data) {
-                                if (data.success === true) {
-                                    view.product = data.data
-                                    view.product.proLogoImg = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
+                    getProducts () {
+                        if (from === 'cart') {
+                            $.post(
+                                CART_LIST_URL,
+                                function (data) {
+                                    if (data.success === true) {
+                                        // view.products = data.data
+                                        view.products = [
+                                            {
+                                                proName: 'tea',
+                                                price1: 100,
+                                                count: 10
+                                            }
+                                        ]
+                                        view.products.forEach(function (item, index) {
+                                            view.totalPrice += item.count * item.price1
+                                        })
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        } else {
+                            $.post(
+                                PRODUCT_DETAIL_URL,
+                                {
+                                    id: productId
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        data.data.proLogoImg = BASE_URL + MODULE_ADMIN + data.data.proLogoImg
+                                        data.data.count = quantity
+                                        view.products.push(data.data)
+                                        view.totalPrice += quantity * data.data.price1
+                                    }
+                                }
+                            )
+                        }
                     }
                 }
 
