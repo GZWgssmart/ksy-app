@@ -97,8 +97,8 @@
                                         <div class="cart-total-btn">
                                             <div class="cart-total-btn2 f-right">
                                                 <div v-text="errMsg"></div>
-                                                <div v-if="order.status == 3">已确认收货</div>
-                                                <div v-else>
+                                                <div v-text="order.statusName"></div>
+                                                <div v-if="order.status != 3">
                                                     <span v-if="firstConfirm == true" ><a href="javascript:;" @click="confirmOrder(1)">确认收货</a></span>
                                                     <span v-if="secondConfirm == true">真的确认收货吗？<a href="javascript:;" @click="confirmOrder(2)">确认</a></span>
                                                 </div>
@@ -183,6 +183,7 @@
                             function (data) {
                                 if (data.success === true) {
                                     view.order = data.data
+                                    view.order.statusName = ORDER_STATUS['' + view.order.status]
                                     view.order.shopTradeDetails.forEach(function (item, index) {
                                         item.proLogoImg = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                     })
