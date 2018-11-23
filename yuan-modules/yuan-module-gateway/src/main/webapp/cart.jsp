@@ -67,7 +67,7 @@
                                                         <tr v-for="item in carts">
                                                             <td>
                                                                 <a href="javascript:;"><img
-                                                                        :src="item.proLogImg"
+                                                                        :src="item.proLogImgFull"
                                                                         alt=""></a>
                                                             </td>
                                                             <td><a
@@ -177,6 +177,7 @@
                                 if (data.success === true) {
                                     // view.carts = data.data
                                     view.carts.forEach(function (item, index) {
+                                        item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                         view.totalPrice += item.count * item.price
                                     })
                                 }
