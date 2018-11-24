@@ -49,6 +49,7 @@
 									<td><span>参数编码</span></td>
 									<td><span>参数类型</span></td>
 									<td><span>参数值</span></td>
+									<td><span>备注</span></td>
 									<td><span>创建时间</span></td>
 									<td><span>修改时间</span></td>
 									<td><span>操作</span></td>
@@ -72,6 +73,9 @@
 												</td>
 												<td>
 													<div class="t_text tc">${u.sysValue }</div>
+												</td>
+												<td>
+													<div class="t_text tc">${u.sysDesc }</div>
 												</td>
 												<td>
 													<div class="t_text tc">

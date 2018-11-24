@@ -160,7 +160,7 @@ public class ShopTrade implements java.io.Serializable {
 		this.createBy = createBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopTrade",cascade = {CascadeType.ALL})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopTrade",cascade = {CascadeType.MERGE,CascadeType.REFRESH})
 	public Set<ShopTradeDetail> getShopTradeDetails() {
 		return this.shopTradeDetails;
 	}

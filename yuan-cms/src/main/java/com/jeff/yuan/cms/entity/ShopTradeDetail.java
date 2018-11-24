@@ -56,7 +56,7 @@ public class ShopTradeDetail implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "trade_id", nullable = false)
+	@JoinColumn(name = "trade_id")
 	public ShopTrade getShopTrade() {
 		return this.shopTrade;
 	}

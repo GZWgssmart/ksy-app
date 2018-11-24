@@ -45,6 +45,18 @@
 								<c:if test="${6 eq queryDTO.jtype }">selected</c:if>>股份收益</option>
 							<option value=7
 								<c:if test="${7 eq queryDTO.jtype }">selected</c:if>>平台分红</option>
+							<option value=8
+								<c:if test="${8 eq queryDTO.jtype }">selected</c:if>>捐赠</option>
+							<option value=9
+								<c:if test="${9 eq queryDTO.jtype }">selected</c:if>>购买返点</option>
+							<option value=10
+								<c:if test="${10 eq queryDTO.jtype }">selected</c:if>>直推购买返点</option>
+							<option value=11
+								<c:if test="${11 eq queryDTO.jtype }">selected</c:if>>间推购买返点</option>
+							<option value=12
+								<c:if test="${12 eq queryDTO.jtype }">selected</c:if>>提现健康值</option>
+							<option value=13
+								<c:if test="${13 eq queryDTO.jtype }">selected</c:if>>项目合作</option>
 						</select>
 					</div>
 
@@ -115,6 +127,24 @@
 		                                     		</c:when>
 															<c:when test="${7 eq u.jtype}">
 		                                     			平台分红
+		                                     		</c:when>
+															<c:when test="${8 eq u.jtype}">
+		                                     			捐赠余额
+		                                     		</c:when>
+															<c:when test="${9 eq u.jtype}">
+		                                     			购买返点
+		                                     		</c:when>
+															<c:when test="${10 eq u.jtype}">
+		                                     			直推购买返点
+		                                     		</c:when>
+															<c:when test="${11 eq u.jtype}">
+		                                     			间推购买返点
+		                                     		</c:when>
+															<c:when test="${12 eq u.jtype}">
+		                                     			提现健康值
+		                                     		</c:when>
+															<c:when test="${13 eq u.jtype}">
+		                                     			项目合作
 		                                     		</c:when>
 															<c:otherwise>
 		                                     			未知类型

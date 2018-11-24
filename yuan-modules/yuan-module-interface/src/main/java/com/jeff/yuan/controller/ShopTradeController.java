@@ -35,6 +35,7 @@ import com.jeff.yuan.cms.entity.ShopUser;
 import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.cms.service.ShopProductService;
 import com.jeff.yuan.cms.service.ShopRegisterRuleService;
+import com.jeff.yuan.cms.service.ShopTradeDetailService;
 import com.jeff.yuan.cms.service.ShopTradeService;
 import com.jeff.yuan.cms.service.ShopUserExtService;
 import com.jeff.yuan.cms.service.ShopUserService;
@@ -58,6 +59,8 @@ public class ShopTradeController {
 	private ShopProductService productService;
 	@Autowired
 	private ShopTradeService tradeService;
+	@Autowired
+	private ShopTradeDetailService tradeDetailService;
 	@Autowired
 	private ShopUserService userService;
 	@Autowired
@@ -158,7 +161,7 @@ public class ShopTradeController {
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
 
 			// 减去余额(未开启事物 可能存在不一致)
-			BigDecimal balance = user.getShopUserExts().getBalance().subtract(bean.getPrice());
+			BigDecimal balance = user.getShopUserExts().getBalance().subtract(bean.getPrice().abs());
 			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
 				bean.setTradeNo(WebHelper.getDayNo());
 				bean.setCreateDate(new Date());
@@ -169,7 +172,8 @@ public class ShopTradeController {
 					bean.setStatus(3);
 				}
 				//下单
-				tradeService.save(bean);
+				bean = tradeService.save(bean);
+				
 				//减去账户余额
 				user.getShopUserExts().setBalance(balance);
 				//账户积分-订单积分+购买商品赠送积分
@@ -181,6 +185,10 @@ public class ShopTradeController {
 				//获取商品列表的赠送积分，并添加到用户
 				while (it.hasNext()) {  
 					ShopTradeDetail detail = it.next();
+					//保存订单明细
+					detail.setShopTrade(bean);
+					tradeDetailService.save(detail);
+					
 					ShopProduct product = productService.find(detail.getProId());
 					credits.add(new BigDecimal(product.getIncomeCredits()));
 				}

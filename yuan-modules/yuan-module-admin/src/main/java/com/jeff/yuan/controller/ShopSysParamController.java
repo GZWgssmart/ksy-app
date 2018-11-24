@@ -60,8 +60,7 @@ public class ShopSysParamController{
         if(StringUtils.isNotBlank(id)){
              shopSysParam = this.shopSysParamService.find(Integer.parseInt(id));
         }
-        model.addAttribute("shopSysParam", shopSysParam);
-        model.addAttribute("id", id);
+        model.addAttribute("bean", shopSysParam);
         return "shop/dialog/sysParam_edit";
     }
 
