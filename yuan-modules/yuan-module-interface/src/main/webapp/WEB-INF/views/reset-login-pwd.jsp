@@ -121,7 +121,10 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        view.errMsg = '重置登录密码成功，请关注手机短信'
+                                        view.errMsg = '重置登录密码成功，请关注手机短信，3秒后跳转到登录页面'
+                                        setTimeout(function() {
+                                            window.location.href = '<%=path%>/login'
+                                        }, 3000)
                                     } else if (data.success === false) {
                                         view.errMsg = data.msg
                                     }
