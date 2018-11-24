@@ -105,19 +105,22 @@ public class ShopBillTradeController {
 		ajaxResult.setSuccess(false);
 		
 		try {
-			if(bean.getType()==1) {
+			/*if(bean.getType()==1) {
 				bean.setTradeStatus(1);
 			}else {
-				bean.setTradeStatus(2);
-			}
+			}*/
+			bean.setTradeStatus(2);
 			
 			bean.setCreateDate(new Date() );
 			
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
-			if (user!=null) {
+			if (user==null) {
 				user=userService.find(bean.getUserId());
 			}
-			System.out.println("转让用户信息："+bean.getUserId());
+			if (bean.getUserId()==0) {
+				bean.setUserId(user.getId());
+			}
+			System.out.println("转让用户信息："+user.getId());
 			
 			BigDecimal activeBill = new BigDecimal(user.getShopUserExts().getActiveBill()).subtract(new BigDecimal(bean.getCount()));
 	        if (activeBill.compareTo(BigDecimal.ZERO)<0) {

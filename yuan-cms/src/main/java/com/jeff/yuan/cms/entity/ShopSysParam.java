@@ -22,6 +22,7 @@ public class ShopSysParam implements java.io.Serializable {
 	private String sysCode;
 	private String sysType;
 	private String sysValue;
+	private String sysDesc;
 	private Date updateDate;
 	private Date createDate;
 
@@ -99,6 +100,15 @@ public class ShopSysParam implements java.io.Serializable {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	@Column(name = "sys_desc", length = 64)
+	public String getSysDesc() {
+		return sysDesc;
+	}
+
+	public void setSysDesc(String sysDesc) {
+		this.sysDesc = sysDesc;
 	}
 
 }

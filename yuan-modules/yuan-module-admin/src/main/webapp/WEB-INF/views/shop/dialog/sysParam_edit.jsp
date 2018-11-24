@@ -109,6 +109,25 @@ $(function(){
                              </div>
                          </td>
                      </tr>
+					<tr>
+					<td class="l_title w150">备注</td>
+                         <td>
+                             <div class="J_toolsBar fl">
+                                 <div class="t_text w200 ml10">
+                                     <label>
+                                     	<c:choose>
+                                     		<c:when test="${not empty bean }">
+                                     			<input type="text" name="sysDesc"  value="${bean.sysDesc }" />
+                                     		</c:when>
+                                     		<c:otherwise>
+                                     			<input type="text" name="sysDesc"  value="" />
+                                     		</c:otherwise>
+                                     	</c:choose>
+                                     </label>
+                                 </div>
+                             </div>
+                         </td>
+                     </tr>
                      
 				</table>
 			</div>
