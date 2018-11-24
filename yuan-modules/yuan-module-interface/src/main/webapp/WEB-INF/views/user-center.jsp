@@ -452,6 +452,7 @@
                             $.post(
                                 SHOPBILL_TRAN,
                                 {
+                                    userId: userId,
                                     count: view.getLinkCount,
                                     type: 1
                                 },
@@ -484,6 +485,7 @@
                             $.post(
                                 SHOPBILL_TRAN,
                                 {
+                                    userId: userId,
                                     count: view.transLinkCount,
                                     tradePhone: view.transLinkPhone,
                                     type: 2
@@ -514,6 +516,7 @@
                             $.post(
                                 SHOPBILL_TRAN,
                                 {
+                                    userId: userId,
                                     count: view.donateLinkCount,
                                     type: 3
                                 },
