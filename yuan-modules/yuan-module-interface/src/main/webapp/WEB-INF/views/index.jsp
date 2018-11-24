@@ -263,7 +263,7 @@
                         {
                             pageSize: 3,
                             currentPage: 1,
-                            columnId: '8a2a08425b7aa230015b7aa9a1ad0004'
+                            columnId: ARTICLE_COLUMN_ID
                         },
                         function (data) {
                             if (data.success === true) {
