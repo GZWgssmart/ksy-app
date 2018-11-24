@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -149,7 +150,7 @@ public class ShopTradeController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public AjaxResult ajaxSave(HttpServletRequest request, ShopTrade bean) {
+	public AjaxResult ajaxSave(HttpServletRequest request,@RequestBody ShopTrade bean) {
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
 

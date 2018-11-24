@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("")
-public class PageController {
+@RequestMapping("/")
+public class IndexController {
 
     @RequestMapping("index")
     public String index(){
