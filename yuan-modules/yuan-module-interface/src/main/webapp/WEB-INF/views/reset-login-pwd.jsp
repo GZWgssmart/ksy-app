@@ -8,7 +8,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>康生缘-用户登录</title>
+        <title>康生缘-重置登录密码</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -50,19 +50,13 @@
                                 <div class="col-md-6 col-md-offset-3">
                                     <div class="login-content">
                                         <div class="login-title">
-                                            <h4>用户登录</h4>
-                                            <p v-if="relogin == 'y'" style="color: red;">您还未登录或登录已失效，请重新登录！</p>
+                                            <h4>重置登录密码</h4>
                                         </div>
                                         <div class="login-form">
                                             <form action="#">
-                                                <input v-model="form.phone" placeholder="请输入手机号" type="text">
-                                                <input v-model="form.pwd" placeholder="请输入密码" type="password">
+                                                手机号<input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
                                                 <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                                <button class="login-btn" type="button" @click="login">登录</button>
-                                                <div class="new-account">
-                                                    <p>还没有账号？ <a href="<%=path%>/register">注册新账号</a></p>
-                                                    <p>忘记登录密码？ <a href="<%=path%>/reset-pwd">重置登录密码</a></p>
-                                                </div>
+                                                <button class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
                                             </form>
                                         </div>
                                     </div>
@@ -98,57 +92,43 @@
         <script src="<%=path%>/assets/js/yuan.js"></script>
         <script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
         <script>
-            var relogin = '${requestScope.relogin}'
             var view = new Vue({
                 el: '#content',
                 data: {
-                    form: {
-                        phone: '',
-                        pwd: ''
-                    },
-                    errMsg: '',
-                    relogin: 'n'
+                    phone: '',
+                    errMsg: ''
                 },
                 created: function() {
 
                 },
                 mounted: function() {
-                    this.relogin = relogin
+
                 },
                 methods: {
-                    logout () {
-                        $.post(
-                            LOGOUT_URL,
-                            function(data) {
-                                if (data.success === true) {
-                                    window.location.href = '<%=path%>/index'
-                                }
-                            }
-                        )
-                    },
-                    login () {
-                        view.errMsg = ''
+                    resetLoginPwd () {
                         var errMsg = ''
-                        if (!isPhone(view.form.phone.trim())) {
-                            errMsg += '请输入正确的手机号<br/>';
+                        if (view.phone.trim() === '') {
+                            errMsg += '请输入手机号， 以重置密码<br/>'
                         }
-                        if (view.form.pwd.trim() === '') {
-                            errMsg += '请输入密码<br/>';
-                        }
-                        if (errMsg === '') {
-                            $.post(LOGIN_URL,
-                                Qs.stringify(view.form),
-                                function (data) {
-                                    if (data.success === false) {
-                                        view.errMsg = data.msg
-                                    } else {
-                                        window.location.href = '<%=path%>/user'
-                                    }
-                                })
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
                         } else {
-                            view.errMsg = errMsg;
+                            view.errMsg = ''
+                            $.post(
+                                RESET_LOGIN_PWD_URL,
+                                {
+                                    phone: view.phone
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '重置登录密码成功，请关注手机短信'
+                                    } else if (data.success === false) {
+                                        view.errMsg = data.msg
+                                    }
+                                }
+                            )
                         }
-                    }
+                    },
                 }
             });
         </script>

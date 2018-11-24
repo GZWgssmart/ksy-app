@@ -121,7 +121,9 @@
                                             <option value="0">请选择操作</option>
                                             <option value="1">修改个人资料</option>
                                             <option value="2">修改登录密码</option>
+                                            <!--
                                             <option value="3">重置登录密码</option>
+                                            -->
                                             <option value="4">修改交易密码</option>
                                             <option value="5">重置交易密码</option>
                                         </select>&nbsp;

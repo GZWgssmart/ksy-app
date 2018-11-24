@@ -182,4 +182,9 @@ public class IndexController {
         return "cart";
     }
 
+    @RequestMapping("reset-pwd")
+    public String resetLoginPwd() {
+        return "reset-login-pwd";
+    }
+
 }

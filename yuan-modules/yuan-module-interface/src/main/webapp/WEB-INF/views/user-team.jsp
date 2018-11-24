@@ -81,7 +81,6 @@
                                         <thead>
                                         <tr>
                                             <th>姓名</th>
-                                            <th>手机号</th>
                                             <th>等级</th>
                                             <th>昵称</th>
                                         </tr>
@@ -89,7 +88,6 @@
                                         <tbody>
                                         <tr v-for="item in otherTeam">
                                             <td v-text="item.account"></td>
-                                            <td v-text="item.phone"></td>
                                             <td v-text="item.userLevel"></td>
                                             <td v-text="item.nickname"></td>
                                         </tr>
