@@ -1,4 +1,4 @@
-var BASE_URL = 'http://localhost:8080';
+var BASE_URL = 'http://47.106.142.171:8080';
 
 var MODULE_ADMIN = '/yuan-module-admin'
 
