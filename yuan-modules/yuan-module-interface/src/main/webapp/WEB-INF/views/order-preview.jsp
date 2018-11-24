@@ -217,9 +217,9 @@
                                         view.products.push(data.data)
                                         view.totalPrice += quantity * data.data.price
                                         view.oTotalPrice = view.totalPrice
-                                        if (data.data.type === 1) {
+                                        if (data.data.type === '1') {
                                             view.jtype = 1
-                                        } else if (data.data.type === 3) {
+                                        } else if (data.data.type === '3') {
                                             view.jtype = 13
                                         }
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
