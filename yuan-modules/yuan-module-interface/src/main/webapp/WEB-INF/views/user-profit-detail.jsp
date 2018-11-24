@@ -56,18 +56,20 @@
                                         <table>
                                         <thead>
                                         <tr>
+                                            <th>订单号</th>
                                             <th>交易类型</th>
-                                            <th>健康链数量</th>
-                                            <th>对方手机号</th>
+                                            <th>价格</th>
+                                            <th>积分</th>
                                             <th>交易状态</th>
                                             <th>交易时间</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr v-for="item in profits">
+                                            <td v-text="item.tradeNo"></td>
                                             <td v-text="item.typeName"></td>
-                                            <td v-text="item.count"></td>
-                                            <td v-text="item.tradePhone"></td>
+                                            <td v-text="item.price"></td>
+                                            <td v-text="item.credits"></td>
                                             <td v-text="item.tradeStatusName"></td>
                                             <td v-text="item.createDate"></td>
                                         </tr>
@@ -158,8 +160,8 @@
                                     if (view.profits.length > 0) {
                                         view.profits.forEach(function(item, index) {
                                             item.createDate = timestampToDatetime(item.createDate)
-                                            item.typeName = BILL_TYPES['' + item.type]
-                                            item.tradeStatusName = BILL_STATUS['' + item.tradeStatus]
+                                            item.typeName = INCOME['' + item.jtype]
+                                            item.tradeStatusName = ORDER_STATUS['' + item.status]
                                         })
                                     }
                                     if (init) {
