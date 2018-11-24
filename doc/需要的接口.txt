@@ -28,3 +28,11 @@ banner图片：1920*830
 资讯大图：870*490
 
 测试账号：13798369750    123456
+
+问题：
+1、user表account修改成可为空
+2、用户信息接口不要从session拿数据，或者更新用户信息后，session中用户也要更新，其他操作也要更新session中的用户信息，如捐赠，转让等
+3、ShopTradeController BigDecimal balance = user.getShopUserExts().getBalance().subtract(bean.getPrice());
+会出现空指针
+4、返回的购物车商品信息中，把可抵用积分也要返回
+5、确认收货：ShopRegisterRule rule = ruleService.findByVip(product.getVipLevel()); 空指针
