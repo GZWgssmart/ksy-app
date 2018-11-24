@@ -68,7 +68,7 @@ public class PageController {
             mav.setViewName("redirect:login?relogin=y");
             return mav;
         }
-        mav.setViewName("profit-detail");
+        mav.setViewName("user-profit-detail");
         mav.addObject("typeName", typeName);
         mav.addObject("type", type);
         return mav;
