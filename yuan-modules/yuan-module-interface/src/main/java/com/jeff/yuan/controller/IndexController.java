@@ -139,7 +139,7 @@ public class IndexController {
     }
 
     @RequestMapping("blog-detail")
-    public ModelAndView blogDetail(Integer id) {
+    public ModelAndView blogDetail(String id) {
         ModelAndView mav = new ModelAndView("blog-details");
         mav.addObject("id", id);
         return mav;
@@ -151,7 +151,7 @@ public class IndexController {
     }
 
     @RequestMapping("heart-detail")
-    public ModelAndView heartDetail(Integer id) {
+    public ModelAndView heartDetail(String id) {
         ModelAndView mav = new ModelAndView("heart-detail");
         mav.addObject("id", id);
         return mav;
@@ -163,7 +163,7 @@ public class IndexController {
     }
 
     @RequestMapping("health-detail")
-    public ModelAndView healthDetail(Integer id) {
+    public ModelAndView healthDetail(String id) {
         ModelAndView mav = new ModelAndView("health-detail");
         mav.addObject("id", id);
         return mav;
