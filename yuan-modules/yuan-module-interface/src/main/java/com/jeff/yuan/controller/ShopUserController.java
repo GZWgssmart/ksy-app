@@ -89,9 +89,9 @@ public class ShopUserController {
 		if (StringUtils.isNoneEmpty(phone)) {
 			
 //			List<Map<String, Object>> list = userService.queryUser2List(user.getPhone());
-//			List<Map<String, Object>> list2 = userService.queryUser2List(user.getPhone());
+//			List<Map<String, Object>> list2 = userService.queryUser3List(user.getPhone());
 			List<Map<String, Object>> list = userService.queryUser2List(phone);
-			List<Map<String, Object>> list2 = userService.queryUser2List(phone);
+			List<Map<String, Object>> list2 = userService.queryUser3List(phone);
 			
 			JSONObject jsonObject  = new JSONObject();
 			jsonObject.put("zhitui", list);//直推信息
@@ -146,12 +146,15 @@ public class ShopUserController {
 		String phone = request.getParameter("phone");
 		String refPhone = request.getParameter("refPhone");
 		String address = request.getParameter("address");
-		ShopUser user = null;
 		try {
-			if (StringUtils.isNotBlank(id)) {
-				user = userService.find(Integer.parseInt(id));
-			} else {
-				user = new ShopUser();
+			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			if (user == null) {
+				if (StringUtils.isNotBlank(id)) {
+					user = userService.find(Integer.parseInt(id));
+				} else {
+					user = new ShopUser();
+				}
+				
 			}
 			// 更改值
 			if (StringUtils.isNotBlank(account)) {
