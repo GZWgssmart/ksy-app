@@ -130,6 +130,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                     this.showProfits(true, 1)
                 },
                 methods: {
@@ -213,6 +214,11 @@
                         view.currentPage = pageNo
                         this.getPageNumbers()
                         this.showProfits(false, view.currentPage)
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

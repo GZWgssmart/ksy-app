@@ -169,6 +169,7 @@
 
             },
             mounted: function() {
+                this.meanMenu()
                 this.showBanners()
                 this.showGiftProducts()
                 this.showLatestArticles()
@@ -277,6 +278,11 @@
                             }
                         }
                     )
+                },
+                meanMenu () {
+                    this.$nextTick(function() {
+                        $('#my-mobile-menu').meanmenu()
+                    })
                 }
             }
         });

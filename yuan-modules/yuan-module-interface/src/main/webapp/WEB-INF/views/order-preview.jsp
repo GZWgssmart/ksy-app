@@ -159,6 +159,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                     this.getProducts()
                 },
                 methods: {
@@ -269,6 +270,11 @@
                             }
                         )
                     },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
+                    }
                 },
                 watch: {
                     useCredits: {

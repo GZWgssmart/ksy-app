@@ -102,7 +102,7 @@
 
                 },
                 mounted: function() {
-
+                    this.meanMenu()
                 },
                 methods: {
                     resetLoginPwd () {
@@ -132,6 +132,11 @@
                             )
                         }
                     },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
+                    }
                 }
             });
         </script>

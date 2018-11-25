@@ -346,6 +346,28 @@
         <script src="<%=path%>/assets/js/plugins.js"></script>
         <script src="<%=path%>/assets/js/main.js"></script>
         <script src="<%=path%>/assets/js/classie.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="<%=path%>/assets/js/yuan.js"></script>
+        <script>
+            var view = new Vue({
+                el: '#content',
+                data: {
+                },
+                created: function() {
+
+                },
+                mounted: function() {
+                    this.meanMenu()
+                },
+                methods: {
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
+                    }
+                }
+            });
+        </script>
 		<script src="<%=path%>/assets/js/main3.js"></script>
     </body>
 </html>

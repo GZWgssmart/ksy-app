@@ -156,6 +156,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                 },
                 methods: {
 
@@ -168,6 +169,11 @@
                                 }
                             }
                         )
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

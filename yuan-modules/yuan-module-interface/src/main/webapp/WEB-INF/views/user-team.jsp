@@ -136,6 +136,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                     this.getTeam()
                 },
                 methods: {
@@ -170,6 +171,11 @@
                                 }
                             }
                         )
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

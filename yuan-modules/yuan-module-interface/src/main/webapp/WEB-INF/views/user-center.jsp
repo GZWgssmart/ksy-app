@@ -249,6 +249,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                     this.operation = '${requestScope.operation}'
                     if (this.operation === '') {
                         this.operation = '0'
@@ -589,6 +590,11 @@
                                 }
                             )
                         }
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

@@ -111,6 +111,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                     this.getIncome()
                 },
                 methods: {
@@ -141,6 +142,11 @@
                                 }
                             }
                         )
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

@@ -119,7 +119,7 @@
 
                 },
                 mounted: function() {
-
+                    this.meanMenu()
                 },
                 methods: {
                     logout () {
@@ -206,6 +206,11 @@
                         } else {
                             view.errMsg = errMsg;
                         }
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

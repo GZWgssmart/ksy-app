@@ -208,6 +208,7 @@
 
                 },
                 mounted: function() {
+                    this.meanMenu()
                     this.showProduct()
                 },
                 methods: {
@@ -305,6 +306,11 @@
                     },
                     toBuy (id) {
                         window.location.href = '<%=path%>/order-preview?id=' + id + '&quantity=' + view.quantity
+                    },
+                    meanMenu () {
+                        this.$nextTick(function() {
+                            $('#my-mobile-menu').meanmenu()
+                        })
                     }
                 }
             });

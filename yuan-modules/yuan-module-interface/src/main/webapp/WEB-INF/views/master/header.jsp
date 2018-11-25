@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mobile-menu">
-                    <nav id="dropdown">
+                    <nav id="my-mobile-menu">
                         <ul>
                             <li>
                                 <a href="<%=path%>/index">首页</a>
