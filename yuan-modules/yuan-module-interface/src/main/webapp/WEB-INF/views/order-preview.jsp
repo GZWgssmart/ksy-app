@@ -221,6 +221,8 @@
                                             view.jtype = 1
                                         } else if (data.data.type === '3') {
                                             view.jtype = 13
+                                        } else if (data.data.type === '2') {
+                                            view.jtype = 2
                                         }
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'

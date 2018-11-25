@@ -150,7 +150,7 @@
                             ORDER_URL,
                             {
                                 userId: ${sessionScope.userInfo.id},
-                                jtype: '1,2,3',
+                                jtype: '1,2,13',
                                 pageSize: 15,
                                 currentPage: pageNo
                             },

@@ -70,7 +70,7 @@
                                                         <tr v-for="item in carts">
                                                             <td>
                                                                 <a href="javascript:;"><img
-                                                                        :src="item.proLogImgFull"
+                                                                        :src="item.proLogoImgFull"
                                                                         alt=""></a>
                                                             </td>
                                                             <td><a

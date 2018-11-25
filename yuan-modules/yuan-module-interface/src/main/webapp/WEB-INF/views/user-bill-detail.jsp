@@ -7,7 +7,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>康生缘-个人健康链明细</title>
+        <title>康生缘-个人健康值明细</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -46,7 +46,7 @@
                         <div class="container">
                             <div id="profit" class="section-title text-center mb-50">
                                 <h2>
-                                    健康链变动明细
+                                    健康值变动明细
                                     <i class="pe-7s-gift"></i>
                                 </h2>
                             </div>
@@ -57,7 +57,7 @@
                                         <thead>
                                         <tr>
                                             <th>交易类型</th>
-                                            <th>健康链数量</th>
+                                            <th>健康值数量</th>
                                             <th>对方手机号</th>
                                             <th>交易状态</th>
                                             <th>交易时间</th>
