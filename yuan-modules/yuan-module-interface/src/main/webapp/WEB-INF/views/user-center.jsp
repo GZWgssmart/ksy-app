@@ -126,7 +126,8 @@
                                             -->
                                             <option value="4">修改交易密码</option>
                                             <option value="5">重置交易密码</option>
-                                        </select>&nbsp;
+                                        </select>
+                                        <br/>
                                         健康值操作：
                                         <select style="width: 120px;" v-model="operation1" @change="selectChange(2)">
                                             <option value="0">请选择操作</option>
