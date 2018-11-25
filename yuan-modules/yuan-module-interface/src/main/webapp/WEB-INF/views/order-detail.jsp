@@ -94,7 +94,8 @@
                                                 <div v-text="order.statusName"></div>
                                                 <div v-if="order.status != 3">
                                                     <span v-if="firstConfirm == true" ><a href="javascript:;" @click="confirmOrder(1)">确认收货</a></span>
-                                                    <span v-if="secondConfirm == true">真的确认收货吗？<a href="javascript:;" @click="confirmOrder(2)">确认</a></span>
+                                                    <span v-if="secondConfirm == true && confirming == false">真的确认收货吗？<a href="javascript:;" @click="confirmOrder(2)">确认</a></span>
+                                                    <span v-if="confirming == true">正在确认……</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,6 +141,7 @@
                     },
                     firstConfirm: true,
                     secondConfirm: false,
+                    confirming: false,
                     errMsg: ''
                 },
                 created: function() {
@@ -184,6 +186,8 @@
                             view.firstConfirm = false
                             view.secondConfirm = true
                         } else if (confirm === 2) {
+                            var self = this
+                            view.confirming = true
                             $.post(
                                 ORDER_CONFIRM_URL,
                                 {
@@ -191,9 +195,12 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        this.getOrder()
+                                        self.getOrder()
                                     } else if (data.success === false) {
                                         view.errMsg = data.msg
+                                        view.confirming = false
+                                        view.firstConfirm = true
+                                        view.secondConfirm = false
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
                                     }
