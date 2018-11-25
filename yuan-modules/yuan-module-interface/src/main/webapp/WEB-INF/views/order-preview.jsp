@@ -280,12 +280,13 @@
                     useCredits: {
                         handler(newValue, oldValue) {
                             var userCredits = parseInt(${sessionScope.userInfo.shopUserExts.credits})
+                            // 用户总积分500 订单总金额200 可使用总积分100
                             if (view.totalCredits <= userCredits) {
-                                if (newValue > view.totalCredits || newValue > userCredits) {
+                                if (newValue >= view.totalCredits) {
                                     view.useCredits = view.totalCredits
                                 }
                             } else {
-                                if (newValue > view.totalCredits || newValue > userCredits) {
+                                if (newValue >= userCredits) {
                                     view.useCredits = userCredits
                                 }
                             }
