@@ -186,10 +186,10 @@
 																<a href="javascript:updStatus('${u.id }', '2');"><i
 																	class="icon"></i>发货</a>
 															</c:when>
-															<c:when test="${u.status eq 2 }">
+															<%-- <c:when test="${u.status eq 2 }">
 																<a href="javascript:updStatus('${u.id }', '3');"><i
 																	class="icon"></i>确认收货</a>
-															</c:when>
+															</c:when> --%>
 															<c:otherwise>
 																<!-- <a href="#"><i class="icon"></i>已完成</a> -->
 															</c:otherwise>
@@ -258,11 +258,11 @@
 
 		function updStatus(id, status) {
 			var content = '';
-			if (status == '1') {
-				content = '确认要发货吗？';
+			content = '确认要发货吗？';
+			/* if (status == '1') {
 			} else {
 				content = '确认要确认收货吗？';
-			}
+			} */
 
 			layer.confirm(content, function(index) {
 				layer.close(index);
