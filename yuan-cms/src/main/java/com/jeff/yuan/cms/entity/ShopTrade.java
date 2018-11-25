@@ -132,7 +132,7 @@ public class ShopTrade implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@Column(name = "credits", nullable = false)
+	@Column(name = "credits")
 	public int getCredits() {
 		return this.credits;
 	}

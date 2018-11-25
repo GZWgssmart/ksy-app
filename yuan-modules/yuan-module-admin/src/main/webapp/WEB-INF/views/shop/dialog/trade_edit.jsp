@@ -286,6 +286,7 @@ $(function(){
 									<td><span>商品名称</span></td>
 									<td><span>商品个数</span></td>
 									<td><span>实际付款价格</span></td>
+									<td><span>使用积分</span></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -304,6 +305,9 @@ $(function(){
 												</td>
 												<td>
 													<div class="t_text tc">${u.price }</div>
+												</td>
+												<td>
+													<div class="t_text tc">${u.credits }</div>
 												</td>
 												
 											</tr>

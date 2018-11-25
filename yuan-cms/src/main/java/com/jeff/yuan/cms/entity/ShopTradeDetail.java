@@ -29,19 +29,21 @@ public class ShopTradeDetail implements java.io.Serializable {
 	private int proId;
 	private int count;
 	private BigDecimal price;
+	private int credits;
 	private String proName;
 	private String proLogoImg;
 
 	public ShopTradeDetail() {
 	}
 
-	public ShopTradeDetail(ShopTrade shopTrade, int proId, int count, BigDecimal price, String proName, String proLogoImg) {
+	public ShopTradeDetail(ShopTrade shopTrade, int proId, int count, BigDecimal price, String proName, String proLogoImg,int credits) {
 		this.shopTrade = shopTrade;
 		this.proId = proId;
 		this.count = count;
 		this.price = price;
 		this.proName = proName;
 		this.proLogoImg = proLogoImg;
+		this.credits = credits;
 	}
 
 	@Id
@@ -108,6 +110,15 @@ public class ShopTradeDetail implements java.io.Serializable {
 
 	public void setProLogoImg(String proLogoImg) {
 		this.proLogoImg = proLogoImg;
+	}
+	
+	@Column(name = "credits")
+	public int getCredits() {
+		return this.credits;
+	}
+
+	public void setCredits(int credits) {
+		this.credits = credits;
 	}
 
 }

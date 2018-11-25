@@ -171,14 +171,21 @@ public class ShopTradeController {
 				} else {
 					bean.setStatus(3);
 				}
+				
+				//账户积分-订单积分+购买商品赠送积分
+				BigDecimal credits = new BigDecimal(user.getShopUserExts().getCredits());
+				BigDecimal credits2 = new BigDecimal(bean.getCredits());
+				if (credits.compareTo(credits2)<0) {
+					ajaxResult.setSuccess(false);
+					ajaxResult.setMsg("积分不足");
+					return ajaxResult;
+				}
 				//下单
 				bean = tradeService.save(bean);
 				
 				//减去账户余额
 				user.getShopUserExts().setBalance(balance);
-				//账户积分-订单积分+购买商品赠送积分
-				BigDecimal credits = new BigDecimal(user.getShopUserExts().getCredits());
-				BigDecimal credits2 = new BigDecimal(bean.getCredits());
+				
 
 				Set<ShopTradeDetail> shopTradeDetails = bean.getShopTradeDetails();
 				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
@@ -432,6 +439,7 @@ public class ShopTradeController {
 			bean.setPrice(tprice.multiply(new BigDecimal(bean.getCount())));
 			bean.setProName(product.getProName());
 			bean.setProLogoImg(product.getProLogoImg());
+			bean.setCredits(product.getConsumeCredits()==null?0:Integer.parseInt(product.getConsumeCredits()));
 			// 查询是否添加过购物车（session有没有封装属性）
 			List<ShopTradeDetail> cartlist = (List<ShopTradeDetail>) session.getAttribute("cartlist");
 			if (cartlist == null) {// 表示没有添加过
@@ -441,7 +449,7 @@ public class ShopTradeController {
 				session.setAttribute("cartlist", list);
 			} else {// 如果添加过
 
-				// 第二次及以上添加判断商品是否存在 如果存在数量加1即可
+				// 第二次及以上添加判断商品是否存在 如果存在数量相加
 				boolean bln = false;// 表示不存在
 				for (int i = 0; i < cartlist.size(); i++) {
 					ShopTradeDetail sc = (ShopTradeDetail) cartlist.get(i);
@@ -449,6 +457,7 @@ public class ShopTradeController {
 						bln = true;
 						sc.setCount(sc.getCount() + bean.getCount());// 得到商品数量加一重新赋给自己
 						sc.setPrice(tprice.multiply(new BigDecimal(sc.getCount())));
+						sc.setCredits(sc.getCount()*(product.getConsumeCredits()==null?0:Integer.parseInt(product.getConsumeCredits())));
 						break;
 					}
 				}
@@ -502,6 +511,7 @@ public class ShopTradeController {
 					if (bean.getProId() == sc.getProId()) {// 如果要添加的 在原来的购物车已经存在
 						sc.setCount(bean.getCount());
 						sc.setPrice(tprice.multiply(new BigDecimal(bean.getCount())));
+						sc.setCredits(sc.getCount()*(product.getConsumeCredits()==null?0:Integer.parseInt(product.getConsumeCredits())));
 						cartlist.set(i, sc);
 						break;
 					}
