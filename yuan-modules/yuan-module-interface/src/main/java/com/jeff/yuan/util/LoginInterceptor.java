@@ -35,13 +35,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 		ShopUser user = (ShopUser) session.getAttribute("userInfo");
 //        ServletContext application = session.getServletContext();
 		if (user==null || "".equals(user)){    //未登录
-			System.out.println("session不存在");
+			/*System.out.println("session不存在");
 			PrintWriter out = null ;
 			JSONObject res = new JSONObject();
 		    res.put("success","false");
 		    res.put("msg","login first");
 		    out = response.getWriter();
-		    out.append(res.toJSONString());
+		    out.append(res.toJSONString());*/
+			response.sendRedirect("login.jsp");
             return false;
         }else{    //已经登录
             return true;
