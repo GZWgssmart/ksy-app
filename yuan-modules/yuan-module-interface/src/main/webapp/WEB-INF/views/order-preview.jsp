@@ -105,10 +105,11 @@
                                             </ul>
                                             <div v-if="products.length > 0 && !submitted" class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
+                                                    <span v-text="errMsg" style="color: red;"></span><br/>
                                                     <a href="javascript:;" @click="submitOrder">提交订单</a>
                                                 </div>
                                             </div>
-                                            <span v-text="errMsg" style="color: red;"></span>
+
                                         </div>
                                     </div>
                                 </div>
