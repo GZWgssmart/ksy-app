@@ -63,7 +63,7 @@
                                                         </div>
                                                         <div class="contact-address">
                                                             <h5>电话</h5>
-                                                            <span>+88 669 658 6586</span>
+                                                            <span>400-008-1196</span>
                                                         </div>
                                                     </li>
                                                     <li>
@@ -72,7 +72,7 @@
                                                         </div>
                                                         <div class="contact-address">
                                                             <h5>邮箱</h5>
-                                                            <span><a href="#">admin@163.com</a></span>
+                                                            <span><a href="#">1725861994@qq.com</a></span>
                                                         </div>
                                                     </li>
                                                     <li>
@@ -81,7 +81,7 @@
                                                         </div>
                                                         <div class="contact-address">
                                                             <h5>地址</h5>
-                                                            <span>广东省深圳市南山区</span>
+                                                            <span>厦门市集美区杏林湾商务运营中心2号楼</span>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -183,7 +183,7 @@
         <script type="text/javascript">
             // 百度地图API功能
             var map = new BMap.Map("allmap");
-            var point = new BMap.Point(113.97889,22.539377);
+            var point = new BMap.Point(118.071392,24.599007);
             map.centerAndZoom(point, 15);
             var marker = new BMap.Marker(point);  // 创建标注
             map.addOverlay(marker);               // 将标注添加到地图中

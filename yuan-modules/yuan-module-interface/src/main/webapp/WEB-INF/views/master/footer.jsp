@@ -22,20 +22,18 @@
                             <p>
                                 <i class="pe-7s-map-marker"> </i>
                                 <span>
-                                    广东省深圳市
-                                    <br>
-                                    <span class="location">南山区</span>
+                                    厦门市集美区杏林湾商务运营中心2号楼
                                 </span>
                             </p>
                             <p>
                                 <i class="pe-7s-mail"></i>
                                 <span>
-                                    <a href="mailto:admin@163.com">admin@163.com</a>
+                                    <a href="#">1725861994@qq.com</a>
                                 </span>
                             </p>
                             <p>
                                 <i class="pe-7s-call"></i>
-                                <span>+86 755 **********</span>
+                                <span>400-008-1196</span>
                             </p>
                         </div>
                     </div>
