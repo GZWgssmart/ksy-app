@@ -51,6 +51,10 @@
                                     <div class="blog-sidebar">
                                         <div class="single-sidebar">
                                             <h3 class="sidebar-title">爆款热门</h3>
+                                            <div>
+                                            暂无
+                                            </div>
+                                            <!--
                                             <div class="single-shop mb-40">
                                                 <div class="shop-img">
                                                     <a href="<%=path%>/product"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
@@ -74,6 +78,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            -->
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +98,7 @@
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="grid"> 
                                                         <div class="row">
-                                                            <div v-if="products.length === 0" class="col-md-6 col-lg-4 col-sm-6">暂无商品</div>
+                                                            <div v-if="products.length === 0" class="col-md-12 text-center" style="margin-bottom: 20px;">暂无商品</div>
                                                             <div v-else v-for="item in products" class="col-md-6 col-lg-4 col-sm-6">
                                                                 <div class="single-shop mb-40">
                                                                     <div class="shop-img">

@@ -45,7 +45,7 @@
             <div class="blog-fullwidth-area ptb-100">
                 <div class="container">
                     <div class="row">
-                        <div v-if="articles.length === 0" class="col-md-4 col-sm-6">暂无健康管理资讯</div>
+                        <div v-if="articles.length === 0" class="col-md-12 text-center" style="margin-bottom: 20px;">暂无健康管理资讯</div>
                         <div v-for="item in articles" class="col-md-4 col-sm-6">
                             <div class="blog-details mb-30">
                                 <div class="blog-img">
