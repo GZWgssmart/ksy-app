@@ -91,7 +91,7 @@
                                         姓名：<span>${sessionScope.userInfo.account}</span><br/>
                                         收货地址：<span>${sessionScope.userInfo.address}</span><br/>
                                         <a href="<%=path%>/user?operation=1">去设置姓名和收货地址</a><br/>
-                                        账户余额：<span>${sessionScope.userInfo.shopUserExts.balance}</span<br/>
+                                        账户余额：<span>${sessionScope.userInfo.shopUserExts.balance}</span><br/>
                                         账户总积分：<span>${sessionScope.userInfo.shopUserExts.credits}</span><br/>
                                         订单最高可抵扣积分：<span v-text="totalCredits"></span><br/>
                                         <form>
