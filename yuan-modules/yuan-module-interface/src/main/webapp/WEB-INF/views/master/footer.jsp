@@ -11,7 +11,7 @@
     <div class="container">
         <div class="footer-top pt-60 pb-30">
             <div class="row">
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-4 col-sm-4">
                     <div class="footer-widget mb-30">
                         <div class="footer-logo">
                             <a href="<%=path%>/index">
@@ -82,7 +82,7 @@
         </div>
         <div class="footer-bottom ptb-20">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-12 text-center">
                     <div class="copyright">
                         <p>
                             Copyright &copy; 2018

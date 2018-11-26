@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-offset-2 col-lg-8 col-sm-12">
                                     <div class="row">
-                                        <div class="col-md-5 col-lg-5 col-sm-5">
+                                        <div class="col-md-6 col-lg-5 col-sm-5">
                                             <div class="contact-info-area">
                                                 <ul>
                                                     <li>
@@ -87,6 +87,7 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        <!--
                                         <div class="col-md-7 col-lg-7 col-sm-7">
                                             <div class="sent-message">
                                                 <form class="contact_form" id="contact_form" method="post">
@@ -113,13 +114,17 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        -->
+                                        <div class="col-md-7 col-lg-7 col-sm-7">
+                                            <div id="allmap"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="contact-area-all">
-                        <div id="allmap"></div>
+
                     </div>
                     <%@include file="master/footer.jsp"%>
                 </div>
