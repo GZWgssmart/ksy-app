@@ -207,7 +207,8 @@
                             PRODUCT_URL,
                             {
                                 pageSize: 15,
-                                currentPage: pageNo
+                                currentPage: pageNo,
+                                type: 2
                             },
                             function (data) {
                                 if (data.success === true) {
