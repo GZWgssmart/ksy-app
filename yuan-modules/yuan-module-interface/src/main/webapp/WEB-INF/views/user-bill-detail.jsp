@@ -98,6 +98,10 @@
 		
 
 		<!-- all js here -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
         <script src="<%=path%>/assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="<%=path%>/assets/js/snap.svg-min.js"></script>
         <script src="<%=path%>/assets/js/bootstrap.min.js"></script>
@@ -131,7 +135,7 @@
                     this.showBills(true, 1)
                 },
                 methods: {
-                    logout () {
+                    logout: function () {
                         $.post(
                             LOGOUT_URL,
                             function(data) {
@@ -141,7 +145,7 @@
                             }
                         )
                     },
-                    showBills (init, pageNo) {
+                    showBills: function (init, pageNo) {
                         var self = this
                         $.post(
                             SHOPBILL_URL,
@@ -170,7 +174,7 @@
                             }
                         )
                     },
-                    initPageNumbers () {
+                    initPageNumbers: function () {
                         if (view.totalPage <= 5) {
                             for (var i = 1; i <= view.totalPage; i++) {
                                 view.pageNumbers.push(i)
@@ -179,7 +183,7 @@
                             view.pageNumbers = [1, 2, 3, 4, 5]
                         }
                     },
-                    getPageNumbers () {
+                    getPageNumbers: function () {
                         if (view.totalPage <= 5) {
 
                         } else {
@@ -190,7 +194,7 @@
                             }
                         }
                     },
-                    previousPage () {
+                    previousPage: function () {
                         if (view.currentPage === 1) {
                             return
                         }
@@ -198,7 +202,7 @@
                         this.getPageNumbers()
                         this.showBills(false, view.currentPage)
                     },
-                    nextPage () {
+                    nextPage: function () {
                         if (view.currentPage === view.totalPage) {
                             return
                         }
@@ -206,12 +210,12 @@
                         this.getPageNumbers()
                         this.showBills(false, view.currentPage)
                     },
-                    goPage (pageNo) {
+                    goPage: function (pageNo) {
                         view.currentPage = pageNo
                         this.getPageNumbers()
                         this.showBills(false, view.currentPage)
                     },
-                    meanMenu () {
+                    meanMenu: function () {
                         this.$nextTick(function() {
                             $('#my-mobile-menu').meanmenu()
                         })

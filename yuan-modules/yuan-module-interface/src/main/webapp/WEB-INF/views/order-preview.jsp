@@ -124,6 +124,10 @@
             </div>
 
             <!-- all js here -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
             <script src="<%=path%>/assets/js/vendor/jquery-1.12.0.min.js"></script>
             <script src="<%=path%>/assets/js/snap.svg-min.js"></script>
             <script src="<%=path%>/assets/js/bootstrap.min.js"></script>
@@ -164,7 +168,7 @@
                     this.getProducts()
                 },
                 methods: {
-                    logout () {
+                    logout: function () {
                         $.post(
                             LOGOUT_URL,
                             function(data) {
@@ -174,7 +178,7 @@
                             }
                         )
                     },
-                    getProducts () {
+                    getProducts: function () {
                         if (from === 'cart') {
                             $.post(
                                 CART_LIST_URL,
@@ -233,7 +237,7 @@
                             )
                         }
                     },
-                    submitOrder () {
+                    submitOrder: function () {
                         view.errMsg = ''
                         if (view.useCredits === '') {
                             view.useCredits = 0
@@ -271,7 +275,7 @@
                             }
                         )
                     },
-                    meanMenu () {
+                    meanMenu: function () {
                         this.$nextTick(function() {
                             $('#my-mobile-menu').meanmenu()
                         })
@@ -279,7 +283,7 @@
                 },
                 watch: {
                     useCredits: {
-                        handler(newValue, oldValue) {
+                        handler: function (newValue, oldValue) {
                             var userCredits = parseInt(${sessionScope.userInfo.shopUserExts.credits})
                             // 用户总积分500 订单总金额200 可使用总积分100
                             if (view.totalCredits <= userCredits) {

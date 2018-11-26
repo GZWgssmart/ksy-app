@@ -180,6 +180,10 @@
         </div>
 
 		<!-- all js here -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
         <script src="<%=path%>/assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="<%=path%>/assets/js/snap.svg-min.js"></script>
         <script src="<%=path%>/assets/js/bootstrap.min.js"></script>
@@ -212,7 +216,7 @@
                     this.showProduct()
                 },
                 methods: {
-                    logout () {
+                    logout: function () {
                         $.post(
                             LOGOUT_URL,
                             function(data) {
@@ -223,7 +227,7 @@
                             }
                         )
                     },
-                    showProduct () {
+                    showProduct: function () {
                         var self = this
                         var userLevel = '${sessionScope.userInfo.vipLevel}'
                         $.post(
@@ -265,7 +269,7 @@
                             }
                         )
                     },
-                    showProductPics () {
+                    showProductPics: function () {
                         this.$nextTick(function() {
                             /* details-tab */
                             $('.details-tab').owlCarousel({
@@ -288,7 +292,7 @@
                             })
                         })
                     },
-                    addCart () {
+                    addCart: function () {
                         $.post(
                             CART_ADD_URL,
                             {
@@ -304,10 +308,10 @@
                             }
                         )
                     },
-                    toBuy (id) {
+                    toBuy: function (id) {
                         window.location.href = '<%=path%>/order-preview?id=' + id + '&quantity=' + view.quantity
                     },
-                    meanMenu () {
+                    meanMenu: function () {
                         this.$nextTick(function() {
                             $('#my-mobile-menu').meanmenu()
                         })

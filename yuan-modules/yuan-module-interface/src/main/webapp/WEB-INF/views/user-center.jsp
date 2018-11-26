@@ -204,6 +204,10 @@
 		
 
 		<!-- all js here -->
+        <!--[if lt IE 9]>
+        <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
         <script src="<%=path%>/assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="<%=path%>/assets/js/snap.svg-min.js"></script>
         <script src="<%=path%>/assets/js/bootstrap.min.js"></script>
@@ -260,7 +264,7 @@
                 },
                 methods: {
 
-                    logout () {
+                    logout: function () {
                         $.post(
                             LOGOUT_URL,
                             function(data) {
@@ -270,7 +274,7 @@
                             }
                         )
                     },
-                    getUser () {
+                    getUser: function () {
                         $.post(
                             USER_DETAIL_URL,
                             {
@@ -288,7 +292,7 @@
                             }
                         )
                     },
-                    updateInfo () {
+                    updateInfo: function () {
                         var self = this
                         var errMsg = ''
                         if (view.account.trim() === '') {
@@ -321,7 +325,7 @@
                             )
                         }
                     },
-                    updateLoginPwd () {
+                    updateLoginPwd: function () {
                         var errMsg = ''
                         if (view.oldLoginPwd.trim() === '') {
                             errMsg += '请输入旧密码<br/>'
@@ -358,7 +362,7 @@
                             )
                         }
                     },
-                    resetLoginPwd () {
+                    resetLoginPwd: function () {
                         var errMsg = ''
                         if (view.phone.trim() === '') {
                             errMsg += '请输入手机号， 以重置密码<br/>'
@@ -384,7 +388,7 @@
                             )
                         }
                     },
-                    updatePayPwd () {
+                    updatePayPwd: function () {
                         var errMsg = ''
                         if (view.payPwd.trim() === '') {
                             errMsg += '请输入新密码<br/>'
@@ -418,7 +422,7 @@
                             )
                         }
                     },
-                    resetPayPwd () {
+                    resetPayPwd: function () {
                         var errMsg = ''
                         if (view.phone.trim() === '') {
                             errMsg += '请输入手机号， 以重置密码<br/>'
@@ -444,7 +448,7 @@
                             )
                         }
                     },
-                    getLink () {
+                    getLink: function () {
                         var errMsg = ''
                         if (isNaN(view.getLinkCount) || view.getLinkCount <= 0 || view.getLinkCount > view.user.shopUserExts.activeBill) {
                             errMsg += '请输入不大于激活的健康值的正整数数值<br/>'
@@ -474,7 +478,7 @@
                             )
                         }
                     },
-                    transLink () {
+                    transLink: function () {
                         var errMsg = ''
                         if (!isPhone(view.transLinkPhone.trim())) {
                             errMsg += '请输入正确的手机号<br/>'
@@ -508,7 +512,7 @@
                             )
                         }
                     },
-                    donateLink () {
+                    donateLink: function () {
                         var errMsg = ''
                         if (isNaN(view.donateLinkCount) || view.donateLinkCount <= 0 || view.donateLinkCount > view.user.shopUserExts.activeBill) {
                             errMsg += '请输入不大于激活的健康值的正整数数值<br/>'
@@ -538,7 +542,7 @@
                             )
                         }
                     },
-                    selectChange (opt) {
+                    selectChange: function (opt) {
                         view.errMsg = ''
                         view.donateOpt = false
                         if (opt === 2 && view.operation1 === '4') {
@@ -550,12 +554,12 @@
                             view.operation = 0
                         }
                     },
-                    toDonate () {
+                    toDonate: function () {
                         view.donateOpt = true
                         view.operation = 0
                         view.operation1 = 0
                     },
-                    donate () {
+                    donate: function () {
                         var errMsg = ''
                         if (isNaN(view.donateCount) || view.donateCount <= 0 || view.donateCount > view.user.shopUserExts.balance) {
                             errMsg += '请输入不大于账户余额的正整数数值<br/>'
@@ -593,7 +597,7 @@
                             )
                         }
                     },
-                    meanMenu () {
+                    meanMenu: function () {
                         this.$nextTick(function() {
                             $('#my-mobile-menu').meanmenu()
                         })

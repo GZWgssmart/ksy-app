@@ -63,7 +63,6 @@
                                     </li>
                                     <li><a href="<%=path%>/heart">爱心公益</a>
                                     </li>
-                                    </li>
                                     <li><a href="<%=path%>/contact">联系我们</a></li>
                                 </ul>
                             </nav>
@@ -94,7 +93,6 @@
                             <li><a href="<%=path%>/health">健康管理 </a>
                             </li>
                             <li><a href="<%=path%>/heart">爱心公益</a>
-                            </li>
                             </li>
                             <li><a href="<%=path%>/contact">联系我们</a></li>
                         </ul>
