@@ -141,7 +141,7 @@
                                                     立即购买
                                                 </a>
                                             </div>
-                                            <div style="margin-top: 18px;"><span v-text="cartMsg" style="color: red;"></span></div>
+                                            <div style="margin-top: 18px;"><span v-html="cartMsg" style="color: red;"></span></div>
                                         </div>
 
                                     </div>
@@ -293,23 +293,43 @@
                         })
                     },
                     addCart: function () {
-                        $.post(
-                            CART_ADD_URL,
-                            {
-                                proId: view.product.id,
-                                count: view.quantity
-                            },
-                            function (data) {
-                                if (data.success === true) {
-                                    view.cartMsg = '已添加到购物车'
-                                } else {
-                                    view.cartMsg = data.msg
+                        var errMsg = ''
+                        if (view.quantity > parseInt(view.product.proCount)) {
+                            errMsg += '库存不足，请修改购买数量<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.cartMsg = errMsg
+                        } else {
+                            view.cartMsg = ''
+                            $.post(
+                                CART_ADD_URL,
+                                {
+                                    proId: view.product.id,
+                                    count: view.quantity
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.cartMsg = '已添加到购物车'
+                                    } else if (data.success === false) {
+                                        view.cartMsg = data.msg
+                                    } else if (data.success === 'false' &&  data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = '<%=path%>/login?relogin=y'
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     },
                     toBuy: function (id) {
-                        window.location.href = '<%=path%>/order-preview?id=' + id + '&quantity=' + view.quantity
+                        var errMsg = ''
+                        if (view.quantity > parseInt(view.product.proCount)) {
+                            errMsg += '库存不足，请修改购买数量<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.cartMsg = errMsg
+                        } else {
+                            view.cartMsg = ''
+                            window.location.href = '<%=path%>/order-preview?id=' + id + '&quantity=' + view.quantity
+                        }
                     },
                     meanMenu: function () {
                         this.$nextTick(function() {
