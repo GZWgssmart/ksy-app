@@ -50,7 +50,7 @@
                                 <div class="col-md-6 col-md-offset-3">
                                     <div class="login-content">
                                         <div class="login-title">
-                                            <h4>用户注册</h4>
+                                            <h4>用户邀请注册</h4>
                                         </div>
                                         <div class="login-form">
                                             <form>
