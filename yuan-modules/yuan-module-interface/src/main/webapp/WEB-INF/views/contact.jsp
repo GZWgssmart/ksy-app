@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-offset-2 col-lg-8 col-sm-12">
                                     <div class="row">
-                                        <div class="col-md-6 col-lg-5 col-sm-5">
+                                        <div class="col-md-5 col-lg-5 col-sm-5">
                                             <div class="contact-info-area">
                                                 <ul>
                                                     <li>
