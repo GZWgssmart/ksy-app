@@ -59,7 +59,7 @@ $(function(){
                                      <label>
                                      <c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="sysCode" data-rule="参数编码:required;" value="${bean.sysCode }"/>
+                                     			<input type="text" name="sysCode" data-rule="参数编码:required;" value="${bean.sysCode }" readonly="readonly"/>
                                      		</c:when>
                                      		<c:otherwise>
                                      			<input type="text" name="sysCode" data-rule="参数编码:required;" value="" />
@@ -78,7 +78,7 @@ $(function(){
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="sysType" data-rule="参数类型:required;" value="${bean.sysType }" />
+                                     			<input type="text" name="sysType" data-rule="参数类型:required;" value="${bean.sysType }" readonly="readonly"/>
                                      		</c:when>
                                      		<c:otherwise>
                                      			<input type="text" name="sysType" data-rule="参数类型:required;" value="" />

@@ -221,9 +221,11 @@ public class ShopTradeController {
 					//保存订单明细
 					detail.setShopTrade(trade);
 					tradeDetailService.save(detail);
-					
+					//修改库存
 					ShopProduct product = productService.find(detail.getProId());
+					product.setProCount(String.valueOf(Integer.parseInt(product.getProCount())-detail.getCount()));
 					credits.add(new BigDecimal(product.getIncomeCredits()));
+					productService.save(product);
 				}
 				//账户积分-订单积分+购买商品赠送积分
 				user.getShopUserExts().setCredits(credits.subtract(credits2).toString());
@@ -282,7 +284,7 @@ public class ShopTradeController {
 				int proId = 0;
 				while (it.hasNext()) {  
 					ShopTradeDetail detail = it.next();  
-					proId = detail.getProId();  
+					proId = detail.getProId();
 				}
 				ShopProduct product = productService.find(proId);
 				ShopRegisterRule rule = ruleService.findByVip(product.getVipLevel());
@@ -305,11 +307,16 @@ public class ShopTradeController {
 						BigDecimal b1 = new BigDecimal(ztUser.getShopUserExts().getActiveBill());
 				        BigDecimal b2 = new BigDecimal(rule.getZtjkljhs());
 				        //健康链激活数（直推）   本身有的+邀请人增加的
-						ztUser.getShopUserExts().setActiveBill(b1.add(b2).toString());
+				        //普通会员不激活健康链
+				        if (!ztUser.getVipLevel().equals("v1")) {
+				        	ztUser.getShopUserExts().setActiveBill(b1.add(b2).toString());
+						}
+				       
 						
-						//如果激活健康链总数>等级对应数量，则等级提升
+						//如果激活健康链总数>等级对应数量，则等级提升,并减去提升等级的健康值
 						if (Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule2.getBill()) && !ztUser.getVipLevel().equals("v7")) {
 							ztUser.setVipLevel(VipLevelEnum.valueOf(ztUser.getVipLevel()).next().toString());
+							ztUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule2.getBill())) );
 						}
 						
 						
@@ -338,10 +345,15 @@ public class ShopTradeController {
 								BigDecimal c1 = new BigDecimal(jtUser.getShopUserExts().getActiveBill());
 								BigDecimal c2 = new BigDecimal(rule.getJtjkljhs());
 								//健康链激活数（直推）   本身有的+邀请人增加的
-								jtUser.getShopUserExts().setActiveBill(c1.add(c2).toString());
+								//普通会员不激活健康链
+						        if (!jtUser.getVipLevel().equals("v1")) {
+						        	jtUser.getShopUserExts().setActiveBill(c1.add(c2).toString());
+						        }
 								//如果激活健康链总数>等级对应数量，则等级提升
 								if (Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule3.getBill()) && !jtUser.getVipLevel().equals("v7")) {
 									jtUser.setVipLevel(VipLevelEnum.valueOf(jtUser.getVipLevel()).next().toString());
+									jtUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule3.getBill())) );
+
 								}
 								//间推奖    订单金额*间推奖励百分比
 						        BigDecimal d1 = new BigDecimal(rule3.getJtj()).multiply(shopTrade.getPrice().abs());
@@ -487,6 +499,10 @@ public class ShopTradeController {
 			List<ShopTradeDetail> cartlist = (List<ShopTradeDetail>) session.getAttribute("cartlist");
 			if (cartlist == null) {// 表示没有添加过
 				// 把购物车信息添加List
+				//不能超过库存
+				if (StringUtils.isNotEmpty(product.getProCount())&& Integer.parseInt(product.getProCount())<bean.getCount()) {
+					bean.setCount(Integer.parseInt(product.getProCount()));
+				}
 				List<ShopTradeDetail> list = new ArrayList<ShopTradeDetail>();
 				list.add(bean);
 				session.setAttribute("cartlist", list);
@@ -499,6 +515,10 @@ public class ShopTradeController {
 					if (bean.getProId() == sc.getProId()) {// 如果要添加的 在原来的购物车已经存在
 						bln = true;
 						sc.setCount(sc.getCount() + bean.getCount());// 得到商品数量加一重新赋给自己
+						//不能超过库存
+						if (StringUtils.isNotEmpty(product.getProCount())&& Integer.parseInt(product.getProCount())<sc.getCount()) {
+							sc.setCount(Integer.parseInt(product.getProCount()));
+						}
 						sc.setPrice(tprice.multiply(new BigDecimal(sc.getCount())));
 						sc.setCredits(sc.getCount()*(product.getConsumeCredits()==null?0:Integer.parseInt(product.getConsumeCredits())));
 						break;
@@ -553,6 +573,10 @@ public class ShopTradeController {
 					ShopTradeDetail sc = (ShopTradeDetail) cartlist.get(i);
 					if (bean.getProId() == sc.getProId()) {// 如果要添加的 在原来的购物车已经存在
 						sc.setCount(bean.getCount());
+						//不能超过库存
+						if (StringUtils.isNotEmpty(product.getProCount())&& Integer.parseInt(product.getProCount())<sc.getCount()) {
+							sc.setCount(Integer.parseInt(product.getProCount()));
+						}
 						sc.setPrice(tprice.multiply(new BigDecimal(bean.getCount())));
 						sc.setCredits(sc.getCount()*(product.getConsumeCredits()==null?0:Integer.parseInt(product.getConsumeCredits())));
 						cartlist.set(i, sc);

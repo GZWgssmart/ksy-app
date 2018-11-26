@@ -14,7 +14,7 @@ public enum VipLevelEnum {
 	v4("v4","高级代理"),
 	v5("v5","核心代理"),
 	v6("v6","运营中心"),
-	v7("v7","公司股东");
+	v7("v7","公司合伙人");
 
 	private String level;	 
     private String desc;

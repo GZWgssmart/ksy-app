@@ -102,8 +102,8 @@ public class ShopProductController {
 		headNameMap.put("vipLevel", "会员等级");
 		headNameMap.put("status", "是否有效");
 		headNameMap.put("credits", "账户余额");
-		headNameMap.put("activeBill", "健康值激活个数");
-		headNameMap.put("tradeBill", "转让获得的健康值");
+		headNameMap.put("activeBill", "健康链激活个数");
+		headNameMap.put("tradeBill", "转让获得的健康链");
 		headNameMap.put("balance", "账户积分");
 		headNameMap.put("createDate", "创建时间");
 		
