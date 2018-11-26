@@ -92,6 +92,7 @@ public class CmsController {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
 		AjaxResult ajaxResult = new AjaxResult();
 		String columnId = request.getParameter("columnId");
+		String rootColumnId = request.getParameter("rootColumnId");
 		//是否分页:1为是，0为否，默认为分页
 		String isPage = request.getParameter("isPage");
 		
@@ -118,6 +119,7 @@ public class CmsController {
 		
 		ArticleQueryDTO articleQueryDTO = new ArticleQueryDTO();
 		articleQueryDTO.setColumnId(columnId);
+		articleQueryDTO.setRootColumnId(rootColumnId);
 		articleQueryDTO.setCurrentPage(currentPage);
 		articleQueryDTO.setPageSize(pageSize);
 		articleQueryDTO.setTop(top);
