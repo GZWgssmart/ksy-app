@@ -143,6 +143,7 @@
                 el: '#content',
                 data: {
                     carts:[],
+                    oCarts: [],
                     totalPrice: 0
                 },
                 created: function() {
@@ -170,6 +171,7 @@
                                 if (data.success === true) {
                                     view.carts = data.data
                                     if (view.carts != null) {
+                                        view.oCarts = JSON.parse(JSON.stringify(view.carts))
                                         view.carts.forEach(function (item, index) {
                                             item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                             view.totalPrice += item.count * item.price
@@ -215,6 +217,20 @@
                             if (newValue != null) {
                                 newValue.forEach(function (item, index) {
                                     view.totalPrice += item.count * item.price
+                                    view.oCarts.forEach(function (oitem, oindex) {
+                                        if (item.count !== '' && oitem.proId === item.proId && oitem.count !== item.count) {
+                                            $.post(
+                                                CART_UPDATE_URL,
+                                                {
+                                                    proId: item.proId,
+                                                    count: item.count
+                                                },
+                                                function (data) {
+
+                                                }
+                                            )
+                                        }
+                                    })
                                 })
                             }
                         },
