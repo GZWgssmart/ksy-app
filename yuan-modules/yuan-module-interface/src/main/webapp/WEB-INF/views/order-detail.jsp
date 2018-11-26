@@ -89,13 +89,19 @@
                                             <li class="cart-black">总价<span v-text="'￥' + order.price"></span></li>
                                         </ul>
                                         <div class="cart-total-btn">
+                                            <div v-html="errMsg" style="color: red; text-align: right;"></div>
                                             <div class="cart-total-btn2 f-right">
-                                                <div v-text="errMsg"></div>
                                                 <div v-text="order.statusName"></div>
                                                 <div v-if="order.status != 3">
-                                                    <span v-if="firstConfirm == true" ><a href="javascript:;" @click="confirmOrder(1)">确认收货</a></span>
-                                                    <span v-if="secondConfirm == true && confirming == false">真的确认收货吗？<a href="javascript:;" @click="confirmOrder(2)">确认</a></span>
-                                                    <span v-if="confirming == true">正在确认……</span>
+                                                    <div v-if="firstConfirm == true" >
+                                                        <a href="javascript:;" @click="confirmOrder(1)">确认收货</a>
+                                                    </div>
+                                                    <div v-if="secondConfirm == true && confirming == false">
+                                                        交易密码：<input v-model="payPwd" placeholder="请输入交易密码" type="password" style="width: 200px;">
+                                                        <br/>
+                                                        <a href="javascript:;" @click="confirmOrder(2)">确认</a>
+                                                    </div>
+                                                    <div v-if="confirming == true">正在确认……</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,6 +149,7 @@
                     order: {
                         shopTradeDetails: []
                     },
+                    payPwd: '',
                     firstConfirm: true,
                     secondConfirm: false,
                     confirming: false,
@@ -186,31 +193,40 @@
                         )
                     },
                     confirmOrder: function (confirm) {
-                        view.errMsg = ''
                         if (confirm === 1) {
                             view.firstConfirm = false
                             view.secondConfirm = true
                         } else if (confirm === 2) {
+                            var errMsg = ''
                             var self = this
                             view.confirming = true
-                            $.post(
-                                ORDER_CONFIRM_URL,
-                                {
-                                    id: orderId
-                                },
-                                function (data) {
-                                    if (data.success === true) {
-                                        self.getOrder()
-                                    } else if (data.success === false) {
-                                        view.errMsg = data.msg
-                                        view.confirming = false
-                                        view.firstConfirm = true
-                                        view.secondConfirm = false
-                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
-                                        window.location.href = '<%=path%>/login?relogin=y'
+                            if (view.payPwd.trim() === '') {
+                                errMsg = '请输入交易密码，若未设置请先在个人中心我的资料中设置交易密码<br/>'
+                            }
+                            if (errMsg !== '') {
+                                view.errMsg = errMsg
+                            } else {
+                                view.errMsg = ''
+                                $.post(
+                                    ORDER_CONFIRM_URL,
+                                    {
+                                        id: orderId,
+                                        payPwd: view.payPwd
+                                    },
+                                    function (data) {
+                                        if (data.success === true) {
+                                            self.getOrder()
+                                        } else if (data.success === false) {
+                                            view.errMsg = data.msg
+                                            view.confirming = false
+                                            view.firstConfirm = true
+                                            view.secondConfirm = false
+                                        } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                            window.location.href = '<%=path%>/login?relogin=y'
+                                        }
                                     }
-                                }
-                            )
+                                )
+                            }
                         }
                     },
                     meanMenu: function () {

@@ -95,7 +95,9 @@
                                         账户总积分：<span>${sessionScope.userInfo.shopUserExts.credits}</span><br/>
                                         订单最高可抵扣积分：<span v-text="totalCredits"></span><br/>
                                         <form>
-                                        使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="text" style="width: 100px;">
+                                            使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="text" style="width: 100px;">
+                                            <br/>
+                                            交易密码：<input v-model="payPwd" placeholder="请输入交易密码" type="password" style="width: 200px;">
                                         </form>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -104,8 +106,8 @@
                                                 <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
                                             <div v-if="products.length > 0 && !submitted" class="cart-total-btn">
+                                                <div style="text-align: right;color: red;" v-html="errMsg"></div>
                                                 <div class="cart-total-btn2 f-right">
-                                                    <span v-text="errMsg" style="color: red;"></span><br/>
                                                     <a href="javascript:;" @click="submitOrder">提交订单</a>
                                                 </div>
                                             </div>
@@ -158,6 +160,7 @@
                     oTotalPrice: 0,
                     jtype: 0,
                     submitted: false,
+                    payPwd: '',
                     errMsg: ''
                 },
                 created: function() {
@@ -238,42 +241,51 @@
                         }
                     },
                     submitOrder: function () {
-                        view.errMsg = ''
-                        if (view.useCredits === '') {
-                            view.useCredits = 0
+                        var errMsg = ''
+                        if (view.payPwd.trim() === '') {
+                            errMsg += '请输入交易密码，若未设置请先在个人中心我的资料中设置交易密码<br/>'
                         }
-                        view.products.forEach(function (item, index) {
-                            item.proId = item.id
-                            item.id = ''
-                        })
-                        $.ajax(
-                            {
-                                type: "POST",
-                                url: ORDER_CREATE_URL,
-                                contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({
-                                    userId: ${sessionScope.userInfo.id},
-                                    price: -view.totalPrice,
-                                    credits: view.useCredits,
-                                    jtype: view.jtype,
-                                    shopTradeDetails: view.products
-                                }),
-                                dataType: "json",
-                                success: function (data) {
-                                    if (data.success === true) {
-                                        view.submitted = true
-                                        view.errMsg = '提交订单成功'
-                                    } else if (data.success === false) {
-                                        view.errMsg = data.msg
-                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
-                                        window.location.href = '<%=path%>/login?relogin=y'
-                                    }
-                                },
-                                error: function (data) {
-
-                                }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.errMsg = ''
+                            if (view.useCredits === '') {
+                                view.useCredits = 0
                             }
-                        )
+                            view.products.forEach(function (item, index) {
+                                item.proId = item.id
+                                item.id = ''
+                            })
+                            $.ajax(
+                                {
+                                    type: "POST",
+                                    url: ORDER_CREATE_URL,
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({
+                                        userId: ${sessionScope.userInfo.id},
+                                        price: -view.totalPrice,
+                                        credits: view.useCredits,
+                                        jtype: view.jtype,
+                                        payPwd: view.payPwd,
+                                        shopTradeDetails: view.products
+                                    }),
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data.success === true) {
+                                            view.submitted = true
+                                            view.errMsg = '提交订单成功'
+                                        } else if (data.success === false) {
+                                            view.errMsg = data.msg
+                                        } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                            window.location.href = '<%=path%>/login?relogin=y'
+                                        }
+                                    },
+                                    error: function (data) {
+
+                                    }
+                                }
+                            )
+                        }
                     },
                     meanMenu: function () {
                         this.$nextTick(function() {
