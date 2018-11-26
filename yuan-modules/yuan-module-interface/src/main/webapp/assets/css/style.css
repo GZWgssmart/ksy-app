@@ -2024,7 +2024,6 @@ h3.sidebar-title::before {
     color: #666;
     height: 33px;
     padding-left: 3px;
-    padding-right: 10px;
     width: inherit;
     -webkit-appearance: none;
 }
