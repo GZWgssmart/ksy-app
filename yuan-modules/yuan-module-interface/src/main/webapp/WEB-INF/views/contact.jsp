@@ -49,7 +49,7 @@
                         <div class="container">
                             <div class="section-title text-center mb-70">
                                 <h2>联系我们 <i class="fa fa-phone"></i></h2>
-                                <p>有任何疑问，请联系我们，我们将会为您提供周到的服务！您也可以直接在线提交疑问</p>
+                                <p>有任何疑问，请联系我们，我们将会为您提供周到的服务！</p>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-lg-offset-2 col-lg-8 col-sm-12">

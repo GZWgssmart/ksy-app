@@ -190,6 +190,7 @@
                                         view.products = data.data
                                         view.products.forEach(function (item, index) {
                                             view.totalPrice += item.count * item.price
+                                            view.oTotalPrice = view.totalPrice
                                             view.totalCredits += item.credits
                                             item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                         })
