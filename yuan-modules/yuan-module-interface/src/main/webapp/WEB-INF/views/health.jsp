@@ -148,7 +148,7 @@
                     {
                         pageSize: 9,
                         currentPage: pageNo,
-                        columnId: HEALTH_COLUMN_ID
+                        rootColumnId: HEALTH_ROOT_COLUMN_ID
                     },
                     function (data) {
                         if (data.success === true) {
