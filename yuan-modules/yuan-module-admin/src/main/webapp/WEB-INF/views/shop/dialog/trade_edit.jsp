@@ -252,7 +252,7 @@ $(function(){
                                      				<option value="v4" <c:if test="${'v4' eq user.vipLevel }">selected</c:if> >高级代理</option>
                                      				<option value="v5" <c:if test="${'v5' eq user.vipLevel }">selected</c:if> >核心代理</option>
                                      				<option value="v6" <c:if test="${'v6' eq user.vipLevel }">selected</c:if> >运营中心</option>
-                                     				<option value="v7" <c:if test="${'v7' eq user.vipLevel }">selected</c:if> >公司股东</option>
+                                     				<option value="v7" <c:if test="${'v7' eq user.vipLevel }">selected</c:if> >公司合伙人</option>
                                      			</select>
                                      		</c:when>
                                      		<c:otherwise>
@@ -263,7 +263,7 @@ $(function(){
                                      				<option value="v4">高级代理</option>
                                      				<option value="v5">核心代理</option>
                                      				<option value="v6">运营中心</option>
-                                     				<option value="v7">公司股东</option>
+                                     				<option value="v7">公司合伙人</option>
                                      			</select>
                                      		</c:otherwise>
                                      	</c:choose>

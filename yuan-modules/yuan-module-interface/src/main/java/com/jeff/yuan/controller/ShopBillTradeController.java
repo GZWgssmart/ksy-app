@@ -114,18 +114,24 @@ public class ShopBillTradeController {
 			
 			bean.setCreateDate(new Date() );
 			
-			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
-			if (user==null) {
+			ShopUser user = WebHelper.getUser(request);
+			user=userService.find(bean.getUserId());
+
+			/*if (user==null) {
 				user=userService.find(bean.getUserId());
-			}
+			}*/
 			String payPwd = request.getParameter("payPwd");
 			if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
+				if (StringUtils.isEmpty(payPwd) ) {
+					ajaxResult.setMsg("交易密码不能为空");
+					return ajaxResult;
+				}
 				if (!Md5Util.generatePassword(payPwd.trim()).equals(user.getJiaoyimima())) {
 					ajaxResult.setMsg("交易密码错误");
 					return ajaxResult;
 				}
 			}else {
-				ajaxResult.setMsg("交易密码不能为空");
+				ajaxResult.setMsg("请先设置交易密码");
 				return ajaxResult;
 			}
 			

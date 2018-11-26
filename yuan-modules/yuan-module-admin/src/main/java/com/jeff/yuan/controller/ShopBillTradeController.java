@@ -25,7 +25,7 @@ import com.jeff.yuan.common.entity.PageModel;
 import com.jeff.yuan.common.util.ExcelUtils;
 import com.jeff.yuan.util.Constants;
 /**
- * 健康链Controller
+ * 健康值Controller
  * @author dingjinqing@163.com
  *
  */
@@ -109,8 +109,8 @@ public class ShopBillTradeController {
 		headNameMap.put("vipLevel", "会员等级");
 		headNameMap.put("status", "是否有效");
 		headNameMap.put("credits", "账户余额");
-		headNameMap.put("activeBill", "健康链激活个数");
-		headNameMap.put("tradeBill", "转让获得的健康链");
+		headNameMap.put("activeBill", "健康值激活个数");
+		headNameMap.put("tradeBill", "转让获得的健康值");
 		headNameMap.put("balance", "账户积分");
 		headNameMap.put("createDate", "创建时间");
 		

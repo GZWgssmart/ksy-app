@@ -7,13 +7,15 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import com.jeff.yuan.cms.entity.ShopUser;
+import com.jeff.yuan.cms.service.ShopUserService;
 
 public class WebHelper {
 	
-	public static final String SESSION_LOGIN_USER = "session_login_user";
+	public static final String LOGIN_USER = "userInfo";
 	
 	public static final String SYS_PARAM_TIXIAN = "SYS_TIXIAN";
 	/**
@@ -53,7 +55,7 @@ public class WebHelper {
 	 * @return
 	 */
 	public static ShopUser getUser(HttpServletRequest request) {
-		return (ShopUser) request.getSession().getAttribute(SESSION_LOGIN_USER);
+		return (ShopUser) request.getSession().getAttribute(LOGIN_USER);
 	}
 
 	public static String getRemoteHost(HttpServletRequest request) {

@@ -42,10 +42,10 @@
                                      <span>会员等级</span>
                                  </td>
                                  <td>
-                                     <span>健康链激活数（直推）</span>
+                                     <span>健康值激活数（直推）</span>
                                  </td>
                                  <td>
-                                     <span>健康链激活数（间推）</span>
+                                     <span>健康值激活数（间推）</span>
                                  </td>
                                  <td>
                                      <span>直推奖</span>
@@ -57,7 +57,7 @@
                                      <span>管理奖</span>
                                  </td>
                                  <td>
-                                     <span>健康链个数</span>
+                                     <span>健康值个数</span>
                                  </td>
                                  <td>
                                      <span>购买返点</span>
@@ -100,7 +100,7 @@
 		                                     			运营中心
 		                                     		</c:when>
 															<c:when test="${'v7' eq u.vipLevel}">
-		                                     			公司股东
+		                                     			公司合伙人
 		                                     		</c:when>
 															<c:otherwise>
 		                                     			普通会员

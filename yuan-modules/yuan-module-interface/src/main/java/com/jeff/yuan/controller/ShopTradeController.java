@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.StaticApplicationContext;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
@@ -31,6 +33,7 @@ import com.jeff.yuan.cms.entity.ShopProduct;
 import com.jeff.yuan.cms.entity.ShopRegisterRule;
 import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.entity.ShopTradeDetail;
+import com.jeff.yuan.cms.entity.ShopTradeDto;
 import com.jeff.yuan.cms.entity.ShopUser;
 import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.cms.service.ShopProductService;
@@ -154,20 +157,22 @@ public class ShopTradeController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public AjaxResult ajaxSave(HttpServletRequest request,@RequestBody ShopTrade bean) {
+	public AjaxResult ajaxSave(HttpServletRequest request,@RequestBody ShopTradeDto bean) {
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
 
 		try {
-			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			ShopUser user = WebHelper.getUser(request);
+			user=userService.find(user.getId());
+
 			String payPwd = request.getParameter("payPwd");
 			if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
-				if (!Md5Util.generatePassword(payPwd.trim()).equals(user.getJiaoyimima())) {
+				if (!Md5Util.generatePassword(bean.getPayPwd().trim()).equals(user.getJiaoyimima())) {
 					ajaxResult.setMsg("交易密码错误");
 					return ajaxResult;
 				}
 			}else {
-				ajaxResult.setMsg("交易密码不能为空");
+				ajaxResult.setMsg("请先设置交易密码");
 				return ajaxResult;
 			}
 			// 减去余额(未开启事物 可能存在不一致)
@@ -190,8 +195,19 @@ public class ShopTradeController {
 					ajaxResult.setMsg("积分不足");
 					return ajaxResult;
 				}
+				
+				ShopTrade trade = new ShopTrade();
+				trade.setCredits(bean.getCredits());
+				trade.setJtype(bean.getJtype());
+				trade.setUserId(bean.getUserId());
+				trade.setTradeNo(bean.getTradeNo());
+				trade.setShopTradeDetails(bean.getShopTradeDetails());
+				trade.setStatus(bean.getStatus());
+				trade.setPrice(bean.getPrice());
+				trade.setCreateDate(bean.getCreateDate());
+				trade.setId(bean.getId());
 				//下单
-				bean = tradeService.save(bean);
+				trade = tradeService.save(trade);
 				
 				//减去账户余额
 				user.getShopUserExts().setBalance(balance);
@@ -203,7 +219,7 @@ public class ShopTradeController {
 				while (it.hasNext()) {  
 					ShopTradeDetail detail = it.next();
 					//保存订单明细
-					detail.setShopTrade(bean);
+					detail.setShopTrade(trade);
 					tradeDetailService.save(detail);
 					
 					ShopProduct product = productService.find(detail.getProId());
@@ -238,17 +254,22 @@ public class ShopTradeController {
 
 			ShopTrade shopTrade = tradeService.updateStatus(id, 3);
 			//用户升级vip逻辑
-			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
-			
+			ShopUser user = WebHelper.getUser(request);
+			user=userService.find(user.getId());
+
 			//交易密码校验
 			String payPwd = request.getParameter("payPwd");
 			if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
+				if (StringUtils.isEmpty(payPwd) ) {
+					ajaxResult.setMsg("交易密码不能为空");
+					return ajaxResult;
+				}
 				if (!Md5Util.generatePassword(payPwd.trim()).equals(user.getJiaoyimima())) {
 					ajaxResult.setMsg("交易密码错误");
 					return ajaxResult;
 				}
 			}else {
-				ajaxResult.setMsg("交易密码不能为空");
+				ajaxResult.setMsg("请先设置交易密码");
 				return ajaxResult;
 			}
 			System.out.println("确认收货会员用户信息："+user.getId());

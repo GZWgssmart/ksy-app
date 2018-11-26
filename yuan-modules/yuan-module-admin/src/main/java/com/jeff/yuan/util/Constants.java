@@ -21,5 +21,6 @@ public class Constants {
 	
 	public static final String MENU_UPDATE_PWD = "修改密码";
 	public static final String MENU_UPDATE_SKIN = "换肤管理";
-
+	
+	
 }

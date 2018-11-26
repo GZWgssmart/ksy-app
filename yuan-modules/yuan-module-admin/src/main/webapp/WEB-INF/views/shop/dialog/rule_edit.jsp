@@ -66,7 +66,7 @@ $(function(){
                                      				<option value="v4" <c:if test="${'v4' eq bean.vipLevel }">selected</c:if> >高级代理</option>
                                      				<option value="v5" <c:if test="${'v5' eq bean.vipLevel }">selected</c:if> >核心代理</option>
                                      				<option value="v6" <c:if test="${'v6' eq bean.vipLevel }">selected</c:if> >运营中心</option>
-                                     				<option value="v7" <c:if test="${'v7' eq bean.vipLevel }">selected</c:if> >公司股东</option>
+                                     				<option value="v7" <c:if test="${'v7' eq bean.vipLevel }">selected</c:if> >公司合伙人</option>
                                      			</select>
                                      		</c:when>
                                      		<c:otherwise>
@@ -77,7 +77,7 @@ $(function(){
                                      				<option value="v4">高级代理</option>
                                      				<option value="v5">核心代理</option>
                                      				<option value="v6">运营中心</option>
-                                     				<option value="v7">公司股东</option>
+                                     				<option value="v7">公司合伙人</option>
                                      			</select>
                                      		</c:otherwise>
                                      	</c:choose>
@@ -85,17 +85,17 @@ $(function(){
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b> 健康链</td>
+                         <td class="l_title w150"><b class="cRed">*</b> 健康值</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="bill" data-rule="健康链:required;" value="${bean.bill }" readonly="readonly"/>
+                                     			<input type="text" name="bill" data-rule="健康值:required;" value="${bean.bill }" readonly="readonly"/>
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="bill" data-rule="健康链:required;" value="" />
+                                     			<input type="text" name="bill" data-rule="健康值:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -105,34 +105,34 @@ $(function(){
                      </tr>
                      
                      <tr>
-						<td class="l_title w150"><b class="cRed">*</b> 健康链激活数（直推）</td>
+						<td class="l_title w150"><b class="cRed">*</b> 健康值激活数（直推）</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="ztjkljhs" data-rule="健康链激活数（直推）:required;" value="${bean.ztjkljhs }" />
+                                     			<input type="text" name="ztjkljhs" data-rule="健康值激活数（直推）:required;" value="${bean.ztjkljhs }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="ztjkljhs" data-rule="健康链激活数（直推）:required;" value="" />
+                                     			<input type="text" name="ztjkljhs" data-rule="健康值激活数（直推）:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b> 健康链激活数（间推）</td>
+                         <td class="l_title w150"><b class="cRed">*</b> 健康值激活数（间推）</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="jtjkljhs" data-rule="健康链激活数（间推）:required;" value="${bean.jtjkljhs }" />
+                                     			<input type="text" name="jtjkljhs" data-rule="健康值激活数（间推）:required;" value="${bean.jtjkljhs }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="jtjkljhs" data-rule="健康链激活数（间推）:required;" value="" />
+                                     			<input type="text" name="jtjkljhs" data-rule="健康值激活数（间推）:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>

@@ -160,12 +160,12 @@
 											<label> <c:choose>
 													<c:when test="${not empty bean }">
 														<input type="text" name="price3"
-															data-rule="商品价格:required;" placeholder="运营中心、公司股东的价格"
+															data-rule="商品价格:required;" placeholder="运营中心、公司合伙人的价格"
 															value="${bean.price3 }" />
 													</c:when>
 													<c:otherwise>
 														<input type="text" name="price3"
-															data-rule="商品价格:required;" placeholder="运营中心、公司股东的价格" />
+															data-rule="商品价格:required;" placeholder="运营中心、公司合伙人的价格" />
 													</c:otherwise>
 												</c:choose>
 											</label>
@@ -226,7 +226,7 @@
 		                                     				<option value="v4" <c:if test="${'v4' eq bean.vipLevel }">selected</c:if> >高级代理</option>
 		                                     				<option value="v5" <c:if test="${'v5' eq bean.vipLevel }">selected</c:if> >核心代理</option>
 		                                     				<option value="v6" <c:if test="${'v6' eq bean.vipLevel }">selected</c:if> >运营中心</option>
-		                                     				<option value="v7" <c:if test="${'v7' eq bean.vipLevel }">selected</c:if> >公司股东</option>
+		                                     				<option value="v7" <c:if test="${'v7' eq bean.vipLevel }">selected</c:if> >公司合伙人</option>
 		                                     			</select>
 		                                     		</c:when>
 		                                     		<c:otherwise>
@@ -238,7 +238,7 @@
 		                                     				<option value="v4">高级代理</option>
 		                                     				<option value="v5">核心代理</option>
 		                                     				<option value="v6">运营中心</option>
-		                                     				<option value="v7">公司股东</option>
+		                                     				<option value="v7">公司合伙人</option>
 		                                     			</select>
 		                                     		</c:otherwise>
 		                                     	</c:choose>

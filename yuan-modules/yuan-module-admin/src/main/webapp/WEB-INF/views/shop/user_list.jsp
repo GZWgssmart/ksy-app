@@ -45,7 +45,7 @@
 							<option value="v4" <c:if test="${'v4' eq userQueryDTO.vipLevel }">selected</c:if> >高级代理</option>
 							<option value="v5" <c:if test="${'v5' eq userQueryDTO.vipLevel }">selected</c:if> >核心代理</option>
 							<option value="v6" <c:if test="${'v6' eq userQueryDTO.vipLevel }">selected</c:if> >运营中心</option>
-							<option value="v7" <c:if test="${'v7' eq userQueryDTO.vipLevel }">selected</c:if> >公司股东</option>
+							<option value="v7" <c:if test="${'v7' eq userQueryDTO.vipLevel }">selected</c:if> >公司合伙人</option>
 						</select>
 					</div>
 
@@ -80,8 +80,8 @@
 									<td><span>会员等级</span></td>
 									<td><span>是否有效</span></td>
 									<td><span>账户余额</span></td>
-									<td><span>健康链激活个数</span></td>
-									<td><span>转让获得的健康链</span></td>
+									<td><span>健康值激活个数</span></td>
+									<td><span>转让获得的健康值</span></td>
 									<td><span>账户积分</span></td>
 									<td><span>创建时间</span></td>
 									<td><span>操作</span></td>
@@ -123,7 +123,7 @@
 		                                     			运营中心
 		                                     		</c:when>
 															<c:when test="${'v7' eq u.vipLevel}">
-		                                     			公司股东
+		                                     			公司合伙人
 		                                     		</c:when>
 															<c:otherwise>
 		                                     			普通会员

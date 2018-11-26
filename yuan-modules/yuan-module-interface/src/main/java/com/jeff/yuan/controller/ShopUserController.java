@@ -55,9 +55,9 @@ public class ShopUserController {
 	@ResponseBody
 	public AjaxResult getDetail(HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
-		ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+		ShopUser user = WebHelper.getUser(request);
 		if (user != null) {
-			user=userService.find(user.getId());
+			user = userService.find(user.getId());
 			ajaxResult.setData(user);
 			ajaxResult.setSuccess(true);
 		} else {
@@ -117,11 +117,14 @@ public class ShopUserController {
 		String userId = request.getParameter("userId");
 		if (StringUtils.isNoneEmpty(userId)) {
 			//SELECT sum(price) as income,type from shop_trade where user_id=1 GROUP BY type
-			List<Map<String, Object>> income = (List<Map<String, Object>>) request.getSession().getAttribute("userIncome");
+			/*List<Map<String, Object>> income = (List<Map<String, Object>>) request.getSession().getAttribute("userIncome");
 			if (income==null) {
 				income = userService.queryIncomeList(userId);
 				request.getSession().setAttribute("userIncome", income);
-			}
+			}*/
+			
+			List<Map<String, Object>> income = userService.queryIncomeList(userId);
+
 			ajaxResult.setData(income);
 			ajaxResult.setSuccess(true);
 		} 
@@ -148,7 +151,7 @@ public class ShopUserController {
 		String refPhone = request.getParameter("refPhone");
 		String address = request.getParameter("address");
 		try {
-			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			ShopUser user = WebHelper.getUser(request);
 			if (user == null) {
 				if (StringUtils.isNotBlank(id)) {
 					user = userService.find(Integer.parseInt(id));
@@ -219,15 +222,13 @@ public class ShopUserController {
 		try {
 
 			ShopUser user = WebHelper.getUser(request);
+//			ShopUser user ;
 
 			String oldPwd = request.getParameter("oldPwd");
 			String userId = request.getParameter("userId");
 			String pwd = request.getParameter("pwd");
 			if (StringUtils.isNotEmpty(userId)) {
-				
-				if (user==null) {
-					user = userService.find(Integer.parseInt(userId));
-				}
+				user = userService.find(Integer.parseInt(userId));
 				if (Md5Util.generatePassword(oldPwd).equals(user.getPassword())) {
 
 					user.setPassword(Md5Util.generatePassword(pwd));
@@ -266,15 +267,14 @@ public class ShopUserController {
 		try {
 
 			ShopUser user = WebHelper.getUser(request);
+//			ShopUser user ;
 
 			String oldPwd = request.getParameter("oldPwd");
 			String userId = request.getParameter("userId");
 			String pwd = request.getParameter("pwd");
 			if (StringUtils.isNotEmpty(pwd)) {
 				if (StringUtils.isNotEmpty(userId)) {
-					if (user==null) {
-						user = userService.find(Integer.parseInt(userId));
-					}
+					user = userService.find(Integer.parseInt(userId));
 //						非第一次修改交易密码
 					if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
 						if (Md5Util.generatePassword(oldPwd).equals(user.getJiaoyimima())) {
