@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="col-md-7 col-lg-7 col-sm-7">
                                             <div class="sent-message">
-                                                <form class="contact_form" id="contact_form" action="contact-form.php" method="post">
+                                                <form class="contact_form" id="contact_form" method="post">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="main-input mb-10">
@@ -107,7 +107,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
-                                                            <button class="submit ripple-btn" type="submit" name="submit" id="contact_submit" data-complete-text="Well done!">发送</button>
+                                                            <button class="submit ripple-btn" type="button" name="submit" id="contact_submit" data-complete-text="Well done!">发送</button>
                                                         </div>
                                                     </div>
                                                 </form>
