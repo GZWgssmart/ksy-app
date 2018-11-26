@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="login-form">
                                             <form action="#">
-                                                手机号<input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
+                                                <input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
                                                 <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                                 <button class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
                                             </form>
