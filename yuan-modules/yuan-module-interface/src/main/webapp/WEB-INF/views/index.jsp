@@ -268,7 +268,7 @@
                         {
                             pageSize: 3,
                             currentPage: 1,
-                            columnId: ARTICLE_COLUMN_ID
+                            rootColumnId: ARTICLE_ROOT_COLUMN_ID
                         },
                         function (data) {
                             if (data.success === true) {
