@@ -139,7 +139,7 @@
                                         </select>
                                     </div>
                                     <form v-if="donateOpt == true">
-                                        余额捐赠数量<input v-model="donateCount" placeholder="请输入余额捐赠数量" type="text">
+                                        余额捐赠数量<input v-model="donateCount" placeholder="请输入余额捐赠数量" type="number">
                                         交易密码<input v-model="donatePayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                         <button class="login-btn" type="button" @click="donate">确认捐赠</button>
@@ -175,20 +175,20 @@
                                         <button class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
                                     </form>
                                     <form v-if="operation1 == '1'">
-                                        健康值数量<input v-model="getLinkCount" placeholder="请输入提现的健康值数量，不能大于激活的健康值" type="text">
+                                        健康值数量<input v-model="getLinkCount" placeholder="请输入提现的健康值数量，不能大于激活的健康值" type="number">
                                         交易密码<input v-model="getLinkPayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                         <button class="login-btn" type="button" @click="getLink">确定提现</button>
                                     </form>
                                     <form v-if="operation1 == '2'">
                                         手机号<input v-model="transLinkPhone" placeholder="请输入对方手机号" type="text">
-                                        健康值数量<input v-model="transLinkCount" placeholder="请输入转让的健康值数量，不能大于激活的健康值" type="text">
+                                        健康值数量<input v-model="transLinkCount" placeholder="请输入转让的健康值数量，不能大于激活的健康值" type="number">
                                         交易密码<input v-model="transLinkPayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                         <button class="login-btn" type="button" @click="transLink">确定转让</button>
                                     </form>
                                     <form v-if="operation1 == '3'">
-                                        健康值数量<input v-model="donateLinkCount" placeholder="请输入捐赠的健康值数量，不能大于激活的健康值" type="text">
+                                        健康值数量<input v-model="donateLinkCount" placeholder="请输入捐赠的健康值数量，不能大于激活的健康值" type="number">
                                         交易密码<input v-model="donateLinkPayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
                                         <button class="login-btn" type="button" @click="donateLink">确定捐赠</button>
@@ -459,7 +459,7 @@
                     getLink: function () {
                         var errMsg = ''
                         if (isNaN(view.getLinkCount) || view.getLinkCount <= 0 || view.getLinkCount > view.user.shopUserExts.activeBill) {
-                            errMsg += '请输入不大于激活的健康值的正整数数值<br/>'
+                            errMsg += '请输入不大于激活的健康值的数值<br/>'
                         }
                         if (view.getLinkPayPwd.trim() === '') {
                             errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
@@ -496,7 +496,7 @@
                             errMsg += '请输入正确的手机号<br/>'
                         }
                         if (isNaN(view.transLinkCount) || view.transLinkCount <= 0 || view.transLinkCount > view.user.shopUserExts.activeBill) {
-                            errMsg += '请输入不大于激活的健康值的正整数数值<br/>'
+                            errMsg += '请输入不大于激活的健康值的数值<br/>'
                         }
                         if (view.transLinkPayPwd.trim() === '') {
                             errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
@@ -531,7 +531,7 @@
                     donateLink: function () {
                         var errMsg = ''
                         if (isNaN(view.donateLinkCount) || view.donateLinkCount <= 0 || view.donateLinkCount > view.user.shopUserExts.activeBill) {
-                            errMsg += '请输入不大于激活的健康值的正整数数值<br/>'
+                            errMsg += '请输入不大于激活的健康值的数值<br/>'
                         }
                         if (view.donateLinkPayPwd.trim() === '') {
                             errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
@@ -582,7 +582,7 @@
                     donate: function () {
                         var errMsg = ''
                         if (isNaN(view.donateCount) || view.donateCount <= 0 || view.donateCount > view.user.shopUserExts.balance) {
-                            errMsg += '请输入不大于账户余额的正整数数值<br/>'
+                            errMsg += '请输入不大于账户余额的数值<br/>'
                         }
                         if (view.donatePayPwd.trim() === '') {
                             errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'

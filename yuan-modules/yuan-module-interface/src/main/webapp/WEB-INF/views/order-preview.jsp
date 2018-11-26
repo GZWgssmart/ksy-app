@@ -95,7 +95,7 @@
                                         账户总积分：<span>${sessionScope.userInfo.shopUserExts.credits}</span><br/>
                                         订单最高可抵扣积分：<span v-text="totalCredits"></span><br/>
                                         <form>
-                                            使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="text" style="width: 100px;">
+                                            使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="number" style="width: 100px;">
                                             <br/>
                                             交易密码：<input v-model="payPwd" placeholder="请输入交易密码" type="password" style="width: 200px;">
                                         </form>
