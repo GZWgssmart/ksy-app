@@ -226,7 +226,9 @@
                                                     count: item.count
                                                 },
                                                 function (data) {
-
+                                                    if (data.success === true) {
+                                                        view.showCarts()
+                                                    }
                                                 }
                                             )
                                         }
