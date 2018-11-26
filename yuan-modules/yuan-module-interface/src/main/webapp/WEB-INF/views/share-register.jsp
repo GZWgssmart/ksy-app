@@ -138,7 +138,7 @@
                     },
                     smsCode: function () {
                         view.errMsg = ''
-                        if (!isPhone(view.form.phone)) {
+                        if (!isPhone(view.form.phone.trim())) {
                             view.errMsg += '请输入正确的手机号<br/>'
                         }
                         if (view.errMsg === '') {
@@ -177,7 +177,7 @@
                         if (view.form.code.trim() === '') {
                             errMsg += '请输入短信验证码<br/>';
                         }
-                        if (view.form.refPhone.trim() !== '' && !isPhone(view.form.refPhone)) {
+                        if (view.form.refPhone.trim() !== '' && !isPhone(view.form.refPhone.trim())) {
                             errMsg += '请输入正确的推荐手机号<br/>';
                         }
                         if (errMsg === '') {
