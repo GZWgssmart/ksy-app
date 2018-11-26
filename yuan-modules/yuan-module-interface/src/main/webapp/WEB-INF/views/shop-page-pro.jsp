@@ -57,9 +57,9 @@
                                     <!--
                                     <div class="single-shop mb-40">
                                         <div class="shop-img">
-                                            <a href="single-product.jsp"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
+                                            <a href="<%=path%>/product"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
                                             <div class="shop-quick-view">
-                                                <a href="single-product.jsp">
+                                                <a href="<%=path%>/product">
                                                     <i class="pe-7s-look"></i>
                                                 </a>
                                             </div>
@@ -67,7 +67,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="single-product.jsp">PC Headphone</a></h3>
+                                                    <h3><a href="<%=path%>/product">PC Headphone</a></h3>
                                                 </div>
                                                 <span class="price f-right">
                                                                                 <span class="new">￥120.00</span>
@@ -102,9 +102,9 @@
                                                     <div v-else v-for="item in products" class="col-md-6 col-lg-4 col-sm-6">
                                                         <div class="single-shop mb-40">
                                                             <div class="shop-img">
-                                                                <a :href="'single-product.jsp?id=' + item.id"><img :src="item.proLogoImgFull" alt="" /></a>
+                                                                <a :href="'<%=path%>/product?id=' + item.id"><img :src="item.proLogoImgFull" alt="" /></a>
                                                                 <div class="shop-quick-view">
-                                                                    <a :href="'single-product.jsp?id=' + item.id">
+                                                                    <a :href="'<%=path%>/product?id=' + item.id">
                                                                         <i class="pe-7s-look"></i>
                                                                     </a>
                                                                 </div>
@@ -112,7 +112,7 @@
                                                             <div class="shop-text-all">
                                                                 <div class="title-color fix">
                                                                     <div class="shop-title f-left">
-                                                                        <h3><a :href="'single-product.jsp?id=' + item.id" v-text="item.proName"></a></h3>
+                                                                        <h3><a :href="'<%=path%>/product?id=' + item.id" v-text="item.proName"></a></h3>
                                                                     </div>
                                                                     <span class="price f-right">
                                                                                 <span class="new" v-text="'￥' + item.price"></span>
