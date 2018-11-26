@@ -458,7 +458,7 @@
                     },
                     getLink: function () {
                         var errMsg = ''
-                        if (isNaN(view.getLinkCount) || view.getLinkCount <= 0 || view.getLinkCount > view.user.shopUserExts.activeBill) {
+                        if (isNaN(view.getLinkCount) || view.getLinkCount <= 0 || view.getLinkCount > parseInt(view.user.shopUserExts.activeBill)) {
                             errMsg += '请输入不大于激活的健康值的数值<br/>'
                         }
                         if (view.getLinkPayPwd.trim() === '') {
@@ -495,7 +495,7 @@
                         if (!isPhone(view.transLinkPhone.trim())) {
                             errMsg += '请输入正确的手机号<br/>'
                         }
-                        if (isNaN(view.transLinkCount) || view.transLinkCount <= 0 || view.transLinkCount > view.user.shopUserExts.activeBill) {
+                        if (isNaN(view.transLinkCount) || view.transLinkCount <= 0 || view.transLinkCount > parseInt(view.user.shopUserExts.activeBill)) {
                             errMsg += '请输入不大于激活的健康值的数值<br/>'
                         }
                         if (view.transLinkPayPwd.trim() === '') {
@@ -530,7 +530,7 @@
                     },
                     donateLink: function () {
                         var errMsg = ''
-                        if (isNaN(view.donateLinkCount) || view.donateLinkCount <= 0 || view.donateLinkCount > view.user.shopUserExts.activeBill) {
+                        if (isNaN(view.donateLinkCount) || view.donateLinkCount <= 0 || view.donateLinkCount > parseInt(view.user.shopUserExts.activeBill)) {
                             errMsg += '请输入不大于激活的健康值的数值<br/>'
                         }
                         if (view.donateLinkPayPwd.trim() === '') {
