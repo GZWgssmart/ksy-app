@@ -23,6 +23,7 @@ import com.jeff.yuan.cms.service.ShopTradeService;
 import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
+import com.jeff.yuan.common.util.Md5Util;
 import com.jeff.yuan.util.WebHelper;
 /**
  * 健康链Controller
@@ -117,6 +118,17 @@ public class ShopBillTradeController {
 			if (user==null) {
 				user=userService.find(bean.getUserId());
 			}
+			String payPwd = request.getParameter("payPwd");
+			if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
+				if (!Md5Util.generatePassword(payPwd.trim()).equals(user.getJiaoyimima())) {
+					ajaxResult.setMsg("交易密码错误");
+					return ajaxResult;
+				}
+			}else {
+				ajaxResult.setMsg("交易密码不能为空");
+				return ajaxResult;
+			}
+			
 			if (bean.getUserId()==0) {
 				bean.setUserId(user.getId());
 			}

@@ -57,6 +57,7 @@ public class ShopUserController {
 		AjaxResult ajaxResult = new AjaxResult();
 		ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
 		if (user != null) {
+			user=userService.find(user.getId());
 			ajaxResult.setData(user);
 			ajaxResult.setSuccess(true);
 		} else {

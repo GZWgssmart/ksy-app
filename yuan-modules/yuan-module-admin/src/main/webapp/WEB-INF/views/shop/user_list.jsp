@@ -144,7 +144,7 @@
 													</div>
 												</td>
 												<td>
-													<div class="t_text tc">${u.shopUserExts.credits }</div>
+													<div class="t_text tc">${u.shopUserExts.balance }</div>
 												</td>
 												<td>
 													<div class="t_text tc">${u.shopUserExts.activeBill }
@@ -154,7 +154,7 @@
 													<div class="t_text tc">${u.shopUserExts.tradeBill }</div>
 												</td>
 												<td>
-													<div class="t_text tc">${u.shopUserExts.balance }</div>
+													<div class="t_text tc">${u.shopUserExts.credits }</div>
 												</td>
 												<td>
 													<div class="t_text tc">

@@ -42,6 +42,7 @@ import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
 import com.jeff.yuan.common.util.ExcelUtils;
+import com.jeff.yuan.common.util.Md5Util;
 import com.jeff.yuan.common.util.VipLevelEnum;
 import com.jeff.yuan.util.WebHelper;
 
@@ -159,7 +160,16 @@ public class ShopTradeController {
 
 		try {
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
-
+			String payPwd = request.getParameter("payPwd");
+			if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
+				if (!Md5Util.generatePassword(payPwd.trim()).equals(user.getJiaoyimima())) {
+					ajaxResult.setMsg("交易密码错误");
+					return ajaxResult;
+				}
+			}else {
+				ajaxResult.setMsg("交易密码不能为空");
+				return ajaxResult;
+			}
 			// 减去余额(未开启事物 可能存在不一致)
 			BigDecimal balance = user.getShopUserExts().getBalance().subtract(bean.getPrice().abs());
 			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
@@ -229,6 +239,18 @@ public class ShopTradeController {
 			ShopTrade shopTrade = tradeService.updateStatus(id, 3);
 			//用户升级vip逻辑
 			ShopUser user = (ShopUser) request.getSession().getAttribute("userInfo");
+			
+			//交易密码校验
+			String payPwd = request.getParameter("payPwd");
+			if (StringUtils.isNotEmpty(user.getJiaoyimima()) ) {
+				if (!Md5Util.generatePassword(payPwd.trim()).equals(user.getJiaoyimima())) {
+					ajaxResult.setMsg("交易密码错误");
+					return ajaxResult;
+				}
+			}else {
+				ajaxResult.setMsg("交易密码不能为空");
+				return ajaxResult;
+			}
 			System.out.println("确认收货会员用户信息："+user.getId());
 			// 直推间推返利开始
 			// Jtype 1.购买会员大礼包2.复购产品
@@ -258,23 +280,23 @@ public class ShopTradeController {
 					//如果根据介绍人电话查找的用户不存在，则不赠送
 					if (ztUser!=null) {
 						//直推用户等级对应的奖励规则
-						rule = ruleService.findByVip(ztUser.getVipLevel());
+						ShopRegisterRule rule2 = ruleService.findByVip(ztUser.getVipLevel());
 						BigDecimal b1 = new BigDecimal(ztUser.getShopUserExts().getActiveBill());
 				        BigDecimal b2 = new BigDecimal(rule.getZtjkljhs());
 				        //健康链激活数（直推）   本身有的+邀请人增加的
 						ztUser.getShopUserExts().setActiveBill(b1.add(b2).toString());
 						
 						//如果激活健康链总数>等级对应数量，则等级提升
-						if (Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule.getBill()) && !ztUser.getVipLevel().equals("v7")) {
+						if (Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule2.getBill()) && !ztUser.getVipLevel().equals("v7")) {
 							ztUser.setVipLevel(VipLevelEnum.valueOf(ztUser.getVipLevel()).next().toString());
 						}
 						
 						
 						//直推奖    订单金额绝对值*直接奖励百分比
-				        BigDecimal a1 = new BigDecimal(rule.getZtj()).multiply(shopTrade.getPrice().abs());
+				        BigDecimal a1 = new BigDecimal(rule2.getZtj()).multiply(shopTrade.getPrice().abs());
 				        this.saveTradeInfo(a1, ztUser, 3);
 				        //管理奖    
-				        BigDecimal a2 = new BigDecimal(rule.getGlj()).multiply(shopTrade.getPrice().abs());
+				        BigDecimal a2 = new BigDecimal(rule2.getGlj()).multiply(shopTrade.getPrice().abs());
 				        this.saveTradeInfo(a2, ztUser, 5);
 				        //直推用户账户余额+直推奖+管理奖
 //				        ztUser.getShopUserExts().setBalance(a1.add(a2).add(ztUser.getShopUserExts().getBalance()));
@@ -290,21 +312,21 @@ public class ShopTradeController {
 							ShopUser jtUser = userService.queryShopUserList(userQueryDTO).get(0);
 							if (jtUser!=null) {
 								//获取间推用户等级对应奖励规则
-								rule = ruleService.findByVip(jtUser.getVipLevel()); 
+								ShopRegisterRule rule3 = ruleService.findByVip(jtUser.getVipLevel()); 
 								
 								BigDecimal c1 = new BigDecimal(jtUser.getShopUserExts().getActiveBill());
 								BigDecimal c2 = new BigDecimal(rule.getJtjkljhs());
 								//健康链激活数（直推）   本身有的+邀请人增加的
 								jtUser.getShopUserExts().setActiveBill(c1.add(c2).toString());
 								//如果激活健康链总数>等级对应数量，则等级提升
-								if (Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule.getBill()) && !jtUser.getVipLevel().equals("v7")) {
+								if (Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule3.getBill()) && !jtUser.getVipLevel().equals("v7")) {
 									jtUser.setVipLevel(VipLevelEnum.valueOf(jtUser.getVipLevel()).next().toString());
 								}
 								//间推奖    订单金额*间推奖励百分比
-						        BigDecimal d1 = new BigDecimal(rule.getJtj()).multiply(shopTrade.getPrice().abs());
+						        BigDecimal d1 = new BigDecimal(rule3.getJtj()).multiply(shopTrade.getPrice().abs());
 						        this.saveTradeInfo(d1, jtUser, 4);
 						      //管理奖    
-						        BigDecimal d2 = new BigDecimal(rule.getGlj()).multiply(shopTrade.getPrice().abs());
+						        BigDecimal d2 = new BigDecimal(rule3.getGlj()).multiply(shopTrade.getPrice().abs());
 						        this.saveTradeInfo(d2, jtUser, 5);
 						        System.out.println("间推收益计算完成，间推用户id："+jtUser.getId());
 							}
