@@ -117,8 +117,8 @@ var BILL_TYPES = {
 }
 
 var BILL_STATUS = {
-    '1': '待审',
-    '2': '完成'
+    '1': '待审核',
+    '2': '已完成'
 }
 
 var ORDER_TYPES = {
