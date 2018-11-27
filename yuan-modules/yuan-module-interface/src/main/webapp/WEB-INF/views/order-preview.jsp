@@ -88,11 +88,11 @@
                                 </div>
                                 <div class="row tax-coupon-div">
                                     <div class="col-md-12 login-form" style="text-align: right;">
-                                        姓名：<span>${sessionScope.userInfo.account}</span><br/>
-                                        收货地址：<span>${sessionScope.userInfo.address}</span><br/>
+                                        姓名：<span v-text="user.account"></span><br/>
+                                        收货地址：<span v-text="user.address"></span><br/>
                                         <a href="<%=path%>/user?operation=1">去设置姓名和收货地址</a><br/>
-                                        账户余额：<span>${sessionScope.userInfo.shopUserExts.balance}</span><br/>
-                                        账户总积分：<span>${sessionScope.userInfo.shopUserExts.credits}</span><br/>
+                                        账户余额：<span v-text="user.shopUserExts.balance"></span><br/>
+                                        账户总积分：<span v-text="user.shopUserExts.credits"></span><br/>
                                         订单最高可抵扣积分：<span v-text="totalCredits"></span><br/>
                                         <form>
                                             使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="number" style="width: 100px;">
@@ -154,6 +154,7 @@
             var productId = <%=request.getParameter("id")%>
             var quantity = <%=request.getParameter("quantity")%>
             var from = '<%=request.getParameter("from")%>'
+            var userId = ${sessionScope.userInfo.id}
             var view = new Vue({
                 el: '#content',
                 data: {
@@ -166,13 +167,17 @@
                     submitted: false,
                     submitting: false,
                     payPwd: '',
-                    errMsg: ''
+                    errMsg: '',
+                    user: {
+                        shopUserExts: {}
+                    }
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.meanMenu()
+                    this.getUser()
                     this.getProducts()
                 },
                 methods: {
@@ -182,6 +187,21 @@
                             function(data) {
                                 if (data.success === true) {
                                     window.location.href = '<%=path%>/index'
+                                }
+                            }
+                        )
+                    },
+                    getUser: function () {
+                        $.post(
+                            USER_DETAIL_URL,
+                            {
+                                userId: userId
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.user = data.data
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = '<%=path%>/login?relogin=y'
                                 }
                             }
                         )
