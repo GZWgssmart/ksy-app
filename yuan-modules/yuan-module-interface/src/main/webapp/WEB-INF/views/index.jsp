@@ -44,6 +44,7 @@
                 <section class="hero-slider-container">
                     <div class="hero-slider owl-carousel">
                         <div v-for="item in banners" class="hero-slider-item" :style="{backgroundImage:'url(' + item.coverImageUrl + ')'}">
+                            <!--
                             <div class="hero-slider-contents">
                                 <div class="container">
                                     <h1 class="title1" v-text="item.title"></h1>
@@ -51,6 +52,7 @@
                                     <a :href="item.href" class="button-hover">查看</a>
                                 </div>
                             </div>
+                            -->
                         </div>
                     </div>
 
