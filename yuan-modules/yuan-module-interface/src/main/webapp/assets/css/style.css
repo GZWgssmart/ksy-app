@@ -3228,6 +3228,12 @@ button.submit:hover {
     display: inline-block;
     float: left;
 }
+
+.recent-img img {
+    width: 80px;
+    height: 80px;
+}
+
 .recent-text {
     padding-left: 90px;
 }
