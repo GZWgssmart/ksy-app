@@ -187,4 +187,11 @@ public class IndexController {
         return "reset-login-pwd";
     }
 
+    @RequestMapping("share-reg")
+    public ModelAndView shareRegister(String refPhone) {
+        ModelAndView mav = new ModelAndView("share-register");
+        mav.addObject("refPhone", refPhone);
+        return mav;
+    }
+
 }

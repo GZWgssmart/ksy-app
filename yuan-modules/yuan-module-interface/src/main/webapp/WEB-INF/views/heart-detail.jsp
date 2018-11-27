@@ -181,7 +181,7 @@
                     {
                         pageSize: 3,
                         currentPage: 1,
-                        columnId: '2c92d39667356dfc016735f691700000'
+                        rootColumnId: HEART_ROOT_COLUMN_ID
                     },
                     function (data) {
                         if (data.success === true) {

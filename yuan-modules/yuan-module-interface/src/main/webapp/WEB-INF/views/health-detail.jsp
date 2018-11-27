@@ -181,7 +181,7 @@
                     {
                         pageSize: 3,
                         currentPage: 1,
-                        columnId: '8a2a08425b7a0b7b015b7a9d0b2e000a'
+                        rootColumnId: HEALTH_ROOT_COLUMN_ID
                     },
                     function (data) {
                         if (data.success === true) {

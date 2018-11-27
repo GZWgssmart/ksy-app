@@ -249,19 +249,19 @@
                                     } else {
                                         view.product.price = view.product.price1
                                     }
-                                    if (view.product.picture1 != '') {
+                                    if (view.product.picture1 !== '') {
                                         view.product.picture1 = BASE_URL + MODULE_ADMIN + view.product.picture1
                                     }
-                                    if (view.product.picture2 != '') {
+                                    if (view.product.picture2 !== '') {
                                         view.product.picture2 = BASE_URL + MODULE_ADMIN + view.product.picture2
                                     }
-                                    if (view.product.picture3 != '') {
+                                    if (view.product.picture3 !== '') {
                                         view.product.picture3 = BASE_URL + MODULE_ADMIN + view.product.picture3
                                     }
-                                    if (view.product.picture4 != '') {
+                                    if (view.product.picture4 !== '') {
                                         view.product.picture4 = BASE_URL + MODULE_ADMIN + view.product.picture4
                                     }
-                                    if (view.product.picture5 != '') {
+                                    if (view.product.picture5 !== '') {
                                         view.product.picture5 = BASE_URL + MODULE_ADMIN + view.product.picture5
                                     }
                                     self.showProductPics()
