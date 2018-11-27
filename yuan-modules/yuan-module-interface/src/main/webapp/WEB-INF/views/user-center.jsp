@@ -625,6 +625,7 @@
                         view.donateOpt = true
                         view.operation = 0
                         view.operation1 = 0
+                        view.errMsg = ''
                     },
                     donate: function () {
                         view.userOpt = false
