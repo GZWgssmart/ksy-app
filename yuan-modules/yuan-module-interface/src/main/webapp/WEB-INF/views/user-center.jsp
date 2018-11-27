@@ -141,57 +141,66 @@
                                     <form v-if="donateOpt == true">
                                         余额捐赠数量<input v-model="donateCount" placeholder="请输入余额捐赠数量" type="number">
                                         交易密码<input v-model="donatePayPwd" placeholder="请输入交易密码" type="password">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="donate">确认捐赠</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="donate">确定捐赠</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                     <form v-if="operation == '1'">
                                         姓名<input v-model="account" placeholder="请输入姓名" type="text">
                                         收货地址<input v-model="address" placeholder="请输入详细收货地址" type="text">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="updateInfo">修改个人信息</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在修改……</button>
                                     </form>
                                     <form v-if="operation == '2'">
                                         原密码<input v-model="oldLoginPwd" placeholder="请输入原密码" type="password">
                                         新密码<input v-model="loginPwd" placeholder="请输入新密码" type="password">
                                         确认密码<input v-model="conLoginPwd" placeholder="请输入确认密码" type="password">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="updateLoginPwd">修改登录密码</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="updateLoginPwd">修改登录密码</button>
+                                        <button v-else class="login-btn" type="button"  disabled="disabled">正在修改……</button>
                                     </form>
                                     <form v-if="operation == '3'">
                                         手机号<input v-model="phone" placeholder="请输入手机号，以重置登录密码" type="text">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="resetLoginPwd">重置登录密码</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在重置……</button>
                                     </form>
                                     <form v-if="operation == '4'">
                                         原密码(首次修改，不需要填写原密码)<input v-model="oldPayPwd" placeholder="请输入原密码" type="password">
                                         新密码<input v-model="payPwd" placeholder="请输入新密码" type="password">
                                         确认密码<input v-model="conPayPwd" placeholder="请输入确认密码" type="password">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="updatePayPwd">修改交易密码</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="updatePayPwd">修改交易密码</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在修改……</button>
                                     </form>
                                     <form v-if="operation == '5'">
                                         手机号<input v-model="phone" placeholder="请输入手机号，以重置交易密码" type="text">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在重置……</button>
                                     </form>
                                     <form v-if="operation1 == '1'">
                                         健康值数量<input v-model="getLinkCount" placeholder="请输入提现的健康值数量，不能大于激活的健康值" type="number">
                                         交易密码<input v-model="getLinkPayPwd" placeholder="请输入交易密码" type="password">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="getLink">确定提现</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="getLink">确定提现</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                     <form v-if="operation1 == '2'">
                                         手机号<input v-model="transLinkPhone" placeholder="请输入对方手机号" type="text">
                                         健康值数量<input v-model="transLinkCount" placeholder="请输入转让的健康值数量，不能大于激活的健康值" type="number">
                                         交易密码<input v-model="transLinkPayPwd" placeholder="请输入交易密码" type="password">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="transLink">确定转让</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="transLink">确定转让</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                     <form v-if="operation1 == '3'">
                                         健康值数量<input v-model="donateLinkCount" placeholder="请输入捐赠的健康值数量，不能大于激活的健康值" type="number">
                                         交易密码<input v-model="donateLinkPayPwd" placeholder="请输入交易密码" type="password">
-                                        <span v-html="errMsg" style="color: red; font-size: 12px;"></span>
-                                        <button class="login-btn" type="button" @click="donateLink">确定捐赠</button>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="donateLink">确定捐赠</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                 </div>
                             </div>
@@ -257,6 +266,7 @@
                     getLinkPayPwd: '',
                     transLinkPayPwd: '',
                     donateLinkPayPwd: '',
+                    userOpt: false,
                     errMsg: ''
                 },
                 created: function() {
@@ -301,6 +311,7 @@
                         )
                     },
                     updateInfo: function () {
+                        view.userOpt = false
                         var self = this
                         var errMsg = ''
                         if (view.account.trim() === '') {
@@ -312,7 +323,9 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
+                            var self = this
                             $.post(
                                 USER_UPDATE_URL,
                                 {
@@ -322,9 +335,11 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        self.getUser()
                                         view.errMsg = '更新成功'
+                                        self.getUser()
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -334,6 +349,7 @@
                         }
                     },
                     updateLoginPwd: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (view.oldLoginPwd.trim() === '') {
                             errMsg += '请输入旧密码<br/>'
@@ -351,6 +367,8 @@
                             view.errMsg = errMsg
                         } else {
                             view.errMsg = ''
+                            view.userOpt = true
+                            var self = this
                             $.post(
                                 UPDATE_LOGIN_PWD_URL,
                                 {
@@ -361,7 +379,9 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '登录密码修改成功'
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -371,6 +391,7 @@
                         }
                     },
                     resetLoginPwd: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (view.phone.trim() === '') {
                             errMsg += '请输入手机号， 以重置密码<br/>'
@@ -378,7 +399,9 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
+                            var self = this
                             $.post(
                                 RESET_LOGIN_PWD_URL,
                                 {
@@ -387,7 +410,9 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '重置登录密码成功，请关注手机短信'
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -397,6 +422,7 @@
                         }
                     },
                     updatePayPwd: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (view.payPwd.trim() === '') {
                             errMsg += '请输入新密码<br/>'
@@ -411,6 +437,8 @@
                             view.errMsg = errMsg
                         } else {
                             view.errMsg = ''
+                            view.userOpt = true
+                            var self = this
                             $.post(
                                 UPDATE_PAY_PWD_URL,
                                 {
@@ -421,7 +449,9 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '交易密码修改成功'
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -431,6 +461,7 @@
                         }
                     },
                     resetPayPwd: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (view.phone.trim() === '') {
                             errMsg += '请输入手机号， 以重置密码<br/>'
@@ -438,7 +469,9 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
+                            var self = this
                             $.post(
                                 RESET_PAY_PWD_URL,
                                 {
@@ -447,7 +480,9 @@
                                 function (data) {
                                     if (data.success === true) {
                                         view.errMsg = '重置交易密码成功，请关注手机短信'
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -457,6 +492,7 @@
                         }
                     },
                     getLink: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (isNaN(view.getLinkCount) || view.getLinkCount <= 0 || view.getLinkCount > parseInt(view.user.shopUserExts.activeBill)) {
                             errMsg += '请输入不大于激活的健康值的数值<br/>'
@@ -467,6 +503,7 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
                             var self = this
                             $.post(
@@ -481,7 +518,9 @@
                                     if (data.success === true) {
                                         view.errMsg = '提现成功'
                                         self.getUser()
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -491,6 +530,7 @@
                         }
                     },
                     transLink: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (!isPhone(view.transLinkPhone.trim())) {
                             errMsg += '请输入正确的手机号<br/>'
@@ -504,6 +544,7 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
                             var self = this
                             $.post(
@@ -519,7 +560,9 @@
                                     if (data.success === true) {
                                         view.errMsg = '转让成功'
                                         self.getUser()
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -529,6 +572,7 @@
                         }
                     },
                     donateLink: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (isNaN(view.donateLinkCount) || view.donateLinkCount <= 0 || view.donateLinkCount > parseInt(view.user.shopUserExts.activeBill)) {
                             errMsg += '请输入不大于激活的健康值的数值<br/>'
@@ -539,6 +583,7 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
                             var self = this
                             $.post(
@@ -553,7 +598,9 @@
                                     if (data.success === true) {
                                         view.errMsg = '捐赠成功'
                                         self.getUser()
+                                        self.hideUserOpt()
                                     } else if (data.success === false) {
+                                        view.userOpt = false
                                         view.errMsg = data.msg
                                     } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                         window.location.href = '<%=path%>/login?relogin=y'
@@ -580,6 +627,7 @@
                         view.operation1 = 0
                     },
                     donate: function () {
+                        view.userOpt = false
                         var errMsg = ''
                         if (isNaN(view.donateCount) || view.donateCount <= 0 || view.donateCount > view.user.shopUserExts.balance) {
                             errMsg += '请输入不大于账户余额的数值<br/>'
@@ -590,6 +638,7 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.userOpt = true
                             view.errMsg = ''
                             var self = this
                             $.ajax(
@@ -608,7 +657,9 @@
                                         if (data.success === true) {
                                             view.errMsg = '捐赠余额成功'
                                             self.getUser()
+                                            self.hideUserOpt()
                                         } else if (data.success === false) {
+                                            view.userOpt = false
                                             view.errMsg = data.msg
                                         } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                             window.location.href = '<%=path%>/login?relogin=y'
@@ -620,6 +671,11 @@
                                 }
                             )
                         }
+                    },
+                    hideUserOpt: function () {
+                        setTimeout(function () {
+                            view.userOpt = false
+                        }, 3000)
                     },
                     meanMenu: function () {
                         this.$nextTick(function() {

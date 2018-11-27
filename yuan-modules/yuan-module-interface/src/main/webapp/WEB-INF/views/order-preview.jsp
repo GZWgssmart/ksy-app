@@ -106,12 +106,16 @@
                                                 <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
                                             <div style="text-align: right;color: red;" v-html="errMsg"></div>
-                                            <div v-if="products.length > 0 && !submitted" class="cart-total-btn">
+                                            <div v-if="products.length > 0 && !submitted && !submitting" class="cart-total-btn">
                                                 <div class="cart-total-btn2 f-right">
                                                     <a href="javascript:;" @click="submitOrder">提交订单</a>
                                                 </div>
                                             </div>
-
+                                            <div v-if="!submitted && submitting" class="cart-total-btn">
+                                                <div class="cart-total-btn2 f-right">
+                                                    <a href="javascript:;">正在提交订单……</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -160,6 +164,7 @@
                     oTotalPrice: 0,
                     jtype: 0,
                     submitted: false,
+                    submitting: false,
                     payPwd: '',
                     errMsg: ''
                 },
@@ -249,6 +254,7 @@
                         if (errMsg !== '') {
                             view.errMsg = errMsg
                         } else {
+                            view.submitting = true
                             view.errMsg = ''
                             if (view.useCredits === '') {
                                 view.useCredits = 0
@@ -274,9 +280,11 @@
                                     success: function (data) {
                                         if (data.success === true) {
                                             view.submitted = true
+                                            view.submitting = false
                                             view.errMsg = '提交订单成功'
                                         } else if (data.success === false) {
                                             view.errMsg = data.msg
+                                            view.submitting = false
                                         } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                             window.location.href = '<%=path%>/login?relogin=y'
                                         }
