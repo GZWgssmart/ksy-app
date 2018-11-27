@@ -105,8 +105,8 @@
                                             <ul>
                                                 <li class="cart-black">总价<span v-text="'￥' + totalPrice"></span></li>
                                             </ul>
+                                            <div style="text-align: right;color: red;" v-html="errMsg"></div>
                                             <div v-if="products.length > 0 && !submitted" class="cart-total-btn">
-                                                <div style="text-align: right;color: red;" v-html="errMsg"></div>
                                                 <div class="cart-total-btn2 f-right">
                                                     <a href="javascript:;" @click="submitOrder">提交订单</a>
                                                 </div>
