@@ -313,13 +313,14 @@ public class ShopTradeController {
 						}
 				       
 						
-						//如果激活健康链总数>等级对应数量，则等级提升,并减去提升等级的健康值
-						if (Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule2.getBill()) && !ztUser.getVipLevel().equals("v7")) {
+						//如果激活健康链总数+历史健康值>等级对应数量，则等级提升,并减去提升等级的健康值
+				        int historyBill = tradeService.queryLisiJkz(ztUser.getId());
+						if ((Integer.parseInt(ztUser.getShopUserExts().getActiveBill())+historyBill) > Integer.parseInt(rule2.getBill()) && !ztUser.getVipLevel().equals("v7")) {
 							BigDecimal creidts1= productService.FindProductCreditsByVip(ztUser.getVipLevel());
 							ztUser.setVipLevel(VipLevelEnum.valueOf(ztUser.getVipLevel()).next().toString());
 							BigDecimal creidts2= productService.FindProductCreditsByVip(ztUser.getVipLevel());
 
-							ztUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule2.getBill())) );
+							//ztUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule2.getBill())) );
 							
 							//获取两个会议大礼包，计算出积分差距，给升级用户补上
 							BigDecimal creidts3 = creidts2.subtract(creidts1);
@@ -357,12 +358,13 @@ public class ShopTradeController {
 						        if (!jtUser.getVipLevel().equals("v1")) {
 						        	jtUser.getShopUserExts().setActiveBill(c1.add(c2).toString());
 						        }
-								//如果激活健康链总数>等级对应数量，则等级提升
-								if (Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule3.getBill()) && !jtUser.getVipLevel().equals("v7")) {
+						        //如果激活健康链总数+历史健康值>等级对应数量，则等级提升,并减去提升等级的健康值
+						        int historyBill2 = tradeService.queryLisiJkz(ztUser.getId());
+								if ((Integer.parseInt(jtUser.getShopUserExts().getActiveBill())+historyBill2) > Integer.parseInt(rule3.getBill()) && !jtUser.getVipLevel().equals("v7")) {
 									BigDecimal creidts1= productService.FindProductCreditsByVip(ztUser.getVipLevel());
 
 									jtUser.setVipLevel(VipLevelEnum.valueOf(jtUser.getVipLevel()).next().toString());
-									jtUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule3.getBill())) );
+									//jtUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule3.getBill())) );
 									
 									BigDecimal creidts2= productService.FindProductCreditsByVip(ztUser.getVipLevel());
 
