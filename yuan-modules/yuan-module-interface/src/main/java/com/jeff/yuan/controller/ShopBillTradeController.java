@@ -105,12 +105,12 @@ public class ShopBillTradeController {
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
 		
-		try {
-			/*if(bean.getType()==1) {
-				bean.setTradeStatus(1);
+		try {//操作类型"1、提现  2、转让 3.捐赠
+			if(bean.getType()==3) {
+				bean.setTradeStatus(2);
 			}else {
-			}*/
-			bean.setTradeStatus(2);
+				bean.setTradeStatus(1);
+			}
 			
 			bean.setCreateDate(new Date() );
 			
@@ -147,7 +147,7 @@ public class ShopBillTradeController {
 			}
 			
 			//操作类型"1、提现  2、转让 3.捐赠     被转让用户转让健康链增加，
-        	if (bean.getType()==2) {
+        	/*if (bean.getType()==2) {
         		ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
         		shopUserQueryDTO.setPhone(bean.getTradePhone());
         		ShopUser tradeUser = userService.queryShopUserList(shopUserQueryDTO).get(0);
@@ -180,11 +180,9 @@ public class ShopBillTradeController {
         	}
         	
         	//发起用户减少健康链
-        	
-	        
 	        //减去激活的健康链
 	        user.getShopUserExts().setActiveBill( activeBill.toString());
-	        userService.update(user);
+	        userService.update(user);*/
 	        
 			
 			tradeService.save(bean);

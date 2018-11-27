@@ -303,7 +303,7 @@
 			'fileObjName' : 'fileData',
 			'width' : 70,
 			'height' : 20,
-			'uploadLimit':3,
+			'queueSizeLimit':3,
 			'onUploadSuccess' : function(file, data, response) {
 					if(data != null){
 						var attachUrl = '${pageContext.request.contextPath}' + data;								

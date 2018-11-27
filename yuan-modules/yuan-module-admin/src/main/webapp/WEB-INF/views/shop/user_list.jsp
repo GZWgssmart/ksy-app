@@ -80,8 +80,8 @@
 									<td><span>会员等级</span></td>
 									<td><span>是否有效</span></td>
 									<td><span>账户余额</span></td>
-									<td><span>健康链激活个数</span></td>
-									<td><span>转让获得的健康链</span></td>
+									<td><span>健康值激活个数</span></td>
+									<td><span>转让获得的健康值</span></td>
 									<td><span>账户积分</span></td>
 									<td><span>创建时间</span></td>
 									<td><span>操作</span></td>

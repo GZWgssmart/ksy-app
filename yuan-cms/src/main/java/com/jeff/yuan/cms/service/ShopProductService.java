@@ -7,6 +7,8 @@ import com.jeff.yuan.cms.dto.ShopProductQueryDTO;
 import com.jeff.yuan.common.service.CommonService;
 import com.jeff.yuan.common.entity.PageModel;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 /**
@@ -38,6 +40,17 @@ public class ShopProductService extends CommonService< ShopProduct,Integer >  {
 		ShopProduct bean = this.find(Integer.parseInt(id));
 		bean.setStatus(status);
 		this.update(bean);
+	}
+	
+	public BigDecimal FindProductCreditsByVip(String vipLevel) {
+		ShopProductQueryDTO dto =new ShopProductQueryDTO();
+		dto.setStatus("1");
+		dto.setVipLevel(vipLevel);
+		//获取商品的赠送积分，并转化为BigDecimal格式，用于用户升级补积分
+		List<ShopProduct> list = shopProductDao.queryShopProductList(dto);
+		BigDecimal creids =  new BigDecimal(list.get(0).getIncomeCredits());
+		return creids;
+		
 	}
 
 }

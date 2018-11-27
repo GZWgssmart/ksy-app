@@ -191,7 +191,7 @@ $(function(){
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b>等级对应健康链</td>
+                         <td class="l_title w150"><b class="cRed">*</b>等级对应健康值</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
@@ -211,7 +211,7 @@ $(function(){
                      </tr>
                      
                      <tr>
-						<td class="l_title w150"><b class="cRed">*</b>激活的健康链</td>
+						<td class="l_title w150"><b class="cRed">*</b>激活的健康值</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
@@ -228,7 +228,7 @@ $(function(){
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b>转让获得的健康链</td>
+                         <td class="l_title w150"><b class="cRed">*</b>转让获得的健康值</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">

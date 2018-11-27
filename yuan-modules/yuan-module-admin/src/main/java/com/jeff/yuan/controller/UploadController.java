@@ -8,11 +8,13 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.jeff.yuan.common.dto.AjaxResult;
 
@@ -29,7 +31,14 @@ public class UploadController {
 
 	@RequestMapping("/uploadAttach")
 	public void uploadAttach(HttpServletRequest request, PrintWriter out) {
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartHttpServletRequest multipartRequest;
+		if (request instanceof ShiroHttpServletRequest) {
+			ShiroHttpServletRequest shiroRequest = (ShiroHttpServletRequest) request;
+			CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+			multipartRequest = commonsMultipartResolver.resolveMultipart((HttpServletRequest) shiroRequest.getRequest());
+		}else {
+			multipartRequest = (MultipartHttpServletRequest) request;
+		}
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		MultipartFile multipartFile = null;
 		String fileName = null;
@@ -45,7 +54,15 @@ public class UploadController {
 	@RequestMapping("/ajax/upload_file")
 	@ResponseBody
 	public AjaxResult ajaxUploadFile(HttpServletRequest request) {
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartHttpServletRequest multipartRequest;
+		if (request instanceof ShiroHttpServletRequest) {
+			ShiroHttpServletRequest shiroRequest = (ShiroHttpServletRequest) request;
+			CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+			multipartRequest = commonsMultipartResolver.resolveMultipart((HttpServletRequest) shiroRequest.getRequest());
+		}else {
+			multipartRequest = (MultipartHttpServletRequest) request;
+		}
+		//MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);

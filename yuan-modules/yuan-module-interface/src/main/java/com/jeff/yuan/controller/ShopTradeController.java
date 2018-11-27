@@ -315,8 +315,16 @@ public class ShopTradeController {
 						
 						//如果激活健康链总数>等级对应数量，则等级提升,并减去提升等级的健康值
 						if (Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule2.getBill()) && !ztUser.getVipLevel().equals("v7")) {
+							BigDecimal creidts1= productService.FindProductCreditsByVip(ztUser.getVipLevel());
 							ztUser.setVipLevel(VipLevelEnum.valueOf(ztUser.getVipLevel()).next().toString());
+							BigDecimal creidts2= productService.FindProductCreditsByVip(ztUser.getVipLevel());
+
 							ztUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule2.getBill())) );
+							
+							//获取两个会议大礼包，计算出积分差距，给升级用户补上
+							BigDecimal creidts3 = creidts2.subtract(creidts1);
+							BigDecimal creidts4 = new BigDecimal(ztUser.getShopUserExts().getCredits()) ;
+							ztUser.getShopUserExts().setCredits(creidts3.add(creidts4).toString());
 						}
 						
 						
@@ -351,9 +359,17 @@ public class ShopTradeController {
 						        }
 								//如果激活健康链总数>等级对应数量，则等级提升
 								if (Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) > Integer.parseInt(rule3.getBill()) && !jtUser.getVipLevel().equals("v7")) {
+									BigDecimal creidts1= productService.FindProductCreditsByVip(ztUser.getVipLevel());
+
 									jtUser.setVipLevel(VipLevelEnum.valueOf(jtUser.getVipLevel()).next().toString());
 									jtUser.getShopUserExts().setActiveBill(String.valueOf(Integer.parseInt(jtUser.getShopUserExts().getActiveBill()) - Integer.parseInt(rule3.getBill())) );
+									
+									BigDecimal creidts2= productService.FindProductCreditsByVip(ztUser.getVipLevel());
 
+									//获取两个会议大礼包，计算出积分差距，给升级用户补上
+									BigDecimal creidts3 = creidts2.subtract(creidts1);
+									BigDecimal creidts4 = new BigDecimal(ztUser.getShopUserExts().getCredits()) ;
+									ztUser.getShopUserExts().setCredits(creidts3.add(creidts4).toString());
 								}
 								//间推奖    订单金额*间推奖励百分比
 						        BigDecimal d1 = new BigDecimal(rule3.getJtj()).multiply(shopTrade.getPrice().abs());

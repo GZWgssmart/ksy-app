@@ -484,7 +484,7 @@
 							'fileObjName' : 'fileData',
 							'width' : 70,
 							'height' : 20,
-							'uploadLimit' : 1,
+							'queueSizeLimit' : 1,
 							'onUploadSuccess' : function(file, data, response) {
 								if (data != null) {
 									var attachUrl = '${pageContext.request.contextPath}'
@@ -505,13 +505,12 @@
 							'auto' : true,
 							'multi' : true,
 							'simUploadLimit' : 5,
-							'fileTypeExts' : '*.jpeg; *.jpg; *.png; *.gif; *.bmp',
 							'buttonText' : '上传图片',
 							'fileSizeLimit' : '512kb',
 							'fileObjName' : 'fileData',
 							'width' : 70,
 							'height' : 20,
-							'uploadLimit' : 5,
+							'queueSizeLimit' : 5,
 							'onUploadSuccess' : function(file, data, response) {
 								if (data != null) {
 									var attachUrl = '${pageContext.request.contextPath}'
