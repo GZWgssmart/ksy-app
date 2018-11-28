@@ -41,6 +41,10 @@ public class ShopTradeService extends CommonService< ShopTrade,Integer >  {
 		this.update(bean);
 		return bean;
 	}
+	
+	public int queryLisiJkz(int userId) {
+		return shopTradeDao.queryLisiJkz(userId);
+	}
 
 
 }

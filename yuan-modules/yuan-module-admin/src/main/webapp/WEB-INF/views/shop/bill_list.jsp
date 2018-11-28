@@ -21,6 +21,7 @@
 							<option value=0>请选择</option>
 							<option value=1  <c:if test="${1 eq queryDTO.tradeStatus }">selected</c:if> >提现</option>
 							<option value=2 <c:if test="${2 eq queryDTO.tradeStatus }">selected</c:if> >转让</option>
+							<option value=3 <c:if test="${2 eq queryDTO.tradeStatus }">selected</c:if> >捐赠</option>
 						</select>
 					</div>
 					<div class="t_label">商品状态</div>
@@ -78,6 +79,12 @@
 														<c:choose>
 															<c:when test="${1 eq u.type}">
 		                                     			提现
+		                                     		</c:when>
+															<c:when test="${2 eq u.type}">
+		                                     			转让
+		                                     		</c:when>
+															<c:when test="${3 eq u.type}">
+		                                     			捐赠
 		                                     		</c:when>
 															<c:otherwise>
 		                                     			转让
@@ -185,12 +192,12 @@
 		}
 		
 		function updStatus(id, status){
-			var content = '';
-			if(status == '1'){
+			var content = '确认要通过数据吗？';
+			/* if(status == '1'){
 				content = '确认要通过数据吗？';
 			}else{
 				content = '确认要失效数据吗？';
-			}
+			} */
 			
 			layer.confirm(content, function(index){
 				layer.close(index);

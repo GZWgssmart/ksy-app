@@ -2,6 +2,8 @@ package com.jeff.yuan.cms.dao;
 
 import com.jeff.yuan.common.dao.CustomBaseSqlDaoImpl;
 import com.jeff.yuan.common.entity.PageModel;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +73,22 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
          hql.append(" order by t.id desc");
          return this.queryByMapParams(hql.toString(),map);
     }
+
+	@Override
+	public int queryLisiJkz(int userId) {
+		// TODO Auto-generated method stub
+		StringBuilder sql = new StringBuilder();
+    	sql.append("SELECT SUM(count) as tcount from shop_bill_trade where user_id=? ");
+    	List<Object> params = new ArrayList<>();
+    	params.add(userId);
+    	List<Map<String, Object>> list= this.querySqlObjects(sql.toString(), params);
+    	if (list!=null &&list.size()>0){
+    		Map<String, Object> map = list.get(0);
+    		return  Integer.parseInt(map.get("tcount").toString());
+		}else {
+			return 0;
+		}
+	}
 
 
 }

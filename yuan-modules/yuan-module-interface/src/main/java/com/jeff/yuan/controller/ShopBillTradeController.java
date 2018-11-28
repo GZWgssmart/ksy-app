@@ -145,6 +145,17 @@ public class ShopBillTradeController {
 				 ajaxResult.setMsg("超出激活的健康值");
 				 return ajaxResult;
 			}
+	        
+	        //返回前台转让用户是否存在判断
+	        if (bean.getType()==2){
+	        	ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
+        		shopUserQueryDTO.setPhone(bean.getTradePhone());
+	        	ShopUser tradeUser = userService.queryShopUserList(shopUserQueryDTO).get(0);
+        		if (tradeUser==null) {
+        			ajaxResult.setMsg("转让用户不存在");
+					return ajaxResult;
+				}
+	        }
 			
 			//操作类型"1、提现  2、转让 3.捐赠     被转让用户转让健康链增加，
         	/*if (bean.getType()==2) {
@@ -160,7 +171,7 @@ public class ShopBillTradeController {
 					ajaxResult.setMsg("转让用户不存在");
 					return ajaxResult;
 				}
-        	}else if (bean.getType()==1) {//提现到个人账户余额
+        	}else */if (bean.getType()==1) {//提现到个人账户余额
 //        		获取提现比例
         		ShopSysParam param = sysParamService.findByCode(WebHelper.SYS_PARAM_TIXIAN);
 //        		数量乘以兑换比例
@@ -182,7 +193,7 @@ public class ShopBillTradeController {
         	//发起用户减少健康链
 	        //减去激活的健康链
 	        user.getShopUserExts().setActiveBill( activeBill.toString());
-	        userService.update(user);*/
+	        userService.update(user);
 	        
 			
 			tradeService.save(bean);

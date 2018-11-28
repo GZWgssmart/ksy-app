@@ -123,11 +123,11 @@
 	<script type="text/javascript">
 		function myEdit(id) {
 			var loadIdx = layer.load();
-			var title = '添加会员';
+			var title = '添加参数';
 			if (!id) {
 				id = '';
 			} else {
-				title = '修改会员';
+				title = '修改参数';
 			}
 			$.post('${ctx}/sysParam/edit?id=' + id, {}, function(str) {
 

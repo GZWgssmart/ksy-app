@@ -240,7 +240,7 @@ public class ShopBillTradeController {
 					ajaxResult.setMsg("转让用户不存在");
 					return ajaxResult;
 				}
-        	}else if (bean.getType()==1) {//提现到个人账户余额
+        	}/*else if (bean.getType()==1) {//提现到个人账户余额
 //        		获取提现比例
         		ShopSysParam param = sysParamService.findByCode(WebHelper.SYS_PARAM_TIXIAN);
 //        		数量乘以兑换比例
@@ -257,7 +257,7 @@ public class ShopBillTradeController {
             	ztTrade.setCreateDate(new Date());
             	ztTrade.setShopTradeDetails(null);
             	stradeService.save(ztTrade);
-        	}
+        	}*/
         	
         	//发起用户减少健康链
 			BigDecimal activeBill = new BigDecimal(user.getShopUserExts().getActiveBill()).subtract(new BigDecimal(bean.getCount()));

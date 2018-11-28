@@ -78,8 +78,8 @@ $(function(){
                                      		<c:when test="${not empty bean }">
                                      			<select name="type" data-rule="操作类型:required;" value="${bean.type }">
                                      				<option value="1" <c:if test="${'1' eq bean.type }">selected</c:if> >提现</option>
-                                     				<option value="2" <c:if test="${'1' eq bean.type }">selected</c:if> >转让</option>
-                                     				<option value="3" <c:if test="${'1' eq bean.type }">selected</c:if> >捐赠</option>
+                                     				<option value="2" <c:if test="${'2' eq bean.type }">selected</c:if> >转让</option>
+                                     				<option value="3" <c:if test="${'3' eq bean.type }">selected</c:if> >捐赠</option>
                                      			</select>
                                      		</c:when>
                                      		<c:otherwise>
@@ -87,7 +87,7 @@ $(function(){
                                      				<option value="">请选择</option>
                                      				<option value="1">提现</option>
                                      				<option value="2" >转让</option>
-                                     				<option value="2" >捐赠</option>
+                                     				<option value="3" >捐赠</option>
                                      			</select>
                                      		</c:otherwise>
                                      	</c:choose>
@@ -124,7 +124,7 @@ $(function(){
                                      		<c:when test="${not empty bean }">
                                      			<select name="tradeStatus" data-rule="交易状态:required;" >
                                      				<option value="1" <c:if test="${'1' eq bean.tradeStatus }">selected</c:if> >待审核</option>
-                                     				<option value="2" <c:if test="${'1' eq bean.tradeStatus }">selected</c:if> >已完成</option>
+                                     				<option value="2" <c:if test="${'2' eq bean.tradeStatus }">selected</c:if> >已完成</option>
                                      			</select>
                                      		</c:when>
                                      		<c:otherwise>

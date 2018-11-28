@@ -15,6 +15,6 @@ public interface ShopTradeDaoCustom {
 
       List<ShopTrade> queryShopTradeList(ShopTradeQueryDTO shopTradeQueryDTO);
 
-
+      int queryLisiJkz(int userId);
 
 }
