@@ -1,62 +1,64 @@
-var BASE_URL = 'http://47.106.142.171:8080';
+//var BASE_URL = 'http://47.106.142.171:8080';
+var BASE_URL = 'https://www.yctrad.com';
+//var BASE_URL = 'http://127.0.0.1:8080';
+var MODULE_WEB = '';
+var MODULE_ADMIN = '/yuan-module-admin';
 
-var MODULE_ADMIN = '/yuan-module-admin'
+var USER_INFO = 'yuan_user_info';
 
-var USER_INFO = 'yuan_user_info'
+var PRODUCT_URL = BASE_URL +MODULE_WEB+ MODULE_WEB+ '/api/shopproduct/list';
 
-var PRODUCT_URL = BASE_URL + '/yuan-module-interface/api/shopproduct/list';
+var PRODUCT_DETAIL_URL = BASE_URL + MODULE_WEB+ '/api/shopproduct/getDetail';
 
-var PRODUCT_DETAIL_URL = BASE_URL + '/yuan-module-interface/api/shopproduct/getDetail';
+var ARTICLE_URL = BASE_URL + MODULE_WEB+ '/cms/api/article/list';
 
-var ARTICLE_URL = BASE_URL + '/yuan-module-interface/cms/api/article/list';
+var ARTICLE_DETAIL_URL = BASE_URL + MODULE_WEB+ '/cms/api/article/detail';
 
-var ARTICLE_DETAIL_URL = BASE_URL + '/yuan-module-interface/cms/api/article/detail';
+var SHOPBILL_URL = BASE_URL + MODULE_WEB+ '/api/shopbilltrade/list';
 
-var SHOPBILL_URL = BASE_URL + '/yuan-module-interface/api/shopbilltrade/list';
+var SHOPBILL_TRAN = BASE_URL + MODULE_WEB+ '/api/shopbilltrade/save';
 
-var SHOPBILL_TRAN = BASE_URL + '/yuan-module-interface/api/shopbilltrade/save';
+var ORDER_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/list';
 
-var ORDER_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/list';
+var ORDER_DETAIL_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/getDetail';
 
-var ORDER_DETAIL_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/getDetail';
+var ORDER_CREATE_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/save';
 
-var ORDER_CREATE_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/save';
+var ORDER_CONFIRM_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/upd/status';
 
-var ORDER_CONFIRM_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/upd/status';
+var CART_ADD_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/addCart';
 
-var CART_ADD_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/addCart';
+var CART_UPDATE_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/updateCart';
 
-var CART_UPDATE_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/updateCart';
+var CART_LIST_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/listCart';
 
-var CART_LIST_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/listCart';
+var CART_REMOVE_URL = BASE_URL + MODULE_WEB+ '/api/shoptrade/removeCart';
 
-var CART_REMOVE_URL = BASE_URL + '/yuan-module-interface/api/shoptrade/removeCart';
+var SMS_CODE_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/sendSms';
 
-var SMS_CODE_URL = BASE_URL + '/yuan-module-interface/api/shopuser/sendSms';
+var REGISTER_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/register';
 
-var REGISTER_URL = BASE_URL + '/yuan-module-interface/api/shopuser/register';
+var PHONE_VALIDATE_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/validator/phone';
 
-var PHONE_VALIDATE_URL = BASE_URL + '/yuan-module-interface/api/shopuser/validator/phone';
+var LOGIN_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/login';
 
-var LOGIN_URL = BASE_URL + '/yuan-module-interface/api/shopuser/login';
+var USER_UPDATE_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/update';
 
-var USER_UPDATE_URL = BASE_URL + '/yuan-module-interface/api/shopuser/update';
+var USER_DETAIL_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/getDetail';
 
-var USER_DETAIL_URL = BASE_URL + '/yuan-module-interface/api/shopuser/getDetail';
+var USER_TEAM_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/getTeam';
 
-var USER_TEAM_URL = BASE_URL + '/yuan-module-interface/api/shopuser/getTeam';
+var USER_INCOME_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/getIncome';
 
-var USER_INCOME_URL = BASE_URL + '/yuan-module-interface/api/shopuser/getIncome';
+var UPDATE_LOGIN_PWD_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/update_pwd';
 
-var UPDATE_LOGIN_PWD_URL = BASE_URL + '/yuan-module-interface/api/shopuser/update_pwd';
+var RESET_LOGIN_PWD_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/reset/password';
 
-var RESET_LOGIN_PWD_URL = BASE_URL + '/yuan-module-interface/api/shopuser/reset/password';
+var UPDATE_PAY_PWD_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/update_jypwd';
 
-var UPDATE_PAY_PWD_URL = BASE_URL + '/yuan-module-interface/api/shopuser/update_jypwd';
+var RESET_PAY_PWD_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/reset/jiaoyimima';
 
-var RESET_PAY_PWD_URL = BASE_URL + '/yuan-module-interface/api/shopuser/reset/jiaoyimima';
-
-var LOGOUT_URL = BASE_URL + '/yuan-module-interface/api/shopuser/login_out';
+var LOGOUT_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/login_out';
 
 var LOGIN_ERR_MSG = 'login first'
 

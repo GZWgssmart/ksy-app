@@ -34,13 +34,15 @@ public class SmsClient {
     static final String domain = "dysmsapi.aliyuncs.com";
 
     // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    static final String accessKeyId = "LTAIIcJPB6s6A6yd";
-    static final String accessKeySecret ="EWlIgpcPfstmjTfarZ1o4HA3lDnhAK";
+    //毅城贸易
+//    static final String accessKeyId = "LTAIIcJPB6s6A6yd";
+//    static final String accessKeySecret ="EWlIgpcPfstmjTfarZ1o4HA3lDnhAK";
+    //康生缘
+    static final String accessKeyId = "LTAIpPxhH3c16hvX";
+    static final String accessKeySecret ="uGz3oklBZijXOQHqOIBdJgl6Lz980A";
    //个人
 //    static final String accessKeyId = "LTAIbv778qFplEJ0";
 //    static final String accessKeySecret = "2z6XJ84npKFjmbRf7wboX17o9SN4fK";
-//    static final String accessKeyId = "yourAccessKeyId";
-//    static final String accessKeySecret = "yourAccessKeySecret";
 
     public static SendSmsResponse sendSms(String phone,String templateParam,String smsName) throws ClientException {
 
@@ -58,7 +60,8 @@ public class SmsClient {
         //必填:待发送手机号
         request.setPhoneNumbers(phone);
         //必填:短信签名-可在短信控制台中找到
-        request.setSignName("毅城贸易");
+//        request.setSignName("毅城贸易");
+        request.setSignName("康生缘");
 //        request.setSignName("技术学习");
         //必填:短信模板-可在短信控制台中找到
         request.setTemplateCode(smsName);
@@ -117,9 +120,14 @@ public class SmsClient {
 		json.put("code", 627899);
 		JSONObject json2 = new JSONObject();
 		json2.put("code", 672356);
+		JSONObject json3 = new JSONObject();
+		json3.put("password", 672356);
         //发短信
 //        SendSmsResponse response = sendSms("13798369750",json.toJSONString(),"SMS_148866416");
-        SendSmsResponse response = sendSms("19979458414",json2.toJSONString(),"SMS_151577249");
+		
+//        SendSmsResponse response = sendSms("13798369750",json2.toJSONString(),"SMS_151840381");
+        
+        SendSmsResponse response = sendSms("13798369750",json3.toJSONString(),"SMS_151990333");
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());

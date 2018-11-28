@@ -378,7 +378,8 @@ public class ShopUserController {
 			try {
 				JSONObject jsons = new JSONObject();
 				jsons.put("code", verifyCode);
-				response = SmsClient.sendSms(phone, jsons.toJSONString(), "SMS_148866416");
+//				response = SmsClient.sendSms(phone, jsons.toJSONString(), "SMS_148866416");
+				response = SmsClient.sendSms(phone, jsons.toJSONString(), "SMS_151840381");
 
 				if (response.getCode() != null && response.getCode().equals("OK")) {
 					// 请求成功
@@ -487,10 +488,10 @@ public class ShopUserController {
 				String verifyCode = String.valueOf(new Random().nextInt(899999) + 100000);
 				// 发送短信
 				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("code", verifyCode);
+				jsonObject.put("password", verifyCode);
 				SendSmsResponse response;
 				try {
-					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_151577249");
+					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_151990333");
 					if (response.getCode() != null && response.getCode().equals("OK")) {
 						users.get(0).setPassword(Md5Util.generatePassword(verifyCode));
 						userService.update(users.get(0));
@@ -532,7 +533,7 @@ public class ShopUserController {
 				jsonObject.put("password", verifyCode);
 				SendSmsResponse response;
 				try {
-					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_148866416");
+					response = SmsClient.sendSms(phone, jsonObject.toJSONString(), "SMS_151990333");
 					if (response.getCode() != null && response.getCode().equals("OK")) {
 						users.get(0).setJiaoyimima(Md5Util.generatePassword(verifyCode));
 						userService.update(users.get(0));
