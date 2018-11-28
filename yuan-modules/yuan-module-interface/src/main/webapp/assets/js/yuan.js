@@ -6,7 +6,7 @@ var MODULE_ADMIN = '/yuan-module-admin';
 
 var USER_INFO = 'yuan_user_info';
 
-var PRODUCT_URL = BASE_URL +MODULE_WEB+ MODULE_WEB+ '/api/shopproduct/list';
+var PRODUCT_URL = BASE_URL + MODULE_WEB+ '/api/shopproduct/list';
 
 var PRODUCT_DETAIL_URL = BASE_URL + MODULE_WEB+ '/api/shopproduct/getDetail';
 
