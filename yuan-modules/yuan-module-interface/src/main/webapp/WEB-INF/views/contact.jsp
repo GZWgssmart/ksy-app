@@ -188,7 +188,7 @@
             });
         </script>
 		<script src="<%=path%>/assets/js/main3.js"></script>
-        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ScHh49FPt46Vdc2M6bSmVDY9IWaKIS4D"></script>
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ScHh49FPt46Vdc2M6bSmVDY9IWaKIS4D"></script>
         <script type="text/javascript">
             // 百度地图API功能
             var map = new BMap.Map("allmap");
