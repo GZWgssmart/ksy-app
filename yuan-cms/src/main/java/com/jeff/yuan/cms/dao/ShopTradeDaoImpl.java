@@ -78,7 +78,7 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
 	public int queryLisiJkz(int userId) {
 		// TODO Auto-generated method stub
 		StringBuilder sql = new StringBuilder();
-    	sql.append("SELECT SUM(count) as tcount from shop_bill_trade where user_id=? ");
+    	sql.append("SELECT IFNULL(SUM(count),0) as tcount from shop_bill_trade where user_id=? ");
     	List<Object> params = new ArrayList<>();
     	params.add(userId);
     	List<Map<String, Object>> list= this.querySqlObjects(sql.toString(), params);
