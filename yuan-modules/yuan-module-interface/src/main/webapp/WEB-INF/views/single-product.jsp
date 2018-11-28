@@ -136,7 +136,7 @@
                                                 </a>
                                             </div>
                                             <div class="single-pro-cart" style="display: inline;">
-                                                <a v-if="(product.type == '1' && (userLevel == 'v1' || userLevel == '')) || product.type == '2' || product.type == '3'" href="javascript:;" @click="toBuy(product.id)" title="立即购买">
+                                                <a v-if="(product.type == '1' && (user.userLevel == 'v1' || user.userLevel == '')) || product.type == '2' || product.type == '3'" href="javascript:;" @click="toBuy(product.id)" title="立即购买">
                                                     <i class="pe-7s-shopbag"></i>
                                                     立即购买
                                                 </a>
@@ -201,19 +201,23 @@
         <script src="<%=path%>/assets/js/yuan.js"></script>
         <script>
             var productId = ${requestScope.id}
+            var userId = ${sessionScope.userInfo.id}
             var view = new Vue({
                 el: '#content',
                 data: {
                     product: {},
                     quantity: 1,
                     cartMsg: '',
-                    userLevel: '${sessionScope.userInfo.vipLevel}'
+                    user: {
+                        shopUserExts: {}
+                    }
                 },
                 created: function() {
 
                 },
                 mounted: function() {
                     this.meanMenu()
+                    this.getUser()
                     this.showProduct()
                 },
                 methods: {
@@ -223,7 +227,21 @@
                             function(data) {
                                 if (data.success === true) {
                                     window.location.href = '<%=path%>/index'
-                                    window.localStorage.removeItem(USER_INFO)
+                                }
+                            }
+                        )
+                    },
+                    getUser: function () {
+                        $.post(
+                            USER_DETAIL_URL,
+                            {
+                                userId: userId
+                            },
+                            function (data) {
+                                if (data.success === true) {
+                                    view.user = data.data
+                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                    window.location.href = '<%=path%>/login?relogin=y'
                                 }
                             }
                         )
@@ -241,8 +259,9 @@
                                     view.product.proLogoImgFull = BASE_URL + MODULE_ADMIN + view.product.proLogoImg
                                     // 如果不是会员大礼包
                                     if (view.product.type !== '1') {
-                                        if (view.userLevel != null && view.userLevel !== undefined && view.userLevel !== '') {
-                                            view.product.price = view.product[USER_PRICE[view.userLevel]]
+                                        if (view.user != null && view.user !== undefined && view.user.userLevel != null
+                                            && view.user.userLevel !== undefined && view.user.userLevel !== '') {
+                                            view.product.price = view.product[USER_PRICE[view.user.userLevel]]
                                         } else {
                                             view.product.price = view.product.price1
                                         }
