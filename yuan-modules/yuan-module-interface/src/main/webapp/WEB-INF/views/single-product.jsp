@@ -136,7 +136,7 @@
                                                 </a>
                                             </div>
                                             <div class="single-pro-cart" style="display: inline;">
-                                                <a v-if="(product.type == '1' && (user.userLevel == 'v1' || user.userLevel == '')) || product.type == '2' || product.type == '3'" href="javascript:;" @click="toBuy(product.id)" title="立即购买">
+                                                <a v-if="(product.type == '1' && (user.userLevel == 'v1' || user.userLevel == null || user.userLevel == '')) || product.type == '2' || product.type == '3'" href="javascript:;" @click="toBuy(product.id)" title="立即购买">
                                                     <i class="pe-7s-shopbag"></i>
                                                     立即购买
                                                 </a>
@@ -201,7 +201,7 @@
         <script src="<%=path%>/assets/js/yuan.js"></script>
         <script>
             var productId = ${requestScope.id}
-            var userId = ${sessionScope.userInfo.id}
+            var userId = 0
             var view = new Vue({
                 el: '#content',
                 data: {
@@ -216,9 +216,14 @@
 
                 },
                 mounted: function() {
+                    var uid = '${sessionScope.userInfo.id}'
+                    if (uid !== '') {
+                        userId = parseInt(uid)
+                    }
                     this.meanMenu()
                     this.getUser()
                     this.showProduct()
+                    console.log(this.user)
                 },
                 methods: {
                     logout: function () {
@@ -240,8 +245,6 @@
                             function (data) {
                                 if (data.success === true) {
                                     view.user = data.data
-                                } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
-                                    window.location.href = '<%=path%>/login?relogin=y'
                                 }
                             }
                         )
