@@ -283,6 +283,62 @@ $(function(){
                              </div>
                          </td>
                      </tr>
+                     
+                     <tr>
+						<td class="l_title w150"> 银行卡户主名字</td>
+                         <td colspan="">
+                             <div class="J_toolsBar fl">
+                                 <div class="t_text w200 ml10">
+                                     <label>
+                                     	<c:choose>
+                                     		<c:when test="${not empty bean }">
+                                     			<input type="text" name="shopUserExts.bankOwer"  value="${bean.shopUserExts.bankOwer }" />
+                                     		</c:when>
+                                     		<c:otherwise>
+                                     			<input type="text" name="shopUserExts.bankOwer"  value="" />
+                                     		</c:otherwise>
+                                     	</c:choose>
+                                     </label>
+                                 </div>
+                             </div>
+                         </td>
+                         <td class="l_title w150">开户行</td>
+                         <td >
+                             <div class="J_toolsBar fl">
+                                 <div class="t_text w200 ml10">
+                                     <label>
+                                     	<c:choose>
+                                     		<c:when test="${not empty bean }">
+                                     			<input type="text" name="shopUserExts.bankDeposit"  value="${bean.shopUserExts.bankDeposit }" />
+                                     		</c:when>
+                                     		<c:otherwise>
+                                     			<input type="text" name="shopUserExts.bankDeposit"  value="" />
+                                     		</c:otherwise>
+                                     	</c:choose>
+                                     </label>
+                                 </div>
+                             </div>
+                         </td>
+                     </tr>
+                     <tr>
+						<td class="l_title w150">银行卡号</td>
+                         <td colspan="3">
+                             <div class="J_toolsBar fl">
+                                 <div class="t_text w200 ml10">
+                                     <label>
+                                     	<c:choose>
+                                     		<c:when test="${not empty bean }">
+                                     			<input type="text" name="shopUserExts.bankCard"  value="${bean.shopUserExts.bankCard }" />
+                                     		</c:when>
+                                     		<c:otherwise>
+                                     			<input type="text" name="shopUserExts.bankCard"  value="" />
+                                     		</c:otherwise>
+                                     	</c:choose>
+                                     </label>
+                                 </div>
+                             </div>
+                         </td>
+                     </tr>
 				</table>
 			</div>
 		</div>

@@ -1,6 +1,12 @@
 package com.jeff.yuan.util;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +39,28 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		ShopUser user = (ShopUser) session.getAttribute("userInfo");
+		
+		StringBuffer stringBuffer = new StringBuffer();
+		Map maps=request.getParameterMap();
+		  Set sets=maps.keySet();
+		  Iterator it=sets.iterator();
+		  while(it.hasNext()){
+		   String strName=it.next().toString();
+		   stringBuffer.append(strName);
+		   Object objs=maps.get(strName);
+		   if(objs instanceof String[]){
+		    String[] strs=(String[])objs;
+		    stringBuffer.append(Arrays.toString(strs));
+		   }
+		   stringBuffer.append("<br>");
+		  }
+		Enumeration enums=request.getParameterNames();
+		  while(enums.hasMoreElements()){
+			  stringBuffer.append(enums.nextElement());
+		}
+		System.out.println("时间："+new Date().toLocaleString()+"<br>当前用户id:"+user.getId()+"<br>"+this.getIpAddress(request)+"参数:"+stringBuffer.toString());
+		
+		
 		response.setContentType("application/json;charset=utf-8");
 //        ServletContext application = session.getServletContext();
 		if (user==null || "".equals(user)){    //未登录
@@ -48,5 +76,25 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 	}
+	
+	 public String getIpAddress(HttpServletRequest request) {  
+         String ip = request.getHeader("x-forwarded-for");  
+       if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+           ip = request.getHeader("Proxy-Client-IP");  
+       }  
+       if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+           ip = request.getHeader("WL-Proxy-Client-IP");  
+       }  
+       if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+           ip = request.getHeader("HTTP_CLIENT_IP");  
+       }  
+       if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+           ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
+       }  
+       if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+           ip = request.getRemoteAddr();  
+       }  
+       return ip;  
+   } 
 
 }

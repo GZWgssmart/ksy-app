@@ -180,8 +180,10 @@ public class ShopTradeController {
 			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
 				bean.setTradeNo(WebHelper.getDayNo());
 				bean.setCreateDate(new Date());
-				// 购买商品走审核流程 1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点12提现健康值13项目合作
-				if (bean.getJtype() == 1 || bean.getJtype() == 2|| bean.getJtype() == 13) {
+				/* 购买商品走审核流程 1.购买会员大礼包2.复购产品         
+				13项目合作14提现余额15充值
+				（3-12后台生成）3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点12提现健康值*/
+				if (bean.getJtype() == 1 || bean.getJtype() == 2|| bean.getJtype() == 13|| bean.getJtype() == 14|| bean.getJtype() == 15) {
 					bean.setStatus(1);
 				} else {
 					bean.setStatus(3);
@@ -208,10 +210,11 @@ public class ShopTradeController {
 				trade.setId(bean.getId());
 				//下单
 				trade = tradeService.save(trade);
-				
-				//减去账户余额
-				user.getShopUserExts().setBalance(balance);
-				
+				//充值提现余额变化后台手动进行
+				if (bean.getJtype() != 14 && bean.getJtype() != 15) {
+					//减去账户余额
+					user.getShopUserExts().setBalance(balance);
+				}
 
 				Set<ShopTradeDetail> shopTradeDetails = bean.getShopTradeDetails();
 				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  

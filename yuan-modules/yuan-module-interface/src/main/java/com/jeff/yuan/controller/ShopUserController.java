@@ -150,6 +150,10 @@ public class ShopUserController {
 		String phone = request.getParameter("phone");
 		String refPhone = request.getParameter("refPhone");
 		String address = request.getParameter("address");
+		String nickName = request.getParameter("nickName");
+		String bankOwer = request.getParameter("bankOwer");
+		String bankCard = request.getParameter("bankCard");
+		String bankDeposit = request.getParameter("bankDeposit");
 		try {
 			ShopUser user = WebHelper.getUser(request);
 			if (user == null) {
@@ -159,6 +163,8 @@ public class ShopUserController {
 					user = new ShopUser();
 				}
 				
+			}else {
+				user = userService.find(user.getId());
 			}
 			// 更改值
 			if (StringUtils.isNotBlank(account)) {
@@ -176,8 +182,21 @@ public class ShopUserController {
 			if (StringUtils.isNotBlank(password)) {
 				user.setPassword(Md5Util.generatePassword(password.trim()));
 			}
+			if (StringUtils.isNotBlank(nickName)) {
+				user.setNickName(nickName);
+			}
 
 			if (user.getId() != null && user.getId() != 0) {
+				if (StringUtils.isNotBlank(bankOwer)) {
+					user.getShopUserExts().setBankOwer(bankOwer);
+				}
+				if (StringUtils.isNotBlank(bankCard)) {
+					user.getShopUserExts().setBankCard(bankCard);
+				}
+				if (StringUtils.isNotBlank(bankDeposit)) {
+					user.getShopUserExts().setBankDeposit(bankDeposit);
+				}
+				
 				user.setUpdateDate(new Date());
 				user.getShopUserExts().setUpdateDate(new Date());
 				user.getShopUserExts().setShopUser(user);
@@ -320,7 +339,7 @@ public class ShopUserController {
 		ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
 		shopUserQueryDTO.setPassword(md5Pwd);
 		shopUserQueryDTO.setPhone(phone);
-		shopUserQueryDTO.setStatus(1);
+		shopUserQueryDTO.setStatus(1);//有效才能登陆
 		shopUserQueryDTO.setIsFront(true);
 		List<ShopUser> list = userService.queryShopUserList(shopUserQueryDTO);
 		if (list != null && list.size() > 0) {

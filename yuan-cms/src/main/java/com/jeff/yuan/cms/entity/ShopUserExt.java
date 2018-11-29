@@ -33,6 +33,9 @@ public class ShopUserExt implements java.io.Serializable {
 	private String bill;
 	private String activeBill;
 	private String tradeBill;
+	private String bankOwer;
+	private String bankCard;
+	private String bankDeposit;
 	private BigDecimal balance;
 	private Date createDate;
 	private String createBy;
@@ -171,6 +174,31 @@ public class ShopUserExt implements java.io.Serializable {
 
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
+	}
+
+	@Column(name = "bank_ower")
+	public String getBankOwer() {
+		return bankOwer;
+	}
+
+	public void setBankOwer(String bankOwer) {
+		this.bankOwer = bankOwer;
+	}
+	@Column(name = "bank_card")
+	public String getBankCard() {
+		return bankCard;
+	}
+
+	public void setBankCard(String bankCard) {
+		this.bankCard = bankCard;
+	}
+	@Column(name = "bank_deposit")
+	public String getBankDeposit() {
+		return bankDeposit;
+	}
+
+	public void setBankDeposit(String bankDeposit) {
+		this.bankDeposit = bankDeposit;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
