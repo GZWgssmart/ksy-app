@@ -180,6 +180,9 @@
                         if (view.form.refPhone.trim() !== '' && !isPhone(view.form.refPhone.trim())) {
                             errMsg += '请输入正确的推荐手机号<br/>';
                         }
+                        if (view.form.phone.trim() === view.form.refPhone.trim()) {
+                            errMsg += '推荐人手机号不能与注册手机号相同<br/>'
+                        }
                         if (errMsg === '') {
                             $.post(
                                 PHONE_VALIDATE_URL,
