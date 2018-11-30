@@ -288,10 +288,12 @@
                             if (view.useCredits === '') {
                                 view.useCredits = 0
                             }
-                            view.products.forEach(function (item, index) {
-                                item.proId = item.id
-                                item.id = ''
-                            })
+                            if (view.jtype !== 2) {
+                                view.products.forEach(function (item, index) {
+                                    item.proId = item.id
+                                    item.id = ''
+                                })
+                            }
                             $.ajax(
                                 {
                                     type: "POST",
