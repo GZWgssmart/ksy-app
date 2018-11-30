@@ -298,7 +298,7 @@
                                     url: ORDER_CREATE_URL,
                                     contentType: "application/json; charset=utf-8",
                                     data: JSON.stringify({
-                                        userId: ${sessionScope.userInfo.id},
+                                        userId: userId,
                                         price: -view.totalPrice,
                                         credits: view.useCredits,
                                         jtype: view.jtype,
