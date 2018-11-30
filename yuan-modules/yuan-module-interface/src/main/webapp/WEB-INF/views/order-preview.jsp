@@ -151,9 +151,9 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="<%=path%>/assets/js/yuan.js"></script>
         <script>
-            var productId = <%=request.getParameter("id")%>
-            var quantity = <%=request.getParameter("quantity")%>
-            var from = '<%=request.getParameter("from")%>'
+            var productId = ${requestScope.id}
+            var quantity = ${requestScope.quantity}
+            var from = '${requestScope.from}'
             var userId = ${sessionScope.userInfo.id}
             var view = new Vue({
                 el: '#content',
@@ -226,7 +226,7 @@
                                 }
                             )
                         } else {
-                            var userLevel = '${sessionScope.userInfo.vipLevel}'
+                            var userLevel = view.user.vipLevel
                             $.post(
                                 PRODUCT_DETAIL_URL,
                                 {
