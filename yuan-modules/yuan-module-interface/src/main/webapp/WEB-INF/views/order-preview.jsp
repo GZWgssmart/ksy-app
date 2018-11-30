@@ -151,8 +151,8 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="<%=path%>/assets/js/yuan.js"></script>
         <script>
-            var productId = ${requestScope.id}
-            var quantity = ${requestScope.quantity}
+            var productId = '${requestScope.id}'
+            var quantity = '${requestScope.quantity}'
             var from = '${requestScope.from}'
             var userId = ${sessionScope.userInfo.id}
             var view = new Vue({
@@ -173,7 +173,16 @@
                     }
                 },
                 created: function() {
-
+                    if (!isNaN(productId) && productId !== '') {
+                        productId = parseInt(productId)
+                    } else {
+                        productId = 0
+                    }
+                    if (!isNaN(quantity) && quantity !== '') {
+                        quantity = parseInt(quantity)
+                    } else {
+                        quantity = 0
+                    }
                 },
                 mounted: function() {
                     this.meanMenu()
@@ -226,7 +235,7 @@
                                 }
                             )
                         } else {
-                            var userLevel = view.user.vipLevel
+                            var userLevel = this.user.vipLevel
                             $.post(
                                 PRODUCT_DETAIL_URL,
                                 {
