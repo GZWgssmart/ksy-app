@@ -84,7 +84,11 @@
                                         <tr>
                                             <td>账户余额</td>
                                             <td><span v-text="user.shopUserExts.balance"></span></td>
-                                            <td><a href="javascript:;" @click="toDonate">捐赠余额</a></td>
+                                            <td>
+                                                <a href="javascript:;" @click="toDonate">余额捐赠</a>
+                                                <br>
+                                                <a href="javascript:;" @click="toWithdraw">余额提现</a>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>账户积分</td>
@@ -120,6 +124,7 @@
                                         <select style="width: 120px;" v-model="operation" @change="selectChange(1)">
                                             <option value="0">请选择操作</option>
                                             <option value="1">修改个人资料</option>
+                                            <option value="6">修改银行开户资料</option>
                                             <option value="2">修改登录密码</option>
                                             <!--
                                             <option value="3">重置登录密码</option>
@@ -143,6 +148,15 @@
                                         交易密码<input v-model="donatePayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="donate">确定捐赠</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
+                                    </form>
+                                    <form v-if="withdrawOpt == true">
+                                        银行开户姓名<input v-model="bankName" placeholder="请输入银行开户姓名" type="text" disabled="disabled">
+                                        银行开户账号<input v-model="bankCard" placeholder="请输入银行开户账号" type="text" disabled="disabled">
+                                        余额提现数量<input v-model="withdrawCount" placeholder="请输入余额捐赠数量" type="number">
+                                        交易密码<input v-model="withdrawPayPwd" placeholder="请输入交易密码" type="password">
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="withdraw">确定提现</button>
                                         <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                     <form v-if="operation == '1'">
@@ -179,6 +193,18 @@
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="resetPayPwd">重置交易密码</button>
                                         <button v-else class="login-btn" type="button" disabled="disabled">正在重置……</button>
+                                    </form>
+                                    <form v-if="operation == '6'">
+                                        银行开户姓名<input v-model="bankName" placeholder="请输入银行开户姓名" type="text">
+                                        银行开户账号<input v-model="bankCard" placeholder="请输入银行开户账号" type="text">
+                                        开户银行
+                                        <select v-model="bankDeposit" placeholder="请选择开户行">
+                                            <option value="">请选择开户行</option>
+                                            <option v-for="item in banks" :value="item" v-text="item"></option>
+                                        </select>
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="updateBank">修改银行资料</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在修改……</button>
                                     </form>
                                     <form v-if="operation1 == '1'">
                                         健康值数量<input v-model="getLinkCount" placeholder="请输入提现的健康值数量，不能大于激活的健康值" type="number">
@@ -237,6 +263,7 @@
         <script src="<%=path%>/assets/js/classie.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
         <script src="<%=path%>/assets/js/yuan.js"></script>
+        <script src="<%=path%>/assets/js/bank.js"></script>
         <script>
             var userId = ${sessionScope.userInfo.id}
             var view = new Vue({
@@ -248,6 +275,7 @@
                     operation: '0',
                     operation1: '0',
                     donateOpt: false,
+                    withdrawOpt: false,
                     account: '',
                     address: '',
                     oldLoginPwd: '',
@@ -266,6 +294,12 @@
                     getLinkPayPwd: '',
                     transLinkPayPwd: '',
                     donateLinkPayPwd: '',
+                    withdrawCount: 0,
+                    withdrawPayPwd: '',
+                    bankName: '',
+                    bankCard: '',
+                    bankDeposit: '',
+                    banks: [],
                     userOpt: false,
                     errMsg: ''
                 },
@@ -278,6 +312,7 @@
                     if (this.operation === '') {
                         this.operation = '0'
                     }
+                    this.banks = BANKS
                     this.getUser()
                 },
                 methods: {
@@ -304,6 +339,9 @@
                                     view.user.userLevel = view.user.vipLevel + '-' + USER_LEVELS[view.user.vipLevel]
                                     view.account = view.user.account
                                     view.address = view.user.address
+                                    view.bankName = view.user.shopUserExts.bankOwer
+                                    view.bankCard = view.user.shopUserExts.bankCard
+                                    view.bankDeposit = view.user.shopUserExts.bankDeposit
                                 } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
                                     window.location.href = '<%=path%>/login?relogin=y'
                                 }
@@ -332,6 +370,48 @@
                                     userId: view.user.id,
                                     account: view.account,
                                     address: view.address
+                                },
+                                function (data) {
+                                    if (data.success === true) {
+                                        view.errMsg = '更新成功'
+                                        self.getUser()
+                                        self.hideUserOpt()
+                                    } else if (data.success === false) {
+                                        view.userOpt = false
+                                        view.errMsg = data.msg
+                                    } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                        window.location.href = '<%=path%>/login?relogin=y'
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    updateBank: function () {
+                        view.userOpt = false
+                        var self = this
+                        var errMsg = ''
+                        if (view.bankName == null || view.bankName.trim() === '') {
+                            errMsg += '请输入银行开户姓名<br/>'
+                        }
+                        if (view.bankCard == null || view.bankCard.trim() === '' || !luhnCheck(view.bankCard)) {
+                            errMsg += '请输入正确的银行卡号<br/>'
+                        }
+                        if (view.bankDeposit == null || view.bankDeposit.trim() === '') {
+                            errMsg += '请选择开户行<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.userOpt = true
+                            view.errMsg = ''
+                            var self = this
+                            $.post(
+                                USER_UPDATE_URL,
+                                {
+                                    userId: view.user.id,
+                                    bankOwer: view.bankName,
+                                    bankCard: view.bankCard,
+                                    bankDeposit: view.bankDeposit
                                 },
                                 function (data) {
                                     if (data.success === true) {
@@ -612,6 +692,7 @@
                     selectChange: function (opt) {
                         view.errMsg = ''
                         view.donateOpt = false
+                        view.withdrawOpt = false
                         if (opt === 2 && view.operation1 === '4') {
                             window.location.href = '<%=path%>/bill-detail'
                         }
@@ -623,6 +704,14 @@
                     },
                     toDonate: function () {
                         view.donateOpt = true
+                        view.withdrawOpt = false
+                        view.operation = 0
+                        view.operation1 = 0
+                        view.errMsg = ''
+                    },
+                    toWithdraw: function () {
+                        view.donateOpt = false
+                        view.withdrawOpt = true
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
@@ -657,6 +746,55 @@
                                     success: function (data) {
                                         if (data.success === true) {
                                             view.errMsg = '捐赠余额成功'
+                                            self.getUser()
+                                            self.hideUserOpt()
+                                        } else if (data.success === false) {
+                                            view.userOpt = false
+                                            view.errMsg = data.msg
+                                        } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                            window.location.href = '<%=path%>/login?relogin=y'
+                                        }
+                                    },
+                                    error: function (data) {
+
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    withdraw: function () {
+                        view.userOpt = false
+                        var errMsg = ''
+                        if (view.bankName.trim() === '' || view.bankCard.trim() === '') {
+                            errMsg += '请在个人信息操作中修改银行账户资料<br/>'
+                        }
+                        if (isNaN(view.withdrawCount) || view.withdrawCount <= 0 || view.withdrawCount > view.user.shopUserExts.balance) {
+                            errMsg += '请输入不大于账户余额的数值<br/>'
+                        }
+                        if (view.withdrawPayPwd.trim() === '') {
+                            errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.userOpt = true
+                            view.errMsg = ''
+                            var self = this
+                            $.ajax(
+                                {
+                                    type: "POST",
+                                    url: ORDER_CREATE_URL,
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({
+                                        userId: userId,
+                                        price: -view.withdrawCount,
+                                        jtype: 14,
+                                        payPwd: view.withdrawPayPwd
+                                    }),
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data.success === true) {
+                                            view.errMsg = '余额提现成功'
                                             self.getUser()
                                             self.hideUserOpt()
                                         } else if (data.success === false) {
