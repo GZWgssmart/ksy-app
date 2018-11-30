@@ -88,6 +88,8 @@
                                                 <a href="javascript:;" @click="toDonate">余额捐赠</a>
                                                 <br>
                                                 <a href="javascript:;" @click="toWithdraw">余额提现</a>
+                                                <br>
+                                                <a href="javascript:;" @click="toRecharge">余额充值</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -157,6 +159,13 @@
                                         交易密码<input v-model="withdrawPayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="withdraw">确定提现</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
+                                    </form>
+                                    <form v-if="rechargeOpt == true">
+                                        充值金额<input v-model="rechargeCount" placeholder="请输入充值金额" type="number">
+                                        交易密码<input v-model="rechargePayPwd" placeholder="请输入交易密码" type="password">
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="recharge">确定充值</button>
                                         <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                     <form v-if="operation == '1'">
@@ -276,6 +285,7 @@
                     operation1: '0',
                     donateOpt: false,
                     withdrawOpt: false,
+                    rechargeOpt: false,
                     account: '',
                     address: '',
                     oldLoginPwd: '',
@@ -296,6 +306,8 @@
                     donateLinkPayPwd: '',
                     withdrawCount: 0,
                     withdrawPayPwd: '',
+                    rechargeCount: 0,
+                    rechargePayPwd: '',
                     bankName: '',
                     bankCard: '',
                     bankDeposit: '',
@@ -596,7 +608,7 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        view.errMsg = '提现成功'
+                                        view.errMsg = '提现提交成功'
                                         self.getUser()
                                         self.hideUserOpt()
                                     } else if (data.success === false) {
@@ -638,7 +650,7 @@
                                 },
                                 function (data) {
                                     if (data.success === true) {
-                                        view.errMsg = '转让成功'
+                                        view.errMsg = '转让提交成功'
                                         self.getUser()
                                         self.hideUserOpt()
                                     } else if (data.success === false) {
@@ -693,6 +705,7 @@
                         view.errMsg = ''
                         view.donateOpt = false
                         view.withdrawOpt = false
+                        view.rechargeOpt = false
                         if (opt === 2 && view.operation1 === '4') {
                             window.location.href = '<%=path%>/bill-detail'
                         }
@@ -705,6 +718,7 @@
                     toDonate: function () {
                         view.donateOpt = true
                         view.withdrawOpt = false
+                        view.rechargeOpt = false
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
@@ -712,6 +726,15 @@
                     toWithdraw: function () {
                         view.donateOpt = false
                         view.withdrawOpt = true
+                        view.rechargeOpt = false
+                        view.operation = 0
+                        view.operation1 = 0
+                        view.errMsg = ''
+                    },
+                    toRecharge: function () {
+                        view.donateOpt = false
+                        view.withdrawOpt = false
+                        view.rechargeOpt = true
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
@@ -794,7 +817,53 @@
                                     dataType: "json",
                                     success: function (data) {
                                         if (data.success === true) {
-                                            view.errMsg = '余额提现成功'
+                                            view.errMsg = '余额提现提交成功'
+                                            self.getUser()
+                                            self.hideUserOpt()
+                                        } else if (data.success === false) {
+                                            view.userOpt = false
+                                            view.errMsg = data.msg
+                                        } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                            window.location.href = '<%=path%>/login?relogin=y'
+                                        }
+                                    },
+                                    error: function (data) {
+
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    recharge: function () {
+                        view.userOpt = false
+                        var errMsg = ''
+                        if (isNaN(view.rechargeCount) || view.rechargeCount <= 0) {
+                            errMsg += '请输入大于零的充值金额<br/>'
+                        }
+                        if (view.rechargePayPwd.trim() === '') {
+                            errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.userOpt = true
+                            view.errMsg = ''
+                            var self = this
+                            $.ajax(
+                                {
+                                    type: "POST",
+                                    url: ORDER_CREATE_URL,
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({
+                                        userId: userId,
+                                        price: view.rechargeCount,
+                                        jtype: 15,
+                                        payPwd: view.rechargePayPwd
+                                    }),
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data.success === true) {
+                                            view.errMsg = '余额充值提交成功'
                                             self.getUser()
                                             self.hideUserOpt()
                                         } else if (data.success === false) {
