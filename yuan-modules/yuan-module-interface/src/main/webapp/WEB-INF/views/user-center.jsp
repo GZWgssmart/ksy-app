@@ -153,7 +153,7 @@
                                     <form v-if="withdrawOpt == true">
                                         银行开户姓名<input v-model="bankName" placeholder="请输入银行开户姓名" type="text" disabled="disabled">
                                         银行开户账号<input v-model="bankCard" placeholder="请输入银行开户账号" type="text" disabled="disabled">
-                                        余额提现数量<input v-model="withdrawCount" placeholder="请输入余额捐赠数量" type="number">
+                                        余额提现数量<input v-model="withdrawCount" placeholder="请输入余额提现数量" type="number">
                                         交易密码<input v-model="withdrawPayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="withdraw">确定提现</button>
