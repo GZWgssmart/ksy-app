@@ -226,6 +226,7 @@
                                             view.totalPrice += item.count * item.price
                                             view.oTotalPrice = view.totalPrice
                                             view.totalCredits += item.credits
+                                            item.id = item.proId
                                             item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
                                         })
                                         view.jtype = 2
@@ -288,12 +289,10 @@
                             if (view.useCredits === '') {
                                 view.useCredits = 0
                             }
-                            if (view.jtype !== 2) {
-                                view.products.forEach(function (item, index) {
-                                    item.proId = item.id
-                                    item.id = ''
-                                })
-                            }
+                            view.products.forEach(function (item, index) {
+                                item.proId = item.id
+                                item.id = ''
+                            })
                             $.ajax(
                                 {
                                     type: "POST",
