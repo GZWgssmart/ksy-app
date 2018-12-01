@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jeff.yuan.cms.dao.ShopTradeDao;
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
 import com.jeff.yuan.cms.entity.ShopTrade;
+import com.jeff.yuan.cms.entity.ShopTradeUser;
 import com.jeff.yuan.common.entity.PageModel;
 import com.jeff.yuan.common.service.CommonService;
 /**
@@ -44,6 +45,16 @@ public class ShopTradeService extends CommonService< ShopTrade,Integer >  {
 	
 	public int queryLisiJkz(int userId) {
 		return shopTradeDao.queryLisiJkz(userId);
+	}
+
+	public PageModel<ShopTradeUser> queryShopTradeUserPage(ShopTradeQueryDTO userQueryDTO) {
+		// TODO Auto-generated method stub
+		return this.shopTradeDao.queryShopTradeUserPage(userQueryDTO);
+	}
+	
+	public List<ShopTradeUser> queryShopTradeUserList(ShopTradeQueryDTO userQueryDTO) {
+		// TODO Auto-generated method stub
+		return this.shopTradeDao.queryShopTradeUserList(userQueryDTO);
 	}
 
 

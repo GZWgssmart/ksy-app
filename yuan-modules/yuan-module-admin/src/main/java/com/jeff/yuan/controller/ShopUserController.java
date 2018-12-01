@@ -174,10 +174,30 @@ public class ShopUserController {
 		String id = request.getParameter("id");
 		if (StringUtils.isNotBlank(id)) {
 			ShopUser bean = userService.find(Integer.parseInt(id));
+//			List<Map<String, Object>> list = userService.queryUser2List(bean.getPhone());
+//			List<Map<String, Object>> list2 = userService.queryUser3List(bean.getPhone());
 			model.addAttribute("bean", bean);
+//			model.addAttribute("zhitui", list);//直推信息
+//			model.addAttribute("jiantui", list2);//间推信息
 
 		}
 		return "shop/dialog/user_edit";
+	}
+	
+	@RequestMapping("/show")
+	public String dialogSjow(HttpServletRequest request, Model model) {
+		
+		String id = request.getParameter("id");
+		if (StringUtils.isNotBlank(id)) {
+			ShopUser bean = userService.find(Integer.parseInt(id));
+			List<Map<String, Object>> list = userService.queryUser2List(bean.getPhone());
+			List<Map<String, Object>> list2 = userService.queryUser3List(bean.getPhone());
+			model.addAttribute("bean", bean);
+			model.addAttribute("zhitui", list);//直推信息
+			model.addAttribute("jiantui", list2);//间推信息
+			
+		}
+		return "shop/dialog/user_team";
 	}
 
 	/**

@@ -40,27 +40,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		ShopUser user = (ShopUser) session.getAttribute("userInfo");
 		
-		StringBuffer stringBuffer = new StringBuffer();
-		Map maps=request.getParameterMap();
-		  Set sets=maps.keySet();
-		  Iterator it=sets.iterator();
-		  while(it.hasNext()){
-		   String strName=it.next().toString();
-		   stringBuffer.append(strName);
-		   Object objs=maps.get(strName);
-		   if(objs instanceof String[]){
-		    String[] strs=(String[])objs;
-		    stringBuffer.append(Arrays.toString(strs));
-		   }
-		   stringBuffer.append("<br>");
-		  }
-		Enumeration enums=request.getParameterNames();
-		  while(enums.hasMoreElements()){
-			  stringBuffer.append(enums.nextElement());
-		}
-		System.out.println("时间："+new Date().toLocaleString()+"<br>当前用户id:"+user.getId()+"<br>"+this.getIpAddress(request)+"参数:"+stringBuffer.toString());
-		
-		
 		response.setContentType("application/json;charset=utf-8");
 //        ServletContext application = session.getServletContext();
 		if (user==null || "".equals(user)){    //未登录
@@ -73,6 +52,27 @@ public class LoginInterceptor implements HandlerInterceptor {
 		    out.append(res.toJSONString());
             return false;
         }else{    //已经登录
+        	
+        	StringBuffer stringBuffer = new StringBuffer();
+    		Map maps=request.getParameterMap();
+    		  Set sets=maps.keySet();
+    		  Iterator it=sets.iterator();
+    		  while(it.hasNext()){
+    		   String strName=it.next().toString();
+    		   stringBuffer.append(strName);
+    		   Object objs=maps.get(strName);
+    		   if(objs instanceof String[]){
+    		    String[] strs=(String[])objs;
+    		    stringBuffer.append(Arrays.toString(strs));
+    		   }
+    		   stringBuffer.append("<br>");
+    		  }
+    		Enumeration enums=request.getParameterNames();
+    		  while(enums.hasMoreElements()){
+    			  stringBuffer.append(enums.nextElement());
+    		}
+    		System.out.println("时间："+new Date().toLocaleString()+"\t 当前用户id:"+user.getId()+"\t"+this.getIpAddress(request)+"\t参数:"+stringBuffer.toString());
+    		
             return true;
         }
 	}

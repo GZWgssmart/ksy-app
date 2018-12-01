@@ -1,30 +1,21 @@
 package com.jeff.yuan.controller;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
@@ -35,16 +26,13 @@ import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.entity.ShopTradeDetail;
 import com.jeff.yuan.cms.entity.ShopTradeDto;
 import com.jeff.yuan.cms.entity.ShopUser;
-import com.jeff.yuan.cms.entity.ShopUserExt;
 import com.jeff.yuan.cms.service.ShopProductService;
 import com.jeff.yuan.cms.service.ShopRegisterRuleService;
 import com.jeff.yuan.cms.service.ShopTradeDetailService;
 import com.jeff.yuan.cms.service.ShopTradeService;
-import com.jeff.yuan.cms.service.ShopUserExtService;
 import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
-import com.jeff.yuan.common.util.ExcelUtils;
 import com.jeff.yuan.common.util.Md5Util;
 import com.jeff.yuan.common.util.VipLevelEnum;
 import com.jeff.yuan.util.WebHelper;
@@ -208,6 +196,18 @@ public class ShopTradeController {
 				trade.setPrice(bean.getPrice());
 				trade.setCreateDate(bean.getCreateDate());
 				trade.setId(bean.getId());
+				Set<ShopTradeDetail> shopTradeDetails = bean.getShopTradeDetails();
+				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
+				while (it.hasNext()) {  
+					ShopTradeDetail detail = it.next();
+					if (detail.getProId()==0) {
+						ajaxResult.setSuccess(false);
+						System.out.println("保存订单失败，商品id不能为空");
+						ajaxResult.setMsg("商品id不能为空");
+						return ajaxResult;
+					}
+				}
+				
 				//下单
 				trade = tradeService.save(trade);
 				//充值提现余额变化后台手动进行
@@ -216,8 +216,7 @@ public class ShopTradeController {
 					user.getShopUserExts().setBalance(balance);
 				}
 
-				Set<ShopTradeDetail> shopTradeDetails = bean.getShopTradeDetails();
-				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
+				
 				//获取商品列表的赠送积分，并添加到用户
 				while (it.hasNext()) {  
 					ShopTradeDetail detail = it.next();
@@ -397,6 +396,15 @@ public class ShopTradeController {
 				//复购返点不是看购买用户的那三个配置，是和自己对应等级的规则的对应的返点 
 				//奖励规则，根据购买用户的等级来
 				ShopRegisterRule rule = ruleService.findByVip(user.getVipLevel());
+				
+				/*Set<ShopTradeDetail> shopTradeDetails = shopTrade.getShopTradeDetails();
+				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
+				int proId = 0;
+				while (it.hasNext()) {  
+					ShopTradeDetail detail = it.next();  
+					proId = detail.getProId();
+				}
+				ShopProduct product = productService.find(proId);*/
 				//购买返点  给用户本身账户余额增加
 		        BigDecimal a1 = new BigDecimal(rule.getFugoufd()).multiply(shopTrade.getPrice().abs());
 		        this.saveTradeInfo(a1, user, 9);

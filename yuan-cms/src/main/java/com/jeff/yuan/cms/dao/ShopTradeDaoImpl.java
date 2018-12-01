@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jeff.yuan.cms.entity.ShopTrade;
+import com.jeff.yuan.cms.entity.ShopTradeUser;
 import com.jeff.yuan.cms.dto.ShopTradeQueryDTO;
 /**
  * @author dingjinqing
@@ -48,6 +49,32 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
          }
          hql.append(" order by t.id desc");
          return this.queryForPageWithParams(hql.toString(),map,shopTradeQueryDTO.getCurrentPage(),shopTradeQueryDTO.getPageSize());
+    }
+    
+    public PageModel<ShopTradeUser> queryShopTradeUserPage(ShopTradeQueryDTO shopTradeQueryDTO){
+    	Map<String,Object> map = new HashMap<String,Object>();
+    	StringBuilder hql = new StringBuilder();
+    	hql.append("select new ShopTradeUser(t.id,t.tradeNo,t.userId,t.jtype,t.price,t.status,t.credits,t.createDate,t2.account ,t2.phone) from ShopTrade t ,ShopUser t2  where t.userId=t2.id  ");
+    	
+    	
+    	if(shopTradeQueryDTO.getStatus()!=0){
+    		hql.append(" and t.status = :status ");
+    		map.put("status", shopTradeQueryDTO.getStatus());
+    	}
+    	if(shopTradeQueryDTO.getJtype()!=0){
+    		hql.append(" and t.jtype = :jtype ");
+    		map.put("jtype", shopTradeQueryDTO.getJtype());
+    	}
+    	if(shopTradeQueryDTO.getTypes()!=null && (!shopTradeQueryDTO.getTypes().isEmpty()) &&shopTradeQueryDTO.getTypes().size()>0 ){
+    		hql.append(" and t.jtype in ( :types ) ");
+    		map.put("types", shopTradeQueryDTO.getTypes());
+    	}
+    	if(shopTradeQueryDTO.getUserId()!=0){
+    		hql.append(" and t.userId = :userId ");
+    		map.put("userId", shopTradeQueryDTO.getUserId());
+    	}
+    	hql.append(" order by t.id desc");
+    	return this.queryForPageWithParams(hql.toString(),map,shopTradeQueryDTO.getCurrentPage(),shopTradeQueryDTO.getPageSize());
     }
 
     public List<ShopTrade> queryShopTradeList(ShopTradeQueryDTO shopTradeQueryDTO){
@@ -88,6 +115,34 @@ public class ShopTradeDaoImpl extends CustomBaseSqlDaoImpl implements ShopTradeD
 		}else {
 			return 0;
 		}
+	}
+
+	@Override
+	public List<ShopTradeUser> queryShopTradeUserList(ShopTradeQueryDTO shopTradeQueryDTO) {
+
+    	Map<String,Object> map = new HashMap<String,Object>();
+    	StringBuilder hql = new StringBuilder();
+    	hql.append("select new ShopTradeUser(t.id,t.tradeNo,t.userId,t.jtype,t.price,t.status,t.credits,t.createDate,t2.account ,t2.phone) from ShopTrade t ,ShopUser t2  where t.userId=t2.id  ");
+    	
+    	
+    	if(shopTradeQueryDTO.getStatus()!=0){
+    		hql.append(" and t.status = :status ");
+    		map.put("status", shopTradeQueryDTO.getStatus());
+    	}
+    	if(shopTradeQueryDTO.getJtype()!=0){
+    		hql.append(" and t.jtype = :jtype ");
+    		map.put("jtype", shopTradeQueryDTO.getJtype());
+    	}
+    	if(shopTradeQueryDTO.getTypes()!=null && (!shopTradeQueryDTO.getTypes().isEmpty()) &&shopTradeQueryDTO.getTypes().size()>0 ){
+    		hql.append(" and t.jtype in ( :types ) ");
+    		map.put("types", shopTradeQueryDTO.getTypes());
+    	}
+    	if(shopTradeQueryDTO.getUserId()!=0){
+    		hql.append(" and t.userId = :userId ");
+    		map.put("userId", shopTradeQueryDTO.getUserId());
+    	}
+    	hql.append(" order by t.id desc");
+    	return this.queryByMapParams(hql.toString(),map);    
 	}
 
 

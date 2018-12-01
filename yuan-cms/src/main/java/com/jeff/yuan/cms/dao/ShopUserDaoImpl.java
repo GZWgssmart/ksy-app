@@ -95,7 +95,7 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
     
     public List<Map<String, Object>> queryUser3List(String phone){
     	StringBuilder sql = new StringBuilder();
-    	sql.append("SELECT account,nick_name as nickName,vip_level as viplevel from shop_user where ref_phone in (select phone from  shop_user where ref_phone=? )");
+    	sql.append("SELECT account,nick_name as nickName,phone,vip_level as viplevel from shop_user where ref_phone in (select phone from  shop_user where ref_phone=? )");
     	List<Object> params = new ArrayList<>();
     	params.add(phone);
     	return this.querySqlObjects(sql.toString(), params);

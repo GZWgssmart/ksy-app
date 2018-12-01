@@ -81,7 +81,7 @@
 									<td><span>是否有效</span></td>
 									<td><span>账户余额</span></td>
 									<td><span>健康值激活个数</span></td>
-									<td><span>转让获得的健康值</span></td>
+									<!-- <td><span>转让获得的健康值</span></td> -->
 									<td><span>账户积分</span></td>
 									<td><span>创建时间</span></td>
 									<td><span>操作</span></td>
@@ -150,9 +150,9 @@
 													<div class="t_text tc">${u.shopUserExts.activeBill }
 													</div>
 												</td>
-												<td>
+												<%-- <td>
 													<div class="t_text tc">${u.shopUserExts.tradeBill }</div>
-												</td>
+												</td> --%>
 												<td>
 													<div class="t_text tc">${u.shopUserExts.credits }</div>
 												</td>
@@ -167,6 +167,8 @@
 													<div class="t_link">
 														<a href="javascript:myEdit('${u.id }');"><i
 															class="icon"></i>编辑</a>
+														<a href="javascript:myShow('${u.id }');"><i
+															class="icon"></i>团队</a>
 														<c:choose>
 				                                         	<c:when test="${u.status eq '1' }">
 				                                         		<a href="javascript:updStatus('${u.id }', '2');"><i class="icon"></i>失效</a>
@@ -221,6 +223,34 @@
 					yes : function(index, layero) {
 						$('#editForm').submit();
 					},
+					btn2 : function(index, layero) {
+						layer.close(index);
+					}
+				});
+			});
+		}
+		
+		function myShow(id) {
+			var loadIdx = layer.load();
+			var title = '团队显示';
+			if (!id) {
+				id = '';
+			} else {
+				title = '团队显示';
+			}
+			$.post('${ctx}/shopuser/show?id=' + id, {}, function(str) {
+
+				layer.close(loadIdx);
+				layer.open({
+					title : title,
+					type : 1,
+					area : [ '860px', '500px' ],
+					content : str,
+					/* btn : [ '确定', '取消' ], */
+					btn : [ '取消' ],
+					/* yes : function(index, layero) {
+						$('#editForm').submit();
+					}, */
 					btn2 : function(index, layero) {
 						layer.close(index);
 					}

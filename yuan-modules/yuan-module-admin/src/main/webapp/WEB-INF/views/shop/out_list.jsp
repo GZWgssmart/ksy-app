@@ -14,16 +14,16 @@
 	<div class="J_content">
 		<div class="mt20 plr20">
 			<form action="" id="queryForm" method="post">
-				<input type="hidden" name="from" value="1"/>
+				<input type="hidden" name="from" value="3"/>
 				<div class="J_toolsBar clearfix">
 					<div class="t_label">订单状态</div>
 					<div class="t_text ml10">
 						<select name="status" value="${queryDTO.status }">
 							<option value=0>请选择</option>
 							<option value=1
-								<c:if test="${1 eq queryDTO.status }">selected</c:if>>待发货</option>
+								<c:if test="${1 eq queryDTO.status }">selected</c:if>>待审核</option>
 							<option value=2
-								<c:if test="${2 eq queryDTO.status }">selected</c:if>>已发货</option>
+								<c:if test="${2 eq queryDTO.status }">selected</c:if>>审核通过</option>
 							<option value=3
 								<c:if test="${3 eq queryDTO.status }">selected</c:if>>已完成</option>
 						</select>
@@ -32,11 +32,11 @@
 					<div class="t_text ml10">
 						<select name="jtype" value="${queryDTO.jtype }">
 							<option value="">请选择</option>
-							<option value=1
+							<%-- <option value=1
 								<c:if test="${1 eq queryDTO.jtype }">selected</c:if>>购买会员大礼包</option>
 							<option value=2
-								<c:if test="${2 eq queryDTO.jtype }">selected</c:if>>复购产品</option>
-							<%-- <option value=3
+								<c:if test="${2 eq queryDTO.jtype }">selected</c:if>>复购产品</option> --%>
+							<option value=3
 								<c:if test="${3 eq queryDTO.jtype }">selected</c:if>>直推奖励</option>
 							<option value=4
 								<c:if test="${4 eq queryDTO.jtype }">selected</c:if>>间推奖励</option>
@@ -55,9 +55,9 @@
 							<option value=11
 								<c:if test="${11 eq queryDTO.jtype }">selected</c:if>>间推购买返点</option>
 							<option value=12
-								<c:if test="${12 eq queryDTO.jtype }">selected</c:if>>提现健康值</option> --%>
-							<option value=13
-								<c:if test="${13 eq queryDTO.jtype }">selected</c:if>>项目合作</option>
+								<c:if test="${12 eq queryDTO.jtype }">selected</c:if>>提现健康值</option>
+							<%-- <option value=13
+								<c:if test="${13 eq queryDTO.jtype }">selected</c:if>>项目合作</option> --%>
 						</select>
 					</div>
 
@@ -116,12 +116,12 @@
 												<td>
 													<div class="t_text tc">
 														<c:choose>
-															<c:when test="${1 eq u.jtype}">
+															<%-- <c:when test="${1 eq u.jtype}">
 		                                     			购买会员大礼包
 		                                     		</c:when>
 															<c:when test="${2 eq u.jtype}">
 		                                     			复购产品
-		                                     		</c:when>
+		                                     		</c:when> --%>
 															<c:when test="${3 eq u.jtype}">
 		                                     			直推奖励
 		                                     		</c:when>
@@ -152,9 +152,9 @@
 															<c:when test="${12 eq u.jtype}">
 		                                     			提现健康值
 		                                     		</c:when>
-															<c:when test="${13 eq u.jtype}">
+															<%-- <c:when test="${13 eq u.jtype}">
 		                                     			项目合作
-		                                     		</c:when>
+		                                     		</c:when> --%>
 															<c:otherwise>
 		                                     			未知类型
 		                                     		</c:otherwise>
@@ -165,10 +165,10 @@
 													<div class="t_text tc">
 														<c:choose>
 															<c:when test="${1 eq u.status}">
-				                                     			待发货
+				                                     			待审核
 				                                     		</c:when>
 															<c:when test="${2 eq u.status}">
-				                                     			已发货
+				                                     			审核通过
 				                                     		</c:when>
 															<c:when test="${3 eq u.status}">
 				                                     			已完成
@@ -190,19 +190,19 @@
 													<div class="t_link">
 														<a href="javascript:myEdit('${u.id }');"><i
 															class="icon"></i>编辑</a>
-														<c:choose>
+														<%-- <c:choose>
 															<c:when test="${u.status eq 1 }">
 																<a href="javascript:updStatus('${u.id }', '2');"><i
 																	class="icon"></i>发货</a>
 															</c:when>
-															<%-- <c:when test="${u.status eq 2 }">
+															<c:when test="${u.status eq 2 }">
 																<a href="javascript:updStatus('${u.id }', '3');"><i
 																	class="icon"></i>确认收货</a>
-															</c:when> --%>
+															</c:when>
 															<c:otherwise>
 																<!-- <a href="#"><i class="icon"></i>已完成</a> -->
 															</c:otherwise>
-														</c:choose>
+														</c:choose> --%>
 													</div>
 												</td>
 											</tr>
@@ -230,14 +230,12 @@
 	<script src="${ctx }/static/plugins/chosen_v1.6.2/chosen.jquery.js"></script>
 	<script type="text/javascript">
 		function myEdit(id) {
-			var loadIdx = layer.load();
-			var title = '添加会员';
-			if (!id) {
+			if(!id){
 				id = '';
-			} else {
-				title = '修改会员';
 			}
-			$.post('${ctx}/shoptrade/edit?id=' + id, {}, function(str) {
+			var loadIdx = layer.load();
+			var title = '修改支出';
+			$.post('${ctx}/shoptrade/edito?id=' + id, {}, function(str) {
 
 				layer.close(loadIdx);
 				layer.open({
@@ -261,7 +259,7 @@
 		}
 
 		function myQuery() {
-			$("#queryForm").attr("action", "${ctx}/shoptrade/list");
+			$("#queryForm").attr("action", "${ctx}/shoptrade/listo");
 			$('#queryForm').submit();
 		}
 
