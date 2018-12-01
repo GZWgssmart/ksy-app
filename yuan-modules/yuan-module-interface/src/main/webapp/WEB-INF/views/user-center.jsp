@@ -98,7 +98,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>总健康值</td>
+                                            <td>总健康值(未激活)</td>
                                             <td><span v-text="user.shopUserExts.bill"></span></td>
                                             <td><a href="<%=path%>/bill-detail">查看健康值变动明细</a></td>
                                         </tr>
@@ -112,6 +112,21 @@
                                             <td><span v-text="user.shopUserExts.tradeBill"></span></td>
                                             <td></td>
                                         </tr>
+                                            <tr>
+                                                <td>银行账户名</td>
+                                                <td><span v-text="user.shopUserExts.bankOwer"></span></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>银行账号</td>
+                                                <td><span v-text="user.shopUserExts.bankCard"></span></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>开户行</td>
+                                                <td><span v-text="user.shopUserExts.bankDeposit"></span></td>
+                                                <td></td>
+                                            </tr>
                                         <tr>
                                             <td>推荐人手机号</td>
                                             <td><span v-text="user.refPhone"></span></td>
