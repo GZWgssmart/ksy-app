@@ -160,14 +160,14 @@
                                             <option value="4">查看健康值变动明细</option>
                                         </select>
                                     </div>
-                                    <form v-if="donateOpt == true">
+                                    <form id="donate" v-if="donateOpt == true">
                                         余额捐赠数量<input v-model="donateCount" placeholder="请输入余额捐赠数量" type="number">
                                         交易密码<input v-model="donatePayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="donate">确定捐赠</button>
                                         <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
-                                    <form v-if="withdrawOpt == true">
+                                    <form id="withdraw" v-if="withdrawOpt == true">
                                         银行开户姓名<input v-model="bankName" placeholder="请输入银行开户姓名" type="text" disabled="disabled">
                                         银行开户账号<input v-model="bankCard" placeholder="请输入银行开户账号" type="text" disabled="disabled">
                                         余额提现数量<input v-model="withdrawCount" placeholder="请输入余额提现数量" type="number">
@@ -176,7 +176,7 @@
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="withdraw">确定提现</button>
                                         <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
-                                    <form v-if="rechargeOpt == true">
+                                    <form id="recharge" v-if="rechargeOpt == true">
                                         充值金额<input v-model="rechargeCount" placeholder="请输入充值金额" type="number">
                                         交易密码<input v-model="rechargePayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
@@ -737,6 +737,10 @@
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
+                        this.$nextTick(function() {
+                            scrollToId('donate')
+                        })
+
                     },
                     toWithdraw: function () {
                         view.donateOpt = false
@@ -745,6 +749,9 @@
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
+                        this.$nextTick(function() {
+                            scrollToId('withdraw')
+                        })
                     },
                     toRecharge: function () {
                         view.donateOpt = false
@@ -753,6 +760,9 @@
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
+                        this.$nextTick(function() {
+                            scrollToId('recharge')
+                        })
                     },
                     donate: function () {
                         view.userOpt = false

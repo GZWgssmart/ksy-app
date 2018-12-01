@@ -159,3 +159,7 @@ function isPhone(phone) {
     var phoneExp = /^[1][3,4,5,7,8,9][0-9]{9}$/;
     return phoneExp.test(phone);
 }
+
+function scrollToId(id) {
+    $("html,body").animate({scrollTop:$("#" + id).offset().top}, 800);
+}
