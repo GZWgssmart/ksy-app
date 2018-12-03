@@ -1,5 +1,6 @@
 package com.jeff.yuan.cms.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class ShopTradeService extends CommonService< ShopTrade,Integer >  {
 		// TODO Auto-generated method stub
 		ShopTrade bean = this.find(Integer.parseInt(id));
 		bean.setStatus(status);
+		bean.setUpdateDate(new Date());
 		this.update(bean);
 		return bean;
 	}

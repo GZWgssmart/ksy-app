@@ -214,63 +214,9 @@ $(function(){
                              </div>
                          </td>
                      </tr>
-                     
                      <tr>
-						<td class="l_title w150"><b class="cRed">*</b>会员购买产品返点</td>
-                         <td>
-                             <div class="J_toolsBar fl">
-                                 <div class="t_text w200 ml10">
-                                     <label>
-                                     	<c:choose>
-                                     		<c:when test="${not empty bean }">
-                                     			<input type="text" name="fugoufd" data-rule="会员购买产品返点:required;" value="${bean.fugoufd }" />
-                                     		</c:when>
-                                     		<c:otherwise>
-                                     			<input type="text" name="fugoufd" data-rule="会员购买产品返点:required;" value="" />
-                                     		</c:otherwise>
-                                     	</c:choose>
-                                     </label>
-                                 </div>
-                             </div>
-                         </td>
-                         <td class="l_title w150"><b class="cRed">*</b>邀请用户复购的直推返点</td>
-                         <td>
-                             <div class="J_toolsBar fl">
-                                 <div class="t_text w200 ml10">
-                                     <label>
-                                     	<c:choose>
-                                     		<c:when test="${not empty bean }">
-                                     			<input type="text" name="fugouztfd" data-rule="邀请用户复购的直推返点:required;" value="${bean.fugouztfd }" />
-                                     		</c:when>
-                                     		<c:otherwise>
-                                     			<input type="text" name="fugouztfd" data-rule="邀请用户复购的直推返点:required;" value="" />
-                                     		</c:otherwise>
-                                     	</c:choose>
-                                     </label>
-                                 </div>
-                             </div>
-                         </td>
-                     </tr>
-                     <tr>
-						<td class="l_title w150"><b class="cRed">*</b>邀请复购用户的间推返点</td>
-                         <td >
-                             <div class="J_toolsBar fl">
-                                 <div class="t_text w200 ml10">
-                                     <label>
-                                     	<c:choose>
-                                     		<c:when test="${not empty bean }">
-                                     			<input type="text" name="fugoujtfd" data-rule="邀请复购用户的间推返点:required;" value="${bean.fugoujtfd }" />
-                                     		</c:when>
-                                     		<c:otherwise>
-                                     			<input type="text" name="fugoujtfd" data-rule="邀请复购用户的间推返点	:required;" value="" />
-                                     		</c:otherwise>
-                                     	</c:choose>
-                                     </label>
-                                 </div>
-                             </div>
-                         </td>
 						<td class="l_title w150"><b class="cRed">*</b>分红积分</td>
-                         <td >
+                         <td colspan="3">
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>

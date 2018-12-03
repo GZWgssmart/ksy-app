@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,10 +24,12 @@ import com.jeff.yuan.cms.entity.ShopRegisterRule;
 import com.jeff.yuan.cms.entity.ShopTrade;
 import com.jeff.yuan.cms.entity.ShopTradeDetail;
 import com.jeff.yuan.cms.entity.ShopTradeDto;
+import com.jeff.yuan.cms.entity.ShopTradeRule;
 import com.jeff.yuan.cms.entity.ShopUser;
 import com.jeff.yuan.cms.service.ShopProductService;
 import com.jeff.yuan.cms.service.ShopRegisterRuleService;
 import com.jeff.yuan.cms.service.ShopTradeDetailService;
+import com.jeff.yuan.cms.service.ShopTradeRuleService;
 import com.jeff.yuan.cms.service.ShopTradeService;
 import com.jeff.yuan.cms.service.ShopUserService;
 import com.jeff.yuan.common.dto.AjaxResult;
@@ -45,6 +46,7 @@ import com.jeff.yuan.util.WebHelper;
  */
 @Controller
 @RequestMapping("/api/shoptrade")
+//@org.springframework.transaction.annotation.Transactional(value="transactionManager", rollbackFor = Exception.class)
 public class ShopTradeController {
 
 	@Autowired
@@ -57,6 +59,8 @@ public class ShopTradeController {
 	private ShopUserService userService;
 	@Autowired
 	private ShopRegisterRuleService ruleService;
+	@Autowired
+	private ShopTradeRuleService tradeRuleService;
 
 	/**
 	 * 获取订单列表
@@ -145,11 +149,10 @@ public class ShopTradeController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public AjaxResult ajaxSave(HttpServletRequest request,@RequestBody ShopTradeDto bean) {
+	public AjaxResult ajaxSave(HttpServletRequest request,@RequestBody ShopTradeDto bean) throws Exception {
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
 
-		try {
 			ShopUser user = WebHelper.getUser(request);
 			user=userService.find(user.getId());
 
@@ -218,8 +221,10 @@ public class ShopTradeController {
 
 				
 				//获取商品列表的赠送积分，并添加到用户
-				while (it.hasNext()) {  
-					ShopTradeDetail detail = it.next();
+				Set<ShopTradeDetail> shopTradeDetail = bean.getShopTradeDetails();
+				Iterator<ShopTradeDetail> its = shopTradeDetail.iterator(); 
+				while (its.hasNext()) {  
+					ShopTradeDetail detail = its.next();
 					//保存订单明细
 					detail.setShopTrade(trade);
 					tradeDetailService.save(detail);
@@ -238,21 +243,32 @@ public class ShopTradeController {
 				ajaxResult.setMsg("余额不足");
 			}
 
-		} catch (Exception e) {
-			ajaxResult.setMsg(e.getMessage());
-			e.printStackTrace();
-		}
 
 		return ajaxResult;
 	}
 
+/*	@RequestMapping("/insert")
+	@ResponseBody
+	public void ajaxInsertStatus(HttpServletRequest request) throws Exception{
+		ShopTrade ztTrade = new ShopTrade();
+    	ztTrade.setPrice(new BigDecimal("123"));
+    	ztTrade.setUserId(1);
+    	ztTrade.setTradeNo(WebHelper.getDayNo());
+    	ztTrade.setJtype(1);//1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点
+    	ztTrade.setStatus(3);
+    	ztTrade.setCredits(0);
+    	ztTrade.setCreateDate(new Date());
+    	ztTrade.setShopTradeDetails(null);
+    	tradeService.save(ztTrade);
+    	throw new RuntimeException();
+	}*/
+	
 	@RequestMapping("/upd/status")
 	@ResponseBody
-	public AjaxResult ajaxUpdStatus(HttpServletRequest request) {
+	public AjaxResult ajaxUpdStatus(HttpServletRequest request) throws Exception{
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);
 
-		try {
 			String id = request.getParameter("id");
 			//String status = request.getParameter("status");
 
@@ -395,16 +411,17 @@ public class ShopTradeController {
 			} else if (shopTrade.getJtype() == 2) {
 				//复购返点不是看购买用户的那三个配置，是和自己对应等级的规则的对应的返点 
 				//奖励规则，根据购买用户的等级来
-				ShopRegisterRule rule = ruleService.findByVip(user.getVipLevel());
 				
-				/*Set<ShopTradeDetail> shopTradeDetails = shopTrade.getShopTradeDetails();
+				
+				Set<ShopTradeDetail> shopTradeDetails = shopTrade.getShopTradeDetails();
 				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
 				int proId = 0;
 				while (it.hasNext()) {  
 					ShopTradeDetail detail = it.next();  
 					proId = detail.getProId();
 				}
-				ShopProduct product = productService.find(proId);*/
+				//ShopProduct product = productService.find(proId);
+				ShopTradeRule rule = tradeRuleService.queryShopTradeRule(proId, user.getVipLevel());
 				//购买返点  给用户本身账户余额增加
 		        BigDecimal a1 = new BigDecimal(rule.getFugoufd()).multiply(shopTrade.getPrice().abs());
 		        this.saveTradeInfo(a1, user, 9);
@@ -416,7 +433,7 @@ public class ShopTradeController {
 
 					//如果根据介绍人电话查找的用户不存在，则不赠送
 					if (ztUser!=null) {
-						rule = ruleService.findByVip(ztUser.getVipLevel());
+						rule = tradeRuleService.queryShopTradeRule(proId, ztUser.getVipLevel());
 						//邀请用户复购的直推返点  给用户本身账户余额增加
 				        BigDecimal a2 = new BigDecimal(rule.getFugouztfd()).multiply(shopTrade.getPrice().abs());
 				        this.saveTradeInfo(a2, ztUser, 10);
@@ -430,7 +447,7 @@ public class ShopTradeController {
 							//如果根据介绍人电话查找的用户不存在，则不赠送
 							if (jtUser!=null) {
 								//邀请用户复购的直推返点  给用户本身账户余额增加
-								rule = ruleService.findByVip(jtUser.getVipLevel());
+								rule = tradeRuleService.queryShopTradeRule(proId, jtUser.getVipLevel());
 						        BigDecimal a3 = new BigDecimal(rule.getFugoujtfd()).multiply(shopTrade.getPrice().abs());
 						        this.saveTradeInfo(a3, jtUser, 11);
 							}
@@ -442,11 +459,6 @@ public class ShopTradeController {
 			// 返利结束
 
 			ajaxResult.setSuccess(true);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			ajaxResult.setMsg(e.getMessage());
-		}
 
 		return ajaxResult;
 	}

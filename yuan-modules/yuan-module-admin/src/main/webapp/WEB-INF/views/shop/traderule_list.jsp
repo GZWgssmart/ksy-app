@@ -12,17 +12,42 @@
     <%@ include file="../common/menu.jsp" %>
     <div class="J_content">
 		<div class="mt20 plr20">
-		  <form action="${ctx }/user/list" id="queryForm" method="post">
+		  <form action="${ctx }/traderule/list" id="queryForm" method="post">
 	        <div class="J_toolsBar clearfix">
-				<%-- <div class="t_label">会员等级</div>
-				<div class="t_text ml10">
-                	<input placeholder="请输入会员等级" type="text" name="userName" id="userName" value="${userQueryDTO.userName }"/>
-                </div>
+				<div class="t_label">会员等级</div>
+					<div class="t_text ml10">
+						<select name="vipLevel" 
+							value="${queryDTO.vipLevel }">
+							<option value="">请选择</option>
+							<option value="v1" <c:if test="${'v1' eq queryDTO.vipLevel }">selected</c:if> >普通会员</option>
+							<option value="v2" <c:if test="${'v2' eq queryDTO.vipLevel }">selected</c:if> >个人vip</option>
+							<option value="v3" <c:if test="${'v3' eq queryDTO.vipLevel }">selected</c:if> >初级代理</option>
+							<option value="v4" <c:if test="${'v4' eq queryDTO.vipLevel }">selected</c:if> >高级代理</option>
+							<option value="v5" <c:if test="${'v5' eq queryDTO.vipLevel }">selected</c:if> >核心代理</option>
+							<option value="v6" <c:if test="${'v6' eq queryDTO.vipLevel }">selected</c:if> >运营中心</option>
+							<option value="v7" <c:if test="${'v7' eq queryDTO.vipLevel }">selected</c:if> >公司合伙人</option>
+						</select>
+					</div>
+					
+                         <div class="t_label"> 复购商品</div>
+                             <div class="t_text ml10">
+									<select data-placeholder="选择商品" class="chosen-select" name="proId">
+										<option value="">请选择</option>
+										<c:forEach items="${productList }" var="r">
+											<c:set var="selected"/>
+											<c:if test="${queryDTO.proId eq r.id }">
+												<c:set var="selected" value="selected=\"selected\""/>
+											</c:if>
+											<option value="${r.id }" ${selected }>${r.proName }</option>
+										</c:forEach>
+									</select>
+                             </div>
+					
                 <div class="t_button mgl30">
                		<a class="abtn red" href="javascript:myQuery();">
                		   <i class="icon"></i>查询
                		</a>
-               	</div> --%>
+               	</div>
                	<div class="t_button ml10">
                		<a class="abtn blue" href="javascript:myEdit();">
                		   <i class="icon"></i>新增
@@ -42,22 +67,16 @@
                                      <span>会员等级</span>
                                  </td>
                                  <td>
-                                     <span>健康链激活数（直推）</span>
+                                     <span>商品名称</span>
                                  </td>
                                  <td>
-                                     <span>健康链激活数（间推）</span>
+                                     <span>购买返点</span>
                                  </td>
                                  <td>
-                                     <span>直推奖</span>
+                                     <span>直推购买返点</span>
                                  </td>
                                  <td>
-                                     <span>间推奖</span>
-                                 </td>
-                                 <td>
-                                     <span>管理奖</span>
-                                 </td>
-                                 <td>
-                                     <span>健康链个数</span>
+                                     <span>间推购买返点</span>
                                  </td>
                                  <td>
                                  	 <span>创建时间</span>
@@ -101,32 +120,22 @@
 		                                 </td>
 		                                 <td>
 		                                     <div class="t_text tc">
-		                                        ${u.ztjkljhs }
+		                                        ${u.proName }
 		                                     </div>
 		                                 </td>
 		                                 <td>
 		                                     <div class="t_text tc">
-		                                        ${u.jtjkljhs }
+		                                        ${u.fugoufd }
 		                                     </div>
 		                                 </td>
 		                                 <td>
 		                                     <div class="t_text tc">
-		                                         ${u.ztj }
+		                                         ${u.fugouztfd }
 		                                     </div>
 		                                 </td>
 		                                 <td>
 		                                     <div class="t_text tc">
-		                                         ${u.jtj }
-		                                     </div>
-		                                 </td>
-		                                 <td>
-		                                     <div class="t_text tc">
-		                                        ${u.glj }
-		                                     </div>
-		                                 </td>
-		                                 <td>
-		                                     <div class="t_text tc">
-		                                        ${u.bill }
+		                                         ${u.fugoujtfd }
 		                                     </div>
 		                                 </td>
 		                                 <td>
@@ -172,13 +181,13 @@
 		}else{
 			title = '修改规则';
 		}
-		$.post('${ctx}/shoprule/edit?id='+id, {}, function(str){
+		$.post('${ctx}/traderule/edit?id='+id, {}, function(str){
 			
 			layer.close(loadIdx);
 			layer.open({
 				title : title,
 				type : 1,
-				area : ['860px', '500px'],
+				area : ['600px', '500px'],
 				content : str,
 				btn : ['确定', '取消'],
 				yes : function(index, layero){

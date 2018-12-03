@@ -13,8 +13,11 @@ public class Constants {
 	public static final String MENU_COLUMN_LIST = "栏目列表";
 	public static final String MENU_ARTICLE_LIST = "文章列表";
 	public static final String SHOP_RULE_LIST = "奖励规则";
+	public static final String SHOP_TRADE_RULE = "复购规则";
 	public static final String SHOP_USER_LIST = "商城用户";
-	public static final String SHOP_TRADE_LIST = "交易管理";
+	public static final String SHOP_TRADE_LIST = "商城收入";
+	public static final String SHOP_OUT_LIST = "商城支出";
+	public static final String SHOP_FINANCE_LIST = "财务管理";
 	public static final String SHOP_PRODUCT_LIST = "商品管理";
 	public static final String SHOP_BILL_TRADE = "健康值管理";
 	public static final String SHOP_SYS_PARAM = "商城参数设置";

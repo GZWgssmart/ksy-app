@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -236,6 +235,10 @@ public class ShopTradeController {
 		headNameMap.put("price", "金额");
 		headNameMap.put("account", "客户姓名");
 		headNameMap.put("phone", "联系方式");
+		if (from.equals("2")) {
+			headNameMap.put("bankOwer", "卡主姓名");
+			headNameMap.put("bankCard", "银行卡号");
+		}
 		headNameMap.put("jtype", "类型");
 		headNameMap.put("status", "订单状态");
 		headNameMap.put("createDate", "创建时间");
@@ -263,6 +266,10 @@ public class ShopTradeController {
 				map.put("price", bean.getPrice());
 				map.put("account", bean.getAccount());
 				map.put("phone", bean.getPhone());
+				if (from.equals("2")) {
+					map.put("bankOwer",bean.getBankOwer());
+					map.put("bankCard", bean.getBankCard());
+				}
 				map.put("jtype", TradeTypeEnum.getDescByCode(bean.getJtype()));
 				map.put("status", statusName);
 				map.put("createDate", createDate);
@@ -337,6 +344,7 @@ public class ShopTradeController {
 
 		try {
 			if (bean.getId() != null && bean.getId() != 0) {
+				bean.setUpdateDate(new Date());
 				tradeService.update(bean);
 			} else {
 				bean.setCreateDate(new Date());

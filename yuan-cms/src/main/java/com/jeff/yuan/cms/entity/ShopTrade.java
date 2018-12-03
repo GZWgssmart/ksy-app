@@ -34,6 +34,7 @@ public class ShopTrade implements java.io.Serializable {
 	private int credits;
 	private Date createDate;
 	private String createBy;
+	private Date updateDate;
 	private Set<ShopTradeDetail> shopTradeDetails = new HashSet<ShopTradeDetail>(0);
 
 	public ShopTrade() {
@@ -73,6 +74,40 @@ public class ShopTrade implements java.io.Serializable {
 		this.status = status;
 		this.credits = credits;
 		this.createDate = createDate;
+	}
+	
+	
+
+	public ShopTrade(Integer id, String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits,
+			Date createDate, String createBy, Date updateDate, Set<ShopTradeDetail> shopTradeDetails) {
+		super();
+		this.id = id;
+		this.tradeNo = tradeNo;
+		this.userId = userId;
+		this.jtype = jtype;
+		this.price = price;
+		this.status = status;
+		this.credits = credits;
+		this.createDate = createDate;
+		this.createBy = createBy;
+		this.updateDate = updateDate;
+		this.shopTradeDetails = shopTradeDetails;
+	}
+	
+
+	public ShopTrade(Integer id, String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits,
+			Date createDate, String createBy, Date updateDate) {
+		super();
+		this.id = id;
+		this.tradeNo = tradeNo;
+		this.userId = userId;
+		this.jtype = jtype;
+		this.price = price;
+		this.status = status;
+		this.credits = credits;
+		this.createDate = createDate;
+		this.createBy = createBy;
+		this.updateDate = updateDate;
 	}
 
 	@Id
@@ -158,6 +193,16 @@ public class ShopTrade implements java.io.Serializable {
 
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
+	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_date", length = 19)
+	public Date getUpdateDate() {
+		return this.updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "shopTrade",cascade = {CascadeType.MERGE,CascadeType.REFRESH})
