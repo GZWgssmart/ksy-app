@@ -198,10 +198,10 @@ $(function(){
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="shopUserExts.bill" data-rule="等级对应健康链:required;" value="${bean.shopUserExts.bill }" />
+                                     			<input type="text" name="shopUserExts.bill" data-rule="等级对应健康值:required;" value="${bean.shopUserExts.bill }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="shopUserExts.bill" data-rule="等级对应健康链:required;" value="" />
+                                     			<input type="text" name="shopUserExts.bill" data-rule="等级对应健康值:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -218,10 +218,10 @@ $(function(){
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="shopUserExts.activeBill" data-rule="激活的健康链:required;" value="${bean.shopUserExts.activeBill }" />
+                                     			<input type="text" name="shopUserExts.activeBill" data-rule="激活的健康值:required;" value="${bean.shopUserExts.activeBill }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="shopUserExts.activeBill" data-rule="激活的健康链:required;" value="" />
+                                     			<input type="text" name="shopUserExts.activeBill" data-rule="激活的健康值:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -235,10 +235,10 @@ $(function(){
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="shopUserExts.tradeBill" data-rule="转让获得的健康链:required;" value="${bean.shopUserExts.tradeBill }" />
+                                     			<input type="text" name="shopUserExts.tradeBill" data-rule="转让获得的健康值:required;" value="${bean.shopUserExts.tradeBill }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="shopUserExts.tradeBill" data-rule="转让获得的健康链:required;" value="" />
+                                     			<input type="text" name="shopUserExts.tradeBill" data-rule="转让获得的健康值:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>

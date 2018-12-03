@@ -34,7 +34,7 @@ import com.jeff.yuan.common.util.ExcelUtils;
 import com.jeff.yuan.util.Constants;
 import com.jeff.yuan.util.WebHelper;
 /**
- * 健康链Controller
+ * 健康值Controller
  * @author dingjinqing@163.com
  *
  */
@@ -226,7 +226,7 @@ public class ShopBillTradeController {
 			
 			ShopUser user = userService.find(bean.getUserId());
 			
-			//操作类型"1、提现  2、转让 3.捐赠     被转让用户转让健康链增加，
+			//操作类型"1、提现  2、转让 3.捐赠     被转让用户转让健康值增加，
         	if (bean.getType()==2) {
         		ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
         		shopUserQueryDTO.setPhone(bean.getTradePhone());
@@ -259,9 +259,9 @@ public class ShopBillTradeController {
             	stradeService.save(ztTrade);
         	}*/
         	
-        	//发起用户减少健康链
+        	//发起用户减少健康值
 			BigDecimal activeBill = new BigDecimal(user.getShopUserExts().getActiveBill()).subtract(new BigDecimal(bean.getCount()));
-	        //减去激活的健康链
+	        //减去激活的健康值
 	        user.getShopUserExts().setActiveBill( activeBill.toString());
 	        userService.update(user);
 	        

@@ -85,17 +85,17 @@ $(function(){
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b> 健康链</td>
+                         <td class="l_title w150"><b class="cRed">*</b> 未激活健康值总值</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="bill" data-rule="健康链:required;" value="${bean.bill }" readonly="readonly"/>
+                                     			<input type="text" name="bill" data-rule="健康值:required;" value="${bean.bill }" readonly="readonly"/>
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="bill" data-rule="健康链:required;" value="" />
+                                     			<input type="text" name="bill" data-rule="健康值:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -105,34 +105,34 @@ $(function(){
                      </tr>
                      
                      <tr>
-						<td class="l_title w150"><b class="cRed">*</b> 健康链激活数（直推）</td>
+						<td class="l_title w150"><b class="cRed">*</b> 健康值激活数（直推）</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="ztjkljhs" data-rule="健康链激活数（直推）:required;" value="${bean.ztjkljhs }" />
+                                     			<input type="text" name="ztjkljhs" data-rule="健康值激活数（直推）:required;" value="${bean.ztjkljhs }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="ztjkljhs" data-rule="健康链激活数（直推）:required;" value="" />
+                                     			<input type="text" name="ztjkljhs" data-rule="健康值激活数（直推）:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150"><b class="cRed">*</b> 健康链激活数（间推）</td>
+                         <td class="l_title w150"><b class="cRed">*</b> 健康值值激活数（间推）</td>
                          <td>
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="jtjkljhs" data-rule="健康链激活数（间推）:required;" value="${bean.jtjkljhs }" />
+                                     			<input type="text" name="jtjkljhs" data-rule="健康值激活数（间推）:required;" value="${bean.jtjkljhs }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="jtjkljhs" data-rule="健康链激活数（间推）:required;" value="" />
+                                     			<input type="text" name="jtjkljhs" data-rule="健康值激活数（间推）:required;" value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
