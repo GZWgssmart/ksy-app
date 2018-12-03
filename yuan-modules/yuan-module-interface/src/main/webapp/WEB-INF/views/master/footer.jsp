@@ -87,7 +87,7 @@
                         <p>
                             Copyright &copy; 2018
                             <a href="<%=path%>/index">康生缘</a>
-                            版本所有
+                            版权所有
                         </p>
                     </div>
                 </div>
