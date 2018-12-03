@@ -92,7 +92,7 @@
                                             <div v-html="errMsg" style="color: red; text-align: right;"></div>
                                             <div class="cart-total-btn2 f-right">
                                                 <div v-text="order.statusName"></div>
-                                                <div v-if="order.status != 3">
+                                                <div v-if="order.status == 2">
                                                     <div v-if="firstConfirm == true" >
                                                         <a href="javascript:;" @click="confirmOrder(1)">确认收货</a>
                                                     </div>
