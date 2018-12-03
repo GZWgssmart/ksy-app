@@ -17,6 +17,7 @@
             <a href="<%=path%>/order"><i class="pe-7s-shopbag"></i><span>我的订单</span></a>
             <a href="<%=path%>/cart"><i class="pe-7s-cart"></i><span>我的购物车</span></a>
             <a href="<%=path%>/share-reg?refPhone=${sessionScope.userInfo.phone}"><i class="pe-7s-share"></i><span>分享注册</span></a>
+            <a href="<%=path%>/qrcode"><i class="pe-7s-share"></i><span>我的邀请二维码</span></a>
             <c:if test="${empty sessionScope.userInfo.id}">
                 <a href="<%=path%>/login"><i class="pe-7s-next-2"></i><span>登录</span></a>
                 <a href="<%=path%>/register"><i class="pe-7s-add-user"></i><span>注册</span></a>

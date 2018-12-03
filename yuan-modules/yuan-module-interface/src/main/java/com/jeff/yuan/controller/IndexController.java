@@ -188,9 +188,25 @@ public class IndexController {
     }
 
     @RequestMapping("share-reg")
-    public ModelAndView shareRegister(String refPhone) {
-        ModelAndView mav = new ModelAndView("share-register");
+    public ModelAndView shareRegister(HttpSession session, String refPhone) {
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("userInfo") == null) {
+            mav.setViewName("redirect:login?relogin=y");
+            return mav;
+        }
+        mav.setViewName("share-register");
         mav.addObject("refPhone", refPhone);
+        return mav;
+    }
+
+    @RequestMapping("qrcode")
+    public ModelAndView showQrcode(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("userInfo") == null) {
+            mav.setViewName("redirect:login?relogin=y");
+            return mav;
+        }
+        mav.setViewName("qrcode");
         return mav;
     }
 
