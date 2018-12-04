@@ -319,7 +319,7 @@
                     getLinkPayPwd: '',
                     transLinkPayPwd: '',
                     donateLinkPayPwd: '',
-                    withdrawCount: 0,
+                    withdrawCount: 500,
                     withdrawPayPwd: '',
                     rechargeCount: 0,
                     rechargePayPwd: '',
@@ -816,8 +816,8 @@
                         if (view.bankName.trim() === '' || view.bankCard.trim() === '') {
                             errMsg += '请在个人信息操作中修改银行账户资料<br/>'
                         }
-                        if (isNaN(view.withdrawCount) || view.withdrawCount <= 0 || view.withdrawCount > view.user.shopUserExts.balance) {
-                            errMsg += '请输入不大于账户余额的数值<br/>'
+                        if (isNaN(view.withdrawCount) || view.withdrawCount < 500 || view.withdrawCount > view.user.shopUserExts.balance) {
+                            errMsg += '请输入不大于账户余额的数值，且最小提现额为500<br/>'
                         }
                         if (view.withdrawPayPwd.trim() === '') {
                             errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
