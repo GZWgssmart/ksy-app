@@ -272,6 +272,25 @@ $(function(){
                              </div>
                          </td>
                      </tr>
+                     
+                     <tr>
+						<td class="l_title w150">备注</td>
+						<td colspan="3">
+							<div class="J_toolsBar fl">
+								<label> <c:choose>
+										<c:when test="${not empty bean }">
+											<textarea name="remark" rows="4" maxlength="512"
+												cols="70">${bean.remark } </textarea>
+										</c:when>
+										<c:otherwise>
+											<textarea name="remark" rows="4" maxlength="512"
+												cols="70"></textarea>
+										</c:otherwise>
+									</c:choose>
+								</label>
+							</div>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>

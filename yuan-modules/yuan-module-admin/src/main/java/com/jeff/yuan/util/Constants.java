@@ -18,6 +18,7 @@ public class Constants {
 	public static final String SHOP_TRADE_LIST = "商城收入";
 	public static final String SHOP_OUT_LIST = "商城支出";
 	public static final String SHOP_FINANCE_LIST = "财务管理";
+	public static final String SHOP_FINANCE_TOTAL = "收支汇总";
 	public static final String SHOP_PRODUCT_LIST = "商品管理";
 	public static final String SHOP_BILL_TRADE = "健康值管理";
 	public static final String SHOP_SYS_PARAM = "商城参数设置";

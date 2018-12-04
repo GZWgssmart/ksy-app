@@ -31,6 +31,8 @@ public class ShopTradeDto implements java.io.Serializable {
 	private Date createDate;
 	private String createBy;
 	private String payPwd;
+	private String remark;
+
 	
 	private Set<ShopTradeDetail> shopTradeDetails = new HashSet<ShopTradeDetail>(0);
 
@@ -44,7 +46,7 @@ public class ShopTradeDto implements java.io.Serializable {
 	}
 
 	public ShopTradeDto(Integer id, String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits,
-			Date createDate, String createBy,Set<ShopTradeDetail> shopTradeDetails) {
+			Date createDate, String createBy, String payPwd, String remark, Set<ShopTradeDetail> shopTradeDetails) {
 		super();
 		this.id = id;
 		this.tradeNo = tradeNo;
@@ -55,36 +57,9 @@ public class ShopTradeDto implements java.io.Serializable {
 		this.credits = credits;
 		this.createDate = createDate;
 		this.createBy = createBy;
+		this.payPwd = payPwd;
+		this.remark = remark;
 		this.shopTradeDetails = shopTradeDetails;
-	}
-	
-	public ShopTradeDto(Integer id, String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits,
-			Date createDate, String createBy,String payPwd, Set<ShopTradeDetail> shopTradeDetails) {
-		super();
-		this.payPwd=payPwd;
-		this.id = id;
-		this.tradeNo = tradeNo;
-		this.userId = userId;
-		this.jtype = jtype;
-		this.price = price;
-		this.status = status;
-		this.credits = credits;
-		this.createDate = createDate;
-		this.createBy = createBy;
-		this.shopTradeDetails = shopTradeDetails;
-	}
-
-	public ShopTradeDto(Integer id, String tradeNo, int userId, int jtype, BigDecimal price, int status, int credits,
-			Date createDate) {
-		super();
-		this.id = id;
-		this.tradeNo = tradeNo;
-		this.userId = userId;
-		this.jtype = jtype;
-		this.price = price;
-		this.status = status;
-		this.credits = credits;
-		this.createDate = createDate;
 	}
 
 	@Id
@@ -187,6 +162,14 @@ public class ShopTradeDto implements java.io.Serializable {
 	@JsonSetter("payPwd")
 	public void setPayPwd(String payPwd) {
 		this.payPwd = payPwd;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

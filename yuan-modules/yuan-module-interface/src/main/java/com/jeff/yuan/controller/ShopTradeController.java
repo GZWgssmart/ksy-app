@@ -199,6 +199,8 @@ public class ShopTradeController {
 				trade.setPrice(bean.getPrice());
 				trade.setCreateDate(bean.getCreateDate());
 				trade.setId(bean.getId());
+				trade.setRemark(bean.getRemark());
+				trade.setUpdateDate(new Date());
 				Set<ShopTradeDetail> shopTradeDetails = bean.getShopTradeDetails();
 				Iterator<ShopTradeDetail> it = shopTradeDetails.iterator();  
 				while (it.hasNext()) {  
