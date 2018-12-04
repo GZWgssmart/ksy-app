@@ -110,4 +110,26 @@ public class ShopUserDaoImpl extends CustomBaseSqlDaoImpl implements ShopUserDao
     	return this.querySqlObjects(sql.toString(), params);
     }
 
+	@Override
+	public List<Map<String, Object>> queryIncomeList(ShopUserQueryDTO shopUserQueryDTO) {
+		// TODO Auto-generated method stub
+		StringBuilder sql = new StringBuilder();
+    	sql.append("SELECT ifnull(ABS(sum(price)),0) as income,type from shop_trade where 1=1  ");
+    	List<Object> params = new ArrayList<>();
+    	if (shopUserQueryDTO.getUserId()!=0) {
+    		sql.append("and user_id=?");
+    		params.add(shopUserQueryDTO.getUserId());
+		}
+    	if (shopUserQueryDTO.getStartTime()!=null ) {
+    		sql.append("and create_date>?");
+    		params.add(shopUserQueryDTO.getStartTime());
+		}
+    	if (shopUserQueryDTO.getEndTime()!=null ) {
+    		sql.append("and create_date<?");
+    		params.add(shopUserQueryDTO.getEndTime());
+    	}
+    	sql.append(" GROUP BY type ");
+    	return this.querySqlObjects(sql.toString(), params);
+	}
+
 }

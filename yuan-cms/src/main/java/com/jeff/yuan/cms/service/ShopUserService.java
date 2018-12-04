@@ -69,5 +69,13 @@ public class ShopUserService extends CommonService< ShopUser,Integer >  {
 		// TODO Auto-generated method stub
 		return shopUserDao.queryIncomeList(userId);
 	}
+	/**获取平台收支汇总
+	 * @param userId
+	 * @return
+	 */
+	public List<Map<String, Object>> queryIncomeList(ShopUserQueryDTO shopUserQueryDTO) {
+		// TODO Auto-generated method stub
+		return shopUserDao.queryIncomeList(shopUserQueryDTO);
+	}
 
 }

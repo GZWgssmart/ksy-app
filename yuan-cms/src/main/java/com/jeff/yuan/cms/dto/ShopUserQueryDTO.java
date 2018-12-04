@@ -18,6 +18,8 @@ public class ShopUserQueryDTO extends CommonQueryDTO{
 	private String password;
 	private int status;
 	private int userId;
+	private Date startTime;
+	private Date endTime;
 	
 	public String getVipLevel() {
 		return vipLevel;
@@ -60,6 +62,18 @@ public class ShopUserQueryDTO extends CommonQueryDTO{
 	}
 	public void setIsFront(Boolean isFront) {
 		this.isFront = isFront;
+	}
+	public Date getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+	public Date getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 
 }

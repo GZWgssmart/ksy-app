@@ -28,6 +28,7 @@ import com.jeff.yuan.common.dto.AjaxResult;
 import com.jeff.yuan.common.entity.PageModel;
 import com.jeff.yuan.common.util.ExcelUtils;
 import com.jeff.yuan.common.util.Md5Util;
+import com.jeff.yuan.common.util.TradeTypeEnum;
 import com.jeff.yuan.util.Constants;
 
 /**
@@ -182,6 +183,24 @@ public class ShopUserController {
 
 		}
 		return "shop/dialog/user_edit";
+	}
+	
+	@RequestMapping("/total")
+	public String pageShow(HttpServletRequest request, Model model,ShopUserQueryDTO shopUserQueryDTO) {
+		
+		List<Map<String, Object>> list = userService.queryIncomeList(shopUserQueryDTO);
+		for (int i = 0; i < list.size(); i++) {
+			Map<String, Object>  map = list.get(i);
+			String type =  map.get("type").toString();
+			String typeName = TradeTypeEnum.getDescByCode(Integer.parseInt(type));
+			map.put("typeName", typeName);
+//			map.put
+		}
+		model.addAttribute("list", list);
+		model.addAttribute("queryDTO", shopUserQueryDTO);
+		model.addAttribute(Constants.MENU_NAME, Constants.SHOP_FINANCE_TOTAL);
+
+		return "shop/total_list";
 	}
 	
 	@RequestMapping("/show")
