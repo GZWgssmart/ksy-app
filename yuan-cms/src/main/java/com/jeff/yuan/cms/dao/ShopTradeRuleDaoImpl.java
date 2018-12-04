@@ -21,7 +21,7 @@ public class ShopTradeRuleDaoImpl extends CustomBaseSqlDaoImpl implements ShopTr
     public PageModel<ShopTradeRule> queryShopTradeRulePage(ShopTradeRuleQueryDTO shopTradeRuleQueryDTO){
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select new ShopTradeRule( t.proId,t2.proName,t.vipLevel,t.fugoufd,t.fugouztfd,t.fugoujtfd,t.createDate,t.updateDate) from ShopTradeRule t,ShopProduct t2 where t.proId=t2.id ");
+         hql.append("select new ShopTradeRule(t.id,t.proId,t2.proName,t.vipLevel,t.fugoufd,t.fugouztfd,t.fugoujtfd,t.createDate,t.updateDate) from ShopTradeRule t,ShopProduct t2 where t.proId=t2.id ");
          if(StringUtils.isNotBlank(shopTradeRuleQueryDTO.getVipLevel())){
     		 hql.append(" and t.vipLevel = :vipLevel ");
     		 map.put("vipLevel", shopTradeRuleQueryDTO.getVipLevel());
@@ -36,7 +36,7 @@ public class ShopTradeRuleDaoImpl extends CustomBaseSqlDaoImpl implements ShopTr
     public List<ShopTradeRule> queryShopTradeRuleList(ShopTradeRuleQueryDTO shopTradeRuleQueryDTO){
          Map<String,Object> map = new HashMap<String,Object>();
          StringBuilder hql = new StringBuilder();
-         hql.append("select new ShopTradeRule( t.proId,t2.proName,t.vipLevel,t.fugoufd,t.fugouztfd,t.fugoujtfd,t.createDate,t.updateDate) from ShopTradeRule t,ShopProduct t2 where t.proId=t2.id ");
+         hql.append("select new ShopTradeRule(t.id, t.proId,t2.proName,t.vipLevel,t.fugoufd,t.fugouztfd,t.fugoujtfd,t.createDate,t.updateDate) from ShopTradeRule t,ShopProduct t2 where t.proId=t2.id ");
          if(StringUtils.isNotBlank(shopTradeRuleQueryDTO.getVipLevel())){
     		 hql.append(" and t.vipLevel = :vipLevel ");
     		 map.put("vipLevel", shopTradeRuleQueryDTO.getVipLevel());

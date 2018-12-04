@@ -52,8 +52,9 @@ public class ShopTradeRule implements java.io.Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public ShopTradeRule(Integer proId, String proName, String vipLevel, String fugoufd, String fugouztfd,
+	public ShopTradeRule(Integer id,Integer proId, String proName, String vipLevel, String fugoufd, String fugouztfd,
 			String fugoujtfd, Date createDate, Date updateDate) {
+		this.id = id;
 		this.proId = proId;
 		this.proName = proName;
 		this.vipLevel = vipLevel;
