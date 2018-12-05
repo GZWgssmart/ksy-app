@@ -97,6 +97,8 @@
                                         <form>
                                             使用积分抵扣：<input v-model="useCredits" placeholder="请输入需要抵扣的积分数" type="number" style="width: 100px;">
                                             <br/>
+                                            备注：<input v-model="remark" placeholder="请输入订单备注" type="text" style="width: 200px;">
+                                            <br/>
                                             交易密码：<input v-model="payPwd" placeholder="请输入交易密码" type="password" style="width: 200px;">
                                         </form>
                                     </div>
@@ -167,6 +169,7 @@
                     submitted: false,
                     submitting: false,
                     payPwd: '',
+                    remark: "",
                     errMsg: '',
                     user: {
                         shopUserExts: {}
@@ -304,6 +307,7 @@
                                         credits: view.useCredits,
                                         jtype: view.jtype,
                                         payPwd: view.payPwd,
+                                        remark: view.remark,
                                         shopTradeDetails: view.products
                                     }),
                                     dataType: "json",
