@@ -1,13 +1,14 @@
 package com.jeff.yuan.cms.entity;
-// Generated 2018-11-10 9:52:20 by Hibernate Tools 4.3.5.Final
+// Generated 2018-12-6 16:02:03 by Hibernate Tools 3.6.0.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,9 +27,9 @@ public class ShopProduct implements java.io.Serializable {
 	private String detail;
 	private String proCount;
 	private String incomeCredits;
-	private String status;
-	private String type;
 	private String vipLevel;
+	private String type;
+	private String status;
 	private String consumeCredits;
 	private String price1;
 	private String price2;
@@ -40,6 +41,8 @@ public class ShopProduct implements java.io.Serializable {
 	private String picture5;
 	private Date createDate;
 	private String createBy;
+	private String oldPrice;  //原价格
+	private Byte hot;  //1 热门商品   2 普通商品
 
 	public ShopProduct() {
 	}
@@ -50,15 +53,17 @@ public class ShopProduct implements java.io.Serializable {
 	}
 
 	public ShopProduct(String proName, String proLogoImg, String introduction, String detail, String proCount,
-			String incomeCredits, String status, String consumeCredits, String price1, String price2, String price3,
-			String picture1, String picture2, String picture3, String picture4, String picture5, Date createDate,
-			String createBy,String type,String vipLevel) {
+			String incomeCredits, String vipLevel, String type, String status, String consumeCredits, String price1,
+			String price2, String price3, String picture1, String picture2, String picture3, String picture4,
+			String picture5, Date createDate, String createBy, String oldPrice, Byte hot) {
 		this.proName = proName;
 		this.proLogoImg = proLogoImg;
 		this.introduction = introduction;
 		this.detail = detail;
 		this.proCount = proCount;
 		this.incomeCredits = incomeCredits;
+		this.vipLevel = vipLevel;
+		this.type = type;
 		this.status = status;
 		this.consumeCredits = consumeCredits;
 		this.price1 = price1;
@@ -71,8 +76,8 @@ public class ShopProduct implements java.io.Serializable {
 		this.picture5 = picture5;
 		this.createDate = createDate;
 		this.createBy = createBy;
-		this.type=type;
-		this.setVipLevel(vipLevel);
+		this.oldPrice = oldPrice;
+		this.hot = hot;
 	}
 
 	@Id
@@ -114,7 +119,6 @@ public class ShopProduct implements java.io.Serializable {
 		this.introduction = introduction;
 	}
 
-	@Lob
 	@Column(name = "detail")
 	public String getDetail() {
 		return this.detail;
@@ -140,6 +144,24 @@ public class ShopProduct implements java.io.Serializable {
 
 	public void setIncomeCredits(String incomeCredits) {
 		this.incomeCredits = incomeCredits;
+	}
+
+	@Column(name = "vip_level", length = 2)
+	public String getVipLevel() {
+		return this.vipLevel;
+	}
+
+	public void setVipLevel(String vipLevel) {
+		this.vipLevel = vipLevel;
+	}
+
+	@Column(name = "type", length = 1)
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Column(name = "status", length = 1)
@@ -250,22 +272,23 @@ public class ShopProduct implements java.io.Serializable {
 	public void setCreateBy(String createBy) {
 		this.createBy = createBy;
 	}
-	@Column(name = "type")
-	public String getType() {
-		return type;
+
+	@Column(name = "old_price", length = 8)
+	public String getOldPrice() {
+		return this.oldPrice;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setOldPrice(String oldPrice) {
+		this.oldPrice = oldPrice;
 	}
 
-	@Column(name = "vip_level")
-	public String getVipLevel() {
-		return vipLevel;
+	@Column(name = "hot")
+	public Byte getHot() {
+		return this.hot;
 	}
 
-	public void setVipLevel(String vipLevel) {
-		this.vipLevel = vipLevel;
+	public void setHot(Byte hot) {
+		this.hot = hot;
 	}
 
 }

@@ -11,6 +11,7 @@ public class ShopProductQueryDTO extends CommonQueryDTO{
 	private String proName;
 	private String status;
 	private String type;
+	private Byte hot;  //1 爆款商品
 	private String vipLevel;
 	public String getProName() {
 		return proName;
@@ -35,5 +36,11 @@ public class ShopProductQueryDTO extends CommonQueryDTO{
 	}
 	public void setVipLevel(String vipLevel) {
 		this.vipLevel = vipLevel;
+	}
+	public Byte getHot() {
+		return hot;
+	}
+	public void setHot(Byte hot) {
+		this.hot = hot;
 	}
 }

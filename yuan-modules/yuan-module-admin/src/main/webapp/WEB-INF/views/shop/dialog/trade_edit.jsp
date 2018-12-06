@@ -315,7 +315,7 @@ $(function(){
 										<c:forEach items="${bean.shopTradeDetails }" var="u">
 											<tr>
 												<td>
-													<img src="${ctx }${u.proLogoImg }">
+													<img src="${ctx }${u.proLogoImg }" width="130px" height="130px">
 												</td>
 												<td>
 													<div class="t_text tc">${u.proName }</div>

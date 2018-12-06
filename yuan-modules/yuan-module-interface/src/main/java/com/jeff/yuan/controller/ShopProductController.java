@@ -38,6 +38,7 @@ public class ShopProductController {
 		AjaxResult ajaxResult = new AjaxResult();
 		
 		String type = request.getParameter("type");
+		String hot = request.getParameter("hot");
 		String proName = request.getParameter("proName");
 		String currentPageStr = request.getParameter("currentPage");
 		String pageSizeStr = request.getParameter("pageSize");
@@ -54,6 +55,9 @@ public class ShopProductController {
 		ShopProductQueryDTO queryDTO = new ShopProductQueryDTO();
 		queryDTO.setType(type);
 		queryDTO.setStatus("1");
+		if(StringUtils.isNotBlank(hot)){
+			queryDTO.setHot(Byte.parseByte(hot));
+		}
 		queryDTO.setProName(proName);
 		queryDTO.setCurrentPage(currentPage);
 		queryDTO.setPageSize(pageSize);
