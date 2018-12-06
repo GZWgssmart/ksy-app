@@ -183,6 +183,32 @@
 								</td>
 							</tr>
 							<tr>
+								<td class="l_title w150">原来价格</td>
+								<td>
+									<div class="J_toolsBar fl">
+										<label> <c:choose>
+													<c:when test="${not empty bean }">
+														<input type="text" name="oldPrice"
+															value="${bean.oldPrice }" />
+													</c:when>
+													<c:otherwise>
+														<input type="text" name="oldPrice"  />
+													</c:otherwise>
+												</c:choose>
+											</label>
+									</div>
+								</td>
+								<td class="l_title w150">是否热门</td>
+								<td>
+									<div class="J_toolsBar fl">
+										<label><input name="hot" type="radio" value="1"
+											<c:if test="${bean.hot == null || bean.hot == 1 }">checked="checked"</c:if> />热门</label>
+										<label><input name="hot" type="radio" value="2"
+											<c:if test="${bean.hot == 2 }">checked="checked"</c:if> />普通</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
 								<td class="l_title w150"><b class="cRed">*</b>商品类型</td>
 								<td >
 									<div class="J_toolsBar fl">
