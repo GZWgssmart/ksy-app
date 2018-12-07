@@ -33,15 +33,13 @@
         <style>
             .my-table td a:link, .my-table td a:active, .my-table td a:visited {
                 color: rgb(87, 150, 211);
-                font-weight: bold;
             }
 
             .my-table td a:hover {
                 color: rgb(100, 200, 221);
-                font-weight: bold;
             }
 
-            .my-tr {
+            .my-td {
                 font-weight: bold;
                 color: black;
             }
@@ -92,14 +90,14 @@
                                             <td><span v-text="user.address"></span></td>
                                             <td></td>
                                         </tr>
-                                        <tr class="my-tr">
+                                        <tr>
                                             <td>等级</td>
-                                            <td><span v-text="user.userLevel"></span></td>
+                                            <td class="my-td"><span v-text="user.userLevel"></span></td>
                                             <td></td>
                                         </tr>
                                         <tr class="my-tr">
                                             <td>账户余额</td>
-                                            <td><span v-text="user.shopUserExts.balance"></span></td>
+                                            <td class="my-td"><span v-text="user.shopUserExts.balance"></span></td>
                                             <td style="font-size: 16px;">
                                                 <a href="javascript:;" @click="toDonate">捐赠</a>
                                                 <br>
@@ -120,7 +118,7 @@
                                         </tr>
                                         <tr>
                                             <td>激活的健康值</td>
-                                            <td><span v-text="user.shopUserExts.activeBill"></span></td>
+                                            <td class="my-td"><span v-text="user.shopUserExts.activeBill"></span></td>
                                             <td></td>
                                         </tr>
                                         <tr>
