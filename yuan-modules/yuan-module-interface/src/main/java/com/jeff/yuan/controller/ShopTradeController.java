@@ -168,7 +168,7 @@ public class ShopTradeController {
 			}
 			// 减去余额(未开启事物 可能存在不一致)
 			BigDecimal balance = user.getShopUserExts().getBalance().subtract(bean.getPrice().abs());
-			if (balance.compareTo(BigDecimal.ZERO) >= 0) {
+			if (balance.compareTo(BigDecimal.ZERO) >= 0 || bean.getJtype() == 15) {
 				bean.setTradeNo(WebHelper.getDayNo());
 				bean.setCreateDate(new Date());
 				/* 购买商品走审核流程 1.购买会员大礼包2.复购产品         

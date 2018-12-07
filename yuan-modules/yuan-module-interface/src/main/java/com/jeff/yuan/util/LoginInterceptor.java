@@ -67,10 +67,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     		   }
     		   stringBuffer.append("<br>");
     		  }
-    		Enumeration enums=request.getParameterNames();
-    		  while(enums.hasMoreElements()){
-    			  stringBuffer.append(enums.nextElement());
-    		}
     		System.out.println("时间："+new Date().toLocaleString()+"\t 当前用户id:"+user.getId()+"\t"+this.getIpAddress(request)+"\t参数:"+stringBuffer.toString());
     		
             return true;
