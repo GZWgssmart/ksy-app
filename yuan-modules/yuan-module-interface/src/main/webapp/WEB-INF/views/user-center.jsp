@@ -77,7 +77,10 @@
                                             </thead>
                                         <tr>
                                             <td>姓名</td>
-                                            <td><span v-text="user.account"></span></td>
+                                            <td>
+                                                <span v-if="user.account != null && user.account != ''" v-text="user.account"></span>
+                                                <span v-else style="color: red;">请修改个人资料</span>
+                                            </td>
                                             <td></td>
                                         </tr>
                                         <tr>
