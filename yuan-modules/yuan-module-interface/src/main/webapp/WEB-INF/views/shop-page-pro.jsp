@@ -51,34 +51,34 @@
                             <div class="blog-sidebar">
                                 <div class="single-sidebar">
                                     <h3 class="sidebar-title">爆款热门</h3>
-                                    <div>
+                                    <div v-if="hotProducts.length == 0">
                                         暂无
                                     </div>
-                                    <!--
-                                    <div class="single-shop mb-40">
-                                        <div class="shop-img">
-                                            <a href="<%=path%>/product"><img src="assets/img/shop/electronics/3.jpg" alt="" /></a>
-                                            <div class="shop-quick-view">
-                                                <a href="<%=path%>/product">
-                                                    <i class="pe-7s-look"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="shop-text-all">
-                                            <div class="title-color fix">
-                                                <div class="shop-title f-left">
-                                                    <h3><a href="<%=path%>/product">PC Headphone</a></h3>
+                                    <div v-else>
+                                        <div v-for="item in hotProducts" class="single-shop mb-40">
+                                            <div class="shop-img">
+                                                <a :href="'<%=path%>/product?id=' + item.id"><img :src="item.proLogoImgFull" alt="" /></a>
+                                                <div class="shop-quick-view">
+                                                    <a :href="'<%=path%>/product?id=' + item.id">
+                                                        <i class="pe-7s-look"></i>
+                                                    </a>
                                                 </div>
-                                                <span class="price f-right">
-                                                                                <span class="new">￥120.00</span>
-                                                                            </span>
                                             </div>
-                                            <div class="fix">
-                                                <span class="f-left">Fashion</span>
+                                            <div class="shop-text-all">
+                                                <div class="title-color fix">
+                                                    <div class="shop-title f-left">
+                                                        <h3><a :href="'<%=path%>/product?id=' + item.id" v-text="item.proName"></a></h3>
+                                                    </div>
+                                                    <span class="price f-right">
+                                                        <span class="new" v-text="'￥' + item.price"></span>
+                                                    </span>
+                                                </div>
+                                                <div class="fix">
+                                                    <span class="f-left" v-text="item.introduction"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    -->
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,8 @@
             products: [],
             totalPage: 0,
             currentPage: 1,
-            pageNumbers: []
+            pageNumbers: [],
+            hotProducts: []
         },
         created: function() {
 
@@ -189,6 +190,7 @@
         mounted: function() {
             this.meanMenu()
             this.showProducts(true, 1)
+            this.showHotProducts()
         },
         methods: {
             logout: function () {
@@ -277,7 +279,39 @@
                 this.$nextTick(function() {
                     $('#my-mobile-menu').meanmenu()
                 })
-            }
+            },
+            showHotProducts: function () {
+                var userLevel = '${sessionScope.userInfo.vipLevel}'
+                $.post(
+                    PRODUCT_URL,
+                    {
+                        pageSize: 15,
+                        currentPage: 1,
+                        type: 3,
+                        hot: 1
+                    },
+                    function (data) {
+                        if (data.success === true) {
+                            view.hotProducts = data.data.list
+                            if (view.hotProducts.length > 0) {
+                                view.hotProducts.forEach(function(item, index) {
+                                    item.proLogoImgFull = BASE_URL + MODULE_ADMIN + item.proLogoImg
+                                    // 如果不是会员大礼包
+                                    if (item.type !== '1') {
+                                        if (userLevel != null && userLevel !== undefined && userLevel !== '') {
+                                            item.price = item[USER_PRICE[userLevel]]
+                                        } else {
+                                            item.price = item.price1
+                                        }
+                                    } else {
+                                        item.price = item.price1
+                                    }
+                                })
+                            }
+                        }
+                    }
+                )
+            },
         }
     });
 </script>
