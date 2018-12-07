@@ -133,7 +133,7 @@ public class ShopUserController {
 	}
 
 	/**
-	 * 用户修改操作，注册与个人中心通用
+	 * 用户修改操作，个人中心通用
 	 * 
 	 * @param request
 	 * @return
@@ -159,9 +159,9 @@ public class ShopUserController {
 			if (user == null) {
 				if (StringUtils.isNotBlank(id)) {
 					user = userService.find(Integer.parseInt(id));
-				} else {
+				} /*else {
 					user = new ShopUser();
-				}
+				}*/
 				
 			}else {
 				user = userService.find(user.getId());
@@ -201,7 +201,7 @@ public class ShopUserController {
 				user.getShopUserExts().setUpdateDate(new Date());
 				user.getShopUserExts().setShopUser(user);
 				userService.update(user);
-			} else {
+			} else {/*
 				user.setStatus(1);
 				user.setCreateDate(new Date());
 				
@@ -217,7 +217,7 @@ public class ShopUserController {
 				shopUserExt.setShopUser(user);
 				shopUserExt.setCreateDate(new Date());
 				userExtService.save(shopUserExt);
-			}
+			*/}
 			ajaxResult.setSuccess(true);
 
 		} catch (Exception e) {
@@ -453,7 +453,41 @@ public class ShopUserController {
 				return ajaxResult;
 			}
 			// 将用户信息存入数据库
-			this.ajaxSave(request);
+			String account = request.getParameter("account");
+			String password = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			String refPhone = request.getParameter("refPhone");
+			// 保存用户
+			ShopUser user = new  ShopUser();
+			if (StringUtils.isNotBlank(account)) {
+				user.setAccount(account.trim());
+			}
+			if (StringUtils.isNotBlank(phone)) {
+				user.setPhone(phone.trim());
+			}
+			if (StringUtils.isNotBlank(refPhone)) {
+				user.setRefPhone(refPhone.trim());
+			}
+			if (StringUtils.isNotBlank(password)) {
+				user.setPassword(Md5Util.generatePassword(password.trim()));
+			}
+			user.setStatus(1);
+			user.setCreateDate(new Date());
+			
+			user.setVipLevel("v1");
+			user = userService.save(user);
+			
+			ShopUserExt shopUserExt  = new ShopUserExt();
+			shopUserExt.setActiveBill("0");
+			shopUserExt.setBalance(new BigDecimal(0));
+			shopUserExt.setBill("0");
+			shopUserExt.setCredits("0");
+			shopUserExt.setTradeBill("0");
+			shopUserExt.setShopUser(user);
+			shopUserExt.setCreateDate(new Date());
+			userExtService.save(shopUserExt);
+		
+			
 			ajaxResult.setSuccess(true);
 		}
 		
