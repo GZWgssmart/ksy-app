@@ -188,12 +188,8 @@ public class IndexController {
     }
 
     @RequestMapping("share-reg")
-    public ModelAndView shareRegister(HttpSession session, String refPhone) {
+    public ModelAndView shareRegister(String refPhone) {
         ModelAndView mav = new ModelAndView();
-        if (session.getAttribute("userInfo") == null) {
-            mav.setViewName("redirect:login?relogin=y");
-            return mav;
-        }
         mav.setViewName("share-register");
         mav.addObject("refPhone", refPhone);
         return mav;
