@@ -118,6 +118,9 @@
                                             </span>
                                             -->
                                             <h3 v-text="'￥' + product.price"></h3>
+                                            <p v-if="product.type == 3">
+                                                <del style="font-size: 13px; color: gray;" v-text="'原价：￥' + (product.oldPrice == null ? '暂无' : product.oldPrice)"></del>
+                                            </p>
                                             <p v-text="product.introduction"></p>
                                         </div>
                                         <div class="single-cart-color for-pro-border">
