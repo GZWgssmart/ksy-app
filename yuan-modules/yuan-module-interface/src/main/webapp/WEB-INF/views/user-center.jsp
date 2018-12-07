@@ -30,6 +30,22 @@
         <link rel="stylesheet" type="text/css" href="<%=path%>/assets/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="<%=path%>/assets/css/menu_elastic.css" />
         <script src="<%=path%>/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <style>
+            .my-table td a:link, .my-table td a:active, .my-table td a:visited {
+                color: rgb(87, 150, 211);
+                font-weight: bold;
+            }
+
+            .my-table td a:hover {
+                color: rgb(100, 200, 221);
+                font-weight: bold;
+            }
+
+            .my-tr {
+                font-weight: bold;
+                color: black;
+            }
+        </style>
     </head>
     <body>
 
@@ -52,7 +68,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
-                                    <div class="table-content table-responsive">
+                                    <div class="table-content table-responsive my-table">
                                         <table>
                                             <thead>
                                             <tr>
@@ -76,20 +92,20 @@
                                             <td><span v-text="user.address"></span></td>
                                             <td></td>
                                         </tr>
-                                        <tr>
+                                        <tr class="my-tr">
                                             <td>等级</td>
                                             <td><span v-text="user.userLevel"></span></td>
                                             <td></td>
                                         </tr>
-                                        <tr>
+                                        <tr class="my-tr">
                                             <td>账户余额</td>
                                             <td><span v-text="user.shopUserExts.balance"></span></td>
-                                            <td>
-                                                <a href="javascript:;" @click="toDonate">余额捐赠</a>
+                                            <td style="font-size: 16px;">
+                                                <a href="javascript:;" @click="toDonate">捐赠</a>
                                                 <br>
-                                                <a href="javascript:;" @click="toWithdraw">余额提现</a>
+                                                <a href="javascript:;" @click="toWithdraw">提现</a>
                                                 <br>
-                                                <a href="javascript:;" @click="toRecharge">余额充值</a>
+                                                <a href="javascript:;" @click="toRecharge">充值</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -100,7 +116,7 @@
                                         <tr>
                                             <td>总健康值(未激活)</td>
                                             <td><span v-text="user.shopUserExts.bill"></span></td>
-                                            <td><a href="<%=path%>/bill-detail">查看健康值变动明细</a></td>
+                                            <td style="font-size: 16px;"><a href="<%=path%>/bill-detail">查看<br/>明细</a></td>
                                         </tr>
                                         <tr>
                                             <td>激活的健康值</td>
