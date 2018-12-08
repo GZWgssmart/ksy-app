@@ -78,7 +78,7 @@ public class ShopProfitController{
              shopSysParam = this.shopProfitService.find(Integer.parseInt(id));
         }
         model.addAttribute("bean", shopSysParam);
-        return "shop/dialog/sysProfit_edit";
+        return "shop/dialog/sysprofit_edit";
     }
 
     @RequestMapping("/save")

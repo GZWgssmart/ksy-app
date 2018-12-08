@@ -142,7 +142,7 @@
 				perContent =layer.open({
 					title : title,
 					type : 1,
-					area : [ '800px', '500px' ],
+					area : [ '500px', '400px' ],
 					content : str,
 					btn : [ '确定', '取消' ],
 					yes : function(index, layero) {
