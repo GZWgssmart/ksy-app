@@ -182,6 +182,7 @@
 									</div>
 								</td>
 							</tr>
+							<c:if test="${bean.type == null || bean.type == 3 || bean.type == 2  }">
 							<tr>
 								<td class="l_title w150">原来价格</td>
 								<td>
@@ -208,6 +209,7 @@
 									</div>
 								</td>
 							</tr>
+							</c:if>
 							<tr>
 								<td class="l_title w150"><b class="cRed">*</b>商品类型</td>
 								<td >

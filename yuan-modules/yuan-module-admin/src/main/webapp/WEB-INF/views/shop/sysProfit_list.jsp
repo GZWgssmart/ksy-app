@@ -13,28 +13,40 @@
 	<%@ include file="../common/menu.jsp"%>
 	<div class="J_content">
 		<div class="mt20 plr20">
-			<form action="${ctx }/sysParam/list" id="queryForm" method="post">
+			<form action="${ctx }/sysProfit/list" id="queryForm" method="post">
 				<div class="J_toolsBar clearfix">
-					<div class="t_label">参数编码</div>
+					<div class="t_label">类型</div>
 					<div class="t_text ml10">
-						<input placeholder="请输入参数编码" type="text" name="sysCode" id="sysCode"
-							value="${queryDTO.sysCode }" />
+						<select name="type" 
+							value="${userQueryDTO.type }">
+							<option value=0>请选择</option>
+							<option value=1  <c:if test="${1 eq queryDTO.type }">selected</c:if> >日利润</option>
+							<option value=2 <c:if test="${2 eq queryDTO.type }">selected</c:if> >月利润</option>
+						</select>
 					</div>
-					<div class="t_label">参数类型</div>
+					<div class="t_label">开始时间</div>
 					<div class="t_text ml10">
-						<input placeholder="请输入参数类型" type="text" name="sysType" id="sysType"
-							value="${queryDTO.sysType }" />
+						<input placeholder="请输入开始时间" type="text" name="sdateStart" value="${queryDTO.sdateStart }" />
+					</div>
+					<div class="t_label">结束时间</div>
+					<div class="t_text ml10">
+						<input placeholder="请输入结束时间" type="text" name="sdateEnd" value="${queryDTO.sdateEnd }" />
 					</div>
 					<div class="t_button mgl30">
 						<a class="abtn red" href="javascript:myQuery();"> <i
 							class="icon"></i>查询
 						</a>
 					</div>
-					<div class="t_button ml10">
+					<%-- <div class="t_button ml10">
 						<a class="abtn blue" href="javascript:myEdit();"> <i
 							class="icon"></i>新增
 						</a>
-					</div>
+					</div> --%>
+					<div class="t_button ml10">
+	               		<a class="abtn maxblue" href="javascript:myExport();">
+	               			<i class="icon"></i>导出
+	               		</a>
+	               	</div>
 					<div class="t_label ml10">
 						记录数：<label style="color: red;" id="total">${page.totalCount }</label>
 					</div>
@@ -45,13 +57,11 @@
 						<table>
 							<thead>
 								<tr>
-									<td><span>id</span></td>
-									<td><span>参数编码</span></td>
-									<td><span>参数类型</span></td>
-									<td><span>参数值</span></td>
-									<td><span>备注</span></td>
+									<!-- <td><span>id</span></td> -->
+									<td><span>类型</span></td>
+									<td><span>利润</span></td>
+									<td><span>利润对应时间</span></td>
 									<td><span>创建时间</span></td>
-									<td><span>修改时间</span></td>
 									<td><span>操作</span></td>
 								</tr>
 							</thead>
@@ -60,22 +70,26 @@
 									<c:when test="${page.list != null && page.totalCount > 0 }">
 										<c:forEach items="${page.list }" var="u">
 											<tr>
-												<td>
+												<%-- <td>
 													<div class="t_text tc">${u.id }</div>
-												</td>
+												</td> --%>
 												<td>
 													<div class="t_text tc">
-														${u.sysCode }
+														<c:choose>
+															<c:when test="${1 eq u.type}">
+		                                     			日利润
+		                                     		</c:when>
+															<c:otherwise>
+		                                     			月利润
+		                                     		</c:otherwise>
+														</c:choose>
 													</div>
 												</td>
 												<td>
-													<div class="t_text tc">${u.sysType }</div>
+													<div class="t_text tc">${u.profit }</div>
 												</td>
 												<td>
-													<div class="t_text tc">${u.sysValue }</div>
-												</td>
-												<td>
-													<div class="t_text tc">${u.sysDesc }</div>
+													<div class="t_text tc">${u.dateString }</div>
 												</td>
 												<td>
 													<div class="t_text tc">
@@ -83,13 +97,6 @@
 															pattern="yyyy-MM-dd HH:mm:ss" />
 													</div>
 												</td>
-												<td>
-													<div class="t_text tc">
-														<fmt:formatDate value="${u.updateDate }"
-															pattern="yyyy-MM-dd HH:mm:ss" />
-													</div>
-												</td>
-
 												<td>
 													<div class="t_link">
 														<a href="javascript:myEdit('${u.id }');"><i
@@ -129,7 +136,7 @@
 			} else {
 				title = '修改参数';
 			}
-			$.post('${ctx}/sysParam/edit?id=' + id, {}, function(str) {
+			$.post('${ctx}/sysProfit/edit?id=' + id, {}, function(str) {
 
 				layer.close(loadIdx);
 				perContent =layer.open({
@@ -154,7 +161,7 @@
 		}
 
 		function myQuery() {
-			$("#queryForm").attr("action","${ctx}/sysParam/list");
+			$("#queryForm").attr("action","${ctx}/sysProfit/list");
 			$('#queryForm').submit();
 		}
 		
@@ -165,7 +172,7 @@
 				layer.close(index);
 				var loadIdx = layer.load();
 				$.ajax({
-					url : '${ctx}/sysParam/upd/status',
+					url : '${ctx}/sysProfit/doDelete',
 					type : 'post',
 					data : {
 						'id' : id,
@@ -187,7 +194,7 @@
 		}
 		
 		function myExport(){
-			$("#queryForm").attr("action","${ctx}/sysParam/export");
+			$("#queryForm").attr("action","${ctx}/sysProfit/export");
 			$('#queryForm').submit();
 		}
 	</script>
