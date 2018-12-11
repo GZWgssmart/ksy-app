@@ -2892,6 +2892,11 @@ button.submit:hover {
     left: auto;
     right: 0px;
 }
+
+.details-tab.owl-carousel img {
+    max-height: 125px;
+}
+
 .details-tab:hover .owl-nav div {
     opacity: 1;
 }

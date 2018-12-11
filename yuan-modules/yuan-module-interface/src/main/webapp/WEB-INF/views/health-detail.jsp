@@ -65,7 +65,9 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        <!--
                                         <a href="#"><img :src="article.coverImageUrl" alt=""></a>
+                                        -->
                                         <div v-html="article.content"></div>
                                     </div>
                                 </div>
