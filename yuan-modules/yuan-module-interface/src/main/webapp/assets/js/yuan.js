@@ -60,6 +60,8 @@ var RESET_PAY_PWD_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/reset/jiaoyimima';
 
 var LOGOUT_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/login_out';
 
+var HOLDER_PROFIT_URL = BASE_URL + MODULE_WEB + '/api/shoptrade/listProfit';
+
 var LOGIN_ERR_MSG = 'login first'
 
 var BANNER_COLUMN_ID = '8a2a08425b7a0b7b015b7a2b0f060006'

@@ -206,4 +206,16 @@ public class IndexController {
         return mav;
     }
 
+    @RequestMapping("holder-profit-detail")
+    public ModelAndView holderProfitDetail(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("userInfo") == null) {
+            mav.setViewName("redirect:login?relogin=y");
+            return mav;
+        }
+        mav.setViewName("holder-profit-detail");
+        return mav;
+    }
+
+
 }
