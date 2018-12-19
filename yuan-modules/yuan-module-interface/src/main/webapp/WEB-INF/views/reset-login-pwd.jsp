@@ -92,7 +92,7 @@
         <script src="<%=path%>/assets/js/plugins.js"></script>
         <script src="<%=path%>/assets/js/main.js"></script>
         <script src="<%=path%>/assets/js/classie.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+        <script src="<%=path%>/assets/js/vue.min.js"></script>
         <script src="<%=path%>/assets/js/yuan.js"></script>
         <script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
         <script>
