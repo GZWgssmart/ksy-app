@@ -408,6 +408,7 @@ public class ShopUserController {
 					HttpSession session = request.getSession();
 					json = new JSONObject();
 					json.put("verifyCode", verifyCode);
+					json.put("phone", phone);
 					json.put("createTime", System.currentTimeMillis());
 					// 将认证码存入SESSION
 					session.setAttribute("verifyCode", json);
@@ -434,6 +435,7 @@ public class ShopUserController {
 	public AjaxResult register(HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
 		String code = request.getParameter("code");
+		String phone = request.getParameter("phone");
 		JSONObject json = (JSONObject) request.getSession().getAttribute("verifyCode");
 		System.out.println("code:"+code);
 		if (json==null || json.isEmpty()) {
@@ -446,6 +448,11 @@ public class ShopUserController {
 				ajaxResult.setMsg("验证码错误");
 				return ajaxResult;
 			}
+			if (!json.getString("phone").equals(phone)) {
+				ajaxResult.setSuccess(false);
+				ajaxResult.setMsg("手机号不一致");
+				return ajaxResult;
+			}
 			// 时间看客户要求，目前写的五分钟
 			if ((System.currentTimeMillis() - json.getLong("createTime")) > 1000 * 60 * 5) {
 				ajaxResult.setSuccess(false);
@@ -455,7 +462,6 @@ public class ShopUserController {
 			// 将用户信息存入数据库
 			String account = request.getParameter("account");
 			String password = request.getParameter("password");
-			String phone = request.getParameter("phone");
 			String refPhone = request.getParameter("refPhone");
 			// 保存用户
 			ShopUser user = new  ShopUser();

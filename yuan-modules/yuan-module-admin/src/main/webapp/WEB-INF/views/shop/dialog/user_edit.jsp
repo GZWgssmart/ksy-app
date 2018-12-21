@@ -265,17 +265,17 @@ $(function(){
                                  </div>
                              </div>
                          </td>
-                         <td class="l_title w150">昵称</td>
+                         <td class="l_title w150">银行卡号</td>
                          <td >
                              <div class="J_toolsBar fl">
                                  <div class="t_text w200 ml10">
                                      <label>
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
-                                     			<input type="text" name="nickName"  value="${bean.nickName }" />
+                                     			<input type="text" name="shopUserExts.bankCard"  value="${bean.shopUserExts.bankCard }" />
                                      		</c:when>
                                      		<c:otherwise>
-                                     			<input type="text" name="nickName"  value="" />
+                                     			<input type="text" name="shopUserExts.bankCard"  value="" />
                                      		</c:otherwise>
                                      	</c:choose>
                                      </label>
@@ -320,25 +320,7 @@ $(function(){
                              </div>
                          </td>
                      </tr>
-                     <tr>
-						<td class="l_title w150">银行卡号</td>
-                         <td colspan="3">
-                             <div class="J_toolsBar fl">
-                                 <div class="t_text w200 ml10">
-                                     <label>
-                                     	<c:choose>
-                                     		<c:when test="${not empty bean }">
-                                     			<input type="text" name="shopUserExts.bankCard"  value="${bean.shopUserExts.bankCard }" />
-                                     		</c:when>
-                                     		<c:otherwise>
-                                     			<input type="text" name="shopUserExts.bankCard"  value="" />
-                                     		</c:otherwise>
-                                     	</c:choose>
-                                     </label>
-                                 </div>
-                             </div>
-                         </td>
-                     </tr>
+                     
 				</table>
 			</div>
 		</div>

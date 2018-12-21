@@ -28,10 +28,10 @@
 					<div class="t_label">会员状态</div>
 					<div class="t_text ml10">
 						<select name="status" 
-							value="${userQueryDTO.vipLevel }">
+							value="${userQueryDTO.status }">
 							<option value=0>请选择</option>
-							<option value=1  <c:if test="${1 eq userQueryDTO.vipLevel }">selected</c:if> >有效</option>
-							<option value=2 <c:if test="${2 eq userQueryDTO.vipLevel }">selected</c:if> >无效</option>
+							<option value=1  <c:if test="${1 eq userQueryDTO.status }">selected</c:if> >有效</option>
+							<option value=2 <c:if test="${2 eq userQueryDTO.status }">selected</c:if> >无效</option>
 						</select>
 					</div>
 					<div class="t_label">会员等级</div>

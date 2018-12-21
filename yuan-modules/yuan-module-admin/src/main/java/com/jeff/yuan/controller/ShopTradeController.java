@@ -1,5 +1,6 @@
 package com.jeff.yuan.controller;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -377,8 +378,15 @@ public class ShopTradeController {
 			String id = request.getParameter("id");
 			String status = request.getParameter("status");
 
-			tradeService.updateStatus(id, Integer.parseInt(status));
-
+			ShopTrade trade = tradeService.updateStatus(id, Integer.parseInt(status));
+//			提现，直接扣去账户余额
+			if (trade.getJtype()==14) {
+				ShopUser user = userService.find(trade.getUserId());
+				// 减去账户余额
+				BigDecimal balance = user.getShopUserExts().getBalance().subtract(trade.getPrice().abs());
+				user.getShopUserExts().setBalance(balance);
+				userService.update(user);
+			}
 			ajaxResult.setSuccess(true);
 
 		} catch (Exception e) {
@@ -387,6 +395,28 @@ public class ShopTradeController {
 			;
 		}
 
+		return ajaxResult;
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public AjaxResult ajaxDelete(HttpServletRequest request) {
+		AjaxResult ajaxResult = new AjaxResult();
+		ajaxResult.setSuccess(false);
+		
+		try {
+			String id = request.getParameter("id");
+			if (StringUtils.isNoneBlank(id)) {
+				tradeService.delete(Integer.parseInt(id));;
+			}
+			ajaxResult.setSuccess(true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			ajaxResult.setMsg(e.getMessage());
+			;
+		}
+		
 		return ajaxResult;
 	}
 

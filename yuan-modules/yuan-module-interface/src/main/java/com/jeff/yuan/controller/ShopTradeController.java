@@ -677,6 +677,7 @@ public class ShopTradeController {
 	}
 
 	@RequestMapping("/listProfit")
+	@ResponseBody
 	public AjaxResult listShopProfit(HttpServletRequest request) {
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setSuccess(false);

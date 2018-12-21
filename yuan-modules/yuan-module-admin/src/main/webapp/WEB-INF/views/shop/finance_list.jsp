@@ -33,9 +33,9 @@
 						<select name="jtype" value="${queryDTO.jtype }">
 							<option value="">请选择</option>
 							<option value=14
-								<c:if test="${14 eq queryDTO.jtype }">selected</c:if>>充值</option>
+								<c:if test="${14 eq queryDTO.jtype }">selected</c:if>>提现</option>
 							<option value=15
-								<c:if test="${15 eq queryDTO.jtype }">selected</c:if>>提现</option>
+								<c:if test="${15 eq queryDTO.jtype }">selected</c:if>>充值</option>
 						</select>
 					</div>
 
@@ -163,6 +163,8 @@
 																<!-- <a href="#"><i class="icon"></i>已完成</a> -->
 															</c:otherwise>
 														</c:choose>
+														<a href="javascript:deleteinfo('${u.id }');"><i
+															class="icon"></i>删除</a>
 													</div>
 												</td>
 											</tr>
@@ -242,6 +244,38 @@
 					data : {
 						'id' : id,
 						'status' : status
+					},
+					traditional : true,
+					success : function(result) {
+						layer.close(loadIdx);
+						if (result.success) {
+							layer.alert('操作成功', function() {
+								window.location.reload();
+							});
+						} else {
+							layer.alert('操作失败');
+						}
+					}
+				});
+			});
+		}
+		
+		function deleteinfo(id) {
+			var content = '';
+			content = '确认删除吗？';
+			/* if (status == '1') {
+			} else {
+				content = '确认要确认收货吗？';
+			} */
+
+			layer.confirm(content, function(index) {
+				layer.close(index);
+				var loadIdx = layer.load();
+				$.ajax({
+					url : '${ctx}/shoptrade/delete',
+					type : 'post',
+					data : {
+						'id' : id
 					},
 					traditional : true,
 					success : function(result) {
