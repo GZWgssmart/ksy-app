@@ -15,7 +15,7 @@
                     <div class="footer-widget mb-30">
                         <div class="footer-logo">
                             <a href="<%=path%>/index">
-                                <img src="<%=path%>/assets/img/logo/my-logo.png" alt="康生缘在线商城" style="max-height:60px;" class="img-responsive">
+                                <img src="<%=path%>/assets/img/logo/my-logo.png" alt="艾瑞堡在线商城" style="max-height:60px;" class="img-responsive">
                             </a>
                         </div>
                         <div class="widget-info">
@@ -86,7 +86,7 @@
                     <div class="copyright">
                         <p>
                             Copyright &copy; 2018
-                            <a href="<%=path%>/index">康生缘</a>
+                            <a href="<%=path%>/index">艾瑞堡</a>
                             版权所有
                         </p>
                     </div>

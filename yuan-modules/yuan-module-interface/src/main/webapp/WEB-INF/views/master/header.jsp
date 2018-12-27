@@ -14,7 +14,7 @@
                 <div class="col-md-4 col-sm-3 col-xs-6">
                     <div class="logo" style="padding: 10px 0 0 0;">
                         <a href="<%=path%>/index">
-                            <img src="<%=path%>/assets/img/logo/my-logo.png" class="img-responsive" style="max-height:60px;" alt="康生缘在线商城">
+                            <img src="<%=path%>/assets/img/logo/my-logo.png" class="img-responsive" style="max-height:60px;" alt="艾瑞堡在线商城">
                         </a>
                     </div>
                 </div>

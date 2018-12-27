@@ -8,7 +8,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>康生缘-重置登录密码</title>
+        <title>艾瑞堡-重置登录密码</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
