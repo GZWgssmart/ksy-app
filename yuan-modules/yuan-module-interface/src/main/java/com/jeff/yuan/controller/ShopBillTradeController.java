@@ -2,6 +2,7 @@ package com.jeff.yuan.controller;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -227,7 +228,7 @@ public class ShopBillTradeController {
 			String phone = request.getParameter("tradePhone");
 			String payPwd = request.getParameter("payPwd");
 			String amount = request.getParameter("amount");//传递负数
-			if (StringUtils.isNotEmpty(phone)) {
+			if (StringUtils.isEmpty(phone)) {
 				ajaxResult.setMsg("手机号必须输入");
 				return ajaxResult;
 			}
@@ -238,11 +239,12 @@ public class ShopBillTradeController {
 			// 返回前台转让用户是否存在判断
 			ShopUserQueryDTO shopUserQueryDTO = new ShopUserQueryDTO();
 			shopUserQueryDTO.setPhone(phone);
-			ShopUser tradeUser = userService.queryShopUserList(shopUserQueryDTO).get(0);
-			if (tradeUser == null) {
+			List<ShopUser> list  = userService.queryShopUserList(shopUserQueryDTO);
+			if (list.size() <1) {
 				ajaxResult.setMsg("转让用户不存在");
 				return ajaxResult;
 			}
+			ShopUser tradeUser = list.get(0);
 			
 			if (StringUtils.isNotEmpty(user.getJiaoyimima())) {
 				if (StringUtils.isEmpty(payPwd)) {
