@@ -75,11 +75,14 @@
 		                                 <td>
 		                                     <div class="t_text tc">
 		                                        <c:choose>
-															<c:when test="${'v2' eq u.vipLevel}">
+															<c:when test="${'v1' eq u.vipLevel}">
 		                                     			个人vip
 		                                     		</c:when>
-															<c:when test="${'v3' eq u.vipLevel}">
+															<c:when test="${'v2' eq u.vipLevel}">
 		                                     			初级代理
+		                                     		</c:when>
+															<c:when test="${'v3' eq u.vipLevel}">
+		                                     			中级代理
 		                                     		</c:when>
 															<c:when test="${'v4' eq u.vipLevel}">
 		                                     			高级代理

@@ -39,9 +39,10 @@
 						<select name="vipLevel" 
 							value="${userQueryDTO.vipLevel }">
 							<option value="">请选择</option>
-							<option value="v1" <c:if test="${'v1' eq userQueryDTO.vipLevel }">selected</c:if> >普通会员</option>
-							<option value="v2" <c:if test="${'v2' eq userQueryDTO.vipLevel }">selected</c:if> >个人vip</option>
-							<option value="v3" <c:if test="${'v3' eq userQueryDTO.vipLevel }">selected</c:if> >初级代理</option>
+							<option value="v0" <c:if test="${'v0' eq userQueryDTO.vipLevel }">selected</c:if> >普通会员</option>
+							<option value="v1" <c:if test="${'v1' eq userQueryDTO.vipLevel }">selected</c:if> >个人vip</option>
+							<option value="v2" <c:if test="${'v2' eq userQueryDTO.vipLevel }">selected</c:if> >初级代理</option>
+							<option value="v3" <c:if test="${'v3' eq userQueryDTO.vipLevel }">selected</c:if> >中级代理</option>
 							<option value="v4" <c:if test="${'v4' eq userQueryDTO.vipLevel }">selected</c:if> >高级代理</option>
 							<option value="v5" <c:if test="${'v5' eq userQueryDTO.vipLevel }">selected</c:if> >核心代理</option>
 							<option value="v6" <c:if test="${'v6' eq userQueryDTO.vipLevel }">selected</c:if> >运营中心</option>
@@ -104,14 +105,17 @@
 												<td>
 													<div class="t_text tc">
 														<c:choose>
-															<c:when test="${'v1' eq u.vipLevel}">
+															<c:when test="${'v0' eq u.vipLevel}">
 		                                     			普通会员
 		                                     		</c:when>
-															<c:when test="${'v2' eq u.vipLevel}">
+															<c:when test="${'v1' eq u.vipLevel}">
 		                                     			个人vip
 		                                     		</c:when>
-															<c:when test="${'v3' eq u.vipLevel}">
+															<c:when test="${'v2' eq u.vipLevel}">
 		                                     			初级代理
+		                                     		</c:when>
+															<c:when test="${'v3' eq u.vipLevel}">
+		                                     			中级代理
 		                                     		</c:when>
 															<c:when test="${'v4' eq u.vipLevel}">
 		                                     			高级代理

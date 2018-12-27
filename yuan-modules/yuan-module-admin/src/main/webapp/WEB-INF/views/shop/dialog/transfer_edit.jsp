@@ -106,36 +106,14 @@ $(function(){
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
                                      			<select name="jtype" data-rule="交易类型:required;" >
-                                     				<%-- <option value=1 <c:if test="${1 eq bean.jtype }">selected</c:if> >购买会员大礼包</option>
-                                     				<option value=2 <c:if test="${2 eq bean.jtype }">selected</c:if> >复购产品</option> --%>
-                                     				<option value=3 <c:if test="${3 eq bean.jtype }">selected</c:if> >直推</option>
-                                     				<option value=4 <c:if test="${4 eq bean.jtype }">selected</c:if> >间推</option>
-                                     				<option value=5 <c:if test="${5 eq bean.jtype }">selected</c:if> >管理奖</option>
-                                     				<option value=6 <c:if test="${6 eq bean.jtype }">selected</c:if> >股份收益</option>
-                                     				<option value=7 <c:if test="${7 eq bean.jtype }">selected</c:if> >平台分红</option>
-                                     				<option value=8 <c:if test="${8 eq bean.jtype }">selected</c:if> >捐赠</option>
-                                     				<option value=9 <c:if test="${9 eq bean.jtype }">selected</c:if> >购买返点</option>
-                                     				<option value=10 <c:if test="${10 eq bean.jtype }">selected</c:if> >直推购买返点</option>
-                                     				<option value=11 <c:if test="${11 eq bean.jtype }">selected</c:if> >间推购买返点</option>
-                                     				<option value=12 <c:if test="${12 eq bean.jtype }">selected</c:if> >提现健康值</option>
-                                     				<%-- <option value=13 <c:if test="${13 eq bean.jtype }">selected</c:if> >项目合作</option> --%>
+                                     				<option value=16 <c:if test="${16 eq bean.jtype }">selected</c:if> >转账收入</option>
+                                     				<option value=17 <c:if test="${17 eq bean.jtype }">selected</c:if> >转账支出</option>
                                      			</select>
                                      		</c:when>
                                      		<c:otherwise>
                                      			<select name="jtype" data-rule="交易类型:required;" >
-                                     				<!-- <option value=1  >购买会员大礼包</option>
-													<option value=2  >复购产品</option> -->
-													<option value=3  >直推</option>
-													<option value=4  >间推</option>
-													<option value=5  >管理奖</option>
-													<option value=6  >股份收益</option>
-													<option value=7  >平台分红</option>
-													<option value=8  >捐赠</option>
-													<option value=9  >购买返点</option>
-													<option value=10 >直推购买返点</option>
-													<option value=11 >间推购买返点</option>
-													<option value=12 >提现健康值</option>
-													<!-- <option value=13 >项目合作</option> -->
+													<option value=16 >转账收入</option>
+													<option value=17 >转账支出</option>
                                      			</select>
                                      		</c:otherwise>
                                      	</c:choose>
@@ -246,7 +224,7 @@ $(function(){
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
                                      			<select  value="${user.vipLevel }" readonly="readonly" >
-                                     				<option value="v0" <c:if test="${'v0' eq user.vipLevel }">selected</c:if>  >普通会员</option>
+                                     				<option value="v0" <c:if test="${'v0' eq user.vipLevel }">selected</c:if> >普通会员</option>
                                      				<option value="v1" <c:if test="${'v1' eq user.vipLevel }">selected</c:if> >个人vip</option>
                                      				<option value="v2" <c:if test="${'v2' eq user.vipLevel }">selected</c:if> >初级代理</option>
                                      				<option value="v3" <c:if test="${'v3' eq user.vipLevel }">selected</c:if> >中级代理</option>

@@ -76,9 +76,10 @@
                                      	<c:choose>
                                      		<c:when test="${not empty bean }">
                                      			<select name="vipLevel" data-rule="会员等级:required;" value="${bean.vipLevel }">
-                                     				<option value="v1" <c:if test="${'v1' eq bean.vipLevel }">selected</c:if> >普通会员</option>
-                                     				<option value="v2" <c:if test="${'v2' eq bean.vipLevel }">selected</c:if> >个人vip</option>
-                                     				<option value="v3" <c:if test="${'v3' eq bean.vipLevel }">selected</c:if> >初级代理</option>
+                                     				<option value="v0" <c:if test="${'v0' eq bean.vipLevel }">selected</c:if> >普通会员</option>
+                                     				<option value="v1" <c:if test="${'v1' eq bean.vipLevel }">selected</c:if> >个人vip</option>
+                                     				<option value="v2" <c:if test="${'v2' eq bean.vipLevel }">selected</c:if> >初级代理</option>
+                                     				<option value="v3" <c:if test="${'v3' eq bean.vipLevel }">selected</c:if> >中级代理</option>
                                      				<option value="v4" <c:if test="${'v4' eq bean.vipLevel }">selected</c:if> >高级代理</option>
                                      				<option value="v5" <c:if test="${'v5' eq bean.vipLevel }">selected</c:if> >核心代理</option>
                                      				<option value="v6" <c:if test="${'v6' eq bean.vipLevel }">selected</c:if> >运营中心</option>
@@ -87,9 +88,10 @@
                                      		</c:when>
                                      		<c:otherwise>
                                      			<select name="vipLevel" data-rule="会员等级:required;" >
-                                     				<option value="v1">普通会员</option>
-                                     				<option value="v2" selected>个人vip</option>
-                                     				<option value="v3">初级代理</option>
+                                     				<option value="v0">普通会员</option>
+                                     				<option value="v1" selected>个人vip</option>
+                                     				<option value="v2">初级代理</option>
+                                     				<option value="v3">中级代理</option>
                                      				<option value="v4">高级代理</option>
                                      				<option value="v5">核心代理</option>
                                      				<option value="v6">运营中心</option>
@@ -161,14 +163,17 @@
 												<td>
 													<div class="t_text tc">
 														<c:choose>
-															<c:when test="${'v1' eq u.viplevel}">
+															<c:when test="${'v0' eq u.viplevel}">
 		                                     			普通会员
 		                                     		</c:when>
-															<c:when test="${'v2' eq u.viplevel}">
+															<c:when test="${'v1' eq u.viplevel}">
 		                                     			个人vip
 		                                     		</c:when>
-															<c:when test="${'v3' eq u.viplevel}">
+															<c:when test="${'v2' eq u.viplevel}">
 		                                     			初级代理
+		                                     		</c:when>
+															<c:when test="${'v3' eq u.viplevel}">
+		                                     			中级代理
 		                                     		</c:when>
 															<c:when test="${'v4' eq u.viplevel}">
 		                                     			高级代理

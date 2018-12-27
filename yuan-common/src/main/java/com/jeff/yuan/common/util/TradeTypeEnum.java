@@ -23,6 +23,8 @@ public enum TradeTypeEnum {
 	v13(13,"项目合作"),
 	v14(14,"提现余额"),
 	v15(15,"充值"),
+	v16(16,"转账收入"),
+	v17(17,"转账付款"),
 	;
 
 	private int level;	 

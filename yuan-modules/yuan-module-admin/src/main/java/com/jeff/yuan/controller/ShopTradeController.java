@@ -98,6 +98,50 @@ public class ShopTradeController {
 		return "shop/trade_list";
 	}
 
+	@RequestMapping("/listTransfer")
+	public String listForTransfer(HttpServletRequest request, Model model) {
+		String status = request.getParameter("status");
+		String jtype = request.getParameter("jtype");
+		String currentPageStr = request.getParameter("currentPage");
+		String pageSizeStr = request.getParameter("pageSize");
+		
+		int currentPage = 1;
+		int pageSize = 10;
+		int sta = 0;
+		int jty = 0;
+		if (StringUtils.isNotBlank(currentPageStr)) {
+			currentPage = Integer.parseInt(currentPageStr);
+		}
+		if (StringUtils.isNotBlank(pageSizeStr)) {
+			pageSize = Integer.parseInt(pageSizeStr);
+		}
+		if (StringUtils.isNotBlank(status)) {
+			sta = Integer.parseInt(status);
+		}
+		ShopTradeQueryDTO userQueryDTO = new ShopTradeQueryDTO();
+		if (StringUtils.isNotBlank(jtype)) {
+			jty = Integer.parseInt(jtype);
+		} else {
+			// 1.购买会员大礼包2.复购产品3.直推4.间推5.管理奖6.股份收益7.平台分红8.捐赠9购买返点10直推购买返点11间推购买返点12提现健康值13项目合作14提现余额15充值
+			Integer[] types = { 16, 17 };
+			List<Integer> list = Arrays.asList(types);
+			userQueryDTO.setTypes(list);
+		}
+		
+		userQueryDTO.setStatus(sta);
+		userQueryDTO.setJtype(jty);
+		userQueryDTO.setCurrentPage(currentPage);
+		userQueryDTO.setPageSize(pageSize);
+		
+		// PageModel<ShopTrade> page = tradeService.queryShopTradePage(userQueryDTO);
+		PageModel<ShopTradeUser> page = tradeService.queryShopTradeUserPage(userQueryDTO);
+		
+		model.addAttribute("page", page);
+		model.addAttribute("queryDTO", userQueryDTO);
+		model.addAttribute(Constants.MENU_NAME, Constants.SHOP_TRANSFER_LIST);
+		
+		return "shop/transfer_list";
+	}
 	@RequestMapping("/listf")
 	public String listForFinance(HttpServletRequest request, Model model) {
 		String status = request.getParameter("status");
@@ -303,6 +347,19 @@ public class ShopTradeController {
 		return "shop/dialog/trade_edit";
 	}
 	
+	@RequestMapping("/editTran")
+	public String dialogEditTran(HttpServletRequest request, Model model) {
+		
+		String id = request.getParameter("id");
+		if (StringUtils.isNotBlank(id)) {
+			ShopTrade bean = tradeService.find(Integer.parseInt(id));
+			ShopUser user = userService.find(bean.getUserId());
+			model.addAttribute("bean", bean);
+			model.addAttribute("user", user);
+			
+		}
+		return "shop/dialog/transfer_edit";
+	}
 	@RequestMapping("/editf")
 	public String dialogEditf(HttpServletRequest request, Model model) {
 		

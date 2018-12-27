@@ -334,7 +334,7 @@ public class ShopTradeController {
 						ztUser.getShopUserExts().setActiveBill(b1.add(b2).toString());
 					}
 
-					// 如果激活健康链总数+历史健康值>等级对应数量，则等级提升,并减去提升等级的健康值
+					// 如果激活健康链总数+历史健康值>等级对应数量，则等级提升,并减去提升等级的健康值,同时改变未激活健康值总值
 					int historyBill = tradeService.queryLisiJkz(ztUser.getId());
 					if ((Integer.parseInt(ztUser.getShopUserExts().getActiveBill()) + historyBill) > Integer
 							.parseInt(rule2.getBill()) && !ztUser.getVipLevel().equals("v7")) {
@@ -349,6 +349,9 @@ public class ShopTradeController {
 						BigDecimal creidts3 = creidts2.subtract(creidts1);
 						BigDecimal creidts4 = new BigDecimal(ztUser.getShopUserExts().getCredits());
 						ztUser.getShopUserExts().setCredits(creidts3.add(creidts4).toString());
+//						改变未激活健康值总值
+						ShopRegisterRule rule21 = ruleService.findByVip(ztUser.getVipLevel());
+						ztUser.getShopUserExts().setBill(rule21.getBill());
 					}
 
 					// 直推奖 订单金额绝对值*直接奖励百分比
@@ -395,6 +398,10 @@ public class ShopTradeController {
 								BigDecimal creidts3 = creidts2.subtract(creidts1);
 								BigDecimal creidts4 = new BigDecimal(ztUser.getShopUserExts().getCredits());
 								ztUser.getShopUserExts().setCredits(creidts3.add(creidts4).toString());
+								
+//								改变未激活健康值总值
+								ShopRegisterRule rule21 = ruleService.findByVip(ztUser.getVipLevel());
+								ztUser.getShopUserExts().setBill(rule21.getBill());
 							}
 							// 间推奖 订单金额*间推奖励百分比
 							BigDecimal d1 = new BigDecimal(rule3.getJtj()).multiply(shopTrade.getPrice().abs());
