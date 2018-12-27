@@ -24,8 +24,7 @@ public enum TradeTypeEnum {
 	v14(14,"提现余额"),
 	v15(15,"充值"),
 	v16(16,"转账收入"),
-	v17(17,"转账付款"),
-	;
+	v17(17,"转账付款");
 
 	private int level;	 
     private String desc;
