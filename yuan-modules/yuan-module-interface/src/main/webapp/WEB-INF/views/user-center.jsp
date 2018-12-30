@@ -107,6 +107,8 @@
                                                 <a href="javascript:;" @click="toWithdraw">提现</a>
                                                 <br>
                                                 <a href="javascript:;" @click="toRecharge">充值</a>
+                                                <br>
+                                                <a href="javascript:;" @click="toTransfer">转账</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -198,6 +200,14 @@
                                         交易密码<input v-model="rechargePayPwd" placeholder="请输入交易密码" type="password">
                                         <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
                                         <button v-if="!userOpt" class="login-btn" type="button" @click="recharge">确定充值</button>
+                                        <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
+                                    </form>
+                                    <form id="transfer" v-if="transferOpt == true">
+                                        对方手机号<input v-model="transferPhone" placeholder="请输入对方手机号" type="text">
+                                        转账金额<input v-model="transferCount" placeholder="请输入转账金额" type="number">
+                                        交易密码<input v-model="transferPayPwd" placeholder="请输入交易密码" type="password">
+                                        <span v-html="errMsg" style="color: red; font-size: 14px;"></span>
+                                        <button v-if="!userOpt" class="login-btn" type="button" @click="transfer">确定转让</button>
                                         <button v-else class="login-btn" type="button" disabled="disabled">正在确定……</button>
                                     </form>
                                     <form v-if="operation == '1'">
@@ -303,7 +313,7 @@
         <script src="<%=path%>/assets/js/main.js"></script>
         <script src="<%=path%>/assets/js/classie.js"></script>
         <script src="<%=path%>/assets/js/vue.min.js"></script>
-        <script src="<%=path%>/assets/js/yuan.js"></script>
+        <script src="<%=path%>/assets/js/yuan.js?v=1.1"></script>
         <script src="<%=path%>/assets/js/bank.js"></script>
         <script>
             var userId = ${sessionScope.userInfo.id}
@@ -318,6 +328,7 @@
                     donateOpt: false,
                     withdrawOpt: false,
                     rechargeOpt: false,
+                    transferOpt: false,
                     account: '',
                     address: '',
                     oldLoginPwd: '',
@@ -340,6 +351,9 @@
                     withdrawPayPwd: '',
                     rechargeCount: 0,
                     rechargePayPwd: '',
+                    transferPhone: '',
+                    transferCount: 0,
+                    transferPayPwd: '',
                     bankName: '',
                     bankCard: '',
                     bankDeposit: '',
@@ -751,6 +765,7 @@
                         view.donateOpt = true
                         view.withdrawOpt = false
                         view.rechargeOpt = false
+                        view.transferOpt = false;
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
@@ -763,6 +778,7 @@
                         view.donateOpt = false
                         view.withdrawOpt = true
                         view.rechargeOpt = false
+                        view.transferOpt = false;
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
@@ -774,11 +790,24 @@
                         view.donateOpt = false
                         view.withdrawOpt = false
                         view.rechargeOpt = true
+                        view.transferOpt = false;
                         view.operation = 0
                         view.operation1 = 0
                         view.errMsg = ''
                         this.$nextTick(function() {
                             scrollToId('recharge')
+                        })
+                    },
+                    toTransfer: function () {
+                        view.donateOpt = false
+                        view.withdrawOpt = false
+                        view.rechargeOpt = false
+                        view.transferOpt = true;
+                        view.operation = 0
+                        view.operation1 = 0
+                        view.errMsg = ''
+                        this.$nextTick(function() {
+                            scrollToId('transfer')
                         })
                     },
                     donate: function () {
@@ -906,6 +935,54 @@
                                     success: function (data) {
                                         if (data.success === true) {
                                             view.errMsg = '余额充值提交成功'
+                                            self.getUser()
+                                            self.hideUserOpt()
+                                        } else if (data.success === false) {
+                                            view.userOpt = false
+                                            view.errMsg = data.msg
+                                        } else if (data.success === 'false' && data.msg === LOGIN_ERR_MSG) {
+                                            window.location.href = '<%=path%>/login?relogin=y'
+                                        }
+                                    },
+                                    error: function (data) {
+
+                                    }
+                                }
+                            )
+                        }
+                    },
+                    transfer: function () {
+                        view.userOpt = false
+                        var errMsg = ''
+                        if (!isPhone(view.transferPhone.trim())) {
+                            errMsg += '请输入正确的手机号<br/>'
+                        }
+                        if (isNaN(view.transferCount) || view.transferCount <= 0 || view.transferCount > view.user.shopUserExts.balance) {
+                            errMsg += '请输入不大于账户余额的数值<br/>'
+                        }
+                        if (view.transferPayPwd.trim() === '') {
+                            errMsg += '请输入交易密码，若未设置请先设置交易密码<br/>'
+                        }
+                        if (errMsg !== '') {
+                            view.errMsg = errMsg
+                        } else {
+                            view.userOpt = true
+                            view.errMsg = ''
+                            var self = this
+                            $.ajax(
+                                {
+                                    type: "POST",
+                                    url: SHOPBILL_TRANSFER,
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({
+                                        amount: view.transferCount,
+                                        tradePhone: view.transferPhone,
+                                        payPwd: view.transferPayPwd
+                                    }),
+                                    dataType: "json",
+                                    success: function (data) {
+                                        if (data.success === true) {
+                                            view.errMsg = '余额转账成功'
                                             self.getUser()
                                             self.hideUserOpt()
                                         } else if (data.success === false) {

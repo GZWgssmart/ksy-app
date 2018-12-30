@@ -134,7 +134,7 @@
         <script src="<%=path%>/assets/js/main.js"></script>
         <script src="<%=path%>/assets/js/classie.js"></script>
         <script src="<%=path%>/assets/js/vue.min.js"></script>
-        <script src="<%=path%>/assets/js/yuan.js"></script>
+        <script src="<%=path%>/assets/js/yuan.js?v=1.1"></script>
         <script>
             var articleId = '${requestScope.id}'
             var view = new Vue({

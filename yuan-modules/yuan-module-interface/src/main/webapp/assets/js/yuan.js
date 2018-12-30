@@ -62,6 +62,8 @@ var LOGOUT_URL = BASE_URL + MODULE_WEB+ '/api/shopuser/login_out';
 
 var HOLDER_PROFIT_URL = BASE_URL + MODULE_WEB + '/api/shoptrade/listProfit';
 
+var SHOPBILL_TRANSFER = BASE_URL + MODULE_WEB + '/api/shopbilltrade/transfer'
+
 var LOGIN_ERR_MSG = 'login first'
 
 var BANNER_COLUMN_ID = '8a2a08425b7a0b7b015b7a2b0f060006'
@@ -79,9 +81,10 @@ var HEART_ROOT_COLUMN_ID = '2c92d3966726e03001672eafcb4f0000'
 var HEALTH_ROOT_COLUMN_ID = '8a2a08425b7a0b7b015b7a2a82ab0005'
 
 var USER_LEVELS = {
-    "v1": "普通会员",
-    "v2": "个人VIP",
-    "v3": "初级代理",
+    "v0": "普通会员",
+    "v1": "个人VIP",
+    "v2": "初级代理",
+    "v3": "中级代理",
     "v4": "高级代理",
     "v5": "核心代理",
     "v6": "运营中心",
@@ -89,6 +92,7 @@ var USER_LEVELS = {
 }
 
 var USER_PRICE = {
+    'v0': 'price1',
     'v1': 'price1',
     'v2': 'price1',
     'v3': 'price1',
@@ -113,7 +117,9 @@ var INCOME = {
     '12': '提现健康值',
     '13': '项目合作收益',
     '14': '余额提现',
-    '15': '余额充值'
+    '15': '余额充值',
+    '16': '转账收入',
+    '17': '转账付款'
 }
 
 var BILL_TYPES = {
